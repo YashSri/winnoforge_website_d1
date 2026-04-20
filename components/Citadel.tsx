@@ -36,7 +36,7 @@ teams build prototypes, test ideas and launch startups.
 
           <div className="pointer-events-none absolute bottom-0 left-0 h-full w-full md:w-[45%]">
             <Image
-              src="/citadel1.png"
+              src="/man_speaking.png"
               alt="Citadel"
               fill
               className="object-contain object-bottom"
