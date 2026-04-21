@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Impact from "@/components/Impact";
-import InnovationGap from "@/components/InnovationGap";
 import Navbar from "@/components/Navbar";
 import PartnershipCards from "@/components/PartnershipCards";
 import Philosophy from "@/components/Philosophy";
@@ -15,7 +14,6 @@ export default function Home() {
       <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
         <Navbar />
         <Hero />
-        <InnovationGap />
         <Philosophy />
         <HowItWorks />
         <Citadel />

@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,11 +7,6 @@ import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const footerTextOutlineStyle: CSSProperties = {
-    WebkitTextStroke: "1px #000000",
-    textShadow: "-1px 0 #000000, 1px 0 #000000, 0 -1px #000000, 0 1px #000000",
-};
 
 export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -80,8 +74,7 @@ export default function Footer() {
 
             <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center text-center">
                 <h2
-                    className="footer-title mb-10 text-[15vw] leading-[0.85] font-black tracking-tight text-white md:text-[12vw]"
-                    style={footerTextOutlineStyle}
+                    className="footer-title mb-10 text-[15vw] leading-[0.85] font-black tracking-tight text-black md:text-[12vw]"
                 >
                     READY TO
                     <br />
@@ -96,17 +89,17 @@ export default function Footer() {
 
             <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-end justify-between gap-6 border-t border-white/20 pt-8 pb-8 md:flex-row">
                 <div className="text-left">
-                    <h3 className="mb-2 text-2xl font-bold text-white" style={footerTextOutlineStyle}>FORGE</h3>
+                    <h3 className="mb-2 text-2xl font-bold text-black">FORGE</h3>
                 </div>
 
-                <div className="flex gap-6 font-medium text-white">
-                    <a href="#" className="transition-colors hover:text-white/75 hover:underline">Instagram</a>
-                    <a href="#" className="transition-colors hover:text-white/75 hover:underline">Twitter</a>
-                    <a href="#" className="transition-colors hover:text-white/75 hover:underline">LinkedIn</a>
+                <div className="flex gap-6 font-medium text-black">
+                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">Instagram</a>
+                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">Twitter</a>
+                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">LinkedIn</a>
                 </div>
             </div>
 
-            <div className="relative z-10 border-t border-white/20 pt-6 text-center text-sm text-white/80">
+            <div className="relative z-10 border-t border-white/20 pt-6 text-center text-sm text-black">
                 <p>&copy; 2026 FORGE Ecosystem. All rights reserved.</p>
             </div>
         </footer>

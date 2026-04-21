@@ -71,9 +71,7 @@ const dropdowns: Record<string, DropdownData> = {
 
 const navItems = [
   { key: "vision", label: "Ecosystem", href: "/ecosystem" },
-  { key: "programs", label: "Founder Programs" },
-  { key: "institution", label: "Institution", href: "/institution" },
-  { key: "Corporate", label: "Corporate", href: "/corporate" },
+  { key: "programs", label: "Programs", href: "/programs" },
   { key: "citadel", label: "Citadel", href: "/citadel1" },
   { key: "community", label: "Community", href: "/community" },
 ];
@@ -221,44 +219,13 @@ export default function Navbar() {
               {/* Desktop Nav Links */}
               <div className="hidden md:flex items-center gap-8 font-jakarta font-medium text-sm text-foreground/80">
                 {navItems.map((item) => (
-                  item.href ? (
-                    <a
-                      key={item.key}
-                      href={item.href}
-                      className="whitespace-nowrap hover:text-primary transition-colors duration-300"
-                    >
-                      {item.label}
-                    </a>
-                  ) : item.key === "programs" ? (
-                    <Link
-                      key={item.key}
-                      href="/programs"
-                      className="whitespace-nowrap hover:text-primary transition-colors duration-300"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <button
-                      key={item.key}
-                      type="button"
-                      className={`whitespace-nowrap hover:text-primary transition-colors duration-300 cursor-pointer flex items-center gap-1 ${activeDropdown === item.key ? "text-primary" : ""
-                        }`}
-                      // onMouseEnter={() => openDropdown(item.key)}
-                      // onMouseLeave={scheduleClose}
-                    >
-                      {item.label}
-                      {/* <svg
-                        className={`w-3.5 h-3.5 transition-transform duration-300 ${activeDropdown === item.key ? "rotate-180" : ""
-                          }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg> */}
-                    </button>
-                  )
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className="whitespace-nowrap hover:text-primary transition-colors duration-300"
+                  >
+                    {item.label}
+                  </Link>
                 ))}
               </div>
 
@@ -354,14 +321,7 @@ export default function Navbar() {
                   </button>
                 ) : (
                   <Link
-                    href={
-                      item.href ??
-                      (item.key === "programs"
-                        ? "/programs"
-                        : item.key === "impact"
-                          ? "/impact"
-                          : "/#vision")
-                    }
+                    href={item.href}
                     className="w-full flex items-center justify-between font-clash font-bold text-3xl text-left text-black hover:text-primary transition-colors focus:outline-none"
                     onClick={() => setMobileMenuOpen(false)}
                   >

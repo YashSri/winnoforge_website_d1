@@ -1,12 +1,9 @@
-import CorporateHeroSection from "@/components1/corporate/CorporateHeroSection";
-import ForgeCitadelSection from "@/components1/corporate/ForgeCitadelSection";
-import ForgeEngineSection from "@/components1/corporate/ForgeEngineSection";
-import IndustryOutcomesSection from "@/components1/corporate/IndustryOutcomesSection";
-import InstitutionalGapSection from "@/components1/corporate/InstitutionalGapSection";
-import InstitutionalModelSection from "@/components1/corporate/InstitutionalModelSection";
-import PartnerWithForgeSection from "@/components1/corporate/PartnerWithForgeSection";
+import Citadel from "@/components/Citadel";
 import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
 import Navbar from "@/components/Navbar";
+import PartnershipCards from "@/components/PartnershipCards";
 
 export default function CorporatePage() {
   return (
@@ -14,13 +11,10 @@ export default function CorporatePage() {
       <Navbar />
 
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
-        <CorporateHeroSection />
-        <InstitutionalGapSection />
-        <InstitutionalModelSection />
-        <ForgeEngineSection />
-        <ForgeCitadelSection />
-        <IndustryOutcomesSection />
-        <PartnerWithForgeSection />
+        <Hero />
+        <HowItWorks />
+        <Citadel />
+        <PartnershipCards />
       </main>
 
       <Footer />

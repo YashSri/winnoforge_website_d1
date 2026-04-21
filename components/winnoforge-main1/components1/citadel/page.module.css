@@ -1,0 +1,22 @@
+/* Kept for legacy compatibility; scroll reveals now use ScrollReveal. */
+@media (prefers-reduced-motion: no-preference) {
+  .citadelSoftFloat {
+    animation: citadelFloat 6.4s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .citadelSoftFloat {
+    animation: none;
+  }
+}
+
+@keyframes citadelFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}

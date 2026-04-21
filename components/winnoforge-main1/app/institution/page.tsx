@@ -1,14 +1,9 @@
-"use client";
-
-import Navbar from "@/components1/institution/Navbar";
-import { ForgeCitadel } from "@/components1/institution/instituteForgeCitadel";
-import { ForgeEngine } from "@/components1/institution/instituteForgeEngine";
-import { Footer } from "@/components1/institution/instituteFooter";
-import { Hero } from "@/components1/institution/instituteHero";
-import { InstitutionalGap } from "@/components1/institution/InstitutionalGap";
-import { InstitutionalModel } from "@/components1/institution/InstitutionalModel";
-import { Outcomes } from "@/components1/institution/instituteOutcomes";
-import { PartnerCTA } from "@/components1/institution/institutionPartnerCTA";
+import Citadel from "@/components/Citadel";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
+import Navbar from "@/components/Navbar";
+import PartnershipCards from "@/components/PartnershipCards";
 
 export default function InstitutionPage() {
   return (
@@ -17,12 +12,9 @@ export default function InstitutionPage() {
 
       <main className="overflow-x-hidden">
         <Hero />
-        <InstitutionalGap />
-        <InstitutionalModel />
-        <ForgeEngine />
-        <ForgeCitadel />
-        <Outcomes />
-        <PartnerCTA />
+        <HowItWorks />
+        <Citadel />
+        <PartnershipCards />
       </main>
 
       <Footer />

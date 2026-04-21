@@ -5,7 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Users, Building2, Rocket, Globe } from "lucide-react";
+import { Users, Building2, Rocket } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,7 +81,7 @@ export default function Impact() {
             <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[250px_250px] gap-6 md:h-131 items-start">
                 {/* Student Led - Tall Left */}
                 <div className="bento-item md:col-span-1 md:row-span-2 md:h-full rounded-3xl p-8 flex flex-col justify-between group transition-transform cursor-pointer relative overflow-hidden min-h-125 md:min-h-0">
-                    <Image src="/webp/1.webp" alt="Student Led" fill className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2" />
+                    <Image src="/impact-student-led.png" alt="Student Led" fill className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2" />
                     <div className="absolute inset-0 bg-black/50" />
                     <div className="relative z-10">
                         <Users size={48} className="mb-4 text-white" />
@@ -108,14 +108,14 @@ export default function Impact() {
                     <Image src="/webp/3.webp" alt="Startups Launched" fill className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2" />
                     <div className="absolute inset-0 bg-black/60" />
                     <div className="relative z-10 text-center">
-                        <h3 className="font-varela font-bold text-6xl text-primary">100+</h3>
+                        <h3 className="font-varela font-bold text-6xl text-primary">50+</h3>
                         <p className="font-jakarta text-lg mt-2">Startups Launched</p>
                     </div>
                 </div>
 
                 {/* Campus Wide - Wide Bottom */}
                 <div className="bento-item md:col-span-2 md:h-full rounded-3xl p-8 flex items-center justify-between transition-transform cursor-pointer relative overflow-hidden group min-h-62.5">
-                    <Image src="/webp/4.webp" alt="Campus Wide" fill className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2" />
+                    <Image src="/impact-campus-wide.jpg" alt="Campus Wide" fill className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:rotate-2" />
                     <div className="absolute inset-0 bg-black/50" />
                     <div className="relative z-10 max-w-sm">
                         <h3 className="font-varela font-bold text-4xl mb-4 text-white">Campus Wide.</h3>
