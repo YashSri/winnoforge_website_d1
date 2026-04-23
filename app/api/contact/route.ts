@@ -1,7 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 function buildHtml(fields: Record<string, string>, title: string): string {
   const rows = Object.entries(fields)
@@ -34,6 +33,7 @@ function buildHtml(fields: Record<string, string>, title: string): string {
 
 export async function POST(req: Request) {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const { formType, ...fields } = body as { formType: "join" | "partner"; [k: string]: string };
 
