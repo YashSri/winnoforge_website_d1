@@ -24,27 +24,27 @@ const showcaseCards: ShowcaseCard[] = [
       "from-primary/18 via-primary/10 to-transparent ring-primary/15 shadow-[0_24px_60px_rgba(77,150,255,0.14)]",
     logos: [
       {
-        src: "/Guest list forge/Ashees Gupta/Samarth Care.webp",
+        src: "/logos/Samarth Care.webp",
         alt: "Samarth Care logo",
       },
       {
-        src: "/Guest list forge/Krishna Basudevan/Kratikal Tech Private Limited.webp",
+        src: "/logos/Kratikal Tech Private Limited.webp",
         alt: "Kratikal Tech Private Limited logo",
       },
       {
-        src: "/Guest list forge/Krishna Basudevan/lightstorm logo.jpg",
+        src: "/logos/lightstorm logo.jpg",
         alt: "Lightstorm logo",
       },
       {
-        src: "/Guest list forge/LV Sastry/Infynix Communications Ltd..png",
+        src: "/logos/Infynix Communications Ltd..png",
         alt: "Infynix Communications Ltd. logo",
       },
       {
-        src: "/Guest list forge/Siddharth Wahal/Wahal Infosol logo.jpg",
+        src: "/logos/Wahal Infosol logo.jpg",
         alt: "Wahal Infosol logo",
       },
       {
-        src: "/Guest list forge/Vinod Kumar/satcomlogo.png",
+        src: "/logos/satcomlogo.png",
         alt: "Satcom logo",
       },
     ],
@@ -62,23 +62,23 @@ const showcaseCards: ShowcaseCard[] = [
         alt: "Bharti Airtel logo",
       },
       {
-        src: "/Guest list forge/Basant Chaturvedi/Perfetti Van Melle.png",
+        src: "/logos/Perfetti Van Melle.png",
         alt: "Perfetti Van Melle logo",
       },
       {
-        src: "/Guest list forge/Harvinder Singh Banga/CJ Darcl Logistics Ltd.jpg",
+        src: "/logos/CJ Darcl Logistics Ltd.jpg",
         alt: "CJ Darcl Logistics Ltd. logo",
       },
       {
-        src: "/Guest list forge/Harvinder Singh Banga/Movers International Pvt. Ltd..jpg",
+        src: "/logos/Movers International Pvt. Ltd..jpg",
         alt: "Movers International Pvt. Ltd. logo",
       },
       {
-        src: "/Guest list forge/Krishna Basudevan/lightstorm logo.jpg",
+        src: "/logos/lightstorm logo.jpg",
         alt: "Lightstorm logo",
       },
       {
-        src: "/Guest list forge/Pramod Gokhale/mankind.png",
+        src: "/logos/mankind.png",
         alt: "Mankind logo",
       },
     ],
@@ -96,23 +96,23 @@ const showcaseCards: ShowcaseCard[] = [
         alt: "IIM Ahmedabad logo",
       },
       {
-        src: "/Guest list forge/Basant Chaturvedi/iim banglore.png",
+        src: "/logos/iim banglore.png",
         alt: "IIM Bangalore logo",
       },
       {
-        src: "/Guest list forge/Ashees Gupta/IIM_Calcutta_Logo.svg.png",
+        src: "/logos/IIM_Calcutta_Logo.svg.png",
         alt: "IIM Calcutta logo",
       },
       {
-        src: "/Guest list forge/Ashees Gupta/iit kanpur.jpg",
+        src: "/logos/iit kanpur.jpg",
         alt: "IIT Kanpur logo",
       },
       {
-        src: "/Guest list forge/Siddharth Wahal/du logo.jpg",
+        src: "/logos/du logo.jpg",
         alt: "University of Delhi logo",
       },
       {
-        src: "/Guest list forge/Ashees Gupta/Cornell Institute for Healthy Futures.png",
+        src: "/logos/Cornell Institute for Healthy Futures.png",
         alt: "Cornell Institute for Healthy Futures logo",
       },
     ],

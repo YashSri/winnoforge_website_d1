@@ -26,27 +26,27 @@ const partnerLogos = [
     name: "Airtel",
   },
   {
-    src: "/Guest list forge/Basant Chaturvedi/Perfetti Van Melle.png",
+    src: "/logos/Perfetti Van Melle.png",
     alt: "Perfetti Van Melle logo",
     name: "Perfetti",
   },
   {
-    src: "/Guest list forge/Harvinder Singh Banga/CJ Darcl Logistics Ltd.jpg",
+    src: "/logos/CJ Darcl Logistics Ltd.jpg",
     alt: "CJ Darcl Logistics Ltd. logo",
     name: "CJ Darcl",
   },
   {
-    src: "/Guest list forge/Krishna Basudevan/lightstorm logo.jpg",
+    src: "/logos/lightstorm logo.jpg",
     alt: "Lightstorm logo",
     name: "Lightstorm",
   },
   {
-    src: "/Guest list forge/LV Sastry/Infynix Communications Ltd..png",
+    src: "/logos/Infynix Communications Ltd..png",
     alt: "Infynix Communications Ltd. logo",
     name: "Infynix",
   },
   {
-    src: "/Guest list forge/Pramod Gokhale/mankind.png",
+    src: "/logos/mankind.png",
     alt: "Mankind logo",
     name: "Mankind",
   },
