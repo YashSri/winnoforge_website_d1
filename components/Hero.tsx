@@ -1,10 +1,10 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ArrowDownRight } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ArrowDownRight } from "lucide-react";
 
 const founderLogos = [
   { src: "/supporters/founder-remote.png", alt: "Founder company mark" },
@@ -19,54 +19,71 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  useGSAP((context) => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
 
-    const animTargets = [".hero-heading", ".hero-keywords", ".hero-tags", ".hero-cta", ".hero-separator", ".hero-supporters"];
-    gsap.set(animTargets, { y: 30, opacity: 0 });
-    gsap.set(".hero-video", { scale: 0.95, opacity: 0 });
+      const animTargets = [
+        ".hero-heading",
+        ".hero-keywords",
+        ".hero-tags",
+        ".hero-cta",
+        ".hero-separator",
+        ".hero-supporters",
+      ];
+      gsap.set(animTargets, { y: 30, opacity: 0 });
+      gsap.set(".hero-video", { scale: 0.95, opacity: 0 });
 
-    tl.delay(0.2)
-      .to(animTargets, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-      })
-      .to(".hero-video", {
-        scale: 1,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-      }, "-=0.6");
-
-  }, { scope: containerRef });
+      tl.delay(0.2)
+        .to(animTargets, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        })
+        .to(
+          ".hero-video",
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.6",
+        );
+    },
+    { scope: containerRef },
+  );
 
   return (
-    <section ref={containerRef} className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#F0F3FA]">
-
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col items-center justify-start pt-32 md:pt-36 pb-20 overflow-x-hidden bg-[#F0F3FA]"
+    >
       {/* Main Content */}
-      <div ref={textRef} className="relative z-30 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 px-6 md:px-12 pointer-events-none">
-
+      <div
+        ref={textRef}
+        className="relative z-30 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 px-6 md:px-12 pointer-events-none"
+      >
         {/* Left Content (Text & Details) */}
-        <div className="flex-1 flex flex-col items-start text-left w-full pointer-events-auto max-w-lg mt-16 md:mt-0">
-
+        <div className="flex-1 flex flex-col items-start text-left w-full pointer-events-auto max-w-lg">
           {/* Main Heading */}
           <h1 className="hero-heading font-varela font-bold text-5xl md:text-6xl leading-[1.05] text-foreground mix-blend-color-burn">
-            The
-            Innovation
-            Ecosystem,
-            Where
-            Builders Are
-            Forged
+            The Innovation Ecosystem, Where Builders Are Forged
           </h1>
 
           {/* Tags */}
           <div className="hero-tags flex flex-wrap items-center gap-3 mt-6">
-            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">Execution Driven</span>
-            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">Build your Product</span>
-            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">Industry mentors</span>
+            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">
+              Execution Pipeline
+            </span>
+            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">
+              Build Real MVPs
+            </span>
+            <span className="px-4 py-1.5 rounded-full border border-foreground/20 font-varela font-medium text-[13px] text-foreground/70 tracking-wide bg-white/40 shadow-sm backdrop-blur-md">
+              Mentor Sprint Reviews
+            </span>
           </div>
 
           <a
@@ -122,10 +139,11 @@ export default function Hero() {
         </div>
 
         {/* Right Content (Video) */}
-        <div className="hero-video flex-1 w-full max-w-xl md:max-w-2xl relative pointer-events-auto mt-10 md:mt-0 lg:mr-8 xl:mr-16">
+        <div className="hero-video flex-1 w-full max-w-sm md:max-w-2xl relative pointer-events-auto lg:mr-8 xl:mr-16">
           <div className="relative w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm border border-white/40">
             <video
-              src="/vid/demo video.mp4"
+              suppressHydrationWarning
+              src="/Logo_Animation_Gear_to_FORGE.mp4"
               autoPlay
               loop
               muted
@@ -134,7 +152,6 @@ export default function Hero() {
             ></video>
           </div>
         </div>
-
       </div>
     </section>
   );

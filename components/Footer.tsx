@@ -5,11 +5,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
+import { useModal } from "@/components/modal/ModalContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { open } = useModal();
 
     useGSAP(() => {
         gsap.from(".footer-title", {
@@ -81,7 +83,7 @@ export default function Footer() {
                     FORGE?
                 </h2>
 
-                <button className="footer-cta group mx-auto flex items-center gap-4 rounded-full bg-black px-12 py-6 text-2xl font-bold text-white shadow-2xl transition-all hover:scale-105 hover:bg-[#395886] active:scale-95 md:text-3xl">
+                <button onClick={() => open("join")} className="footer-cta group mx-auto flex items-center gap-4 rounded-full bg-black px-12 py-6 text-2xl font-bold text-white shadow-2xl transition-all hover:scale-105 hover:bg-[#395886] active:scale-95 md:text-3xl">
                     Join the Revolution
                     <ArrowUpRight className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </button>
@@ -93,9 +95,9 @@ export default function Footer() {
                 </div>
 
                 <div className="flex gap-6 font-medium text-black">
-                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">Instagram</a>
-                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">Twitter</a>
-                    <a href="#" className="transition-colors hover:text-black/70 hover:underline">LinkedIn</a>
+                    <a href="https://www.instagram.com/forgeinitiatives?igsh=dGV1NDJ5cm9jYWdr" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-black/70 hover:underline">Instagram</a>
+                    <a href="https://x.com/WinnoForge" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-black/70 hover:underline">X</a>
+                    <a href="https://www.linkedin.com/showcase/forge-begin/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-black/70 hover:underline">LinkedIn</a>
                 </div>
             </div>
 

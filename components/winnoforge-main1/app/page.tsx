@@ -1,8 +1,6 @@
-import Citadel from "@/components/Citadel";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
-import Impact from "@/components/Impact";
 import Navbar from "@/components/Navbar";
 import PartnershipCards from "@/components/PartnershipCards";
 import Philosophy from "@/components/Philosophy";
@@ -16,8 +14,6 @@ export default function Home() {
         <Hero />
         <Philosophy />
         <HowItWorks />
-        <Citadel />
-        <Impact />
         <PartnershipCards />
         <Footer />
       </main>

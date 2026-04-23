@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ModalProvider } from "@/components/modal/ModalContext";
+import FormModal from "@/components/modal/FormModal";
 
 export const metadata: Metadata = {
   title: "FORGE",
@@ -12,9 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground overflow-x-hidden">
-        {children}
+        <ModalProvider>
+          {children}
+          <FormModal />
+        </ModalProvider>
       </body>
     </html>
   );

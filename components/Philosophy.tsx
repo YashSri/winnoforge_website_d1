@@ -94,7 +94,7 @@ export default function Philosophy() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="relative min-h-screen md:h-screen flex flex-col md:flex-row text-white md:overflow-hidden" style={{ backgroundColor: "#095886" }}>
+        <section ref={containerRef} className="relative min-h-screen md:h-screen flex flex-col md:flex-row text-white overflow-x-hidden md:overflow-hidden" style={{ backgroundColor: "#095886" }}>
 
             {/* Sticky Left Content - Mobile: Natural flow, Desktop: Sticky */}
             <div ref={textRef} className="w-full md:w-1/2 py-20 px-8 md:px-20 md:h-screen flex flex-col justify-center z-10 pointer-events-none">
@@ -126,7 +126,7 @@ export default function Philosophy() {
                 {cards.map((card, idx) => (
                     <div
                         key={card.problem}
-                        className="parallax-card aspect-square w-[75%] md:w-[55%] rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-transform duration-500 hover:scale-105 backdrop-blur-xl"
+                        className="parallax-card aspect-square w-[85%] sm:w-[75%] md:w-[55%] rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-transform duration-500 hover:scale-105 backdrop-blur-xl"
                         style={{
                             background: card.glass,
                             border: "1px solid rgba(255, 255, 255, 0.15)",
@@ -143,7 +143,7 @@ export default function Philosophy() {
                         </div>
 
                         {/* Middle: big title */}
-                        <h3 className="font-varela font-bold text-5xl md:text-6xl text-white leading-[0.95] whitespace-pre-line">
+                        <h3 className="font-varela font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[0.95] whitespace-pre-line">
                             {card.solution}
                         </h3>
 

@@ -8,7 +8,7 @@ const engineSteps = [
     description:
       "Students explore technologies through seminars and workshops.",
     icon: Flame,
-    image: "/webp/2.webp",
+    image: "/ecosystem-builders-20260222.jpg",
   },
   {
     id: "02",
@@ -38,8 +38,11 @@ const engineSteps = [
 export default function EcosystemEngineSection() {
   return (
     <section className="mb-24 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl rounded-4xl border border-black/10 bg-white/80 p-6 md:p-10">
+      <div className="mx-auto max-w-7xl rounded-[2rem] border border-black/10 bg-gradient-to-br from-[#f7fbff] via-white to-[#edf5ff] p-6 shadow-[0_20px_60px_rgba(24,42,72,0.08)] md:p-10">
         <div className="mx-auto max-w-3xl text-center">
+          <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+            Execution Cycle
+          </span>
           <h2 className="font-varela text-3xl font-bold text-foreground md:text-5xl">
             The FORGE Engine
           </h2>
@@ -60,7 +63,7 @@ export default function EcosystemEngineSection() {
             return (
               <article
                 key={step.title}
-                className="group relative rounded-[1.6rem] border border-black/10 bg-background p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group relative rounded-[1.7rem] border border-black/10 bg-white/92 p-5 shadow-[0_16px_34px_rgba(24,42,72,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_42px_rgba(77,150,255,0.12)]"
               >
                 <span className="absolute -top-3 left-5 rounded-full border border-black/10 bg-white px-3 py-1 font-jakarta text-xs font-semibold text-foreground/60">
                   Step {step.id}
