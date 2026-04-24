@@ -1,0 +1,261 @@
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app-paths-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app-paths-manifest.json',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app-paths-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app-paths-manifest.json',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\ecosystem\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\ecosystem\\page.js',
+  page: '/ecosystem'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\ecosystem\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\ecosystem\\page.js',
+  page: '/ecosystem'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\ecosystem\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\ecosystem\\page.js',
+  page: '/ecosystem'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\ecosystem\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\ecosystem\\page.js',
+  page: '/ecosystem'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\server\app\page.js'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\server\\app\\page.js',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\techn\OneDrive\Desktop\Tap in\winnoforge-main\winnoforge-main\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main\\.next\\dev\\routes-manifest.json'
+}
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+^C

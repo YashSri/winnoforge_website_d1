@@ -1,0 +1,19 @@
+
+> forge-v2@0.1.0 dev
+> node scripts/dev-safe.mjs
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.61:3000
+
+✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+Creating turbopack project {
+  dir: 'C:\\Users\\techn\\OneDrive\\Desktop\\Tap in\\winnoforge-main\\winnoforge-main',
+  testMode: true
+}
+[?25h
