@@ -4,10 +4,22 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useModal } from "@/components/modal/ModalContext";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const footerNavItems = [
+    { key: "home", label: "Home", href: "/" },
+    { key: "about", label: "About & Ecosystem", href: "/ecosystem" },
+    { key: "programs", label: "Programs", href: "/programs" },
+    { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
+    { key: "partner", label: "Partner With Us", href: "/corporate" },
+    { key: "mentors", label: "Mentors & Experts", href: "/mentors" },
+    { key: "community", label: "Community", href: "/community" },
+    { key: "contact", label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +101,19 @@ export default function Footer() {
                 </button>
             </div>
 
-            <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-end justify-between gap-6 border-t border-white/20 pt-8 pb-8 md:flex-row">
+            <nav className="relative z-10 mx-auto flex w-full max-w-7xl flex-wrap justify-center gap-x-8 gap-y-3 border-t border-white/20 pt-8 font-jakarta text-sm font-medium text-black">
+                {footerNavItems.map((item) => (
+                    <Link
+                        key={item.key}
+                        href={item.href}
+                        className="transition-colors hover:text-black/70 hover:underline"
+                    >
+                        {item.label}
+                    </Link>
+                ))}
+            </nav>
+
+            <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-end justify-between gap-6 pt-8 pb-8 md:flex-row">
                 <div className="text-left">
                     <h3 className="mb-2 text-2xl font-bold text-black">FORGE</h3>
                 </div>
