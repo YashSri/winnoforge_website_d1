@@ -66,7 +66,7 @@ export default function VoicesCarousel({
       <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
         {title}
       </h2>
-      <div className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:overflow-visible">
+      <div className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 md:flex-wrap md:justify-center md:overflow-visible">
         {voices.map((voice, i) => (
           <VoiceCard key={`${voice.name}-${i}`} voice={voice} />
         ))}
