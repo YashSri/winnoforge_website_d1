@@ -20,6 +20,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import JoinButton from "@/components/modal/JoinButton";
 import PartnerButton from "@/components/modal/PartnerButton";
+import CommunityGrid from "@/components/community/CommunityGrid";
+import Lightbox from "@/components/shared/Lightbox";
 
 export const metadata: Metadata = {
   title: "FORGE Community",
@@ -118,12 +120,30 @@ const valuePills = [
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
+const communityGalleryImages = [
+  { src: "/webp/2.webp", alt: "FORGE community event" },
+  { src: "/webp/3.webp", alt: "FORGE community workshop" },
+  { src: "/webp/4.webp", alt: "FORGE community demo day" },
+  { src: "/webp/8.webp", alt: "FORGE community builders" },
+  { src: "/impact-campus-wide.jpg", alt: "FORGE community on campus" },
+  { src: "/launch-step-4.jpg", alt: "FORGE community launch" },
+];
+
 export default function CommunityNewPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
         <HeroSection />
+        <CommunityGrid />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Community Gallery
+          </h2>
+          <div className="mt-10">
+            <Lightbox images={communityGalleryImages} />
+          </div>
+        </section>
         {benefitSections.map((section) => (
           <BenefitSection key={section.id} section={section} />
         ))}
