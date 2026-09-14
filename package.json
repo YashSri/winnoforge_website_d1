@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/dev-safe.mjs --no-turbopack",
+    "dev": "node scripts/dev-safe.mjs --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
