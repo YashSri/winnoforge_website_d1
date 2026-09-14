@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/winnoforge-main1/components1/citadel/ScrollReveal";
 import PartnerButton from "@/components/modal/PartnerButton";
+import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
 
 export const metadata: Metadata = {
   title: "FORGE Innovation Citadel",
@@ -128,6 +129,82 @@ const studentOutcomes = [
   "Real execution experience",
   "AI-native capability",
   "Portfolio of shipped work",
+];
+
+const zones: Zone[] = [
+  {
+    name: "Build Floor",
+    description: "The main open-plan execution space where sprint teams build and iterate.",
+    dimensions: "120 sqm",
+  },
+  {
+    name: "Flex Room 1",
+    description: "A reconfigurable space for workshops, reviews, and team breakouts.",
+    dimensions: "40 sqm",
+  },
+  {
+    name: "Flex Room 2",
+    description: "A second flex space for parallel sessions and smaller sprint pods.",
+    dimensions: "35 sqm",
+  },
+  {
+    name: "Cabin 1",
+    description: "A private cabin for focused work and founder/mentor 1:1s.",
+    dimensions: "12 sqm",
+  },
+  {
+    name: "Cabin 2",
+    description: "A private cabin for focused work and founder/mentor 1:1s.",
+    dimensions: "12 sqm",
+  },
+  {
+    name: "Cabin 3",
+    description: "A private cabin for focused work and founder/mentor 1:1s.",
+    dimensions: "12 sqm",
+  },
+  {
+    name: "Cabin 4",
+    description: "A private cabin for focused work and founder/mentor 1:1s.",
+    dimensions: "12 sqm",
+  },
+  {
+    name: "Community Space",
+    description: "An open lounge for cross-team collaboration, demos, and downtime.",
+    dimensions: "60 sqm",
+  },
+  {
+    name: "Lab-in-a-Box",
+    description: "A modular hardware/prototyping bench for physical builds.",
+    dimensions: "25 sqm",
+  },
+];
+
+const founderVoice = [
+  {
+    quote: "The Citadel isn't a room you book — it's a system you live inside while you build.",
+    name: "Founding Team",
+    designation: "Founder",
+    org: "FORGE",
+  },
+];
+
+const citadelFaqs = [
+  {
+    question: "Who can use the Citadel?",
+    answer: "Builders enrolled in an active FORGE program or partner-institution cohort get access to the Citadel during their sprint cycles.",
+  },
+  {
+    question: "Is the Citadel available outside program hours?",
+    answer: "Zones like the Build Floor and Community Space have extended access hours; private cabins are bookable per sprint schedule.",
+  },
+  {
+    question: "Can institutions bring their own equipment into Lab-in-a-Box?",
+    answer: "Yes — Lab-in-a-Box is a modular bench designed to accommodate partner-institution hardware alongside FORGE's own tooling.",
+  },
+  {
+    question: "How does my institution bring the Citadel to campus?",
+    answer: "Reach out through the Partner With Us page — the Citadel deploys in a single partnership cycle once a site is confirmed.",
+  },
 ];
 
 export default function CitadelPage() {
@@ -380,6 +457,25 @@ export default function CitadelPage() {
                 </div>
               </div>
             </ScrollReveal>
+          </div>
+        </section>
+
+        <section className="px-4 py-14 md:px-8 md:py-20">
+          <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,#0E2E48_0%,#1E4D72_45%,#628ECB_100%)] px-6 py-14 shadow-[0_20px_70px_rgba(2,8,20,0.4)] md:px-10 md:py-16">
+            <ScrollReveal className="mb-10 text-center">
+              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-[#78D8C6]">
+                Inside the Citadel
+              </span>
+              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-white md:text-5xl">
+                Nine Zones, One System
+              </h2>
+            </ScrollReveal>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {zones.map((zone) => (
+                <ZoneCard key={zone.name} zone={zone} />
+              ))}
+            </div>
           </div>
         </section>
 
