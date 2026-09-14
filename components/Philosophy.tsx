@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +17,8 @@ const cards = [
         description: "Embedding a structured innovation ecosystem inside campuses.",
         glass: "linear-gradient(135deg, rgba(255, 107, 107, 0.35), rgba(255, 165, 89, 0.2))",
         rotate: "-2deg",
-        speed: 0.2
+        speed: 0.2,
+        href: "/corporate",
     },
     {
         problem: "Passive Students",
@@ -23,7 +26,8 @@ const cards = [
         description: "Connecting companies with emerging talent and innovation.",
         glass: "linear-gradient(135deg, rgba(250, 204, 21, 0.35), rgba(255, 165, 0, 0.2))",
         rotate: "2deg",
-        speed: 0.5
+        speed: 0.5,
+        href: "/corporate",
     },
     {
         problem: "Isolated Clubs",
@@ -31,7 +35,8 @@ const cards = [
         description: "Where students become builders and ideas become real ventures.",
         glass: "linear-gradient(135deg, rgba(0, 210, 255, 0.35), rgba(58, 255, 217, 0.2))",
         rotate: "-1deg",
-        speed: 0.8
+        speed: 0.8,
+        href: "/programs",
     },
 ];
 
@@ -148,9 +153,18 @@ export default function Philosophy() {
                         </h3>
 
                         {/* Bottom: description */}
-                        <p className="font-jakarta text-white/80 text-base leading-relaxed">
-                            {card.description}
-                        </p>
+                        <div className="flex flex-col gap-3">
+                            <p className="font-jakarta text-white/80 text-base leading-relaxed">
+                                {card.description}
+                            </p>
+                            <Link
+                                href={card.href}
+                                className="group/link inline-flex w-fit items-center gap-1.5 font-jakarta text-sm font-semibold text-white transition-colors hover:text-white/80"
+                            >
+                                Learn More
+                                <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>
