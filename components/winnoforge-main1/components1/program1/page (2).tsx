@@ -18,6 +18,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PartnerButton from "@/components/modal/PartnerButton";
+import ProgramCatalogGrid from "@/components/programs/ProgramCatalogGrid";
 
 export const metadata: Metadata = {
   title: "FORGE Programs",
@@ -225,6 +226,7 @@ export default function ProgramsPage() {
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
         <HeroSection />
+        <ProgramCatalogGrid />
         <ExecutionJourneySection />
         <CitadelHighlightSection />
         <EcosystemSection />
