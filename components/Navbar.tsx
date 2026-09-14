@@ -12,10 +12,14 @@ import { useModal } from "@/components/modal/ModalContext";
 gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
-  { key: "vision", label: "Ecosystem", href: "/ecosystem" },
+  { key: "home", label: "Home", href: "/" },
+  { key: "about", label: "About & Ecosystem", href: "/ecosystem" },
   { key: "programs", label: "Programs", href: "/programs" },
-  { key: "citadel", label: "Citadel", href: "/citadel1" },
+  { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
+  { key: "partner", label: "Partner With Us", href: "/corporate" },
+  { key: "mentors", label: "Mentors & Experts", href: "/mentors" },
   { key: "community", label: "Community", href: "/community" },
+  { key: "contact", label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -135,7 +139,7 @@ export default function Navbar() {
                 </div>
               </Link>
 
-              <div className="hidden md:flex items-center gap-8 font-jakarta font-medium text-sm text-foreground/80">
+              <div className="hidden md:flex items-center gap-3 lg:gap-5 font-jakarta font-medium text-xs lg:text-sm text-foreground/80">
                 {navItems.map((item) => {
                   const isActive = isActivePath(item.href);
 
@@ -144,7 +148,7 @@ export default function Navbar() {
                       key={item.key}
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
-                      className={`whitespace-nowrap rounded-full px-3 py-1.5 transition-colors duration-300 ${
+                      className={`whitespace-nowrap rounded-full px-2.5 py-1.5 lg:px-3 transition-colors duration-300 ${
                         isActive
                           ? "bg-primary text-white shadow-[0_8px_18px_rgba(77,150,255,0.28)]"
                           : "hover:text-primary"
@@ -206,7 +210,7 @@ export default function Navbar() {
                 key={item.key}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`w-full flex items-center justify-between rounded-2xl px-3 py-2 font-clash font-bold text-3xl text-left transition-colors focus:outline-none border-b border-black/10 pb-4 ${
+                className={`w-full flex items-center justify-between rounded-2xl px-3 py-2 font-clash font-bold text-2xl text-left transition-colors focus:outline-none border-b border-black/10 pb-4 ${
                   isActive
                     ? "bg-primary text-white"
                     : "text-black hover:text-primary"
@@ -227,16 +231,16 @@ export default function Navbar() {
               if (el) mobileLinkRefs.current[navItems.length] = el;
             }}
           >
-            <Link
-              href="#start"
-              className="w-full text-center bg-primary text-white px-8 py-4 rounded-full font-bold text-xl tracking-wide shadow-xl"
-              onClick={() => setMobileMenuOpen(false)}
-              ref={(el) => {
-                if (el) mobileLinkRefs.current[navItems.length] = el;
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                open("partner");
               }}
+              className="w-full text-center bg-primary text-white px-8 py-4 rounded-full font-bold text-xl tracking-wide shadow-xl"
             >
-              Start a Chapter
-            </Link>
+              Partner With Forge
+            </button>
           </div>
         </nav>
       </div>
