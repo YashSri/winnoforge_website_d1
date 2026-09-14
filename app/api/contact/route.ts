@@ -35,14 +35,26 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
-    const { formType, ...fields } = body as { formType: "join" | "partner"; [k: string]: string };
+    const { formType, ...fields } = body as {
+      formType: "join" | "partner" | "download";
+      [k: string]: string;
+    };
 
-    const isJoin = formType === "join";
-    const subject = isJoin
-      ? `New Join Request — ${fields["Full Name"] || "Anonymous"}`
-      : `New Partnership Inquiry — ${fields["Organization"] || fields["Full Name"] || "Anonymous"}`;
+    const subject =
+      formType === "join"
+        ? `New Join Request — ${fields["Full Name"] || "Anonymous"}`
+        : formType === "download"
+          ? `New Brochure Download — ${fields["Program"] || "Unknown Program"} (${fields["Full Name"] || "Anonymous"})`
+          : `New Partnership Inquiry — ${fields["Organization"] || fields["Full Name"] || "Anonymous"}`;
 
-    const html = buildHtml(fields, isJoin ? "New Community Join Request" : "New Partnership Inquiry");
+    const title =
+      formType === "join"
+        ? "New Community Join Request"
+        : formType === "download"
+          ? "New Brochure Download Lead"
+          : "New Partnership Inquiry";
+
+    const html = buildHtml(fields, title);
 
     const { error } = await resend.emails.send({
       from: "FORGE Website <onboarding@resend.dev>",
