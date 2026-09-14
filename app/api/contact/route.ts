@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const { formType, ...fields } = body as {
-      formType: "join" | "partner" | "download";
+      formType: "join" | "partner" | "download" | "mentor";
       [k: string]: string;
     };
 
@@ -45,14 +45,18 @@ export async function POST(req: Request) {
         ? `New Join Request — ${fields["Full Name"] || "Anonymous"}`
         : formType === "download"
           ? `New Brochure Download — ${fields["Program"] || "Unknown Program"} (${fields["Full Name"] || "Anonymous"})`
-          : `New Partnership Inquiry — ${fields["Organization"] || fields["Full Name"] || "Anonymous"}`;
+          : formType === "mentor"
+            ? `New Mentor Application — ${fields["Full Name"] || "Anonymous"}`
+            : `New Partnership Inquiry — ${fields["Organization"] || fields["Full Name"] || "Anonymous"}`;
 
     const title =
       formType === "join"
         ? "New Community Join Request"
         : formType === "download"
           ? "New Brochure Download Lead"
-          : "New Partnership Inquiry";
+          : formType === "mentor"
+            ? "New Mentor Application"
+            : "New Partnership Inquiry";
 
     const html = buildHtml(fields, title);
 

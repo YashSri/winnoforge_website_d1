@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { X, ArrowRight, CheckCircle2, Download, Loader2 } from "lucide-react";
 import { useModal, type ModalType } from "./ModalContext";
 import DownloadForm from "./DownloadForm";
+import MentorForm from "./MentorForm";
 
 // ─── shared input classes ────────────────────────────────────────────────────
 const input =
@@ -341,6 +342,7 @@ function SuccessScreen({
 const titles: Record<Exclude<NonNullable<ModalType>, "download">, { heading: string; sub: string }> = {
   join: { heading: "Join the FORGE Ecosystem", sub: "Tell us a bit about yourself and we'll reach out." },
   partner: { heading: "Partner With FORGE", sub: "Let's talk about bringing FORGE to your campus or organisation." },
+  mentor: { heading: "Become a FORGE Mentor", sub: "Tell us about your expertise and we'll be in touch." },
 };
 
 export default function FormModal() {
@@ -418,6 +420,8 @@ export default function FormModal() {
             <JoinForm onSuccess={() => setSuccess(true)} />
           ) : modalType === "download" ? (
             <DownloadForm onSuccess={() => setSuccess(true)} />
+          ) : modalType === "mentor" ? (
+            <MentorForm onSuccess={() => setSuccess(true)} />
           ) : (
             <PartnerForm onSuccess={() => setSuccess(true)} />
           )}

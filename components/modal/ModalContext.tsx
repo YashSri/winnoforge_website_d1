@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type ModalType = "join" | "partner" | "download" | null;
+export type ModalType = "join" | "partner" | "download" | "mentor" | null;
 
 export interface DownloadPayload {
   programSlug: string;
