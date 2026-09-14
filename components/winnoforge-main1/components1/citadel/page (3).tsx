@@ -21,6 +21,9 @@ import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/winnoforge-main1/components1/citadel/ScrollReveal";
 import PartnerButton from "@/components/modal/PartnerButton";
 import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
+import Lightbox from "@/components/shared/Lightbox";
+import VoicesCarousel from "@/components/shared/VoicesCarousel";
+import FaqAccordion from "@/components/shared/FaqAccordion";
 
 export const metadata: Metadata = {
   title: "FORGE Innovation Citadel",
@@ -186,6 +189,15 @@ const founderVoice = [
     designation: "Founder",
     org: "FORGE",
   },
+];
+
+const galleryImages = [
+  { src: "/citadel1.png", alt: "Citadel exterior" },
+  { src: "/citadel_fort_20260422.png", alt: "Citadel build space" },
+  { src: "/ecosystem-builders-20260222.jpg", alt: "Builders working in the Citadel" },
+  { src: "/webp/5.webp", alt: "Citadel sprint session" },
+  { src: "/webp/6.webp", alt: "Citadel review session" },
+  { src: "/webp/activation-builders.webp", alt: "Builders at the Citadel" },
 ];
 
 const citadelFaqs = [
@@ -622,6 +634,35 @@ export default function CitadelPage() {
                 </article>
               </ScrollReveal>
             </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-8 md:px-8 md:py-12">
+          <div className="mx-auto max-w-7xl">
+            <ScrollReveal className="mb-10 text-center">
+              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                Inside the Space
+              </span>
+              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
+                Photo Gallery
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={60}>
+              <Lightbox images={galleryImages} />
+            </ScrollReveal>
+          </div>
+        </section>
+
+        <VoicesCarousel title="From Our Founder" voices={founderVoice} />
+
+        <section className="px-4 py-8 md:px-8 md:py-12">
+          <div className="mx-auto max-w-3xl">
+            <ScrollReveal className="mb-10 text-center">
+              <h2 className="font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
+                Citadel FAQs
+              </h2>
+            </ScrollReveal>
+            <FaqAccordion items={citadelFaqs} />
           </div>
         </section>
 
