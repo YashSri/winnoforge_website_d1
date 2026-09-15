@@ -35,7 +35,7 @@ const offerings = [
     icon: Landmark,
     title: "Institutional Programs",
     description: "Structured partnership programs built for colleges and universities.",
-    href: "/corporate",
+    href: "/collaborate",
   },
 ];
 

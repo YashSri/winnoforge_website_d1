@@ -18,7 +18,7 @@ const cards = [
         glass: "linear-gradient(135deg, rgba(255, 107, 107, 0.35), rgba(255, 165, 89, 0.2))",
         rotate: "-2deg",
         speed: 0.2,
-        href: "/corporate",
+        href: "/collaborate",
     },
     {
         problem: "Passive Students",
@@ -27,7 +27,7 @@ const cards = [
         glass: "linear-gradient(135deg, rgba(250, 204, 21, 0.35), rgba(255, 165, 0, 0.2))",
         rotate: "2deg",
         speed: 0.5,
-        href: "/corporate",
+        href: "/collaborate",
     },
     {
         problem: "Isolated Clubs",
