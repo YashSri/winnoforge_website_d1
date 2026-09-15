@@ -31,34 +31,43 @@ function buildHtml(fields: Record<string, string>, title: string): string {
     </div>`;
 }
 
+type FormType = "join" | "partner" | "download" | "mentor" | "collaborate";
+
+const formMeta: Record<FormType, { title: string; subject: (fields: Record<string, string>) => string }> = {
+  join: {
+    title: "New Community Join Request",
+    subject: (f) => `New Join Request — ${f["Full Name"] || "Anonymous"}`,
+  },
+  partner: {
+    title: "New Partnership Inquiry",
+    subject: (f) => `New Partnership Inquiry — ${f["Organization"] || f["Full Name"] || "Anonymous"}`,
+  },
+  download: {
+    title: "New Brochure Download Lead",
+    subject: (f) => `New Brochure Download — ${f["Program"] || "Unknown Program"} (${f["Full Name"] || "Anonymous"})`,
+  },
+  mentor: {
+    title: "New Mentor Application",
+    subject: (f) => `New Mentor Application — ${f["Full Name"] || "Anonymous"}`,
+  },
+  collaborate: {
+    title: "New Collaboration Enquiry",
+    subject: (f) => `New Collaboration Enquiry — ${f["Stakeholder Type"] || "General"} (${f["Full Name"] || "Anonymous"})`,
+  },
+};
+
 export async function POST(req: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const { formType, ...fields } = body as {
-      formType: "join" | "partner" | "download" | "mentor";
+      formType: FormType;
       [k: string]: string;
     };
 
-    const subject =
-      formType === "join"
-        ? `New Join Request — ${fields["Full Name"] || "Anonymous"}`
-        : formType === "download"
-          ? `New Brochure Download — ${fields["Program"] || "Unknown Program"} (${fields["Full Name"] || "Anonymous"})`
-          : formType === "mentor"
-            ? `New Mentor Application — ${fields["Full Name"] || "Anonymous"}`
-            : `New Partnership Inquiry — ${fields["Organization"] || fields["Full Name"] || "Anonymous"}`;
-
-    const title =
-      formType === "join"
-        ? "New Community Join Request"
-        : formType === "download"
-          ? "New Brochure Download Lead"
-          : formType === "mentor"
-            ? "New Mentor Application"
-            : "New Partnership Inquiry";
-
-    const html = buildHtml(fields, title);
+    const meta = formMeta[formType];
+    const subject = meta.subject(fields);
+    const html = buildHtml(fields, meta.title);
 
     const { error } = await resend.emails.send({
       from: "FORGE Website <onboarding@resend.dev>",
