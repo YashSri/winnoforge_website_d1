@@ -19,6 +19,9 @@ export interface Program {
   trainerQuote: string;
   industryRelevance: string;
   faqs: { question: string; answer: string }[];
+  featured?: boolean;
+  price?: string;
+  status?: "published" | "draft" | "coming-soon";
 }
 
 export const programs: Program[] = [
@@ -31,6 +34,8 @@ export const programs: Program[] = [
     duration: "12 weeks",
     deliveryMode: "Hybrid",
     category: "Certification",
+    featured: true,
+    status: "published",
     overview:
       "This track takes builders from foundational statistics through to deployed machine learning models, using real datasets sourced from FORGE's industry partners instead of toy problems.",
     whyThisProgram: [
@@ -100,6 +105,8 @@ export const programs: Program[] = [
     duration: "8 weeks",
     deliveryMode: "Online",
     category: "Certification",
+    featured: true,
+    status: "published",
     overview:
       "This track builds the core business analyst toolkit: requirement gathering, stakeholder communication, and data-informed recommendations, practiced against real business scenarios from FORGE's partners.",
     whyThisProgram: [
@@ -153,6 +160,8 @@ export const programs: Program[] = [
     duration: "10 weeks",
     deliveryMode: "Hybrid",
     category: "Certification",
+    featured: true,
+    status: "published",
     overview:
       "This track focuses on the practical analytics stack most companies actually run on: SQL, spreadsheet modeling, and BI dashboards, built around real operational datasets.",
     whyThisProgram: [
@@ -205,6 +214,8 @@ export const programs: Program[] = [
     duration: "16 weeks",
     deliveryMode: "Hybrid",
     category: "Certification",
+    featured: true,
+    status: "published",
     overview:
       "The longest and most hands-on track: builders ship a complete, deployed product across the full stack, working in small teams the way real engineering teams do.",
     whyThisProgram: [
@@ -258,6 +269,8 @@ export const programs: Program[] = [
     duration: "6 weeks",
     deliveryMode: "Online",
     category: "Certification",
+    featured: true,
+    status: "published",
     overview:
       "A fast, practical track on using AI tools to automate real work — prompt design, workflow automation, and lightweight AI-assisted tooling, aimed at builders and operators alike.",
     whyThisProgram: [

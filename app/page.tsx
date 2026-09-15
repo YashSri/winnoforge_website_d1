@@ -11,6 +11,7 @@ import OfferingsGrid from "@/components/home/OfferingsGrid";
 import WhySection from "@/components/home/WhySection";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import FeaturedPrograms from "@/components/home/FeaturedPrograms";
 
 const learningJourneySteps = [
   { title: "Discover", description: "Understand a domain or problem worth solving." },
@@ -54,6 +55,7 @@ export default function Home() {
         <ProblemResponse />
         <Philosophy />
         <OfferingsGrid />
+        <FeaturedPrograms />
         <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
           <h2 className="text-center font-clash text-3xl font-semibold text-foreground md:text-4xl">
             From Curiosity to Capability
