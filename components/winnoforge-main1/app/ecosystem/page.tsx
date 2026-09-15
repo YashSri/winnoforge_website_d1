@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   Award,
   Briefcase,
@@ -41,6 +42,12 @@ import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FinalCta from "@/components/home/FinalCta";
+
+export const metadata: Metadata = {
+  title: "About & Ecosystem | Winnovation FORGE",
+  description:
+    "Discover Winnovation FORGE, an industry-aligned learning and innovation ecosystem connecting students, institutions, mentors, industry, practical execution, and innovation infrastructure.",
+};
 
 const ecosystemFaqs = [
   {
