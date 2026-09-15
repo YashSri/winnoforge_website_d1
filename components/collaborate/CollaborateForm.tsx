@@ -16,6 +16,9 @@ export const stakeholderTypes = [
   "College / University",
   "Company",
   "Mentor / Expert",
+  "Founder / Venture",
+  "Community / Event",
+  "Researcher",
   "CSR / Strategic Partner",
   "General Enquiry",
 ] as const;
@@ -36,6 +39,11 @@ export default function CollaborateForm({
     Email: "",
     Phone: "",
     Organization: "",
+    "Role / Designation": "",
+    "Preferred Timeline": "",
+    "Expected Audience": "",
+    "Website / Profile Link": "",
+    "Preferred Contact Method": "Email",
     Message: "",
   });
   const [consent, setConsent] = useState(false);
@@ -47,8 +55,9 @@ export default function CollaborateForm({
     setSuccess(false);
   }, [stakeholder]);
 
-  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((p) => ({ ...p, [k]: e.target.value }));
+  const set =
+    (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setForm((p) => ({ ...p, [k]: e.target.value }));
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -76,7 +85,12 @@ export default function CollaborateForm({
         Email: form.Email,
         Phone: form.Phone || "—",
         Organization: form.Organization || "—",
+        "Role / Designation": form["Role / Designation"] || "—",
         "Stakeholder Type": stakeholder,
+        "Preferred Timeline": form["Preferred Timeline"] || "—",
+        "Expected Audience": form["Expected Audience"] || "—",
+        "Website / Profile Link": form["Website / Profile Link"] || "—",
+        "Preferred Contact Method": form["Preferred Contact Method"],
         Message: form.Message || "—",
       };
       const res = await fetch("/api/contact", {
@@ -145,6 +159,40 @@ export default function CollaborateForm({
         <div>
           <p className={label}>Organization / Institution</p>
           <input className={input} placeholder="Optional" value={form.Organization} onChange={set("Organization")} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <p className={label}>Role / Designation</p>
+          <input className={input} placeholder="Optional" value={form["Role / Designation"]} onChange={set("Role / Designation")} />
+        </div>
+        <div>
+          <p className={label}>Website / Profile Link</p>
+          <input className={input} placeholder="Optional" value={form["Website / Profile Link"]} onChange={set("Website / Profile Link")} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <p className={label}>Preferred Timeline</p>
+          <input className={input} placeholder="e.g. Next semester (optional)" value={form["Preferred Timeline"]} onChange={set("Preferred Timeline")} />
+        </div>
+        <div>
+          <p className={label}>Expected Audience</p>
+          <input className={input} placeholder="Optional" value={form["Expected Audience"]} onChange={set("Expected Audience")} />
+        </div>
+      </div>
+
+      <div>
+        <p className={label}>Preferred Contact Method</p>
+        <div className="relative">
+          <select className={select} value={form["Preferred Contact Method"]} onChange={set("Preferred Contact Method")}>
+            <option>Email</option>
+            <option>Phone</option>
+            <option>WhatsApp</option>
+          </select>
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40">▾</span>
         </div>
       </div>
 
