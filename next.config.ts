@@ -10,7 +10,6 @@ const nextConfig: NextConfig = {
     return [
       { source: "/corporate", destination: "/collaborate", permanent: true },
       { source: "/contact", destination: "/collaborate", permanent: true },
-      { source: "/mentors", destination: "/community", permanent: true },
     ];
   },
 };

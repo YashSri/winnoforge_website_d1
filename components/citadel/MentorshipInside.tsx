@@ -42,7 +42,7 @@ export default function MentorshipInside() {
         </div>
 
         <Link
-          href="/community#mentors"
+          href="/mentors"
           className="mt-8 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/70 px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:bg-white"
         >
           Meet the Mentors and Experts

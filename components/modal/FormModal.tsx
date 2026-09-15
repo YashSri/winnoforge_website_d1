@@ -6,6 +6,7 @@ import { useModal, type ModalType } from "./ModalContext";
 import DownloadForm from "./DownloadForm";
 import MentorForm from "./MentorForm";
 import CatalogueForm from "./CatalogueForm";
+import InviteExpertForm from "./InviteExpertForm";
 
 // ─── shared input classes ────────────────────────────────────────────────────
 const input =
@@ -347,6 +348,7 @@ const titles: Record<Exclude<NonNullable<ModalType>, "download">, { heading: str
   partner: { heading: "Partner With FORGE", sub: "Let's talk about bringing FORGE to your campus or organisation." },
   mentor: { heading: "Become a FORGE Mentor", sub: "Tell us about your expertise and we'll be in touch." },
   catalogue: { heading: "Download Course Catalog", sub: "Enter your details and we'll unlock the catalogue." },
+  "invite-expert": { heading: "Invite an Expert", sub: "Tell us about your session and we'll help find the right fit." },
 };
 
 export default function FormModal() {
@@ -437,6 +439,8 @@ export default function FormModal() {
                 setSuccess(true);
               }}
             />
+          ) : modalType === "invite-expert" ? (
+            <InviteExpertForm onSuccess={() => setSuccess(true)} />
           ) : (
             <PartnerForm onSuccess={() => setSuccess(true)} />
           )}

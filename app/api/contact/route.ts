@@ -31,7 +31,7 @@ function buildHtml(fields: Record<string, string>, title: string): string {
     </div>`;
 }
 
-type FormType = "join" | "partner" | "download" | "mentor" | "collaborate" | "catalogue";
+type FormType = "join" | "partner" | "download" | "mentor" | "collaborate" | "catalogue" | "invite-expert";
 
 const formMeta: Record<FormType, { title: string; subject: (fields: Record<string, string>) => string }> = {
   join: {
@@ -57,6 +57,10 @@ const formMeta: Record<FormType, { title: string; subject: (fields: Record<strin
   catalogue: {
     title: "New Course Catalogue Download",
     subject: (f) => `New Catalogue Download — ${f["Full Name"] || "Anonymous"}`,
+  },
+  "invite-expert": {
+    title: "New Expert Invitation Request",
+    subject: (f) => `New Expert Invitation — ${f["Organisation"] || f["Full Name"] || "Anonymous"}`,
   },
 };
 

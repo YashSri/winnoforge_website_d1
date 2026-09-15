@@ -22,7 +22,7 @@ export default function CitadelFinalCta() {
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/community#mentors"
+            href="/mentors"
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-foreground/15 bg-white/70 px-7 py-3.5 font-jakarta text-sm font-semibold tracking-wide text-foreground transition hover:-translate-y-0.5 hover:bg-white sm:w-auto"
           >
             Meet the Mentors
