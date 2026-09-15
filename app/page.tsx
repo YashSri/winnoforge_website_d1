@@ -14,6 +14,8 @@ import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FeaturedPrograms from "@/components/home/FeaturedPrograms";
 import ExpertsSpeakers from "@/components/home/ExpertsSpeakers";
 import BuiltThroughForge from "@/components/home/BuiltThroughForge";
+import CitadelPreview from "@/components/home/CitadelPreview";
+import CommunityHighlights from "@/components/home/CommunityHighlights";
 
 const learningJourneySteps = [
   { title: "Discover", description: "Understand a domain or problem worth solving." },
@@ -25,7 +27,7 @@ const learningJourneySteps = [
   { title: "Progress", description: "Move toward advanced learning, careers, or innovation opportunities." },
 ];
 
-const homeVoices = [
+const voicesFromForge = [
   {
     quote: "FORGE gave me a real problem to solve, not another assignment to submit.",
     name: "Aarav Mehta",
@@ -69,7 +71,9 @@ export default function Home() {
         <ExpertsSpeakers />
         <BuiltThroughForge />
         <WhySection />
-        <VoicesCarousel title="Voices Behind FORGE" voices={homeVoices} />
+        <CitadelPreview />
+        <CommunityHighlights />
+        <VoicesCarousel title="Voices From FORGE" voices={voicesFromForge} />
         <HowItWorks />
         <Footer />
       </main>
