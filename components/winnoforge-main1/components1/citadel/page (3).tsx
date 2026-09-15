@@ -1,16 +1,34 @@
 import {
   ArrowRight,
+  Award,
   BarChart3,
+  BookOpen,
   Brain,
+  Briefcase,
   Building2,
   CheckCircle2,
+  Compass,
   Cpu,
+  Flag,
   FlaskConical,
+  GraduationCap,
   Hammer,
+  Handshake,
+  Landmark,
   Layers,
+  Lightbulb,
+  MessageSquare,
+  Monitor,
+  Network,
+  Presentation,
   RefreshCw,
+  Rocket,
+  Scale,
   Shield,
   TrendingDown,
+  TrendingUp,
+  Users,
+  UsersRound,
   Zap,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -24,6 +42,17 @@ import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
 import Lightbox from "@/components/shared/Lightbox";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion from "@/components/shared/FaqAccordion";
+import CardGrid from "@/components/shared/CardGrid";
+import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
+import MentorshipInside from "@/components/citadel/MentorshipInside";
+import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
+import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
+import CommunityAndCulture from "@/components/citadel/CommunityAndCulture";
+import ProgressRecognition from "@/components/citadel/ProgressRecognition";
+import InstitutionalIndustryConnections from "@/components/citadel/InstitutionalIndustryConnections";
+import CodeOfConduct from "@/components/citadel/CodeOfConduct";
+import CitadelFinalCta from "@/components/citadel/CitadelFinalCta";
 
 export const metadata: Metadata = {
   title: "FORGE Innovation Citadel",
@@ -200,14 +229,87 @@ const galleryImages = [
   { src: "/webp/activation-builders.webp", alt: "Builders at the Citadel" },
 ];
 
+const citadelExperienceCards = [
+  { icon: BookOpen, title: "Structured Learning", description: "Participants engage with planned learning experiences that provide direction, context, and foundational understanding." },
+  { icon: Hammer, title: "Practical Execution", description: "Learning is connected to assignments, projects, experiments, prototypes, and real tasks wherever applicable." },
+  { icon: UsersRound, title: "Peer Collaboration", description: "Participants learn through discussion, teamwork, review, and shared problem-solving." },
+  { icon: Users, title: "Mentorship", description: "Mentors, trainers, and experts may provide guidance, feedback, context, and perspective." },
+  { icon: RefreshCw, title: "Reflection and Iteration", description: "Participants are encouraged to review their work, understand gaps, improve outcomes, and learn from mistakes." },
+  { icon: Presentation, title: "Demonstration", description: "Work can be presented through reviews, showcases, project demonstrations, or other approved formats." },
+  { icon: TrendingUp, title: "Progression", description: "Participants can explore further learning, advanced projects, leadership responsibilities, entrepreneurship, or professional pathways." },
+];
+
+const citadelPrincipleCards = [
+  { icon: Flag, title: "Ownership", description: "Participants are encouraged to take responsibility for their learning, commitments, and work." },
+  { icon: Scale, title: "Discipline", description: "Progress depends on consistency, preparation, effort, and respect for shared environments." },
+  { icon: Lightbulb, title: "Curiosity", description: "Questions, exploration, experimentation, and a willingness to learn are central to the experience." },
+  { icon: Handshake, title: "Collaboration", description: "Meaningful progress is strengthened by peer learning, teamwork, and knowledge-sharing." },
+  { icon: CheckCircle2, title: "Accountability", description: "Participants should communicate clearly, honour agreed responsibilities, and respond constructively to feedback." },
+  { icon: Users, title: "Respect", description: "The environment should support dignity, inclusion, professional conduct, and respect for different perspectives." },
+  { icon: RefreshCw, title: "Iteration", description: "Strong work is developed through testing, review, learning, and improvement." },
+  { icon: Compass, title: "Integrity", description: "Participants should represent their work honestly and avoid misrepresenting progress, results, or contributions." },
+];
+
+const citadelJourneySteps = [
+  { title: "Orientation", description: "Understand the environment, expectations, available pathways, and support systems." },
+  { title: "Explore", description: "Identify interests, problems, subjects, or areas of capability development." },
+  { title: "Learn", description: "Engage with structured content, workshops, activities, and guidance." },
+  { title: "Practise", description: "Apply knowledge through exercises, tasks, and collaborative activities." },
+  { title: "Build", description: "Develop a project, prototype, experiment, presentation, or other practical output." },
+  { title: "Review", description: "Receive feedback from peers, mentors, trainers, or reviewers." },
+  { title: "Improve", description: "Refine the work, address gaps, and document learning." },
+  { title: "Demonstrate", description: "Present the process, output, decisions, and learnings." },
+  { title: "Progress", description: "Move toward the next relevant pathway or opportunity." },
+];
+
+const citadelAudienceCards = [
+  { icon: GraduationCap, title: "Learners", description: "People seeking practical learning, stronger skills, project experience, and direction." },
+  { icon: Hammer, title: "Student Builders", description: "Participants working on technical, creative, research, or innovation-oriented projects." },
+  { icon: Lightbulb, title: "Mentors and Experts", description: "Practitioners who contribute guidance, experience, reviews, and perspective." },
+  { icon: BookOpen, title: "Faculty and Educators", description: "Academic contributors supporting learning, coordination, and institutional development." },
+  { icon: Landmark, title: "Institutions", description: "Partner schools, colleges, and organisations participating in structured ecosystem activities." },
+  { icon: Briefcase, title: "Industry Contributors", description: "Professionals and organisations supporting applied challenges, workshops, mentorship, and collaboration." },
+  { icon: Rocket, title: "Founders", description: "Individuals exploring ideas, developing solutions, and building early-stage ventures or initiatives." },
+  { icon: Network, title: "FORGE Teams", description: "People responsible for coordinating, facilitating, supporting, and improving the ecosystem experience." },
+];
+
+const citadelSpaceCards = [
+  { icon: BookOpen, title: "Learning Spaces", description: "For workshops, instruction, discussions, and structured learning." },
+  { icon: FlaskConical, title: "Innovation Spaces", description: "For experimentation, prototyping, testing, and project development." },
+  { icon: UsersRound, title: "Collaboration Spaces", description: "For team meetings, peer learning, reviews, and shared work." },
+  { icon: MessageSquare, title: "Mentorship Spaces", description: "For expert interactions, guidance, feedback, and career or project conversations." },
+  { icon: Presentation, title: "Showcase Spaces", description: "For demonstrations, presentations, exhibitions, and community learning." },
+  { icon: Monitor, title: "Digital Spaces", description: "For resources, communication, submissions, scheduling, and approved ecosystem activities." },
+];
+
 const citadelFaqs = [
+  {
+    question: "What is the FORGE Citadel?",
+    answer: "The Citadel is a structured environment within the FORGE ecosystem where learning, discipline, mentorship, collaboration, project execution, and innovation come together.",
+  },
   {
     question: "Who can use the Citadel?",
     answer: "Builders enrolled in an active FORGE program or partner-institution cohort get access to the Citadel during their sprint cycles.",
   },
   {
+    question: "Is the Citadel a physical location or a digital environment?",
+    answer: "The Citadel is primarily a physical execution environment (see the zones above), supported by digital spaces for resources, scheduling, and communication.",
+  },
+  {
     question: "Is the Citadel available outside program hours?",
     answer: "Zones like the Build Floor and Community Space have extended access hours; private cabins are bookable per sprint schedule.",
+  },
+  {
+    question: "Are mentors available to all participants?",
+    answer: "Mentor participation follows confirmed arrangements per program — not every participant receives unlimited one-to-one access to a specific mentor.",
+  },
+  {
+    question: "Are there rules for participation?",
+    answer: "Yes — participants are expected to follow the Code of Conduct above, along with applicable integrity, safety, and institutional requirements.",
+  },
+  {
+    question: "Does participation guarantee a job or investment?",
+    answer: "No. The Citadel focuses on capability-building, exposure, project work, and progression — not guaranteed employment, funding, or investment.",
   },
   {
     question: "Can institutions bring their own equipment into Lab-in-a-Box?",
@@ -215,7 +317,7 @@ const citadelFaqs = [
   },
   {
     question: "How does my institution bring the Citadel to campus?",
-    answer: "Reach out through the Partner With Us page — the Citadel deploys in a single partnership cycle once a site is confirmed.",
+    answer: "Reach out through the Collaborate page — the Citadel deploys in a single partnership cycle once a site is confirmed.",
   },
 ];
 
@@ -266,6 +368,8 @@ export default function CitadelPage() {
             </ScrollReveal>
           </div>
         </section>
+
+        <WhatIsCitadel />
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
@@ -402,6 +506,20 @@ export default function CitadelPage() {
           </div>
         </section>
 
+        <CardGrid
+          eyebrow="The Citadel Experience"
+          heading="A Different Way to Learn and Build"
+          cards={citadelExperienceCards}
+          columns={4}
+        />
+
+        <CardGrid
+          eyebrow="The Principles"
+          heading="The Principles Behind the Citadel"
+          cards={citadelPrincipleCards}
+          columns={4}
+        />
+
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal>
@@ -488,6 +606,33 @@ export default function CitadelPage() {
                 <ZoneCard key={zone.name} zone={zone} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <CardGrid
+          eyebrow="Spaces and Modes of Engagement"
+          heading="Designed for Learning, Collaboration, and Creation"
+          cards={citadelSpaceCards}
+          columns={3}
+        />
+
+        <section className="px-4 py-8 md:px-8 md:py-12">
+          <div className="mx-auto max-w-7xl">
+            <ScrollReveal className="mb-10 text-center">
+              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
+                How the Citadel Works
+              </span>
+              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
+                From Participation to Demonstrated Capability
+              </h2>
+            </ScrollReveal>
+            <div className="mt-14">
+              <ProcessTimeline steps={citadelJourneySteps} />
+            </div>
+            <p className="mx-auto mt-10 max-w-2xl text-center font-jakarta text-base italic text-primary/65">
+              The Citadel is not defined by a single event. It is defined by the habits built
+              through repeated practice.
+            </p>
           </div>
         </section>
 
@@ -637,6 +782,13 @@ export default function CitadelPage() {
           </div>
         </section>
 
+        <CardGrid
+          eyebrow="Who Is the Citadel For?"
+          heading="A Shared Environment for Different Contributors"
+          cards={citadelAudienceCards}
+          columns={4}
+        />
+
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal className="mb-10 text-center">
@@ -654,6 +806,15 @@ export default function CitadelPage() {
         </section>
 
         <VoicesCarousel title="From Our Founder" voices={founderVoice} />
+
+        <MentorshipInside />
+        <ProjectInnovationCulture />
+        <IntegrityAuthenticWork />
+        <CommunityAndCulture />
+        <ProgressRecognition />
+        <InstitutionalIndustryConnections />
+        <CodeOfConduct />
+        <CitadelFinalCta />
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-3xl">
