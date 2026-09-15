@@ -12,6 +12,8 @@ import WhySection from "@/components/home/WhySection";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FeaturedPrograms from "@/components/home/FeaturedPrograms";
+import ExpertsSpeakers from "@/components/home/ExpertsSpeakers";
+import BuiltThroughForge from "@/components/home/BuiltThroughForge";
 
 const learningJourneySteps = [
   { title: "Discover", description: "Understand a domain or problem worth solving." },
@@ -64,6 +66,8 @@ export default function Home() {
             <ProcessTimeline steps={learningJourneySteps} />
           </div>
         </section>
+        <ExpertsSpeakers />
+        <BuiltThroughForge />
         <WhySection />
         <VoicesCarousel title="Voices Behind FORGE" voices={homeVoices} />
         <HowItWorks />
