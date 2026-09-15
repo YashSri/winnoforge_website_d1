@@ -15,10 +15,8 @@ const footerNavItems = [
     { key: "about", label: "About & Ecosystem", href: "/ecosystem" },
     { key: "programs", label: "Programs", href: "/programs" },
     { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
-    { key: "partner", label: "Partner With Us", href: "/corporate" },
-    { key: "mentors", label: "Mentors & Experts", href: "/mentors" },
     { key: "community", label: "Community", href: "/community" },
-    { key: "contact", label: "Contact", href: "/contact" },
+    { key: "collaborate", label: "Collaborate", href: "/collaborate" },
 ];
 
 export default function Footer() {

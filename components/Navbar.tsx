@@ -7,30 +7,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
-import { useModal } from "@/components/modal/ModalContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
-  { key: "home", label: "Home", href: "/" },
   { key: "about", label: "About & Ecosystem", href: "/ecosystem" },
   { key: "programs", label: "Programs", href: "/programs" },
   { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
-  { key: "partner", label: "Partner With Us", href: "/corporate" },
-  { key: "mentors", label: "Mentors & Experts", href: "/mentors" },
   { key: "community", label: "Community", href: "/community" },
-  { key: "contact", label: "Contact", href: "/contact" },
+  { key: "collaborate", label: "Collaborate", href: "/collaborate" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileLinkRefs = useRef<HTMLElement[]>([]);
 
-  const { open } = useModal();
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
   const isActivePath = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
@@ -111,6 +106,7 @@ export default function Navbar() {
         <div className="w-full max-w-[1400px] flex items-start justify-between pointer-events-auto relative">
           <Link
             href="/"
+            aria-label="FORGE home"
             className="hidden md:flex items-center gap-2 group mt-2 shrink-0"
           >
             <div className="relative w-32 h-10 transition-transform duration-300 group-hover:scale-105">
@@ -127,6 +123,7 @@ export default function Navbar() {
             <nav className="flex items-center justify-between md:justify-center px-6 md:px-8 py-3 w-full md:w-auto bg-white/60 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
               <Link
                 href="/"
+                aria-label="FORGE home"
                 className="flex md:hidden items-center gap-2 group"
               >
                 <div className="relative w-28 h-8 transition-transform duration-300 group-hover:scale-105">
@@ -182,16 +179,15 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center mt-1 shrink-0">
-            <button
-              type="button"
+            <Link
+              href="/collaborate"
               ref={buttonRef}
               onMouseEnter={handleButtonMouseEnter}
               onMouseLeave={handleButtonMouseLeave}
-              onClick={() => open("partner")}
               className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-shadow"
             >
-              Partner With Forge
-            </button>
+              Get in Touch
+            </Link>
           </div>
         </div>
       </div>
@@ -231,16 +227,13 @@ export default function Navbar() {
               if (el) mobileLinkRefs.current[navItems.length] = el;
             }}
           >
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                open("partner");
-              }}
+            <Link
+              href="/collaborate"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center bg-primary text-white px-8 py-4 rounded-full font-bold text-xl tracking-wide shadow-xl"
             >
-              Partner With Forge
-            </button>
+              Get in Touch
+            </Link>
           </div>
         </nav>
       </div>
