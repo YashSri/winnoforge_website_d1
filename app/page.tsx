@@ -6,6 +6,7 @@ import Philosophy from "@/components/Philosophy";
 import SplashScreen from "@/components/SplashScreen";
 import IntroWinnovation from "@/components/home/IntroWinnovation";
 import IntroForge from "@/components/home/IntroForge";
+import ProblemResponse from "@/components/home/ProblemResponse";
 import OfferingsGrid from "@/components/home/OfferingsGrid";
 import WhySection from "@/components/home/WhySection";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
@@ -39,6 +40,7 @@ export default function Home() {
         <Hero />
         <IntroWinnovation />
         <IntroForge />
+        <ProblemResponse />
         <Philosophy />
         <OfferingsGrid />
         <WhySection />
