@@ -41,7 +41,7 @@ export default function CommunityGrid() {
   );
 
   return (
-    <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+    <section id="activities" className="mx-auto w-full max-w-[1400px] scroll-mt-28 px-6 py-16 md:px-12 md:py-24">
       <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
         What's Happening
       </h2>
