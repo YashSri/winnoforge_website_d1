@@ -22,6 +22,7 @@ import JoinButton from "@/components/modal/JoinButton";
 import PartnerButton from "@/components/modal/PartnerButton";
 import CommunityGrid from "@/components/community/CommunityGrid";
 import Lightbox from "@/components/shared/Lightbox";
+import MentorsSection from "@/components/community/MentorsSection";
 
 export const metadata: Metadata = {
   title: "FORGE Community",
@@ -148,6 +149,7 @@ export default function CommunityNewPage() {
           <BenefitSection key={section.id} section={section} />
         ))}
         <ValueStripSection />
+        <MentorsSection />
         <FinalCtaSection />
       </main>
       <Footer />
