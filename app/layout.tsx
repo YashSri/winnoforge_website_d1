@@ -19,8 +19,27 @@ const varela = Varela_Round({
 });
 
 export const metadata: Metadata = {
-  title: "FORGE",
-  description: "A student-led innovation ecosystem converting campuses into startup hubs.",
+  title: "FORGE — Industry-Aligned Learning, Innovation & Execution",
+  description:
+    "Winnovation FORGE brings together practical learning, industry-aligned certification programs, mentors, student projects, campus communities, and innovation infrastructure to help learners build real capability.",
+  metadataBase: new URL("https://winnovation.org"),
+  openGraph: {
+    title: "FORGE — Industry-Aligned Learning, Innovation & Execution",
+    description:
+      "Winnovation FORGE brings together practical learning, industry-aligned certification programs, mentors, student projects, campus communities, and innovation infrastructure to help learners build real capability.",
+    images: ["/forge-logo.svg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FORGE — Industry-Aligned Learning, Innovation & Execution",
+    description:
+      "Winnovation FORGE brings together practical learning, industry-aligned certification programs, mentors, student projects, campus communities, and innovation infrastructure to help learners build real capability.",
+    images: ["/forge-logo.svg"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

@@ -16,6 +16,7 @@ import ExpertsSpeakers from "@/components/home/ExpertsSpeakers";
 import BuiltThroughForge from "@/components/home/BuiltThroughForge";
 import CitadelPreview from "@/components/home/CitadelPreview";
 import CommunityHighlights from "@/components/home/CommunityHighlights";
+import FinalCta from "@/components/home/FinalCta";
 
 const learningJourneySteps = [
   { title: "Discover", description: "Understand a domain or problem worth solving." },
@@ -75,6 +76,7 @@ export default function Home() {
         <CommunityHighlights />
         <VoicesCarousel title="Voices From FORGE" voices={voicesFromForge} />
         <HowItWorks />
+        <FinalCta />
         <Footer />
       </main>
     </SplashScreen>
