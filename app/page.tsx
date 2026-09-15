@@ -10,6 +10,17 @@ import ProblemResponse from "@/components/home/ProblemResponse";
 import OfferingsGrid from "@/components/home/OfferingsGrid";
 import WhySection from "@/components/home/WhySection";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
+import ProcessTimeline from "@/components/shared/ProcessTimeline";
+
+const learningJourneySteps = [
+  { title: "Discover", description: "Understand a domain or problem worth solving." },
+  { title: "Learn", description: "Build foundational knowledge through structured content." },
+  { title: "Practise", description: "Work through tools, exercises, and guided tasks." },
+  { title: "Build", description: "Create projects and prototypes from what you've learned." },
+  { title: "Review", description: "Receive feedback from mentors and peers." },
+  { title: "Showcase", description: "Present outcomes and demonstrate capability." },
+  { title: "Progress", description: "Move toward advanced learning, careers, or innovation opportunities." },
+];
 
 const homeVoices = [
   {
@@ -43,6 +54,14 @@ export default function Home() {
         <ProblemResponse />
         <Philosophy />
         <OfferingsGrid />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <h2 className="text-center font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            From Curiosity to Capability
+          </h2>
+          <div className="mt-14">
+            <ProcessTimeline steps={learningJourneySteps} />
+          </div>
+        </section>
         <WhySection />
         <VoicesCarousel title="Voices Behind FORGE" voices={homeVoices} />
         <HowItWorks />
