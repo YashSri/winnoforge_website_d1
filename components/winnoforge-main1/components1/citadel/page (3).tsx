@@ -354,6 +354,7 @@ export default function CitadelPage() {
               </p>
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                {/* Temporarily hidden section navigation — uncomment when sections are restored
                 <Link
                   href="#system"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-jakarta text-sm font-semibold tracking-wide text-white transition hover:-translate-y-0.5 hover:opacity-95 sm:w-auto"
@@ -367,6 +368,7 @@ export default function CitadelPage() {
                 >
                   View Layout
                 </Link>
+                */}
               </div>
             </ScrollReveal>
           </div>
@@ -374,6 +376,11 @@ export default function CitadelPage() {
 
         <WhatIsCitadel />
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN — CONTEXT
+            To restore this section, uncomment the blocks below.
+        ===================================================== */}
+        {/*
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal className="mb-10 text-center">
@@ -476,6 +483,7 @@ export default function CitadelPage() {
             </ScrollReveal>
           </div>
         </section>
+        */}
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
@@ -569,6 +577,11 @@ export default function CitadelPage() {
           </div>
         </section>
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN — PHYSICAL DESIGN
+            To restore this section, uncomment the block below.
+        ===================================================== */}
+        {/*
         <section id="layout" className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal className="mb-10 text-center">
@@ -592,6 +605,7 @@ export default function CitadelPage() {
             </ScrollReveal>
           </div>
         </section>
+        */}
 
         <section className="px-4 py-14 md:px-8 md:py-20">
           <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,#0E2E48_0%,#1E4D72_45%,#628ECB_100%)] px-6 py-14 shadow-[0_20px_70px_rgba(2,8,20,0.4)] md:px-10 md:py-16">
@@ -639,6 +653,11 @@ export default function CitadelPage() {
           </div>
         </section>
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN — HOW IT RUNS
+            To restore this section, uncomment the block below.
+        ===================================================== */}
+        {/*
         <section id="system" className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal className="mb-10 text-center">
@@ -672,7 +691,13 @@ export default function CitadelPage() {
             </div>
           </div>
         </section>
+        */}
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN — TRADITIONAL LAB VS CITADEL
+            To restore this section, uncomment the block below.
+        ===================================================== */}
+        {/*
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-4xl">
             <ScrollReveal className="mb-10 text-center">
@@ -725,6 +750,7 @@ export default function CitadelPage() {
             </ScrollReveal>
           </div>
         </section>
+        */}
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
@@ -811,15 +837,51 @@ export default function CitadelPage() {
         <VoicesCarousel title="From Our Founder" voices={founderVoice} />
 
         <MentorshipInside />
-        <ProjectInnovationCulture />
-        <IntegrityAuthenticWork />
-        <CommunityAndCulture />
-        <ProgressRecognition />
-        <InstitutionalIndustryConnections />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — PROJECT AND INNOVATION CULTURE
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <ProjectInnovationCulture /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — INTEGRITY AND AUTHENTIC WORK
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <IntegrityAuthenticWork /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — COMMUNITY AND CULTURE
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <CommunityAndCulture /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — PROGRESS AND RECOGNITION
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <ProgressRecognition /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — INSTITUTIONAL AND INDUSTRY CONNECTIONS
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <InstitutionalIndustryConnections /> */}
+
         <AnnualSummit />
         <FutureVision />
-        <CodeOfConduct />
-        <CitadelFinalCta />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — CODE OF CONDUCT
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <CodeOfConduct /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — STEP INTO AN ENVIRONMENT (CITADEL FINAL CTA)
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <CitadelFinalCta /> */}
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-3xl">

@@ -203,15 +203,33 @@ export default function CollaboratePage() {
           </div>
         </section>
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN
+            SECTION: WHY COLLABORATE WITH FORGE
+
+            The original implementation is intentionally preserved.
+            Uncomment the following block to restore this section.
+        ===================================================== */}
+        {/*
         <CardGrid
           eyebrow="Why Collaborate With FORGE"
           heading="Collaboration With a Clear Purpose"
           cards={whyCollaborateCards}
           columns={3}
         />
+        */}
 
+        {/* Note: "How It Runs" is inside PartnerAudienceSection and is temporarily hidden there */}
         <PartnerAudienceSection />
 
+        {/* =====================================================
+            TEMPORARILY HIDDEN
+            SECTION: COLLABORATION MODEL
+
+            The original implementation is intentionally preserved.
+            Uncomment the following block to restore this section.
+        ===================================================== */}
+        {/*
         <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
             <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
@@ -228,6 +246,7 @@ export default function CollaboratePage() {
             Good collaboration begins with clarity and grows through shared responsibility.
           </p>
         </section>
+        */}
 
         <CardGrid
           eyebrow="What Can We Build Together"
@@ -240,7 +259,14 @@ export default function CollaboratePage() {
 
         <VoicesCarousel title="What Our Partners Say" voices={collaborateTestimonials} />
 
-        <CollaborationStoriesEditorial />
+        {/* =====================================================
+            TEMPORARILY HIDDEN
+            SECTION: COLLABORATION STORIES
+
+            The original implementation is intentionally preserved.
+            Uncomment the following block to restore this section.
+        ===================================================== */}
+        {/* <CollaborationStoriesEditorial /> */}
 
         <PartnerRepresentation />
 

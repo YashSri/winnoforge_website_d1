@@ -192,7 +192,13 @@ export default function CommunityNewPage() {
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
         <HeroSection />
-        <WhatCommunityMeans />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — WHAT THE COMMUNITY MEANS
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <WhatCommunityMeans /> */}
+
         <CardGrid
           eyebrow="Who Makes Up the Community"
           heading="Different Paths. Shared Possibility."
@@ -210,7 +216,13 @@ export default function CommunityNewPage() {
           </div>
         </section>
         <StoriesSection />
-        <FeaturedVoicesEditorial />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — FEATURED COMMUNITY VOICES
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <FeaturedVoicesEditorial /> */}
+
         <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
             <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
@@ -227,8 +239,19 @@ export default function CommunityNewPage() {
             Community is not something you simply join. It is something you help create.
           </p>
         </section>
-        <ParticipationSelector />
-        <CampusInstitutionalCommunity />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — FIND YOUR COMMUNITY PATHS
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <ParticipationSelector /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — CAMPUS AND INSTITUTIONAL COMMUNITY
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <CampusInstitutionalCommunity /> */}
+
         <CardGrid
           eyebrow="Online & Offline Engagement"
           heading="Different Ways to Stay Connected"
@@ -240,7 +263,18 @@ export default function CommunityNewPage() {
         ))}
         <ValueStripSection />
         <CommunityGuidelines />
-        <CommunityRecognition />
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — COMMUNITY RECOGNITION
+            To restore this section, uncomment the component below.
+        ===================================================== */}
+        {/* <CommunityRecognition /> */}
+
+        {/* =====================================================
+            TEMPORARILY HIDDEN — JOIN OR CONNECT
+            To restore this section, uncomment the block below.
+        ===================================================== */}
+        {/*
         <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
           <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
             Join or Connect
@@ -257,6 +291,7 @@ export default function CommunityNewPage() {
             Join the FORGE Ecosystem
           </JoinButton>
         </section>
+        */}
         <section className="mx-auto w-full max-w-3xl px-6 py-16 md:px-12 md:py-24">
           <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
             Frequently Asked Questions

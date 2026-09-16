@@ -62,6 +62,44 @@ const coreCategoryCards = [
   },
 ];
 
+const learningFormatCards = [
+  {
+    title: "Campus-Based",
+    description:
+      "Programs delivered through partner institutions, campus chapters, labs, workshops, or scheduled sessions.",
+  },
+  {
+    title: "Cohort-Based",
+    description:
+      "Structured groups progressing through a common learning and project journey.",
+  },
+  {
+    title: "Workshop-Based",
+    description:
+      "Focused, short-format learning experiences around a specific skill or topic.",
+  },
+  {
+    title: "Project-Based",
+    description:
+      "Learning organised around building, testing, and presenting a practical output.",
+  },
+  {
+    title: "Challenge-Based",
+    description:
+      "Participants work on defined problems, prompts, or innovation challenges.",
+  },
+  {
+    title: "Mentorship-Led",
+    description:
+      "Participants receive guidance, review, and feedback from mentors or subject experts.",
+  },
+  {
+    title: "Hybrid",
+    description:
+      "A combination of digital learning, in-person interaction, practical work, and reviews.",
+  },
+];
+
 const programsFaqs = [
   {
     question: "Who can participate in FORGE programs?",
@@ -119,11 +157,20 @@ export default function ProgramsPage() {
 
         <ProgramDiscovery />
 
+        <div id="categories">
+          <CardGrid
+            eyebrow="Program Categories"
+            heading="Built Around Real Stages of Growth"
+            cards={coreCategoryCards}
+            columns={3}
+          />
+        </div>
+
         <CardGrid
-          eyebrow="Program Categories"
-          heading="Built Around Real Stages of Growth"
-          cards={coreCategoryCards}
-          columns={3}
+          eyebrow="Learning Formats"
+          heading="Designed for Different Learning Environments"
+          cards={learningFormatCards}
+          columns={4}
         />
 
         <InstitutionalPrograms />
@@ -163,3 +210,4 @@ export default function ProgramsPage() {
     </div>
   );
 }
+

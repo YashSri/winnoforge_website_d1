@@ -76,6 +76,14 @@ export default function PartnerAudienceSection() {
         ))}
       </div>
 
+      {/* =====================================================
+          TEMPORARILY HIDDEN
+          SECTION: HOW IT RUNS
+
+          The original implementation is intentionally preserved.
+          Uncomment the following block to restore this section.
+      ===================================================== */}
+      {/*
       <div className="mt-16">
         <h3 className="text-center font-clash text-2xl font-semibold text-foreground">
           How It Runs
@@ -84,6 +92,7 @@ export default function PartnerAudienceSection() {
           <ProcessTimeline steps={steps} />
         </div>
       </div>
+      */}
     </section>
   );
 }

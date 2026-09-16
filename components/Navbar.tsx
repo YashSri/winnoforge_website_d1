@@ -31,7 +31,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 25);
+      const scrollPosition =
+        window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setScrolled(scrollPosition > 20);
     };
 
     handleScroll();
@@ -63,25 +65,20 @@ export default function Navbar() {
     <>
       <header
         ref={navWrapperRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 pointer-events-none transition-all duration-300 ease-out ${
           scrolled ? "pt-3 md:pt-4" : "pt-6 md:pt-8"
         }`}
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
           <div
             ref={barRef}
-            className={`relative w-full rounded-full flex items-center justify-between transition-all duration-300 ${
+            className={`pointer-events-auto relative w-full rounded-full flex items-center justify-between transition-all duration-300 bg-white border border-slate-200/90 backdrop-blur-2xl ${
               scrolled
-                ? "py-4 md:py-4.5 px-6 md:px-10 bg-white border-2 border-slate-200/90 shadow-[0_14px_45px_rgba(0,0,0,0.12)]"
-                : "py-5 md:py-6 px-8 md:px-12 bg-white/95 backdrop-blur-xl border border-white/90 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
+                ? "py-3.5 md:py-4 px-6 md:px-10 shadow-[0_16px_50px_rgba(0,0,0,0.12)] border-slate-300/90"
+                : "py-4 md:py-5 px-8 md:px-12 shadow-[0_10px_35px_rgba(0,0,0,0.06)]"
             }`}
+            style={{ backgroundColor: "#ffffff", opacity: 1 }}
           >
-            {/* Ambient subtle glow accent behind right CTA */}
-            <div
-              aria-hidden="true"
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-56 h-24 bg-blue-500/15 blur-2xl rounded-full pointer-events-none"
-            />
-
             {/* Left: FORGE Logo (Significantly enlarged for high visibility from afar) */}
             <Link
               href="/"
@@ -99,37 +96,27 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Center: Desktop Navigation Links (Bold, high-contrast, perfectly visible) */}
+            {/* Center: Desktop Navigation Links (Clean color-only active state, no shift, no pointer) */}
             <nav
               aria-label="Main Navigation"
-              className="hidden lg:flex items-center gap-2 xl:gap-4 relative z-10"
+              className="hidden lg:flex items-center gap-1 xl:gap-2 relative z-10"
             >
               {navItems.map((item) => {
                 const active = isItemActive(item.href);
 
                 return (
-                  <div
+                  <Link
                     key={item.key}
-                    className="relative flex flex-col items-center"
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`px-4 py-2 text-sm xl:text-base font-semibold tracking-tight whitespace-nowrap transition-colors duration-200 ${
+                      active
+                        ? "text-[#1683E8]"
+                        : "text-[#0E2E48] hover:text-[#1683E8]"
+                    }`}
                   >
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={`relative transition-all duration-200 text-sm xl:text-base whitespace-nowrap ${
-                        active
-                          ? "px-6 py-2.5 rounded-full bg-white border border-blue-100/80 shadow-[0_4px_16px_rgba(22,131,232,0.18)] text-[#1683E8] font-extrabold tracking-tight"
-                          : "px-4 py-2 text-[#000000] hover:text-[#1683E8] font-bold tracking-tight"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                    {active && (
-                      <span
-                        aria-hidden="true"
-                        className="absolute -bottom-2 w-2 h-2 rounded-full bg-[#1683E8] shadow-[0_0_8px_#1683E8]"
-                      />
-                    )}
-                  </div>
+                    {item.label}
+                  </Link>
                 );
               })}
             </nav>
@@ -186,7 +173,7 @@ export default function Navbar() {
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
-            className="absolute top-28 left-4 right-4 bg-white border-2 border-slate-200 rounded-3xl p-6 shadow-2xl animate-in slide-in-from-top-4 duration-300"
+            className={`absolute ${scrolled ? "top-20 sm:top-22" : "top-28"} left-4 right-4 bg-white border-2 border-slate-200 rounded-3xl p-6 shadow-2xl animate-in slide-in-from-top-4 duration-300`}
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="flex flex-col gap-3">
@@ -200,14 +187,11 @@ export default function Navbar() {
                     aria-current={active ? "page" : undefined}
                     className={`flex items-center justify-between px-5 py-3.5 rounded-2xl text-lg font-bold transition-colors ${
                       active
-                        ? "bg-white shadow-[0_4px_16px_rgba(22,131,232,0.18)] text-[#1683E8] border border-blue-100"
-                        : "text-[#000000] hover:bg-slate-50"
+                        ? "text-[#1683E8] bg-blue-50/60"
+                        : "text-[#0E2E48] hover:bg-slate-50 hover:text-[#1683E8]"
                     }`}
                   >
                     <span>{item.label}</span>
-                    {active && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#1683E8] shadow-[0_0_8px_#1683E8]" />
-                    )}
                   </Link>
                 );
               })}
