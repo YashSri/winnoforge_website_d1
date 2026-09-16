@@ -62,14 +62,14 @@ export default function OfferingsGrid() {
               href={pillar.href}
               className={`group flex flex-col gap-4 rounded-[2rem] p-8 shadow-[0_18px_40px_rgba(24,42,72,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(24,42,72,0.14)] ${
                 isCitadel
-                  ? "border border-white/10 bg-[linear-gradient(135deg,#0E2E48_0%,#1E4D72_45%,#628ECB_100%)] text-white"
+                  ? "border border-white/10 bg-[linear-gradient(135deg,#0E2E48_0%,var(--color-primary)_100%)] text-white"
                   : "border border-black/5 bg-white"
               }`}
             >
               <div
                 className={`flex h-12 w-12 items-center justify-center rounded-full transition-colors ${
                   isCitadel
-                    ? "bg-white/10 text-[#78D8C6]"
+                    ? "bg-white/15 text-white"
                     : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white"
                 }`}
               >
@@ -78,7 +78,7 @@ export default function OfferingsGrid() {
               <h3 className={`font-clash text-xl font-semibold ${isCitadel ? "text-white" : "text-foreground"}`}>
                 {pillar.title}
               </h3>
-              <p className={`font-jakarta text-sm leading-relaxed ${isCitadel ? "text-[#D8E7F5]" : "text-foreground/70"}`}>
+              <p className={`font-jakarta text-sm leading-relaxed ${isCitadel ? "text-white/80" : "text-foreground/70"}`}>
                 {pillar.description}
               </p>
             </Link>
