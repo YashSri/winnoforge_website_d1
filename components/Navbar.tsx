@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,15 +20,54 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const navWrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileLinkRefs = useRef<HTMLElement[]>([]);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
   const isActivePath = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 40);
+
+      if (currentY < 80) {
+        setHidden(false);
+      } else if (currentY > lastScrollY.current) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useGSAP(
+    () => {
+      gsap.to(navWrapperRef.current, {
+        y: hidden ? -140 : 0,
+        opacity: hidden ? 0 : 1,
+        duration: hidden ? 0.3 : 0.4,
+        ease: hidden ? "power2.in" : "power3.out",
+      });
+    },
+    { dependencies: [hidden] },
+  );
 
   useGSAP(
     () => {
@@ -99,95 +138,104 @@ export default function Navbar() {
 
   return (
     <>
-      <div
-        ref={containerRef}
-        className="fixed top-6 left-0 right-0 z-50 flex flex-col items-center px-4 md:px-8 pointer-events-none"
-      >
-        <div className="w-full max-w-[1400px] flex items-start justify-between pointer-events-auto relative">
-          <Link
-            href="/"
-            aria-label="FORGE home"
-            className="hidden md:flex items-center gap-2 group mt-2 shrink-0"
-          >
-            <div className="relative w-32 h-10 transition-transform duration-300 group-hover:scale-105">
-              <Image
-                src="/forge-logo.svg"
-                alt="FORGE"
-                fill
-                className="object-contain object-left"
-              />
-            </div>
-          </Link>
+      <div ref={navWrapperRef} className="fixed top-0 left-0 right-0 z-50">
+        <div
+          aria-hidden
+          className={`absolute top-0 left-0 right-0 h-24 md:h-28 bg-white/60 backdrop-blur-md border-b border-white/20 shadow-lg pointer-events-none transition-opacity duration-300 ${
+            scrolled ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
-          <div className="flex-1 flex flex-col items-center mx-auto w-full md:w-auto md:absolute md:left-1/2 md:-translate-x-1/2 md:top-0">
-            <nav className="flex items-center justify-between md:justify-center px-6 md:px-8 py-3 w-full md:w-auto bg-white/60 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
-              <Link
-                href="/"
-                aria-label="FORGE home"
-                className="flex md:hidden items-center gap-2 group"
-              >
-                <div className="relative w-28 h-8 transition-transform duration-300 group-hover:scale-105">
-                  <Image
-                    src="/forge-logo.svg"
-                    alt="FORGE"
-                    fill
-                    className="object-contain object-left"
-                  />
-                </div>
-              </Link>
-
-              <div className="hidden md:flex items-center gap-3 lg:gap-5 font-jakarta font-medium text-xs lg:text-sm text-foreground/80">
-                {navItems.map((item) => {
-                  const isActive = isActivePath(item.href);
-
-                  return (
-                    <Link
-                      key={item.key}
-                      href={item.href}
-                      aria-current={isActive ? "page" : undefined}
-                      className={`whitespace-nowrap rounded-full px-2.5 py-1.5 lg:px-3 transition-colors duration-300 ${
-                        isActive
-                          ? "bg-primary text-white shadow-[0_8px_18px_rgba(77,150,255,0.28)]"
-                          : "hover:text-primary"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                className="md:hidden p-2 text-foreground z-50 relative ml-4"
-                onClick={toggleMobileMenu}
-              >
-                <div className="w-6 flex flex-col gap-1.5 items-end">
-                  <span
-                    className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`}
-                  />
-                  <span
-                    className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-0 opacity-0" : "w-4"}`}
-                  />
-                  <span
-                    className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-6 -rotate-45 -translate-y-2" : "w-6"}`}
-                  />
-                </div>
-              </button>
-            </nav>
-          </div>
-
-          <div className="hidden md:flex items-center mt-1 shrink-0">
+        <div
+          ref={containerRef}
+          className="relative mt-6 flex flex-col items-center px-4 md:px-8 pointer-events-none"
+        >
+          <div className="w-full max-w-[1400px] flex items-start justify-between pointer-events-auto relative">
             <Link
-              href="/collaborate"
-              ref={buttonRef}
-              onMouseEnter={handleButtonMouseEnter}
-              onMouseLeave={handleButtonMouseLeave}
-              className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-shadow"
+              href="/"
+              aria-label="FORGE home"
+              className="hidden md:flex items-center gap-2 group mt-2 shrink-0"
             >
-              Get in Touch
+              <div className="relative w-32 h-10 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/forge-logo.svg"
+                  alt="FORGE"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
             </Link>
+
+            <div className="flex-1 flex flex-col items-center mx-auto w-full md:w-auto md:absolute md:left-1/2 md:-translate-x-1/2 md:top-0">
+              <nav className="flex items-center justify-between md:justify-center px-6 md:px-8 py-3 w-full md:w-auto bg-white/60 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
+                <Link
+                  href="/"
+                  aria-label="FORGE home"
+                  className="flex md:hidden items-center gap-2 group"
+                >
+                  <div className="relative w-28 h-8 transition-transform duration-300 group-hover:scale-105">
+                    <Image
+                      src="/forge-logo.svg"
+                      alt="FORGE"
+                      fill
+                      className="object-contain object-left"
+                    />
+                  </div>
+                </Link>
+
+                <div className="hidden md:flex items-center gap-3 lg:gap-5 font-jakarta font-medium text-xs lg:text-sm text-foreground/80">
+                  {navItems.map((item) => {
+                    const isActive = isActivePath(item.href);
+
+                    return (
+                      <Link
+                        key={item.key}
+                        href={item.href}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`whitespace-nowrap rounded-full px-2.5 py-1.5 lg:px-3 transition-colors duration-300 ${
+                          isActive
+                            ? "bg-primary text-white shadow-[0_8px_18px_rgba(77,150,255,0.28)]"
+                            : "hover:text-primary"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                  className="md:hidden p-2 text-foreground z-50 relative ml-4"
+                  onClick={toggleMobileMenu}
+                >
+                  <div className="w-6 flex flex-col gap-1.5 items-end">
+                    <span
+                      className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`}
+                    />
+                    <span
+                      className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-0 opacity-0" : "w-4"}`}
+                    />
+                    <span
+                      className={`block h-0.5 bg-black transition-all duration-300 ${mobileMenuOpen ? "w-6 -rotate-45 -translate-y-2" : "w-6"}`}
+                    />
+                  </div>
+                </button>
+              </nav>
+            </div>
+
+            <div className="hidden md:flex items-center mt-1 shrink-0">
+              <Link
+                href="/collaborate"
+                ref={buttonRef}
+                onMouseEnter={handleButtonMouseEnter}
+                onMouseLeave={handleButtonMouseLeave}
+                className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-shadow"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
         </div>
       </div>

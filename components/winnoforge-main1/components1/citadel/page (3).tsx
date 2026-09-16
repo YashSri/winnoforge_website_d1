@@ -31,7 +31,7 @@ import {
   UsersRound,
   Zap,
 } from "lucide-react";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
@@ -54,11 +54,12 @@ import InstitutionalIndustryConnections from "@/components/citadel/Institutional
 import CodeOfConduct from "@/components/citadel/CodeOfConduct";
 import CitadelFinalCta from "@/components/citadel/CitadelFinalCta";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "FORGE Innovation Citadel",
   description:
     "An execution environment that converts students into builders - continuously.",
-};
+  path: "/citadel1",
+});
 
 const problemCards = [
   {

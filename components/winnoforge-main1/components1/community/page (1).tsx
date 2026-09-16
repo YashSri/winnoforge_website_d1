@@ -18,7 +18,7 @@ import {
   Rocket,
   UsersRound,
 } from "lucide-react";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import type { ComponentType } from "react";
 import Footer from "@/components/Footer";
@@ -39,11 +39,12 @@ import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "FORGE Community | Learn, Build, Connect, and Collaborate",
   description:
     "Explore the Winnovation FORGE community through learning sessions, events, projects, mentorship, innovation challenges, campus activities, and collaborative opportunities.",
-};
+  path: "/community",
+});
 
 const communityAudienceCards = [
   { icon: GraduationCap, title: "Learners", description: "Students and participants exploring skills, projects, technology, innovation, and new opportunities." },

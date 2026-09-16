@@ -22,7 +22,7 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -38,11 +38,12 @@ import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "FORGE Programs | Learning, Innovation, and Capability-Building Pathways",
   description:
     "Explore FORGE programs for learners, institutions, founders, educators, and industry partners — connecting structured learning with practical projects, mentorship, innovation, and progression.",
-};
+  path: "/programs",
+});
 
 const coreCategoryCards = [
   { icon: Compass, title: "Foundation Programs", description: "Build the fundamentals required to explore technology, innovation, and structured problem-solving." },

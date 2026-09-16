@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Varela_Round } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/modal/ModalContext";
 import FormModal from "@/components/modal/FormModal";
+import { SITE_URL } from "@/lib/site-config";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   title: "FORGE — Industry-Aligned Learning, Innovation & Execution",
   description:
     "Winnovation FORGE brings together practical learning, industry-aligned certification programs, mentors, student projects, campus communities, and innovation infrastructure to help learners build real capability.",
-  metadataBase: new URL("https://winnovation.org"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "FORGE — Industry-Aligned Learning, Innovation & Execution",
     description:
