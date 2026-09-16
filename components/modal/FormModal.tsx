@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { X, ArrowRight, CheckCircle2, Download, Loader2 } from "lucide-react";
 import { useModal, type ModalType } from "./ModalContext";
+import DownloadForm from "./DownloadForm";
+import MentorForm from "./MentorForm";
+import CatalogueForm from "./CatalogueForm";
+import InviteExpertForm from "./InviteExpertForm";
 
 // ─── shared input classes ────────────────────────────────────────────────────
 const input =
@@ -297,17 +301,40 @@ function PartnerForm({ onSuccess }: { onSuccess: () => void }) {
 }
 
 // ─── Success screen ──────────────────────────────────────────────────────────
-function SuccessScreen({ onClose }: { onClose: () => void }) {
+function SuccessScreen({
+  onClose,
+  downloadUrl,
+  downloadLabel = "Download Brochure",
+}: {
+  onClose: () => void;
+  downloadUrl?: string;
+  downloadLabel?: string;
+}) {
   return (
     <div className="flex flex-col items-center justify-center py-10 text-center">
       <CheckCircle2 className="h-14 w-14 text-primary mb-5" />
-      <h3 className="font-varela text-2xl font-bold text-foreground mb-3">You're in!</h3>
+      <h3 className="font-varela text-2xl font-bold text-foreground mb-3">
+        {downloadUrl ? "Your download is ready!" : "You're in!"}
+      </h3>
       <p className="font-jakarta text-base text-foreground/65 max-w-xs">
-        We've received your submission. Our sales team will get back to you shortly.
+        {downloadUrl
+          ? "Click below to download. We've also sent a copy of your request to our team."
+          : "We've received your submission. Our sales team will get back to you shortly."}
       </p>
+      {downloadUrl && (
+        <a
+          href={downloadUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex items-center gap-2 rounded-full bg-primary px-8 py-2.5 font-jakarta text-sm font-semibold text-white transition hover:opacity-90"
+        >
+          <Download className="h-4 w-4" />
+          {downloadLabel}
+        </a>
+      )}
       <button
         onClick={onClose}
-        className="mt-8 rounded-full bg-primary px-8 py-2.5 font-jakarta text-sm font-semibold text-white transition hover:opacity-90"
+        className="mt-4 rounded-full border border-black/10 px-8 py-2.5 font-jakarta text-sm font-semibold text-foreground transition hover:bg-black/5"
       >
         Close
       </button>
@@ -316,14 +343,18 @@ function SuccessScreen({ onClose }: { onClose: () => void }) {
 }
 
 // ─── Modal shell ─────────────────────────────────────────────────────────────
-const titles: Record<NonNullable<ModalType>, { heading: string; sub: string }> = {
+const titles: Record<Exclude<NonNullable<ModalType>, "download">, { heading: string; sub: string }> = {
   join: { heading: "Join the FORGE Ecosystem", sub: "Tell us a bit about yourself and we'll reach out." },
   partner: { heading: "Partner With FORGE", sub: "Let's talk about bringing FORGE to your campus or organisation." },
+  mentor: { heading: "Become a FORGE Mentor", sub: "Tell us about your expertise and we'll be in touch." },
+  catalogue: { heading: "Download Course Catalog", sub: "Enter your details and we'll unlock the catalogue." },
+  "invite-expert": { heading: "Invite an Expert", sub: "Tell us about your session and we'll help find the right fit." },
 };
 
 export default function FormModal() {
-  const { modalType, close } = useModal();
+  const { modalType, close, downloadPayload } = useModal();
   const [success, setSuccess] = useState(false);
+  const [catalogueUrl, setCatalogueUrl] = useState<string | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   // Reset success state when modal opens/changes
@@ -345,7 +376,15 @@ export default function FormModal() {
 
   if (!modalType) return null;
 
-  const { heading, sub } = titles[modalType];
+  const { heading, sub } =
+    modalType === "download"
+      ? {
+          heading: downloadPayload?.programName
+            ? `Download the ${downloadPayload.programName} Brochure`
+            : "Download Brochure",
+          sub: "Enter your details and we'll unlock the download.",
+        }
+      : titles[modalType];
 
   return (
     <div
@@ -376,9 +415,32 @@ export default function FormModal() {
         {/* Body */}
         <div className="px-7 py-6">
           {success ? (
-            <SuccessScreen onClose={close} />
+            <SuccessScreen
+              onClose={close}
+              downloadUrl={
+                modalType === "download" && downloadPayload
+                  ? `/brochures/${downloadPayload.programSlug}.pdf`
+                  : modalType === "catalogue" && catalogueUrl
+                    ? catalogueUrl
+                    : undefined
+              }
+              downloadLabel={modalType === "catalogue" ? "Download Catalogue" : "Download Brochure"}
+            />
           ) : modalType === "join" ? (
             <JoinForm onSuccess={() => setSuccess(true)} />
+          ) : modalType === "download" ? (
+            <DownloadForm onSuccess={() => setSuccess(true)} />
+          ) : modalType === "mentor" ? (
+            <MentorForm onSuccess={() => setSuccess(true)} />
+          ) : modalType === "catalogue" ? (
+            <CatalogueForm
+              onSuccess={(url) => {
+                setCatalogueUrl(url);
+                setSuccess(true);
+              }}
+            />
+          ) : modalType === "invite-expert" ? (
+            <InviteExpertForm onSuccess={() => setSuccess(true)} />
           ) : (
             <PartnerForm onSuccess={() => setSuccess(true)} />
           )}

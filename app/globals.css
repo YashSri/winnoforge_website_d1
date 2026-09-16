@@ -18,20 +18,20 @@
   --color-accent: var(--color-accent);
   --color-solar: var(--color-solar);
 
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --font-clash: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-jakarta: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-varela: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-boska: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-telma: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-zodiak: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-clash: "Clash Display", var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-jakarta: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-varela: var(--font-varela-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-boska: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-telma: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-zodiak: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: var(--background);
   color: var(--foreground);
 }

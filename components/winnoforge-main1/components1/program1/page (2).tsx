@@ -1,29 +1,112 @@
 import {
   ArrowRight,
+  Award,
   BadgeCheck,
+  Briefcase,
   Building2,
   Calendar,
+  Compass,
+  FlaskConical,
   Flame,
   Globe,
+  GraduationCap,
+  Lightbulb,
   Layers,
   Network,
+  PenTool,
   Rocket,
   Target,
   Trophy,
+  UsersRound,
   Users,
+  Wrench,
   Zap,
 } from "lucide-react";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PartnerButton from "@/components/modal/PartnerButton";
+import ProgramCatalogGrid from "@/components/programs/ProgramCatalogGrid";
+import ProgramDiscovery from "@/components/programs/ProgramDiscovery";
+import FeaturedPathways from "@/components/programs/FeaturedPathways";
+import MentorsIndustryConnection from "@/components/programs/MentorsIndustryConnection";
+import InstitutionalPrograms from "@/components/programs/InstitutionalPrograms";
+import PathwaySelector from "@/components/programs/PathwaySelector";
+import TestimonialsEditorial from "@/components/programs/TestimonialsEditorial";
+import CardGrid from "@/components/shared/CardGrid";
+import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import FaqAccordion from "@/components/shared/FaqAccordion";
 
-export const metadata: Metadata = {
-  title: "FORGE Programs",
+export const metadata = pageMetadata({
+  title: "FORGE Programs | Learning, Innovation, and Capability-Building Pathways",
   description:
-    "Not a course platform. A structured execution ecosystem that turns students into builders and founders.",
-};
+    "Explore FORGE programs for learners, institutions, founders, educators, and industry partners — connecting structured learning with practical projects, mentorship, innovation, and progression.",
+  path: "/programs",
+});
+
+const coreCategoryCards = [
+  { icon: Compass, title: "Foundation Programs", description: "Build the fundamentals required to explore technology, innovation, and structured problem-solving." },
+  { icon: Wrench, title: "Technical Skill Programs", description: "Develop practical, industry-relevant technical capabilities through guided learning and hands-on work." },
+  { icon: PenTool, title: "Innovation and Project Programs", description: "Turn problems and ideas into prototypes, experiments, and demonstrable solutions." },
+  { icon: Rocket, title: "Founder and Venture Programs", description: "Support aspiring founders as they move from early ideas toward validated products, ventures, or initiatives." },
+  { icon: Award, title: "Certification and Capability Programs", description: "Build structured capability through learning, assessment, practical work, and evidence of completion." },
+  { icon: Briefcase, title: "Industry and Corporate Programs", description: "Connect learners, institutions, and organisations through applied challenges, mentorship, and innovation collaboration." },
+];
+
+const programExperienceSteps = [
+  { title: "Discover", description: "Understand the subject, problem, or opportunity." },
+  { title: "Learn", description: "Build the relevant concepts and foundational knowledge." },
+  { title: "Practise", description: "Apply learning through guided activities and exercises." },
+  { title: "Build", description: "Create a project, prototype, experiment, or solution." },
+  { title: "Receive Feedback", description: "Work with mentors, peers, instructors, or reviewers." },
+  { title: "Iterate", description: "Improve the work based on feedback and testing." },
+  { title: "Demonstrate", description: "Present the outcome, process, learnings, and evidence." },
+  { title: "Progress", description: "Move toward the next learning, project, academic, entrepreneurial, or professional opportunity." },
+];
+
+const learningFormatCards = [
+  { title: "Campus-Based", description: "Programs delivered through partner institutions, campus chapters, labs, workshops, or scheduled sessions." },
+  { title: "Cohort-Based", description: "Structured groups progressing through a common learning and project journey." },
+  { title: "Workshop-Based", description: "Focused, short-format learning experiences around a specific skill or topic." },
+  { title: "Project-Based", description: "Learning organised around building, testing, and presenting a practical output." },
+  { title: "Challenge-Based", description: "Participants work on defined problems, prompts, or innovation challenges." },
+  { title: "Mentorship-Led", description: "Participants receive guidance, review, and feedback from mentors or subject experts." },
+  { title: "Hybrid", description: "A combination of digital learning, in-person interaction, practical work, and reviews." },
+];
+
+const participantOutcomeCards = [
+  { icon: Wrench, title: "Skills", description: "Improved technical, creative, analytical, and problem-solving capabilities." },
+  { icon: Layers, title: "Projects", description: "Practical work that demonstrates application of learning." },
+  { icon: BadgeCheck, title: "Portfolio", description: "A structured collection of projects, documentation, presentations, and reflections." },
+  { icon: Users, title: "Confidence", description: "Greater ability to explain ideas, collaborate, present, and receive feedback." },
+  { icon: UsersRound, title: "Collaboration", description: "Experience working with peers, mentors, institutions, and external stakeholders." },
+  { icon: Globe, title: "Exposure", description: "Opportunities to interact with real-world problems, experts, and industry contexts." },
+  { icon: Compass, title: "Direction", description: "Better clarity about further learning, careers, entrepreneurship, or areas of specialisation." },
+  { icon: Award, title: "Recognition", description: "Approved certificates, credentials, showcases, or other forms of acknowledgement where applicable." },
+];
+
+const programJourneySteps = [
+  { title: "Foundation", description: "Build the fundamentals — possible next step, not a mandatory start." },
+  { title: "Technical Skills", description: "Develop practical, industry-relevant capability." },
+  { title: "Project Building", description: "Apply skills to a real project or prototype." },
+  { title: "Innovation Challenge", description: "Pressure-test problem-solving in a structured challenge." },
+  { title: "Mentorship", description: "Refine the work with guidance from practitioners." },
+  { title: "Showcase", description: "Present outcomes and evidence of what was built." },
+  { title: "Advanced Pathway", description: "Continue building toward the Citadel, a venture, or industry opportunities." },
+];
+
+const programsFaqs = [
+  { question: "Who can participate in FORGE programs?", answer: "Eligibility depends on the specific program — check each program's details rather than assuming universal eligibility." },
+  { question: "Are programs available through partner campuses?", answer: "Some programs are delivered through partner campuses. This is confirmed on a program-by-program basis." },
+  { question: "Are programs online or offline?", answer: "Delivery format varies by program — see each program's delivery mode in the catalog above." },
+  { question: "Do participants receive certificates?", answer: "Recognition varies by program. Where a certification pathway applies, it's described on that program's detail page." },
+  { question: "Are projects included?", answer: "Project components are described on a per-program basis — not every program includes the same practical structure." },
+  { question: "Can institutions collaborate with FORGE?", answer: "Yes — use the Collaborate page to start that conversation." },
+  { question: "Can mentors or industry experts participate?", answer: "Yes — see the Mentors, Experts & Industry section above, or the Collaborate page." },
+  { question: "How do I choose the right program?", answer: "Use the Pathway Selector above, or reach out through Collaborate for guidance." },
+  { question: "Are placements or jobs guaranteed?", answer: "No. FORGE programs are designed to support capability-building, exposure, and career readiness — not guaranteed placement or employment." },
+];
 
 const journeyStages = [
   {
@@ -225,12 +308,107 @@ export default function ProgramsPage() {
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
         <HeroSection />
+        <ProgramDiscovery />
+        <CardGrid
+          eyebrow="Program Categories"
+          heading="Built Around Real Stages of Growth"
+          cards={coreCategoryCards}
+          columns={3}
+        />
+        <ProgramCatalogGrid />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+            <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              The Learning Loop
+            </span>
+            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+              Every Program Follows a Practical Learning Loop
+            </h2>
+            <p className="font-jakarta text-base text-foreground/70">
+              The goal is not simply to finish a module. The goal is to become more capable with
+              every cycle.
+            </p>
+          </div>
+          <div className="mt-14">
+            <ProcessTimeline steps={programExperienceSteps} />
+          </div>
+        </section>
+        <FeaturedPathways />
         <ExecutionJourneySection />
         <CitadelHighlightSection />
         <EcosystemSection />
+        <CardGrid
+          eyebrow="Learning Formats"
+          heading="Designed for Different Learning Environments"
+          cards={learningFormatCards}
+          columns={4}
+        />
+        <MentorsIndustryConnection />
         <OutcomesSection />
+        <CardGrid
+          eyebrow="What You Build"
+          heading="What Participants Build Along the Way"
+          description="Outcomes go beyond certificates or attendance — this is the tangible evidence of growth."
+          cards={participantOutcomeCards}
+          columns={4}
+        />
+        <PathwaySelector />
         <AudienceSection />
+        <InstitutionalPrograms />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+            <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              An Illustrative Journey
+            </span>
+            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+              A Suggested Pathway Through the Ecosystem
+            </h2>
+            <p className="font-jakarta text-base text-foreground/70">
+              Every step here is a possible next step, not a mandatory sequence — explore
+              further at whatever pace fits you.
+            </p>
+          </div>
+          <div className="mt-14">
+            <ProcessTimeline steps={programJourneySteps} />
+          </div>
+        </section>
+        <TestimonialsEditorial />
+        <section className="mx-auto w-full max-w-3xl px-6 py-16 md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <div className="mt-10">
+            <FaqAccordion items={programsFaqs} />
+          </div>
+        </section>
         <ClosingSection />
+        <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Your Next Capability-Building Journey Starts Here
+          </h2>
+          <p className="max-w-xl font-jakarta text-base text-foreground/70">
+            Whether you are beginning to learn, building your first project, exploring
+            entrepreneurship, strengthening an institution, or looking for meaningful industry
+            collaboration, there is a pathway to explore.
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/programs#catalog"
+              className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]"
+            >
+              Explore All Programs
+            </Link>
+            <Link
+              href="/collaborate"
+              className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]"
+            >
+              Talk to the FORGE Team
+            </Link>
+            <PartnerButton className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]">
+              Partner With FORGE
+            </PartnerButton>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

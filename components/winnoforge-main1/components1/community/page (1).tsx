@@ -8,24 +8,83 @@ import {
   Globe,
   GraduationCap,
   Hammer,
+  Handshake,
+  Laptop,
   Layers,
   Lightbulb,
+  MapPin,
+  Network,
   RefreshCcw,
+  Rocket,
   UsersRound,
 } from "lucide-react";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import type { ComponentType } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import JoinButton from "@/components/modal/JoinButton";
 import PartnerButton from "@/components/modal/PartnerButton";
+import CommunityGrid from "@/components/community/CommunityGrid";
+import Lightbox from "@/components/shared/Lightbox";
+import WhatCommunityMeans from "@/components/community/WhatCommunityMeans";
+import UpcomingEvents from "@/components/community/UpcomingEvents";
+import StoriesSection from "@/components/community/StoriesSection";
+import FeaturedVoicesEditorial from "@/components/community/FeaturedVoicesEditorial";
+import ParticipationSelector from "@/components/community/ParticipationSelector";
+import CampusInstitutionalCommunity from "@/components/community/CampusInstitutionalCommunity";
+import CommunityGuidelines from "@/components/community/CommunityGuidelines";
+import CommunityRecognition from "@/components/community/CommunityRecognition";
+import CardGrid from "@/components/shared/CardGrid";
+import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import FaqAccordion from "@/components/shared/FaqAccordion";
 
-export const metadata: Metadata = {
-  title: "FORGE Community",
+export const metadata = pageMetadata({
+  title: "FORGE Community | Learn, Build, Connect, and Collaborate",
   description:
-    "A network of builders, institutions, and innovators shaping the future together.",
-};
+    "Explore the Winnovation FORGE community through learning sessions, events, projects, mentorship, innovation challenges, campus activities, and collaborative opportunities.",
+  path: "/community",
+});
+
+const communityAudienceCards = [
+  { icon: GraduationCap, title: "Learners", description: "Students and participants exploring skills, projects, technology, innovation, and new opportunities." },
+  { icon: Hammer, title: "Builders", description: "People developing applications, prototypes, experiments, research projects, creative work, or ventures." },
+  { icon: Lightbulb, title: "Mentors and Experts", description: "Professionals, educators, founders, researchers, and practitioners sharing knowledge and perspective." },
+  { icon: Building2, title: "Faculty and Educators", description: "People supporting practical learning, institutional development, student engagement, and innovation-led education." },
+  { icon: Layers, title: "Institutions", description: "Schools, colleges, and partner organisations participating in structured ecosystem activities." },
+  { icon: Rocket, title: "Founders", description: "Individuals exploring problems, developing products, validating ideas, or building ventures." },
+  { icon: Briefcase, title: "Industry Contributors", description: "Professionals and organisations contributing challenges, workshops, feedback, exposure, and collaboration." },
+  { icon: Network, title: "Community and FORGE Teams", description: "People coordinating activities, supporting participants, facilitating collaboration, and improving the ecosystem experience." },
+];
+
+const engagementModeCards = [
+  { icon: MapPin, title: "In-Person", description: "Campus activities, workshops, meetups, project sessions, and showcases." },
+  { icon: Laptop, title: "Online", description: "Digital sessions, discussions, resource sharing, project coordination, and approved community activities." },
+  { icon: Handshake, title: "Hybrid", description: "Experiences combining online preparation with in-person learning, interaction, or demonstration." },
+];
+
+const participationLoopSteps = [
+  { title: "Discover", description: "Find a program, event, discussion, project, or community activity." },
+  { title: "Participate", description: "Join a session, challenge, workshop, or conversation." },
+  { title: "Connect", description: "Meet peers, mentors, educators, founders, or industry contributors." },
+  { title: "Contribute", description: "Share knowledge, ask questions, review work, or support a project." },
+  { title: "Build", description: "Work with others on an idea, prototype, project, or initiative." },
+  { title: "Share", description: "Present progress, publish approved learnings, or participate in a showcase." },
+  { title: "Continue", description: "Explore the next activity, pathway, or opportunity within the ecosystem." },
+];
+
+const communityFaqs = [
+  { question: "Who can participate in the FORGE community?", answer: "Learners, builders, mentors, faculty, institutions, founders, and industry contributors — subject to specific program or activity requirements." },
+  { question: "Is the community open to everyone?", answer: "Most activities are open, but some are restricted to approved participants or partners depending on the program." },
+  { question: "How can I join an event?", answer: "Use the Register Interest button on the relevant event card above, or the Join FORGE CTA." },
+  { question: "Can I share my project?", answer: "Yes — approved project showcases and stories are published through our review process." },
+  { question: "Can I start a community activity?", answer: "Participants can propose workshops, discussions, challenges, or initiatives — reach out through the Join or Collaborate pathways." },
+  { question: "Can I become a mentor or speaker?", answer: "Yes — visit the Mentors & Experts page to express interest." },
+  { question: "Are community activities online or offline?", answer: "Both — see the Online and Offline Engagement section above for the actual formats available." },
+  { question: "Are there campus-based communities?", answer: "Yes, through confirmed campus chapters and institutional activities — see Campus & Institutional Community above." },
+  { question: "Can industry professionals participate?", answer: "Yes — use the Collaborate page to explore the approved industry collaboration pathway." },
+  { question: "How are community stories selected?", answer: "Stories are reviewed and published based on relevance, accuracy, permissions, and approval." },
+];
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -118,16 +177,118 @@ const valuePills = [
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
+const communityGalleryImages = [
+  { src: "/webp/2.webp", alt: "FORGE community event" },
+  { src: "/webp/3.webp", alt: "FORGE community workshop" },
+  { src: "/webp/4.webp", alt: "FORGE community demo day" },
+  { src: "/webp/8.webp", alt: "FORGE community builders" },
+  { src: "/impact-campus-wide.jpg", alt: "FORGE community on campus" },
+  { src: "/launch-step-4.jpg", alt: "FORGE community launch" },
+];
+
 export default function CommunityNewPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
         <HeroSection />
+        <WhatCommunityMeans />
+        <CardGrid
+          eyebrow="Who Makes Up the Community"
+          heading="Different Paths. Shared Possibility."
+          cards={communityAudienceCards}
+          columns={4}
+        />
+        <CommunityGrid />
+        <UpcomingEvents />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Community Gallery
+          </h2>
+          <div className="mt-10">
+            <Lightbox images={communityGalleryImages} />
+          </div>
+        </section>
+        <StoriesSection />
+        <FeaturedVoicesEditorial />
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+            <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Community Participation Loop
+            </span>
+            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+              Participate. Contribute. Grow Together.
+            </h2>
+          </div>
+          <div className="mt-14">
+            <ProcessTimeline steps={participationLoopSteps} />
+          </div>
+          <p className="mx-auto mt-10 max-w-xl text-center font-jakarta text-base italic text-primary/65">
+            Community is not something you simply join. It is something you help create.
+          </p>
+        </section>
+        <ParticipationSelector />
+        <CampusInstitutionalCommunity />
+        <CardGrid
+          eyebrow="Online & Offline Engagement"
+          heading="Different Ways to Stay Connected"
+          cards={engagementModeCards}
+          columns={3}
+        />
         {benefitSections.map((section) => (
           <BenefitSection key={section.id} section={section} />
         ))}
         <ValueStripSection />
+        <CommunityGuidelines />
+        <CommunityRecognition />
+        <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
+          <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            Join or Connect
+          </span>
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            There Is a Place for Your Curiosity Here
+          </h2>
+          <p className="max-w-xl font-jakarta text-base text-foreground/70">
+            Whether you are learning your first technical skill, building a project, exploring
+            entrepreneurship, supporting students, sharing professional experience, or looking
+            for meaningful collaboration, FORGE offers pathways to connect.
+          </p>
+          <JoinButton className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]">
+            Join the FORGE Ecosystem
+          </JoinButton>
+        </section>
+        <section className="mx-auto w-full max-w-3xl px-6 py-16 md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <div className="mt-10">
+            <FaqAccordion items={communityFaqs} />
+          </div>
+        </section>
+        <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
+          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+            Bring Your Questions, Ideas, and Energy
+          </h2>
+          <p className="max-w-xl font-jakarta text-base text-foreground/70">
+            The FORGE community grows when people learn openly, build responsibly, and
+            contribute generously. Find an activity, meet a collaborator, share your work, or
+            start a conversation.
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="#activities"
+              className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]"
+            >
+              Explore Community Activities
+            </Link>
+            <JoinButton className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]">
+              Join FORGE
+            </JoinButton>
+            <PartnerButton className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]">
+              Partner With FORGE
+            </PartnerButton>
+          </div>
+        </section>
         <FinalCtaSection />
       </main>
       <Footer />
