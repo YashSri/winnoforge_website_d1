@@ -28,7 +28,10 @@ export default function Stats() {
     <section className="py-20 px-6 md:px-10 max-w-7xl mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
         {stats.map(({ icon: Icon, value, label }) => (
-          <div key={label} className="flex flex-col items-center text-center gap-4">
+          <div
+            key={label}
+            className="flex flex-col items-center text-center gap-4"
+          >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
               <Icon className="h-7 w-7 text-primary" strokeWidth={2} />
             </div>
