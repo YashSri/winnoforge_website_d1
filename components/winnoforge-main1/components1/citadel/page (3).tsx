@@ -53,6 +53,8 @@ import ProgressRecognition from "@/components/citadel/ProgressRecognition";
 import InstitutionalIndustryConnections from "@/components/citadel/InstitutionalIndustryConnections";
 import CodeOfConduct from "@/components/citadel/CodeOfConduct";
 import CitadelFinalCta from "@/components/citadel/CitadelFinalCta";
+import AnnualSummit from "@/components1/ecosystem/AnnualSummit";
+import FutureVision from "@/components1/ecosystem/FutureVision";
 
 export const metadata = pageMetadata({
   title: "FORGE Innovation Citadel",
@@ -814,6 +816,8 @@ export default function CitadelPage() {
         <CommunityAndCulture />
         <ProgressRecognition />
         <InstitutionalIndustryConnections />
+        <AnnualSummit />
+        <FutureVision />
         <CodeOfConduct />
         <CitadelFinalCta />
 

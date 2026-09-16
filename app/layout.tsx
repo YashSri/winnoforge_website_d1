@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Varela_Round } from "next/font/google";
+import { Plus_Jakarta_Sans, Varela_Round, Poppins } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/modal/ModalContext";
 import FormModal from "@/components/modal/FormModal";
@@ -16,6 +16,13 @@ const varela = Varela_Round({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-varela-loaded",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins-loaded",
   display: "swap",
 });
 
@@ -52,7 +59,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${jakarta.variable} ${varela.variable}`}
+      className={`${jakarta.variable} ${varela.variable} ${poppins.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />

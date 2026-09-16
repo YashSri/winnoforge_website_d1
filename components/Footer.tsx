@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const footerNavItems = [
   { key: "home", label: "Home", href: "/" },
-  { key: "about", label: "About & Ecosystem", href: "/ecosystem" },
+  { key: "ecosystem", label: "Ecosystem", href: "/ecosystem" },
   { key: "programs", label: "Programs", href: "/programs" },
   { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
   { key: "community", label: "Community", href: "/community" },

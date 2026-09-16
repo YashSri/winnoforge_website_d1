@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FDFBF7;
-  --foreground: #171717;
+  --background: #F7F8FC;
+  --foreground: #111111;
 
-  --color-primary: #4D96FF;
+  --color-primary: #1683E8;
+  --color-navy: #102A43;
+  --color-border: #D9DEE7;
+  --color-muted: #5F6672;
   --color-secondary: #C4F14E;
   --color-accent: #FF6B6B;
   --color-solar: #FACC15;
@@ -14,15 +17,19 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--color-primary);
+  --color-navy: var(--color-navy);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-muted);
   --color-secondary: var(--color-secondary);
   --color-accent: var(--color-accent);
   --color-solar: var(--color-solar);
 
-  --font-sans: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, var(--font-jakarta-loaded), sans-serif;
   --font-serif: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --font-clash: "Clash Display", var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-poppins: var(--font-poppins-loaded), "Poppins", sans-serif;
+  --font-clash: "Clash Display", var(--font-poppins-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-jakarta: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-varela: var(--font-varela-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-boska: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -31,7 +38,101 @@
 }
 
 body {
-  font-family: var(--font-jakarta-loaded), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, var(--font-jakarta-loaded), sans-serif;
   background: var(--background);
   color: var(--foreground);
 }
+
+@keyframes ambientFloat1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-30px, 40px, 0) scale(1.08);
+  }
+}
+
+@keyframes ambientFloat2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(40px, -30px, 0) scale(1.1);
+  }
+}
+
+@keyframes ambientFloat3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-25px, -35px, 0) scale(1.05);
+  }
+}
+
+@keyframes driftSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(15px, -20px, 0);
+  }
+}
+
+@keyframes driftReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-20px, 15px, 0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-ambient-float-1 {
+  animation: ambientFloat1 18s ease-in-out infinite;
+}
+
+.animate-ambient-float-2 {
+  animation: ambientFloat2 22s ease-in-out infinite;
+}
+
+.animate-ambient-float-3 {
+  animation: ambientFloat3 20s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: driftSlow 10s ease-in-out infinite;
+}
+
+.animate-drift-reverse {
+  animation: driftReverse 12s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 40s linear infinite;
+}
+
