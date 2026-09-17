@@ -56,30 +56,30 @@ export default function Philosophy() {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: "+=170%", // Shorter pin duration — reaches the end sooner
+                    end: "+=250%", // Increased pin duration for delay
                     pin: true,
-                    scrub: 0.5, // Lower smoothing lag — snappier response to scroll
+                    scrub: 1,
                     anticipatePin: 1
                 }
             });
 
             // 1. Background Color Transitions — one per card
             tl.to(containerRef.current, {
-                backgroundColor: "#0A5886",
+                backgroundColor: "#0A5886", 
                 duration: 0.3,
-                ease: "power2.inOut",
+                ease: "power1.inOut",
             }, 0);
 
             tl.to(containerRef.current, {
                 backgroundColor: "#0B2E33",
                 duration: 0.3,
-                ease: "power2.inOut",
+                ease: "power1.inOut",
             }, 0.35);
 
             tl.to(containerRef.current, {
                 backgroundColor: "#002900",
                 duration: 0.3,
-                ease: "power2.inOut",
+                ease: "expo.in",
             }, 0.7);
 
             // 2. Move Cards Container Up
