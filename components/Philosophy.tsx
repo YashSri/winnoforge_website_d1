@@ -110,8 +110,22 @@ export default function Philosophy() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  // Ensure ScrollTrigger accurately calculates layout once window and assets load
+  useEffect(() => {
+    const handleRefresh = () => {
+      ScrollTrigger.refresh();
+    };
+
+    if (document.readyState === "complete") {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", handleRefresh);
+      return () => window.removeEventListener("load", handleRefresh);
+    }
+  }, []);
+
   /**
-   * Ultra-smooth continuous card transform with blur & shadow depth
+   * Ultra-smooth continuous card transform with physical depth & soft shadow
    * Active: distance = 0
    * Next: distance = +1
    * Previous: distance = -1
@@ -121,21 +135,18 @@ export default function Philosophy() {
     distance: number,
     isMobile: boolean,
   ) => {
-    const yUnit = isMobile ? 32 : 46;
-    const rotUnit = isMobile ? 0.4 : 1.2;
+    const yUnit = isMobile ? 28 : 42;
+    const rotUnit = isMobile ? 0.3 : 0.8;
 
-    // Vertical offset: translateY = distance * 46px (clamped to [-92px, 92px])
-    const translateY = Math.max(-92, Math.min(92, distance * yUnit));
+    // Vertical offset: clamped cleanly
+    const translateY = Math.max(-84, Math.min(84, distance * yUnit));
 
     // Smooth physical scale curve
-    const scale = Math.max(0.88, 1 - Math.min(Math.abs(distance), 1.5) * 0.045);
+    const absDist = Math.abs(distance);
+    const scale = Math.max(0.90, 1 - Math.min(absDist, 1.5) * 0.045);
 
     // Subtle natural tilt
-    const rotation = Math.max(-2.5, Math.min(2.5, distance * -rotUnit));
-
-    // Dynamic blur: 0px when active, soft 2-3px when adjacent, fading to 6px
-    const absDist = Math.abs(distance);
-    const blurPx = Math.min(6, absDist * 2.4);
+    const rotation = Math.max(-2.0, Math.min(2.0, distance * -rotUnit));
 
     // Opacity interpolation
     let opacity = 0;
@@ -143,38 +154,37 @@ export default function Philosophy() {
       opacity = 1;
     } else if (distance > 0) {
       if (distance <= 1) {
-        opacity = 1 - distance * 0.16; // 1 -> 0.84
+        opacity = 1 - distance * 0.15; // 1 -> 0.85
       } else if (distance <= 1.5) {
-        opacity = 0.84 - ((distance - 1) / 0.5) * (0.84 - 0.2); // 0.84 -> 0.20
-      } else if (distance <= 1.8) {
-        opacity = 0.2 - ((distance - 1.5) / 0.3) * 0.2; // 0.20 -> 0
+        opacity = 0.85 - ((distance - 1) / 0.5) * 0.45; // 0.85 -> 0.40
+      } else if (distance <= 2.0) {
+        opacity = Math.max(0, 0.40 - ((distance - 1.5) / 0.5) * 0.40); // 0.40 -> 0
       } else {
         opacity = 0;
       }
     } else {
       if (absDist <= 1) {
-        opacity = 1 - absDist * 0.22; // 1 -> 0.78
+        opacity = 1 - absDist * 0.20; // 1 -> 0.80
       } else if (absDist <= 1.5) {
-        opacity = 0.78 - ((absDist - 1) / 0.5) * (0.78 - 0.2); // 0.78 -> 0.20
-      } else if (absDist <= 1.8) {
-        opacity = 0.2 - ((absDist - 1.5) / 0.3) * 0.2; // 0.20 -> 0
+        opacity = 0.80 - ((absDist - 1) / 0.5) * 0.45; // 0.80 -> 0.35
+      } else if (absDist <= 2.0) {
+        opacity = Math.max(0, 0.35 - ((absDist - 1.5) / 0.5) * 0.35); // 0.35 -> 0
       } else {
         opacity = 0;
       }
     }
 
     // Dynamic depth shadow: deeper when active, lighter when layered
-    const shadowAlpha = Math.max(0.04, 0.14 - absDist * 0.05);
-    const shadowOffsetY = Math.max(10, Math.round(30 - absDist * 10));
-    const shadowBlur = Math.max(25, Math.round(70 - absDist * 20));
+    const shadowAlpha = Math.max(0.04, 0.12 - absDist * 0.04);
+    const shadowOffsetY = Math.max(8, Math.round(26 - absDist * 8));
+    const shadowBlur = Math.max(20, Math.round(60 - absDist * 16));
 
     // Z-Index: Active card has highest layer
-    const zIndex = Math.max(1, 100 - Math.round(absDist * 10));
+    const zIndex = Math.max(1, 100 - Math.round(absDist * 15));
 
-    // Apply continuous GPU-accelerated transform & blur
+    // Apply continuous GPU-accelerated transform
     el.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotate(${rotation.toFixed(2)}deg)`;
     el.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
-    el.style.filter = blurPx > 0.1 ? `blur(${blurPx.toFixed(1)}px)` : "none";
     el.style.boxShadow = `0 ${shadowOffsetY}px ${shadowBlur}px rgba(16, 42, 67, ${shadowAlpha.toFixed(3)}), 0 4px 12px rgba(16, 42, 67, 0.03)`;
     el.style.zIndex = String(zIndex);
     el.style.pointerEvents = absDist < 0.3 ? "auto" : "none";
@@ -196,18 +206,18 @@ export default function Philosophy() {
         const st = ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
-          end: "+=240%", // balanced 3 viewport heights scroll distance
+          end: "+=150%", // Faster, snappier scroll distance
           pin: true,
-          scrub: 1.0, // Silky smooth inertia on wheel/scroll
-          anticipatePin: 1,
+          scrub: 0.35, // Fast, silky-smooth response without lag
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
 
-            // Smooth continuous card progress from 0 to 2
-            const cardProgress = Math.min(2, p * 2.15);
+            // Direct, continuous 1:1 card progress from 0 to 2 without dead zones
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
 
-            // Active index update for vertical progress indicator
-            const nextIdx = p < 0.35 ? 0 : p < 0.72 ? 1 : 2;
+            // Synchronized active index for counter and vertical indicator
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
             if (nextIdx !== activeIndexRef.current) {
               activeIndexRef.current = nextIdx;
               setActiveCardIndex(nextIdx);
@@ -234,15 +244,15 @@ export default function Philosophy() {
         const st = ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
-          end: "+=220%",
+          end: "+=130%",
           pin: true,
-          scrub: 0.9,
-          anticipatePin: 1,
+          scrub: 0.35,
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
-            const cardProgress = Math.min(2, p * 2.15);
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
 
-            const nextIdx = p < 0.35 ? 0 : p < 0.72 ? 1 : 2;
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
             if (nextIdx !== activeIndexRef.current) {
               activeIndexRef.current = nextIdx;
               setActiveCardIndex(nextIdx);
@@ -266,7 +276,7 @@ export default function Philosophy() {
   const handleJumpToCard = (targetIndex: number) => {
     if (!scrollTriggerRef.current) return;
     const st = scrollTriggerRef.current;
-    const progressMap = [0.05, 0.48, 0.92];
+    const progressMap = [0.02, 0.50, 0.98];
     const targetProgress = progressMap[targetIndex] ?? 0;
     const targetScroll = st.start + (st.end - st.start) * targetProgress;
     window.scrollTo({ top: targetScroll, behavior: "smooth" });
