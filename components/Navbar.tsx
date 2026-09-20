@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 const navItems = [
   { key: "ecosystem", label: "Ecosystem", href: "/ecosystem" },
   { key: "programs", label: "Programs", href: "/programs" },
-  { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
+  { key: "citadel", label: "Citadel", href: "/citadel1" },
   { key: "community", label: "Community", href: "/community" },
   { key: "collaborate", label: "Collaborate", href: "/collaborate" },
 ];
