@@ -29,6 +29,7 @@ export default function Footer() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top center",
+          toggleActions: "restart none none reset",
         },
         y: 100,
         opacity: 0,
@@ -40,6 +41,7 @@ export default function Footer() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom",
+          toggleActions: "restart none none reset",
         },
         scale: 0.8,
         opacity: 0,

@@ -47,7 +47,7 @@ export default function IntroWinnovation() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          once: true,
+          toggleActions: "restart none none reset",
         },
         defaults: { ease: "power3.out" },
       });

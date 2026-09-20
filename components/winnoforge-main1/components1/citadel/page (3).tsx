@@ -884,7 +884,7 @@ export default function CitadelPage() {
         {/* <CitadelFinalCta /> */}
 
         <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-7xl">
             <ScrollReveal className="mb-10 text-center">
               <h2 className="font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
                 Citadel FAQs

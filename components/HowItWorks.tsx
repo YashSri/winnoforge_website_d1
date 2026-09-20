@@ -93,7 +93,7 @@ export default function HowItWorks() {
           scrollTrigger: {
             trigger: card,
             start: "top bottom-=60",
-            toggleActions: "play none none none",
+            toggleActions: "restart none none reset",
           },
           x: xStart,
           y: yStart,

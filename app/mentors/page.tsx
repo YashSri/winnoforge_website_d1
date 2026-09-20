@@ -191,13 +191,13 @@ export default function MentorsPage() {
         <InstitutionalIndustryParticipation />
         <ResponsibleRepresentation />
 
-        <section className="mx-auto w-full max-w-3xl px-6 py-16 md:px-12 md:py-24">
-          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-10">
-            <FaqAccordion items={mentorsFaqs} />
+        <section className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-24">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
+              Frequently Asked <span className="text-[#1683EA]">Questions</span>
+            </h2>
           </div>
+          <FaqAccordion items={mentorsFaqs} />
         </section>
 
         <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">

@@ -2,6 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import {
   ArrowRight,
   BarChart3,
@@ -16,6 +17,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/modal/ModalContext";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const founderLogos = [
   { src: "/supporters/founder-remote.png", alt: "Founder company mark" },
@@ -52,12 +57,13 @@ export default function Hero() {
 
   // Counter state
   const [counters, setCounters] = useState<number[]>([0, 0, 0]);
-  const hasAnimatedCounters = useRef(false);
+  const counterTweenRef = useRef<gsap.core.Tween | null>(null);
 
-  // Function to smoothly animate counters using GSAP
+  // Function to smoothly animate counters using GSAP - re-runnable on scroll
   const triggerCounterAnimation = useCallback(() => {
-    if (hasAnimatedCounters.current) return;
-    hasAnimatedCounters.current = true;
+    if (counterTweenRef.current) {
+      counterTweenRef.current.kill();
+    }
 
     const prefersReducedMotion =
       typeof window !== "undefined" &&
@@ -69,11 +75,13 @@ export default function Hero() {
     }
 
     const state = { val0: 0, val1: 0, val2: 0 };
-    gsap.to(state, {
+    setCounters([0, 0, 0]);
+
+    counterTweenRef.current = gsap.to(state, {
       val0: 500,
       val1: 50,
       val2: 20,
-      duration: 2.2,
+      duration: 2.0,
       ease: "power2.out",
       onUpdate: () => {
         setCounters([
@@ -152,24 +160,22 @@ export default function Hero() {
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
-  // Fallback IntersectionObserver in case viewport or scroll triggers first
+  // Listen for scroll back to top of the page
   useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
+    let hasScrolledDown = false;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          triggerCounterAnimation();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.05, rootMargin: "50px" },
-    );
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 250) {
+        hasScrolledDown = true;
+      } else if (scrollY <= 20 && hasScrolledDown) {
+        hasScrolledDown = false;
+        triggerCounterAnimation();
+      }
+    };
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [triggerCounterAnimation]);
 
   // GSAP Hero Entrance Sequence
@@ -242,6 +248,35 @@ export default function Hero() {
           },
           "-=0.3",
         );
+
+      // ScrollTrigger for counter animations in Hero stats
+      if (statsRef.current) {
+        ScrollTrigger.create({
+          trigger: statsRef.current,
+          start: "top 95%",
+          onEnter: () => {
+            triggerCounterAnimation();
+          },
+          onEnterBack: () => {
+            triggerCounterAnimation();
+          },
+          onLeave: () => {
+            setCounters([0, 0, 0]);
+          },
+        });
+      }
+
+      // Re-trigger counter animation whenever user scrolls back up into the hero section
+      if (containerRef.current) {
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          onEnterBack: () => {
+            triggerCounterAnimation();
+          },
+        });
+      }
     },
     { scope: containerRef },
   );

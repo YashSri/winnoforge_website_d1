@@ -19,14 +19,15 @@ import {
 } from "lucide-react";
 import EcosystemHeroSection from "@/components1/ecosystem/EcosystemHeroSection";
 import EcosystemHowWorksSection from "@/components1/ecosystem/EcosystemHowWorksSection";
+import WhoWeAreEngineSection from "@/components1/ecosystem/WhoWeAreEngineSection";
 import LeadershipMilestonesSection from "@/components1/ecosystem/LeadershipMilestonesSection";
+import PhilosophyRailSection from "@/components1/ecosystem/PhilosophyRailSection";
+import WhoParticipatesFlipSection from "@/components1/ecosystem/WhoParticipatesFlipSection";
 import GovernmentInnovation from "@/components1/ecosystem/GovernmentInnovation";
+import HowInnovationScalesSection from "@/components1/ecosystem/HowInnovationScalesSection";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import FaqAccordion from "@/components/shared/FaqAccordion";
-import CardGrid from "@/components/shared/CardGrid";
-import ProcessTimeline from "@/components/shared/ProcessTimeline";
-import FinalCta from "@/components/home/FinalCta";
+import FaqAccordion, { FAQSection } from "@/components/shared/FaqAccordion";
 
 export const metadata = pageMetadata({
   title: "About & Ecosystem | Winnovation FORGE",
@@ -60,6 +61,11 @@ const ecosystemFaqs = [
     question: "How can my company get involved?",
     answer:
       "Industry partners bring problem statements, mentor builders, and evaluate outcomes. Reach out through the Collaborate page to start a conversation.",
+  },
+  {
+    question: "How does progression work?",
+    answer:
+      "Progression is evidence-driven. As builders demonstrate capability across sprints and projects, they advance to higher-responsibility challenges and industry opportunities.",
   },
 ];
 
@@ -170,159 +176,72 @@ const stakeholderCards = [
   },
 ];
 
-const innovationScaleCards = [
-  {
-    icon: Compass,
-    title: "Shared Knowledge",
-    description: "Practices, learnings, and insights move across campuses.",
-  },
-  {
-    icon: Network,
-    title: "Cross-Campus Collaboration",
-    description: "Teams from different institutions can work on shared problems.",
-  },
-  {
-    icon: FlaskConical,
-    title: "Distributed Experimentation",
-    description:
-      "Multiple teams can explore different pathways to a problem.",
-  },
-  {
-    icon: Shield,
-    title: "Common Standards",
-    description: "A shared framework helps preserve quality and consistency.",
-  },
-  {
-    icon: Sparkles,
-    title: "Convergence",
-    description:
-      "Summits, demo days, and showcases bring the network together.",
-  },
-];
 
-const howEcosystemWorksSteps = [
-  {
-    title: "Discover",
-    description:
-      "Encounter FORGE through a course, seminar, workshop, or campus chapter.",
-  },
-  {
-    title: "Learn",
-    description: "Gain foundational knowledge in a domain or problem area.",
-  },
-  {
-    title: "Practise",
-    description: "Work through tools, exercises, and guided tasks.",
-  },
-  {
-    title: "Build",
-    description: "Collaborate with peers on real projects.",
-  },
-  {
-    title: "Receive Feedback",
-    description: "Interact with mentors to improve the work.",
-  },
-  {
-    title: "Iterate",
-    description: "Use feedback and evidence to refine the output.",
-  },
-  {
-    title: "Demonstrate",
-    description: "Show progress through documented, reviewable outputs.",
-  },
-  {
-    title: "Progress",
-    description:
-      "Move toward advanced learning, internships, Citadel, or hiring opportunities.",
-  },
-];
 
 export default function EcosystemPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <main className="relative overflow-x-hidden pb-16 pt-28 md:pt-32">
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem] bg-[linear-gradient(180deg,rgba(247,251,255,1),rgba(255,255,255,0)),radial-gradient(circle_at_top_left,rgba(77,150,255,0.18),transparent_34%),radial-gradient(circle_at_top_right,rgba(120,178,255,0.14),transparent_32%)]" />
-
-        {/* Hero */}
+      <main className="relative overflow-x-clip pb-16 pt-[84px] sm:pt-[92px] md:pt-[104px]">
+        {/* The FORGE Ecosystem Hero (FIRST section at the top of the Ecosystem tab) */}
         <EcosystemHeroSection />
-
-        {/* Who We Are */}
-        <CardGrid
-          eyebrow="Who We Are"
-          heading="Winnovation FORGE: Building What Comes Next"
-          description="Winnovation FORGE is built around a simple belief: education becomes more valuable when knowledge is applied, tested, reviewed, and transformed into something real."
-          cards={whoWeAreCards}
-          columns={3}
-        />
-        <LeadershipMilestonesSection />
-
-        {/* FORGE Philosophy */}
-        <CardGrid
-          eyebrow="Our Philosophy"
-          heading="Capability Is Built, Not Declared"
-          description="We believe education should produce more than knowledge — it should develop the ability to act on knowledge."
-          cards={philosophyCards}
-          columns={3}
-        />
-        <div className="mx-auto w-full max-w-3xl px-6 pb-16 text-center md:px-12">
-          <p className="font-clash text-2xl font-semibold text-foreground md:text-3xl">
-            &ldquo;Forging Minds. Building Innovation. Creating the Future.&rdquo;
-          </p>
-        </div>
-
-        {/* The People of the Ecosystem */}
-        <CardGrid
-          eyebrow="Who Participates"
-          heading="An Ecosystem Is Built by People"
-          description="FORGE connects different groups that contribute to learning, execution, innovation, and opportunity. Each group has a different role, but the system works because the roles interact."
-          cards={stakeholderCards}
-          columns={4}
-        />
-
-        {/* How the Ecosystem Works */}
-        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
-          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-            <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              How the Ecosystem Works
-            </span>
-            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-              From Learning to Execution to Opportunity
-            </h2>
-          </div>
-          <div className="mt-14">
-            <ProcessTimeline steps={howEcosystemWorksSteps} />
-          </div>
-        </section>
 
         {/* Winnovation Backbone */}
         <EcosystemHowWorksSection />
 
+        {/* Who We Are: The Engine Behind The Ecosystem (Thread Security-style Scroll Stack) */}
+        <WhoWeAreEngineSection />
+
+        {/* Our Story / Leadership Split */}
+        <LeadershipMilestonesSection />
+
+        {/* FORGE Philosophy: Interactive Horizontal Card Rail */}
+        <PhilosophyRailSection />
+
+
+
+        {/* Who Participates: 8 Participant Cards with 3D Flip & Horizontal Row */}
+        <WhoParticipatesFlipSection />
+
+
+
         {/* Government and Public-Purpose Innovation */}
         <GovernmentInnovation />
 
-        {/* Innovation at Scale */}
-        <CardGrid
-          eyebrow="How Innovation Scales"
-          heading="Build Locally. Learn Collectively. Scale Responsibly."
-          description="The FORGE ecosystem is designed to support local execution while enabling shared learning across institutions."
-          cards={innovationScaleCards}
-          columns={3}
+        {/* How Innovation Scales (Stationary Card Stage with Continuous Scroll Interpolation) */}
+        <HowInnovationScalesSection />
+
+        {/* Frequently Asked Questions (3D Flip Cards in Single Line Row + Bottom CTA) */}
+        <FAQSection
+          id="faq-section"
+          eyebrow="COMMON QUESTIONS"
+          heading="Frequently Asked"
+          headingAccent="Questions"
+          description="Everything you need to know about the FORGE ecosystem and how to participate."
+          items={ecosystemFaqs}
+          showContactCta={true}
+          ctaText="Contact Us"
+          ctaLink="/collaborate"
+          layout="row"
         />
 
-        {/* FAQ */}
-        <section className="mx-auto w-full max-w-3xl px-6 py-16 md:px-12 md:py-24">
-          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-10">
-            <FaqAccordion items={ecosystemFaqs} />
+        {/* Bottom Editorial Bar (Matches Home Page) */}
+        <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-12 py-12">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#D9DEE7] pt-8 text-[#7A8492]">
+            <div className="flex items-center gap-2 font-jakarta text-xs font-bold uppercase tracking-[0.2em] text-[#1683E8]">
+              <span>PEOPLE</span>
+              <span>•</span>
+              <span>IDEAS</span>
+              <span>•</span>
+              <span>OPPORTUNITIES</span>
+            </div>
+            <div className="hidden sm:block h-[1px] flex-1 max-w-md bg-[#D9DEE7]" />
+            <span className="font-jakarta text-xs font-bold uppercase tracking-[0.2em] text-[#5F6672]">
+              BUILT FOR WHAT’S NEXT.
+            </span>
           </div>
-        </section>
-
-        {/* Final CTA */}
-        <FinalCta />
+        </div>
       </main>
 
       <Footer />

@@ -66,9 +66,22 @@ export default function OfferingsGrid() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 78%",
-          once: true,
+          toggleActions: "restart none none reset",
         },
         defaults: { ease: "power3.out" },
+        onComplete: () => {
+          gsap.set(
+            [
+              card1Ref.current,
+              card2Ref.current,
+              card3Ref.current,
+              card4Ref.current,
+              card5Ref.current,
+              card6Ref.current,
+            ],
+            { clearProps: "transform,opacity" }
+          );
+        },
       });
 
       // 1. Header cascade
@@ -106,6 +119,7 @@ export default function OfferingsGrid() {
           y: isMobile ? 16 : 26,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.2"
       );
@@ -119,6 +133,7 @@ export default function OfferingsGrid() {
           y: isMobile ? 16 : 0,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.5"
       );
@@ -132,6 +147,7 @@ export default function OfferingsGrid() {
           scale: 0.97,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.5"
       );
@@ -144,6 +160,7 @@ export default function OfferingsGrid() {
           y: isMobile ? 16 : 26,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.45"
       );
@@ -157,6 +174,7 @@ export default function OfferingsGrid() {
           y: isMobile ? 16 : 0,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.5"
       );
@@ -170,6 +188,7 @@ export default function OfferingsGrid() {
           scale: 0.96,
           duration: 0.65,
           ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+          clearProps: "transform,opacity",
         },
         "-=0.5"
       );
@@ -246,75 +265,6 @@ export default function OfferingsGrid() {
           },
           "-=0.35"
         );
-
-      // 5. Card Parallax / Depth Effect (Desktop only)
-      if (!isMobile) {
-        gsap.to(card1Ref.current, {
-          y: -8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-
-        gsap.to(card2Ref.current, {
-          y: 6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-
-        gsap.to(card3Ref.current, {
-          y: -5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-
-        gsap.to(card4Ref.current, {
-          y: 7,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-
-        gsap.to(card5Ref.current, {
-          y: -6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-
-        gsap.to(card6Ref.current, {
-          y: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-      }
     },
     { scope: sectionRef }
   );
@@ -353,14 +303,14 @@ export default function OfferingsGrid() {
         </div>
 
         {/* ━━━━━━━━ ASYMMETRIC EDITORIAL GRID ━━━━━━━━ */}
-        <div className="mt-14 sm:mt-16 md:mt-20 flex flex-col gap-6">
+        <div className="mt-14 sm:mt-16 md:mt-20 flex flex-col gap-7 lg:gap-8">
           {/* ROW 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.1fr_1.65fr_1.15fr] gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.1fr_1.55fr_1.15fr] gap-6 lg:gap-7 items-stretch">
             {/* ──────── CARD 01: Certification & Skill Development ──────── */}
             <Link
               ref={card1Ref}
               href="/programs"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#1683E8] hover:shadow-[0_16px_36px_rgba(16,42,67,0.06)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_22px_45px_rgba(16,42,67,0.12)] hover:border-[#1683E8] hover:z-10"
             >
               <div>
                 {/* Number */}
@@ -407,7 +357,7 @@ export default function OfferingsGrid() {
             <Link
               ref={card2Ref}
               href="/programs"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#183A5A] bg-[#102A43] p-7 sm:p-8 lg:p-9 text-white transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#1683E8] hover:shadow-[0_20px_40px_rgba(16,42,67,0.28)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#183A5A] bg-[#102A43] p-7 sm:p-8 lg:p-9 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_24px_50px_rgba(16,42,67,0.45),0_0_25px_rgba(22,131,232,0.18)] hover:border-[#1683E8] hover:z-10"
             >
               <div>
                 {/* Top Row: Eyebrow Tag + Number */}
@@ -450,7 +400,7 @@ export default function OfferingsGrid() {
             <Link
               ref={card3Ref}
               href="/community"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] md:col-span-2 lg:col-span-1 transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#1683E8] hover:shadow-[0_16px_36px_rgba(16,42,67,0.06)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] md:col-span-2 lg:col-span-1 transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_22px_45px_rgba(16,42,67,0.12)] hover:border-[#1683E8] hover:z-10"
             >
               <div>
                 {/* Top Row: User Badge + Number */}
@@ -488,12 +438,12 @@ export default function OfferingsGrid() {
           </div>
 
           {/* ROW 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.55fr_1.1fr_1.25fr] gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.55fr_1.1fr_1.25fr] gap-6 lg:gap-7 items-stretch">
             {/* ──────── CARD 04: Innovation & Entrepreneurship (With Inner Panel) ──────── */}
             <Link
               ref={card4Ref}
               href="/citadel1"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#1683E8] hover:shadow-[0_16px_36px_rgba(16,42,67,0.06)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#D9DEE7] bg-white p-7 sm:p-8 lg:p-9 text-[#111111] transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_22px_45px_rgba(16,42,67,0.12)] hover:border-[#1683E8] hover:z-10"
             >
               <div className="flex items-start justify-between gap-6">
                 <div className="flex-1">
@@ -545,7 +495,7 @@ export default function OfferingsGrid() {
             <Link
               ref={card5Ref}
               href="/ecosystem"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#1474CE] bg-[#1683E8] p-7 sm:p-8 lg:p-9 text-white transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-white/60 hover:shadow-[0_20px_40px_rgba(22,131,232,0.32)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#1474CE] bg-[#1683E8] p-7 sm:p-8 lg:p-9 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_24px_50px_rgba(22,131,232,0.45),0_0_30px_rgba(22,131,232,0.25)] hover:border-white/90 hover:z-10"
             >
               <div>
                 {/* Top Row: Number + Network Icon */}
@@ -589,7 +539,7 @@ export default function OfferingsGrid() {
             <Link
               ref={card6Ref}
               href="/citadel1"
-              className="eco-card group relative flex flex-col justify-between rounded-[24px] border border-[#183A5A] bg-[#102A43] p-7 sm:p-8 lg:p-9 text-white md:col-span-2 lg:col-span-1 transition-[transform,box-shadow,border-color] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#1683E8] hover:shadow-[0_20px_40px_rgba(16,42,67,0.3)]"
+              className="eco-card group relative flex flex-col justify-between h-full min-h-[380px] sm:min-h-[400px] rounded-[24px] border border-[#183A5A] bg-[#102A43] p-7 sm:p-8 lg:p-9 text-white md:col-span-2 lg:col-span-1 transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:scale-[1.015] hover:shadow-[0_24px_50px_rgba(16,42,67,0.45),0_0_25px_rgba(22,131,232,0.18)] hover:border-[#1683E8] hover:z-10"
             >
               <div>
                 {/* Top Row: Status Badge + Number */}

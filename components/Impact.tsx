@@ -24,7 +24,8 @@ export default function Impact() {
         scrollTrigger: {
             trigger: containerRef.current,
             start: "top bottom-=100",
-            onEnter: () => ScrollTrigger.refresh(), // Add this
+            toggleActions: "restart none none reset",
+            onEnter: () => ScrollTrigger.refresh(),
         },
         y: 100,
         opacity: 0,
