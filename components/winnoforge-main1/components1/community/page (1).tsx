@@ -27,10 +27,9 @@ import JoinButton from "@/components/modal/JoinButton";
 import PartnerButton from "@/components/modal/PartnerButton";
 import CommunityHero from "@/components/community/CommunityHero";
 import WhoMakesUpCommunity from "@/components/community/WhoMakesUpCommunity";
-import CommunityGrid from "@/components/community/CommunityGrid";
+import WhatsHappeningSection from "@/components/community/WhatsHappeningSection";
 import Lightbox from "@/components/shared/Lightbox";
 import WhatCommunityMeans from "@/components/community/WhatCommunityMeans";
-import UpcomingEvents from "@/components/community/UpcomingEvents";
 import StoriesSection from "@/components/community/StoriesSection";
 import FeaturedVoicesEditorial from "@/components/community/FeaturedVoicesEditorial";
 import ParticipationSelector from "@/components/community/ParticipationSelector";
@@ -202,8 +201,7 @@ export default function CommunityNewPage() {
         {/* <WhatCommunityMeans /> */}
 
         <WhoMakesUpCommunity />
-        <CommunityGrid />
-        <UpcomingEvents />
+        <WhatsHappeningSection />
         <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
           <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
             Community Gallery
