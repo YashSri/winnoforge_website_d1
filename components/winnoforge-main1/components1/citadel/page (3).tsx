@@ -47,6 +47,7 @@ import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import StructuralResponse from "@/components/citadel/StructuralResponse";
+import CitadelExperienceBento from "@/components/citadel/CitadelExperienceBento";
 import MentorshipInside from "@/components/citadel/MentorshipInside";
 import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
 import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
@@ -447,12 +448,7 @@ export default function CitadelPage() {
 
         <StructuralResponse />
 
-        <CardGrid
-          eyebrow="The Citadel Experience"
-          heading="A Different Way to Learn and Build"
-          cards={citadelExperienceCards}
-          columns={4}
-        />
+        <CitadelExperienceBento />
 
         <CardGrid
           eyebrow="The Principles"
