@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Cpu, RefreshCw, BarChart3, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,39 +12,59 @@ if (typeof window !== "undefined") {
 
 interface StructuralCard {
   number: string;
+  eyebrow: string;
   title: string;
+  subtitle: string;
   body: string;
   tag: string;
-  icon: typeof Cpu;
+  accentColor: string;
+  bgGradient: string;
+  badgeBg: string;
+  badgeText: string;
 }
 
 const cardsData: StructuralCard[] = [
   {
     number: "01",
+    eyebrow: "PEOPLE LAYER",
     title: "AI-native engineers",
+    subtitle: "People",
     body: "Built for a world where AI is standard, not supplemental.",
-    tag: "PEOPLE",
-    icon: Cpu,
+    tag: "FORGE / 01",
+    accentColor: "#1683E8",
+    bgGradient: "from-blue-50/90 via-white to-white",
+    badgeBg: "bg-blue-50/90 border-blue-200/80",
+    badgeText: "text-[#1683E8]",
   },
   {
     number: "02",
+    eyebrow: "PRACTICE LAYER",
     title: "Continuous innovation",
+    subtitle: "Practice",
     body: "Sprint cycles that keep momentum and sharpen execution.",
-    tag: "PRACTICE",
-    icon: RefreshCw,
+    tag: "FORGE / 02",
+    accentColor: "#0284C7",
+    bgGradient: "from-sky-50/80 via-white to-white",
+    badgeBg: "bg-sky-50/90 border-sky-200/80",
+    badgeText: "text-[#0284C7]",
   },
   {
     number: "03",
+    eyebrow: "IMPACT LAYER",
     title: "Measurable execution",
+    subtitle: "Impact",
     body: "Progress tracked against real outputs — not effort or attendance.",
-    tag: "IMPACT",
-    icon: BarChart3,
+    tag: "FORGE / 03",
+    accentColor: "#1D4ED8",
+    bgGradient: "from-indigo-50/70 via-white to-white",
+    badgeBg: "bg-indigo-50/90 border-indigo-200/80",
+    badgeText: "text-[#1D4ED8]",
   },
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * A STRUCTURAL RESPONSE — NOT A COSMETIC UPGRADE
- * Scroll-driven pinned card stack modeled on Philosophy.tsx
+ * Square layered card stack matching home page Philosophy.tsx
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function StructuralResponse() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,7 +104,7 @@ export default function StructuralResponse() {
   }, []);
 
   /**
-   * Continuous card transform with physical depth & soft shadow
+   * Ultra-smooth continuous card transform matching Philosophy.tsx
    * Active: distance = 0
    * Next: distance = +1
    * Previous: distance = -1
@@ -94,18 +114,18 @@ export default function StructuralResponse() {
     distance: number,
     isMobile: boolean
   ) => {
-    const yUnit = isMobile ? 30 : 44;
-    const rotUnit = isMobile ? 0.4 : 0.8;
+    const yUnit = isMobile ? 28 : 42;
+    const rotUnit = isMobile ? 0.3 : 0.8;
 
-    // Vertical offset
-    const translateY = Math.max(-88, Math.min(88, distance * yUnit));
+    // Vertical offset: clamped cleanly
+    const translateY = Math.max(-84, Math.min(84, distance * yUnit));
 
     // Smooth physical scale curve
     const absDist = Math.abs(distance);
-    const scale = Math.max(0.89, 1 - Math.min(absDist, 1.5) * 0.045);
+    const scale = Math.max(0.9, 1 - Math.min(absDist, 1.5) * 0.045);
 
     // Subtle natural tilt
-    const rotation = Math.max(-1.8, Math.min(1.8, distance * rotUnit));
+    const rotation = Math.max(-2.0, Math.min(2.0, distance * -rotUnit));
 
     // Opacity interpolation
     let opacity = 0;
@@ -113,26 +133,30 @@ export default function StructuralResponse() {
       opacity = 1;
     } else if (distance > 0) {
       if (distance <= 1) {
-        opacity = 1 - distance * 0.35; // 1 -> 0.65
+        opacity = 1 - distance * 0.15; // 1 -> 0.85
       } else if (distance <= 1.5) {
-        opacity = 0.65 - ((distance - 1) / 0.5) * 0.35;
+        opacity = 0.85 - ((distance - 1) / 0.5) * 0.45; // 0.85 -> 0.40
+      } else if (distance <= 2.0) {
+        opacity = Math.max(0, 0.4 - ((distance - 1.5) / 0.5) * 0.4); // 0.40 -> 0
       } else {
-        opacity = Math.max(0, 0.3 - ((distance - 1.5) / 0.5) * 0.3);
+        opacity = 0;
       }
     } else {
       if (absDist <= 1) {
-        opacity = 1 - absDist * 0.35; // 1 -> 0.65
+        opacity = 1 - absDist * 0.2; // 1 -> 0.80
       } else if (absDist <= 1.5) {
-        opacity = 0.65 - ((absDist - 1) / 0.5) * 0.35;
+        opacity = 0.8 - ((absDist - 1) / 0.5) * 0.45; // 0.80 -> 0.35
+      } else if (absDist <= 2.0) {
+        opacity = Math.max(0, 0.35 - ((absDist - 1.5) / 0.5) * 0.35); // 0.35 -> 0
       } else {
-        opacity = Math.max(0, 0.3 - ((absDist - 1.5) / 0.5) * 0.3);
+        opacity = 0;
       }
     }
 
-    // Dynamic depth shadow
+    // Dynamic depth shadow: deeper when active, lighter when layered
     const shadowAlpha = Math.max(0.04, 0.12 - absDist * 0.04);
     const shadowOffsetY = Math.max(8, Math.round(26 - absDist * 8));
-    const shadowBlur = Math.max(20, Math.round(55 - absDist * 16));
+    const shadowBlur = Math.max(20, Math.round(60 - absDist * 16));
 
     // Z-Index: Active card has highest layer
     const zIndex = Math.max(1, 100 - Math.round(absDist * 15));
@@ -142,7 +166,7 @@ export default function StructuralResponse() {
     el.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
     el.style.boxShadow = `0 ${shadowOffsetY}px ${shadowBlur}px rgba(16, 42, 67, ${shadowAlpha.toFixed(3)}), 0 4px 12px rgba(16, 42, 67, 0.03)`;
     el.style.zIndex = String(zIndex);
-    el.style.pointerEvents = absDist < 0.35 ? "auto" : "none";
+    el.style.pointerEvents = absDist < 0.3 ? "auto" : "none";
   };
 
   useGSAP(
@@ -161,14 +185,17 @@ export default function StructuralResponse() {
         const st = ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", // Fast, responsive scroll distance
+          end: "+=150%", // Snappy, responsive scroll distance
           pin: true,
-          scrub: 0.35,
+          scrub: 0.35, // Fast, silky-smooth response without lag
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
+
+            // Direct, continuous 1:1 card progress from 0 to 2 without dead zones
             const cardProgress = Math.max(0, Math.min(2, p * 2));
 
+            // Synchronized active index for counter and vertical indicator
             const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
             if (nextIdx !== activeIndexRef.current) {
               activeIndexRef.current = nextIdx;
@@ -241,168 +268,87 @@ export default function StructuralResponse() {
       aria-label="A Structural Response - Not a Cosmetic Upgrade"
       className="relative w-full bg-[#F7F8FC] text-[#111111] overflow-hidden select-none border-t border-[#D9DEE7]/70"
     >
-      <style>{`
-        @keyframes borderTravel {
-          from { stroke-dashoffset: 0; }
-          to { stroke-dashoffset: -100; }
-        }
-      `}</style>
-
       {/* Reduced motion static layout fallback */}
       {isReducedMotion ? (
         <div className="w-full max-w-[1360px] mx-auto px-6 py-20 flex flex-col gap-12">
           <div className="max-w-xl">
-            <span className="font-jakarta text-xs font-bold tracking-[0.22em] text-[#1683E8] uppercase">
-              ──── A CLOSER LOOK ────
+            <span className="font-jakarta text-xs font-bold tracking-[0.25em] text-[#1683E8] uppercase">
+              — A CLOSER LOOK —
             </span>
-            <h2 className="mt-4 font-clash text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] leading-tight">
+            <h2 className="mt-3 font-clash font-bold text-4xl sm:text-5xl md:text-6xl text-[#111111] leading-tight tracking-tight">
               A Structural Response –{" "}
               <span className="text-[#1683E8]">Not a Cosmetic Upgrade.</span>
             </h2>
-            <p className="mt-4 font-jakarta text-base text-[#64748B] leading-relaxed">
-              Purpose-built for a world that moves faster. Designed to create real capability, not just better optics.
+            <p className="mt-4 font-sans text-base text-[#5F6672] leading-relaxed">
+              Purpose-built for a world that moves faster. Designed to create real
+              capability, not just better optics.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {cardsData.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={card.number}
-                  className="rounded-[28px] border border-slate-200/90 bg-white p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)]"
-                >
-                  <div>
-                    <div className="flex justify-between items-center pb-4 border-b border-slate-200/80">
-                      <span className="font-mono text-sm font-bold text-[#111111]">
-                        {card.number}
-                      </span>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8]">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <h3 className="mt-6 font-jakarta text-2xl font-bold text-[#111111]">
-                      {card.title}
-                    </h3>
-                    <p className="mt-3 font-jakarta text-sm text-[#64748B] leading-relaxed">
-                      {card.body}
-                    </p>
-                  </div>
-                  <div className="pt-5 border-t border-slate-200/80 flex items-center justify-between mt-8">
-                    <span className="font-jakarta text-xs font-bold tracking-wider text-[#1683E8]">
-                      — {card.tag}
+            {cardsData.map((card) => (
+              <article
+                key={card.number}
+                className="aspect-square rounded-[28px] sm:rounded-[32px] border border-slate-200/90 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)]"
+              >
+                <div>
+                  <div className="flex justify-between items-start pb-4 border-b border-slate-200/80">
+                    <span className="font-poppins text-sm font-bold text-[#111111]">
+                      {card.number}
                     </span>
-                    <ArrowRight className="w-4 h-4 text-[#1683E8]" />
+                    <span className="font-poppins text-xs font-bold tracking-[0.2em] text-[#5F6672] uppercase">
+                      {card.eyebrow}
+                    </span>
+                  </div>
+                  <h3 className="mt-7 font-poppins font-bold text-3xl sm:text-4xl text-[#111111] tracking-tight">
+                    {card.title}
+                    <span className="text-[#1683E8]">.</span>
+                  </h3>
+                  <p className="mt-4 font-sans text-sm text-[#5F6672] leading-relaxed">
+                    {card.body}
+                  </p>
+                </div>
+                <div className="pt-5 border-t border-slate-200/80 flex items-center justify-between mt-8">
+                  <span className="font-mono text-xs font-bold tracking-wider text-[#111111]">
+                    {card.tag}
+                  </span>
+                  <div className="inline-flex items-center gap-1 text-xs font-semibold text-[#1683E8]">
+                    <span>Explore</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
-              );
-            })}
+              </article>
+            ))}
           </div>
         </div>
       ) : (
-        /* Pinned 100vh Viewport Stage (Controlled by GSAP ScrollTrigger.pin) */
+        /* Pinned 100vh Viewport Stage matching Philosophy.tsx */
         <div className="relative w-full h-screen min-h-screen flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 max-w-[1440px] mx-auto">
-          {/* ── Subtle Background Architectural Graphics ── */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none"
-          >
-            {/* Subtle sweeping circular arc on left */}
-            <svg
-              className="absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 h-[680px] w-[680px] opacity-25"
-              viewBox="0 0 700 700"
-              fill="none"
-            >
-              <circle
-                cx="350"
-                cy="350"
-                r="330"
-                stroke="#93C5FD"
-                strokeWidth="1.2"
-                strokeDasharray="4 6"
+          {/* Mobile Top Header */}
+          <div className="md:hidden flex items-center justify-between w-full pt-6 pb-2 z-10">
+            <h2 className="font-clash font-bold text-2xl text-[#111111]">
+              A Structural <span className="text-[#1683E8]">Response.</span>
+            </h2>
+            <div className="font-mono text-xs font-bold text-[#1683E8]">
+              0{activeCardIndex + 1} / 03
+            </div>
+          </div>
+
+          {/* Desktop Left Column: Fixed / Pinned Heading */}
+          <div className="hidden md:flex w-full md:w-5/12 lg:w-5/12 xl:w-5/12 z-10 flex-col justify-center text-left pr-6">
+            {/* Top Tag */}
+            <div className="flex items-center gap-2.5 mb-5">
+              <span
+                aria-hidden="true"
+                className="w-2 h-2 rounded-full bg-[#1683E8] animate-pulse"
               />
-            </svg>
-
-            {/* Tiny blue dots */}
-            <div className="absolute right-[18%] bottom-[22%] h-2 w-2 rounded-full bg-[#1683E8] opacity-30 hidden lg:block" />
-            <div className="absolute left-[22%] top-[25%] h-1.5 w-1.5 rounded-full bg-[#1683E8] opacity-25 hidden lg:block" />
-
-            {/* Ambient soft blue blur blobs */}
-            <div className="absolute left-[8%] top-1/3 h-72 w-72 rounded-full bg-[#EAF2FF]/60 blur-3xl" />
-            <div className="absolute right-[10%] bottom-1/4 h-80 w-80 rounded-full bg-[#EBF4FF]/50 blur-3xl" />
-          </div>
-
-          {/* ── Edge Microcopy (Desktop) ── */}
-          {/* Top-Left */}
-          <div
-            className="pointer-events-none absolute left-6 top-6 hidden xl:flex flex-col gap-2 z-10"
-            aria-hidden="true"
-          >
-            <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
-            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
-              LEARN.
-              <br />
-              BUILD.
-              <br />
-              EXECUTE.
-              <br />
-              GROW.
-            </span>
-          </div>
-
-          {/* Top-Right */}
-          <div
-            className="pointer-events-none absolute right-8 top-8 hidden xl:block font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed text-right z-10"
-            aria-hidden="true"
-          >
-            PEOPLE.
-            <br />
-            PARTNERSHIPS.
-            <br />
-            A BRIGHTER
-            <br />
-            TOMORROW.
-          </div>
-
-          {/* Bottom-Left */}
-          <div
-            className="pointer-events-none absolute left-6 bottom-8 hidden xl:flex flex-col gap-2 z-10"
-            aria-hidden="true"
-          >
-            <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
-            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
-              STUDENTS.
-              <br />
-              IDEAS.
-              <br />
-              REAL IMPACT.
-            </span>
-          </div>
-
-          {/* Bottom-Right */}
-          <div
-            className="pointer-events-none absolute right-8 bottom-8 hidden xl:flex items-center gap-3 z-10"
-            aria-hidden="true"
-          >
-            <span className="h-[1px] w-9 bg-[#CBD5E1]" />
-            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.22em] text-[#8C9BB4]">
-              THE CITADEL
-            </span>
-          </div>
-
-          {/* ── Left Column: Editorial Heading & Context ── */}
-          <div className="w-full md:w-5/12 lg:w-5/12 xl:w-5/12 z-10 flex flex-col justify-center text-left pr-4 lg:pr-8 py-6">
-            {/* Eyebrow: ──── A CLOSER LOOK ──── */}
-            <div className="flex items-center gap-3.5 mb-5">
-              <span className="h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-left" />
-              <span className="font-jakarta text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[#1683E8]">
-                A Closer Look
+              <span className="font-jakarta text-xs font-bold tracking-[0.22em] text-[#1683E8] uppercase">
+                A CLOSER LOOK
               </span>
-              <span className="h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-right" />
             </div>
 
             {/* Main Editorial Headline */}
-            <h2 className="font-clash text-[38px] sm:text-[48px] md:text-[54px] lg:text-[62px] xl:text-[68px] font-bold tracking-tight leading-[0.98] text-[#111111]">
+            <h2 className="font-clash font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.96] tracking-tight text-[#111111]">
               A Structural
               <br />
               Response –
@@ -412,113 +358,109 @@ export default function StructuralResponse() {
               <span className="text-[#1683E8]">Upgrade.</span>
             </h2>
 
-            {/* Supporting Copy */}
-            <p className="mt-6 font-jakarta text-[15px] sm:text-[17px] text-[#5F6672] max-w-md leading-relaxed border-l-2 border-[#1683E8] pl-5 font-normal">
-              Purpose-built for a world that moves faster. Designed to create real capability, not just better optics.
+            {/* Manifesto Statement */}
+            <p className="mt-6 font-sans text-base sm:text-lg text-[#5F6672] max-w-md leading-relaxed border-l-2 border-[#1683E8] pl-5 font-normal">
+              Purpose-built for a world that moves faster. Designed to create real
+              capability, not just better optics.
             </p>
 
-            {/* Editorial Layer Indicator */}
+            {/* Editorial Layer Counter */}
             <div className="mt-8 flex items-center gap-3 text-xs font-jakarta text-[#5F6672]">
               <span className="text-[#1683E8] font-bold font-mono">
                 0{activeCardIndex + 1} / 03
               </span>
               <span aria-hidden="true" className="w-8 h-[1px] bg-[#CBD5E1]" />
               <span className="uppercase tracking-wider font-semibold text-[#111111]">
-                {cardsData[activeCardIndex].tag}
+                {cardsData[activeCardIndex].eyebrow}
               </span>
             </div>
           </div>
 
-          {/* ── Right Column: Stacked Card Stage ── */}
-          <div className="w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex items-center justify-center md:justify-end xl:justify-center relative my-auto py-4">
-            {/* Visual Stage */}
+          {/* Right Column: Square Card Stage (Exact look from Philosophy.tsx) */}
+          <div className="w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex items-center justify-center md:justify-end xl:justify-center relative my-auto">
+            {/* Exact Square Visual Stage */}
             <div
               ref={cardsStageRef}
-              className="relative w-full max-w-[500px] sm:max-w-[540px] xl:max-w-[580px] h-[340px] sm:h-[370px] mx-auto"
+              className="relative aspect-square w-[88vw] max-w-[420px] sm:max-w-[480px] md:w-[min(560px,46vw)] md:h-[min(560px,46vw)] md:max-w-[560px] md:max-h-[560px] mx-auto"
             >
-              {cardsData.map((card, idx) => {
-                const Icon = card.icon;
-                const isCurrentActive = activeCardIndex === idx;
+              {cardsData.map((card, idx) => (
+                <article
+                  key={card.number}
+                  ref={(el) => {
+                    cardRefs.current[idx] = el;
+                  }}
+                  className={`absolute inset-0 aspect-square w-full h-full rounded-[28px] sm:rounded-[32px] border border-slate-200/90 bg-gradient-to-br ${card.bgGradient} p-6 sm:p-9 lg:p-10 flex flex-col justify-between backdrop-blur-2xl will-change-transform select-none overflow-hidden`}
+                  style={{
+                    transformOrigin: "center center",
+                  }}
+                >
+                  {/* Subtle Background Accent Aura matching home page */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-[60px] opacity-40 pointer-events-none"
+                    style={{ backgroundColor: card.accentColor }}
+                  />
 
-                return (
-                  <article
-                    key={card.number}
-                    ref={(el) => {
-                      cardRefs.current[idx] = el;
-                    }}
-                    className={`group/card absolute inset-0 w-full h-full rounded-[26px] sm:rounded-[30px] border border-slate-200/90 bg-white p-7 sm:p-9 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)] backdrop-blur-xl will-change-transform select-none overflow-hidden transition-shadow duration-300 ${
-                      isCurrentActive ? "hover:shadow-[0_26px_65px_rgba(16,42,67,0.14)]" : ""
-                    }`}
-                    style={{
-                      transformOrigin: "center center",
-                    }}
-                  >
-                    {/* Subtle traveling border */}
-                    <svg
-                      className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
-                      aria-hidden="true"
-                    >
-                      <rect
-                        x="1"
-                        y="1"
-                        width="calc(100% - 2px)"
-                        height="calc(100% - 2px)"
-                        rx="25"
-                        ry="25"
-                        fill="none"
-                        stroke="#1683E8"
-                        strokeWidth="1.5"
-                        pathLength="100"
-                        strokeDasharray="10 90"
-                        strokeDashoffset="0"
-                        style={{
-                          opacity: isCurrentActive ? 0.75 : 0.2,
-                          animation: "borderTravel 18s linear infinite",
-                        }}
-                      />
-                    </svg>
-
-                    {/* Top Row: Icon Container + Number */}
-                    <div className="flex items-center justify-between relative z-10">
-                      <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-[16px] bg-[#EDF4FF] text-[#1683E8] shadow-[0_4px_12px_rgba(22,131,232,0.12)] transition-transform duration-300 group-hover/card:-translate-y-0.5">
-                        <Icon className="h-5 w-5 stroke-[2]" />
-                      </div>
-
-                      <span className="font-mono text-sm sm:text-base font-bold text-[#94A3B8]">
-                        {card.number}
-                      </span>
-                    </div>
-
-                    {/* Middle: Title + Body */}
-                    <div className="my-auto py-2 sm:py-3 relative z-10">
-                      <h3 className="font-jakarta text-[22px] sm:text-[26px] xl:text-[28px] font-bold text-[#111111] tracking-tight leading-tight">
-                        {card.title}
-                      </h3>
-                      <p className="mt-3 font-jakarta text-[14px] sm:text-[16px] text-[#5F6672] leading-relaxed max-w-[440px]">
-                        {card.body}
-                      </p>
-                    </div>
-
-                    {/* Bottom Row: Category Tag + Arrow Indicator */}
-                    <div className="pt-4 border-t border-[#F1F5F9] flex items-center justify-between relative z-10">
-                      <div className="flex items-center gap-2.5">
-                        <span className="h-[2px] w-5 rounded-full bg-[#1683E8]" />
-                        <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#64748B]">
-                          {card.tag}
+                  {/* Card Header: 01 and Eyebrow with rounded pill badge */}
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-center pb-4 sm:pb-5 border-b border-slate-200/80">
+                      <div className="flex items-center gap-3">
+                        <span className="font-poppins text-sm sm:text-base font-bold text-[#111111]">
+                          {card.number}
+                        </span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                        <span className="font-poppins text-xs sm:text-[13px] font-semibold tracking-[0.18em] text-[#5F6672] uppercase">
+                          {card.eyebrow}
                         </span>
                       </div>
 
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] bg-white transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/card:translate-x-0.5" />
-                      </div>
+                      {/* Creative Layer Pill Badge */}
+                      <span
+                        className={`font-poppins text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full border ${card.badgeBg} ${card.badgeText} tracking-wide`}
+                      >
+                        {card.subtitle}
+                      </span>
                     </div>
-                  </article>
-                );
-              })}
+                  </div>
+
+                  {/* Card Title & Description in Lower-Middle */}
+                  <div className="my-auto py-2 sm:py-4 relative z-10">
+                    <h3 className="font-poppins font-bold text-[clamp(32px,3.8vw,56px)] leading-[0.94] tracking-[-0.04em] text-[#111111]">
+                      {card.title}
+                      <span style={{ color: card.accentColor }}>.</span>
+                    </h3>
+
+                    <p className="mt-4 sm:mt-5 font-sans text-xs sm:text-sm md:text-base text-[#5F6672] leading-relaxed max-w-[430px] font-normal">
+                      {card.body}
+                    </p>
+                  </div>
+
+                  {/* Card Footer: FORGE / 01 ───── Explore Layer → */}
+                  <div className="pt-4 sm:pt-5 border-t border-slate-200/80 flex items-center justify-between gap-4 relative z-10">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-xs sm:text-[13px] font-bold tracking-wider text-[#111111]">
+                        {card.tag}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="hidden sm:inline-block w-8 h-[1px] bg-slate-300"
+                      />
+                    </div>
+
+                    <div className="group/link inline-flex items-center gap-1.5 font-poppins text-xs sm:text-sm font-semibold text-[#111111] hover:text-[#1683E8] transition-colors cursor-pointer">
+                      <span>Explore Layer</span>
+                      <ArrowUpRight
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1683E8] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
 
-          {/* ── Minimal Vertical Progress Indicator (Desktop & Tablet) ── */}
+          {/* Minimal Vertical Progress Indicator matching Philosophy.tsx */}
           <div
             className="hidden md:flex absolute right-4 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 py-4 px-2.5 rounded-full bg-white/90 border border-slate-200/80 shadow-[0_4px_20px_rgba(16,42,67,0.06)] backdrop-blur-md select-none"
             aria-label="Layer progress indicator"
@@ -535,7 +477,7 @@ export default function StructuralResponse() {
                   aria-label={`Jump to card ${card.number}: ${card.title}`}
                 >
                   <span
-                    className={`font-mono text-xs font-bold transition-colors duration-300 ${
+                    className={`font-poppins text-xs font-bold transition-colors duration-300 ${
                       isActive
                         ? "text-[#1683E8]"
                         : "text-[#5F6672] group-hover:text-[#111111]"
@@ -546,7 +488,7 @@ export default function StructuralResponse() {
                   <span
                     className={`rounded-full transition-all duration-300 ${
                       isActive
-                        ? "w-2.5 h-2.5 bg-[#1683E8] ring-2 ring-[#1683E8]/30 scale-110 shadow-[0_0_8px_rgba(22,131,232,0.5)]"
+                        ? "w-2 h-2 bg-[#1683E8] ring-2 ring-[#1683E8]/30 scale-125"
                         : "w-1.5 h-1.5 bg-slate-300 group-hover:bg-slate-500"
                     }`}
                   />
