@@ -1,18 +1,25 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Cpu, RefreshCw, BarChart3, ArrowRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const cardsData = [
+interface StructuralCard {
+  number: string;
+  title: string;
+  body: string;
+  tag: string;
+  icon: typeof Cpu;
+}
+
+const cardsData: StructuralCard[] = [
   {
-    id: "01",
     number: "01",
     title: "AI-native engineers",
     body: "Built for a world where AI is standard, not supplemental.",
@@ -20,7 +27,6 @@ const cardsData = [
     icon: Cpu,
   },
   {
-    id: "02",
     number: "02",
     title: "Continuous innovation",
     body: "Sprint cycles that keep momentum and sharpen execution.",
@@ -28,7 +34,6 @@ const cardsData = [
     icon: RefreshCw,
   },
   {
-    id: "03",
     number: "03",
     title: "Measurable execution",
     body: "Progress tracked against real outputs — not effort or attendance.",
@@ -39,213 +44,202 @@ const cardsData = [
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * A STRUCTURAL RESPONSE — NOT A COSMETIC UPGRADE
- * Scroll-driven layered card stack with sticky stage
+ * Scroll-driven pinned card stack modeled on Philosophy.tsx
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function StructuralResponse() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardsStageRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
-  // Smooth scroll to a specific card on indicator click
-  const handleIndicatorClick = (idx: number) => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const sectionTop = scrollTop + rect.top;
-    const scrollDistance = rect.height - window.innerHeight;
-    const targetY = sectionTop + (idx / 2) * scrollDistance;
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const activeIndexRef = useRef(0);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+  // Check user prefers-reduced-motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  // Ensure ScrollTrigger accurately calculates layout once window and assets load
+  useEffect(() => {
+    const handleRefresh = () => {
+      ScrollTrigger.refresh();
+    };
+
+    if (document.readyState === "complete") {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", handleRefresh);
+      return () => window.removeEventListener("load", handleRefresh);
+    }
+  }, []);
+
+  /**
+   * Continuous card transform with physical depth & soft shadow
+   * Active: distance = 0
+   * Next: distance = +1
+   * Previous: distance = -1
+   */
+  const applyCardState = (
+    el: HTMLElement,
+    distance: number,
+    isMobile: boolean
+  ) => {
+    const yUnit = isMobile ? 30 : 44;
+    const rotUnit = isMobile ? 0.4 : 0.8;
+
+    // Vertical offset
+    const translateY = Math.max(-88, Math.min(88, distance * yUnit));
+
+    // Smooth physical scale curve
+    const absDist = Math.abs(distance);
+    const scale = Math.max(0.89, 1 - Math.min(absDist, 1.5) * 0.045);
+
+    // Subtle natural tilt
+    const rotation = Math.max(-1.8, Math.min(1.8, distance * rotUnit));
+
+    // Opacity interpolation
+    let opacity = 0;
+    if (absDist === 0) {
+      opacity = 1;
+    } else if (distance > 0) {
+      if (distance <= 1) {
+        opacity = 1 - distance * 0.35; // 1 -> 0.65
+      } else if (distance <= 1.5) {
+        opacity = 0.65 - ((distance - 1) / 0.5) * 0.35;
+      } else {
+        opacity = Math.max(0, 0.3 - ((distance - 1.5) / 0.5) * 0.3);
+      }
+    } else {
+      if (absDist <= 1) {
+        opacity = 1 - absDist * 0.35; // 1 -> 0.65
+      } else if (absDist <= 1.5) {
+        opacity = 0.65 - ((absDist - 1) / 0.5) * 0.35;
+      } else {
+        opacity = Math.max(0, 0.3 - ((absDist - 1.5) / 0.5) * 0.3);
+      }
+    }
+
+    // Dynamic depth shadow
+    const shadowAlpha = Math.max(0.04, 0.12 - absDist * 0.04);
+    const shadowOffsetY = Math.max(8, Math.round(26 - absDist * 8));
+    const shadowBlur = Math.max(20, Math.round(55 - absDist * 16));
+
+    // Z-Index: Active card has highest layer
+    const zIndex = Math.max(1, 100 - Math.round(absDist * 15));
+
+    // Apply continuous GPU-accelerated transform
+    el.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotate(${rotation.toFixed(2)}deg)`;
+    el.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
+    el.style.boxShadow = `0 ${shadowOffsetY}px ${shadowBlur}px rgba(16, 42, 67, ${shadowAlpha.toFixed(3)}), 0 4px 12px rgba(16, 42, 67, 0.03)`;
+    el.style.zIndex = String(zIndex);
+    el.style.pointerEvents = absDist < 0.35 ? "auto" : "none";
   };
 
   useGSAP(
     () => {
-      if (!sectionRef.current || !stageRef.current) return;
+      if (isReducedMotion) return;
 
-      const isReduced =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const mm = gsap.matchMedia();
 
-      if (isReduced) {
-        gsap.set(
-          [
-            ".sr-eyebrow",
-            ".sr-eyebrow-line",
-            ".sr-heading-line",
-            ".sr-desc",
-            ".sr-corner",
-            ".sr-indicator",
-            ".sr-deco-circle",
-            ".sr-deco-dot",
-          ],
-          { opacity: 1, y: 0, x: 0, scale: 1, clearProps: "all" }
-        );
-        cardRefs.current.forEach((card, i) => {
-          if (card) {
-            gsap.set(card, {
-              y: i === 0 ? 0 : i * 20,
-              scale: 1,
-              opacity: i === 0 ? 1 : 0.6,
-              rotate: 0,
-              filter: "none",
-            });
-          }
+      // Desktop & Tablet (>= 768px)
+      mm.add("(min-width: 768px)", () => {
+        cardRefs.current.forEach((cardEl, idx) => {
+          if (!cardEl) return;
+          applyCardState(cardEl, idx, false);
         });
-        return;
-      }
 
-      // ── STEP 1: Entrance Reveal Timeline ──
-      const entranceTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
-        },
+        const st = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=150%", // Fast, responsive scroll distance
+          pin: true,
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
+
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
+            if (nextIdx !== activeIndexRef.current) {
+              activeIndexRef.current = nextIdx;
+              setActiveCardIndex(nextIdx);
+            }
+
+            cardRefs.current.forEach((cardEl, idx) => {
+              if (!cardEl) return;
+              const distance = idx - cardProgress;
+              applyCardState(cardEl, distance, false);
+            });
+          },
+        });
+
+        scrollTriggerRef.current = st;
       });
 
-      // Eyebrow
-      entranceTl.fromTo(
-        ".sr-eyebrow",
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-        0
-      );
-      entranceTl.fromTo(
-        ".sr-eyebrow-line",
-        { scaleX: 0 },
-        { scaleX: 1, duration: 0.5, ease: "power3.out" },
-        0
-      );
+      // Mobile (< 768px)
+      mm.add("(max-width: 767px)", () => {
+        cardRefs.current.forEach((cardEl, idx) => {
+          if (!cardEl) return;
+          applyCardState(cardEl, idx, true);
+        });
 
-      // Heading lines masked reveal
-      entranceTl.fromTo(
-        ".sr-heading-line-1",
-        { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
-        0.08
-      );
-      entranceTl.fromTo(
-        ".sr-heading-line-2",
-        { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
-        0.16
-      );
-      entranceTl.fromTo(
-        ".sr-heading-line-3",
-        { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
-        0.24
-      );
-      entranceTl.fromTo(
-        ".sr-heading-line-4",
-        { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
-        0.32
-      );
+        const st = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=130%",
+          pin: true,
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
 
-      // Description
-      entranceTl.fromTo(
-        ".sr-desc",
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
-        0.38
-      );
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
+            if (nextIdx !== activeIndexRef.current) {
+              activeIndexRef.current = nextIdx;
+              setActiveCardIndex(nextIdx);
+            }
 
-      // Initial active card entrance
-      entranceTl.fromTo(
-        cardRefs.current[0],
-        { opacity: 0, y: 30, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" },
-        0.45
-      );
+            cardRefs.current.forEach((cardEl, idx) => {
+              if (!cardEl) return;
+              const distance = idx - cardProgress;
+              applyCardState(cardEl, distance, true);
+            });
+          },
+        });
 
-      // Inactive background cards settle in
-      entranceTl.fromTo(
-        [cardRefs.current[1], cardRefs.current[2]],
-        { opacity: 0, scale: 0.92 },
-        { opacity: 0.6, scale: 0.955, duration: 0.7, ease: "power3.out", stagger: 0.08 },
-        0.55
-      );
-
-      // Progress indicator & corner labels
-      entranceTl.fromTo(
-        [".sr-indicator", ".sr-corner"],
-        { opacity: 0 },
-        { opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.05 },
-        0.6
-      );
-
-      // ── STEP 2: Scroll-Driven Stack Interaction ──
-      const scrollTrigger = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.4,
-        onUpdate: (self) => {
-          const progress = self.progress; // 0 to 1
-          const p = progress * 2; // 0 to 2 for 3 cards
-
-          // Update active card index for indicator
-          const currentIdx = Math.min(2, Math.max(0, Math.round(p)));
-          setActiveCardIndex(currentIdx);
-
-          // Interpolate each card
-          cardRefs.current.forEach((card, i) => {
-            if (!card) return;
-            const diff = i - p;
-
-            // Target calculations matching prompt specifications:
-            // Active (diff=0): translateY 0, scale 1, opacity 1, rotate 0deg, blur 0
-            // Next (diff=1): translateY +44px, scale 0.955, opacity 0.6, rotate +1deg
-            // Prev (diff=-1): translateY -44px, scale 0.955, opacity 0.6, rotate -1deg
-            const y = diff * 44;
-            const absDiff = Math.abs(diff);
-            const scale = Math.max(0.88, 1 - Math.min(absDiff, 1.8) * 0.045);
-            const opacity = Math.max(0.18, 1 - Math.min(absDiff, 1.8) * 0.4);
-            const rot = Math.max(-1.5, Math.min(1.5, diff * 1));
-            const blur = Math.min(absDiff * 1.5, 2);
-            const zIndex = Math.round(30 - absDiff * 10);
-            const pointerEvents = absDiff < 0.4 ? "auto" : "none";
-
-            card.style.transform = `translate3d(0, ${y}px, 0) scale(${scale}) rotate(${rot}deg)`;
-            card.style.opacity = `${opacity}`;
-            card.style.zIndex = `${zIndex}`;
-            card.style.filter = `blur(${blur}px)`;
-            card.style.pointerEvents = pointerEvents;
-          });
-        },
+        scrollTriggerRef.current = st;
       });
-
-      // ── Ambient background decorative motion (subtle, 12-16s) ──
-      gsap.to(".sr-deco-circle", {
-        y: -6,
-        x: 4,
-        duration: 14,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      gsap.to(".sr-deco-dot", {
-        y: -5,
-        duration: 9,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      return () => {
-        scrollTrigger.kill();
-      };
     },
-    { scope: sectionRef }
+    { scope: containerRef, dependencies: [isReducedMotion] }
   );
+
+  // Smooth scroll to card when clicking progress indicator
+  const handleJumpToCard = (targetIndex: number) => {
+    if (!scrollTriggerRef.current) return;
+    const st = scrollTriggerRef.current;
+    const progressMap = [0.02, 0.5, 0.98];
+    const targetProgress = progressMap[targetIndex] ?? 0;
+    const targetScroll = st.start + (st.end - st.start) * targetProgress;
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  };
 
   return (
     <section
-      ref={sectionRef}
+      ref={containerRef}
       id="structural-response"
-      className="relative w-full h-[270vh] sm:h-[280vh]"
+      aria-label="A Structural Response - Not a Cosmetic Upgrade"
+      className="relative w-full bg-[#F7F8FC] text-[#111111] overflow-hidden select-none border-t border-[#D9DEE7]/70"
     >
       <style>{`
         @keyframes borderTravel {
@@ -254,182 +248,212 @@ export default function StructuralResponse() {
         }
       `}</style>
 
-      {/* ── STICKY VIEWPORT STAGE ── */}
-      <div
-        ref={stageRef}
-        className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-12"
-      >
-        {/* ── Background Architectural Graphics ── */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none"
-        >
-          {/* Subtle sweeping circular arc */}
-          <svg
-            className="sr-deco-circle absolute left-1/3 top-1/2 -translate-y-1/2 -translate-x-1/2 h-[680px] w-[680px] opacity-25"
-            viewBox="0 0 700 700"
-            fill="none"
-          >
-            <circle
-              cx="350"
-              cy="350"
-              r="330"
-              stroke="#93C5FD"
-              strokeWidth="1.2"
-              strokeDasharray="4 6"
-            />
-          </svg>
-
-          {/* Tiny blue floating dots */}
-          <div
-            className="sr-deco-dot absolute right-[18%] bottom-[22%] h-2 w-2 rounded-full bg-[#1683E8] opacity-30 hidden lg:block"
-          />
-          <div
-            className="sr-deco-dot absolute left-[22%] top-[25%] h-1.5 w-1.5 rounded-full bg-[#1683E8] opacity-25 hidden lg:block"
-          />
-
-          {/* Soft background ambient blurs */}
-          <div className="absolute left-[8%] top-1/3 h-72 w-72 rounded-full bg-[#EAF2FF]/60 blur-3xl" />
-          <div className="absolute right-[10%] bottom-1/4 h-80 w-80 rounded-full bg-[#EBF4FF]/50 blur-3xl" />
-        </div>
-
-        {/* ── Edge Microcopy (Desktop) ── */}
-        {/* Top-Left */}
-        <div
-          className="sr-corner pointer-events-none absolute left-6 top-6 hidden xl:flex flex-col gap-2.5 opacity-0 z-10"
-          aria-hidden="true"
-        >
-          <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
-          <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
-            LEARN.
-            <br />
-            BUILD.
-            <br />
-            EXECUTE.
-            <br />
-            GROW.
-          </span>
-        </div>
-
-        {/* Top-Right */}
-        <div
-          className="sr-corner pointer-events-none absolute right-8 top-8 hidden xl:block font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed text-right opacity-0 z-10"
-          aria-hidden="true"
-        >
-          PEOPLE.
-          <br />
-          PARTNERSHIPS.
-          <br />
-          A BRIGHTER
-          <br />
-          TOMORROW.
-        </div>
-
-        {/* Bottom-Left */}
-        <div
-          className="sr-corner pointer-events-none absolute left-6 bottom-8 hidden xl:flex flex-col gap-2.5 opacity-0 z-10"
-          aria-hidden="true"
-        >
-          <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
-          <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
-            STUDENTS.
-            <br />
-            IDEAS.
-            <br />
-            REAL IMPACT.
-          </span>
-        </div>
-
-        {/* Bottom-Right */}
-        <div
-          className="sr-corner pointer-events-none absolute right-8 bottom-8 hidden xl:flex items-center gap-3 opacity-0 z-10"
-          aria-hidden="true"
-        >
-          <span className="h-[1px] w-9 bg-[#CBD5E1]" />
-          <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.22em] text-[#8C9BB4]">
-            THE CITADEL
-          </span>
-        </div>
-
-        {/* ━━━━━ MAIN TWO-PART COMPOSITION ━━━━━ */}
-        <div className="relative z-10 mx-auto max-w-[1380px] w-full grid grid-cols-1 lg:grid-cols-[0.45fr_0.55fr] gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
-          {/* ═════════════════════════════════════════════
-              LEFT SIDE: EDITORIAL HEADING + SUPPORTING TEXT
-             ═════════════════════════════════════════════ */}
-          <div className="flex flex-col items-start text-left max-w-[560px]">
-            {/* Eyebrow: ──── A CLOSER LOOK ──── */}
-            <div className="sr-eyebrow flex items-center gap-3.5 opacity-0">
-              <span className="sr-eyebrow-line h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-left" />
-              <span className="font-jakarta text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[#1683E8]">
-                A Closer Look
-              </span>
-              <span className="sr-eyebrow-line h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-right" />
-            </div>
-
-            {/* Main Heading — Masked vertical reveal */}
-            <h2 className="mt-5 font-clash text-[40px] sm:text-[50px] md:text-[58px] lg:text-[62px] xl:text-[70px] font-bold tracking-tight leading-[0.98]">
-              <span className="block overflow-hidden">
-                <span className="sr-heading-line sr-heading-line-1 inline-block text-[#111111] opacity-0">
-                  A Structural
-                </span>
-              </span>
-              <span className="block overflow-hidden mt-1 sm:mt-1.5">
-                <span className="sr-heading-line sr-heading-line-2 inline-block text-[#111111] opacity-0">
-                  Response –
-                </span>
-              </span>
-              <span className="block overflow-hidden mt-1.5 sm:mt-2">
-                <span className="sr-heading-line sr-heading-line-3 inline-block text-[#1683E8] opacity-0">
-                  Not a Cosmetic
-                </span>
-              </span>
-              <span className="block overflow-hidden mt-1 sm:mt-1.5">
-                <span className="sr-heading-line sr-heading-line-4 inline-block text-[#1683E8] opacity-0">
-                  Upgrade.
-                </span>
-              </span>
+      {/* Reduced motion static layout fallback */}
+      {isReducedMotion ? (
+        <div className="w-full max-w-[1360px] mx-auto px-6 py-20 flex flex-col gap-12">
+          <div className="max-w-xl">
+            <span className="font-jakarta text-xs font-bold tracking-[0.22em] text-[#1683E8] uppercase">
+              ──── A CLOSER LOOK ────
+            </span>
+            <h2 className="mt-4 font-clash text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] leading-tight">
+              A Structural Response –{" "}
+              <span className="text-[#1683E8]">Not a Cosmetic Upgrade.</span>
             </h2>
-
-            {/* Supporting Copy */}
-            <p className="sr-desc mt-6 max-w-[520px] font-jakarta text-[15px] sm:text-[17px] lg:text-[18px] leading-[1.65] text-[#64748B] opacity-0">
-              Purpose-built for a world that moves faster. Designed to create real capability,
-              not just better optics.
+            <p className="mt-4 font-jakarta text-base text-[#64748B] leading-relaxed">
+              Purpose-built for a world that moves faster. Designed to create real capability, not just better optics.
             </p>
           </div>
 
-          {/* ═════════════════════════════════════════════
-              RIGHT SIDE: LAYERED EDITORIAL CARD STACK
-             ═════════════════════════════════════════════ */}
-          <div className="relative flex items-center justify-center w-full min-h-[420px] sm:min-h-[460px] lg:min-h-[480px]">
-            {/* The Stack Arena */}
-            <div className="relative w-full max-w-[480px] sm:max-w-[530px] xl:max-w-[560px] h-[340px] sm:h-[370px] flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {cardsData.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={card.number}
+                  className="rounded-[28px] border border-slate-200/90 bg-white p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)]"
+                >
+                  <div>
+                    <div className="flex justify-between items-center pb-4 border-b border-slate-200/80">
+                      <span className="font-mono text-sm font-bold text-[#111111]">
+                        {card.number}
+                      </span>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8]">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                    </div>
+                    <h3 className="mt-6 font-jakarta text-2xl font-bold text-[#111111]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-3 font-jakarta text-sm text-[#64748B] leading-relaxed">
+                      {card.body}
+                    </p>
+                  </div>
+                  <div className="pt-5 border-t border-slate-200/80 flex items-center justify-between mt-8">
+                    <span className="font-jakarta text-xs font-bold tracking-wider text-[#1683E8]">
+                      — {card.tag}
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-[#1683E8]" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        /* Pinned 100vh Viewport Stage (Controlled by GSAP ScrollTrigger.pin) */
+        <div className="relative w-full h-screen min-h-screen flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 max-w-[1440px] mx-auto">
+          {/* ── Subtle Background Architectural Graphics ── */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none"
+          >
+            {/* Subtle sweeping circular arc on left */}
+            <svg
+              className="absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 h-[680px] w-[680px] opacity-25"
+              viewBox="0 0 700 700"
+              fill="none"
+            >
+              <circle
+                cx="350"
+                cy="350"
+                r="330"
+                stroke="#93C5FD"
+                strokeWidth="1.2"
+                strokeDasharray="4 6"
+              />
+            </svg>
+
+            {/* Tiny blue dots */}
+            <div className="absolute right-[18%] bottom-[22%] h-2 w-2 rounded-full bg-[#1683E8] opacity-30 hidden lg:block" />
+            <div className="absolute left-[22%] top-[25%] h-1.5 w-1.5 rounded-full bg-[#1683E8] opacity-25 hidden lg:block" />
+
+            {/* Ambient soft blue blur blobs */}
+            <div className="absolute left-[8%] top-1/3 h-72 w-72 rounded-full bg-[#EAF2FF]/60 blur-3xl" />
+            <div className="absolute right-[10%] bottom-1/4 h-80 w-80 rounded-full bg-[#EBF4FF]/50 blur-3xl" />
+          </div>
+
+          {/* ── Edge Microcopy (Desktop) ── */}
+          {/* Top-Left */}
+          <div
+            className="pointer-events-none absolute left-6 top-6 hidden xl:flex flex-col gap-2 z-10"
+            aria-hidden="true"
+          >
+            <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
+            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
+              LEARN.
+              <br />
+              BUILD.
+              <br />
+              EXECUTE.
+              <br />
+              GROW.
+            </span>
+          </div>
+
+          {/* Top-Right */}
+          <div
+            className="pointer-events-none absolute right-8 top-8 hidden xl:block font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed text-right z-10"
+            aria-hidden="true"
+          >
+            PEOPLE.
+            <br />
+            PARTNERSHIPS.
+            <br />
+            A BRIGHTER
+            <br />
+            TOMORROW.
+          </div>
+
+          {/* Bottom-Left */}
+          <div
+            className="pointer-events-none absolute left-6 bottom-8 hidden xl:flex flex-col gap-2 z-10"
+            aria-hidden="true"
+          >
+            <span className="h-5 w-[1.5px] bg-[#94A3B8]/60" />
+            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.2em] text-[#8C9BB4] leading-relaxed">
+              STUDENTS.
+              <br />
+              IDEAS.
+              <br />
+              REAL IMPACT.
+            </span>
+          </div>
+
+          {/* Bottom-Right */}
+          <div
+            className="pointer-events-none absolute right-8 bottom-8 hidden xl:flex items-center gap-3 z-10"
+            aria-hidden="true"
+          >
+            <span className="h-[1px] w-9 bg-[#CBD5E1]" />
+            <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.22em] text-[#8C9BB4]">
+              THE CITADEL
+            </span>
+          </div>
+
+          {/* ── Left Column: Editorial Heading & Context ── */}
+          <div className="w-full md:w-5/12 lg:w-5/12 xl:w-5/12 z-10 flex flex-col justify-center text-left pr-4 lg:pr-8 py-6">
+            {/* Eyebrow: ──── A CLOSER LOOK ──── */}
+            <div className="flex items-center gap-3.5 mb-5">
+              <span className="h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-left" />
+              <span className="font-jakarta text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[#1683E8]">
+                A Closer Look
+              </span>
+              <span className="h-[1px] w-8 sm:w-12 bg-[#1683E8]/40 origin-right" />
+            </div>
+
+            {/* Main Editorial Headline */}
+            <h2 className="font-clash text-[38px] sm:text-[48px] md:text-[54px] lg:text-[62px] xl:text-[68px] font-bold tracking-tight leading-[0.98] text-[#111111]">
+              A Structural
+              <br />
+              Response –
+              <br />
+              <span className="text-[#1683E8]">Not a Cosmetic</span>
+              <br />
+              <span className="text-[#1683E8]">Upgrade.</span>
+            </h2>
+
+            {/* Supporting Copy */}
+            <p className="mt-6 font-jakarta text-[15px] sm:text-[17px] text-[#5F6672] max-w-md leading-relaxed border-l-2 border-[#1683E8] pl-5 font-normal">
+              Purpose-built for a world that moves faster. Designed to create real capability, not just better optics.
+            </p>
+
+            {/* Editorial Layer Indicator */}
+            <div className="mt-8 flex items-center gap-3 text-xs font-jakarta text-[#5F6672]">
+              <span className="text-[#1683E8] font-bold font-mono">
+                0{activeCardIndex + 1} / 03
+              </span>
+              <span aria-hidden="true" className="w-8 h-[1px] bg-[#CBD5E1]" />
+              <span className="uppercase tracking-wider font-semibold text-[#111111]">
+                {cardsData[activeCardIndex].tag}
+              </span>
+            </div>
+          </div>
+
+          {/* ── Right Column: Stacked Card Stage ── */}
+          <div className="w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex items-center justify-center md:justify-end xl:justify-center relative my-auto py-4">
+            {/* Visual Stage */}
+            <div
+              ref={cardsStageRef}
+              className="relative w-full max-w-[500px] sm:max-w-[540px] xl:max-w-[580px] h-[340px] sm:h-[370px] mx-auto"
+            >
               {cardsData.map((card, idx) => {
                 const Icon = card.icon;
                 const isCurrentActive = activeCardIndex === idx;
 
                 return (
-                  <div
-                    key={card.id}
+                  <article
+                    key={card.number}
                     ref={(el) => {
                       cardRefs.current[idx] = el;
                     }}
-                    className={`group/card absolute inset-0 w-full h-full rounded-[24px] bg-white border border-[#E2E8F0]/90 shadow-[0_20px_50px_rgba(20,40,80,0.08)] p-7 sm:p-9 flex flex-col justify-between transition-shadow duration-300 ease-out will-change-transform select-none ${
-                      isCurrentActive ? "hover:shadow-[0_26px_65px_rgba(20,40,80,0.12)] cursor-default" : ""
+                    className={`group/card absolute inset-0 w-full h-full rounded-[26px] sm:rounded-[30px] border border-slate-200/90 bg-white p-7 sm:p-9 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)] backdrop-blur-xl will-change-transform select-none overflow-hidden transition-shadow duration-300 ${
+                      isCurrentActive ? "hover:shadow-[0_26px_65px_rgba(16,42,67,0.14)]" : ""
                     }`}
                     style={{
-                      // Initial default positioning before scroll triggers
-                      transform:
-                        idx === 0
-                          ? "translate3d(0, 0px, 0) scale(1) rotate(0deg)"
-                          : idx === 1
-                          ? "translate3d(0, 44px, 0) scale(0.955) rotate(1deg)"
-                          : "translate3d(0, 88px, 0) scale(0.91) rotate(1.5deg)",
-                      opacity: idx === 0 ? 1 : 0.6,
-                      zIndex: 30 - idx * 10,
-                      filter: idx === 0 ? "blur(0px)" : "blur(1.5px)",
+                      transformOrigin: "center center",
                     }}
                   >
-                    {/* Subtle Traveling Border Animation on Card */}
+                    {/* Subtle traveling border */}
                     <svg
                       className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
                       aria-hidden="true"
@@ -439,8 +463,8 @@ export default function StructuralResponse() {
                         y="1"
                         width="calc(100% - 2px)"
                         height="calc(100% - 2px)"
-                        rx="23"
-                        ry="23"
+                        rx="25"
+                        ry="25"
                         fill="none"
                         stroke="#1683E8"
                         strokeWidth="1.5"
@@ -455,31 +479,28 @@ export default function StructuralResponse() {
                     </svg>
 
                     {/* Top Row: Icon Container + Number */}
-                    <div className="flex items-center justify-between">
-                      {/* Squircle Icon Container */}
+                    <div className="flex items-center justify-between relative z-10">
                       <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-[16px] bg-[#EDF4FF] text-[#1683E8] shadow-[0_4px_12px_rgba(22,131,232,0.12)] transition-transform duration-300 group-hover/card:-translate-y-0.5">
                         <Icon className="h-5 w-5 stroke-[2]" />
                       </div>
 
-                      {/* Card Number */}
-                      <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-[#94A3B8]">
+                      <span className="font-mono text-sm sm:text-base font-bold text-[#94A3B8]">
                         {card.number}
                       </span>
                     </div>
 
-                    {/* Middle: Title + Body Description */}
-                    <div className="my-auto py-2">
+                    {/* Middle: Title + Body */}
+                    <div className="my-auto py-2 sm:py-3 relative z-10">
                       <h3 className="font-jakarta text-[22px] sm:text-[26px] xl:text-[28px] font-bold text-[#111111] tracking-tight leading-tight">
                         {card.title}
                       </h3>
-                      <p className="mt-3 font-jakarta text-[14px] sm:text-[16px] text-[#64748B] leading-relaxed max-w-[460px]">
+                      <p className="mt-3 font-jakarta text-[14px] sm:text-[16px] text-[#5F6672] leading-relaxed max-w-[440px]">
                         {card.body}
                       </p>
                     </div>
 
-                    {/* Bottom Row: Category Tag with Accent Line + Arrow Button */}
-                    <div className="flex items-center justify-between pt-2 border-t border-[#F1F5F9]">
-                      {/* Tag with Accent Line */}
+                    {/* Bottom Row: Category Tag + Arrow Indicator */}
+                    <div className="pt-4 border-t border-[#F1F5F9] flex items-center justify-between relative z-10">
                       <div className="flex items-center gap-2.5">
                         <span className="h-[2px] w-5 rounded-full bg-[#1683E8]" />
                         <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#64748B]">
@@ -487,86 +508,54 @@ export default function StructuralResponse() {
                         </span>
                       </div>
 
-                      {/* Small Circular Arrow Indicator */}
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] bg-white transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/card:translate-x-0.5" />
                       </div>
                     </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>
+          </div>
 
-            {/* ── Right-Side Vertical Progress Indicator ── */}
-            <div
-              className="sr-indicator hidden md:flex flex-col items-center gap-3 absolute -right-6 lg:-right-8 xl:-right-12 top-1/2 -translate-y-1/2 select-none opacity-0"
-              aria-label="Scroll progress indicator"
-            >
-              <span className="h-5 w-[1px] bg-[#CBD5E1]" />
+          {/* ── Minimal Vertical Progress Indicator (Desktop & Tablet) ── */}
+          <div
+            className="hidden md:flex absolute right-4 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 py-4 px-2.5 rounded-full bg-white/90 border border-slate-200/80 shadow-[0_4px_20px_rgba(16,42,67,0.06)] backdrop-blur-md select-none"
+            aria-label="Layer progress indicator"
+          >
+            {cardsData.map((card, idx) => {
+              const isActive = activeCardIndex === idx;
 
-              {/* Step 01 */}
-              <button
-                type="button"
-                onClick={() => handleIndicatorClick(0)}
-                className={`font-mono text-xs font-bold transition-colors cursor-pointer ${
-                  activeCardIndex === 0 ? "text-[#1683E8]" : "text-[#94A3B8] hover:text-[#64748B]"
-                }`}
-              >
-                01
-              </button>
-              <span
-                className={`transition-all duration-300 ${
-                  activeCardIndex === 0
-                    ? "h-2.5 w-2.5 rounded-full bg-[#1683E8] shadow-[0_0_8px_rgba(22,131,232,0.5)] scale-110"
-                    : "h-2 w-2 rounded-full border border-[#CBD5E1] bg-white"
-                }`}
-              />
-
-              <span className="h-5 w-[1px] bg-[#CBD5E1]" />
-
-              {/* Step 02 */}
-              <button
-                type="button"
-                onClick={() => handleIndicatorClick(1)}
-                className={`font-mono text-xs font-bold transition-colors cursor-pointer ${
-                  activeCardIndex === 1 ? "text-[#1683E8]" : "text-[#94A3B8] hover:text-[#64748B]"
-                }`}
-              >
-                02
-              </button>
-              <span
-                className={`transition-all duration-300 ${
-                  activeCardIndex === 1
-                    ? "h-2.5 w-2.5 rounded-full bg-[#1683E8] shadow-[0_0_8px_rgba(22,131,232,0.5)] scale-110"
-                    : "h-2 w-2 rounded-full border border-[#CBD5E1] bg-white"
-                }`}
-              />
-
-              <span className="h-5 w-[1px] bg-[#CBD5E1]" />
-
-              {/* Step 03 */}
-              <button
-                type="button"
-                onClick={() => handleIndicatorClick(2)}
-                className={`font-mono text-xs font-bold transition-colors cursor-pointer ${
-                  activeCardIndex === 2 ? "text-[#1683E8]" : "text-[#94A3B8] hover:text-[#64748B]"
-                }`}
-              >
-                03
-              </button>
-              <span
-                className={`transition-all duration-300 ${
-                  activeCardIndex === 2
-                    ? "h-2.5 w-2.5 rounded-full bg-[#1683E8] shadow-[0_0_8px_rgba(22,131,232,0.5)] scale-110"
-                    : "h-2 w-2 rounded-full border border-[#CBD5E1] bg-white"
-                }`}
-              />
-
-              <span className="h-5 w-[1px] bg-[#CBD5E1]" />
-            </div>
+              return (
+                <button
+                  key={card.number}
+                  type="button"
+                  onClick={() => handleJumpToCard(idx)}
+                  className="group flex flex-col items-center gap-1.5 cursor-pointer focus:outline-none p-1 transition-transform"
+                  aria-label={`Jump to card ${card.number}: ${card.title}`}
+                >
+                  <span
+                    className={`font-mono text-xs font-bold transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#1683E8]"
+                        : "text-[#5F6672] group-hover:text-[#111111]"
+                    }`}
+                  >
+                    {card.number}
+                  </span>
+                  <span
+                    className={`rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "w-2.5 h-2.5 bg-[#1683E8] ring-2 ring-[#1683E8]/30 scale-110 shadow-[0_0_8px_rgba(22,131,232,0.5)]"
+                        : "w-1.5 h-1.5 bg-slate-300 group-hover:bg-slate-500"
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
