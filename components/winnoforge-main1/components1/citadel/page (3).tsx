@@ -39,23 +39,11 @@ import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/winnoforge-main1/components1/citadel/ScrollReveal";
 import PartnerButton from "@/components/modal/PartnerButton";
 import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
-import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion from "@/components/shared/FaqAccordion";
-import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import StructuralResponse from "@/components/citadel/StructuralResponse";
 import CitadelExperienceBento from "@/components/citadel/CitadelExperienceBento";
-import MentorshipInside from "@/components/citadel/MentorshipInside";
-import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
-import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
-import CommunityAndCulture from "@/components/citadel/CommunityAndCulture";
-import ProgressRecognition from "@/components/citadel/ProgressRecognition";
-import InstitutionalIndustryConnections from "@/components/citadel/InstitutionalIndustryConnections";
-import CodeOfConduct from "@/components/citadel/CodeOfConduct";
-import CitadelFinalCta from "@/components/citadel/CitadelFinalCta";
-import AnnualSummit from "@/components1/ecosystem/AnnualSummit";
-import FutureVision from "@/components1/ecosystem/FutureVision";
 
 export const metadata = pageMetadata({
   title: "FORGE Innovation Citadel",
@@ -646,42 +634,6 @@ export default function CitadelPage() {
 
 
 
-        <VoicesCarousel title="From Our Founder" voices={founderVoice} />
-
-        <MentorshipInside />
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — PROJECT AND INNOVATION CULTURE
-            To restore this section, uncomment the component below.
-        ===================================================== */}
-        {/* <ProjectInnovationCulture /> */}
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — INTEGRITY AND AUTHENTIC WORK
-            To restore this section, uncomment the component below.
-        ===================================================== */}
-        {/* <IntegrityAuthenticWork /> */}
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — COMMUNITY AND CULTURE
-            To restore this section, uncomment the component below.
-        ===================================================== */}
-        {/* <CommunityAndCulture /> */}
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — PROGRESS AND RECOGNITION
-            To restore this section, uncomment the component below.
-        ===================================================== */}
-        {/* <ProgressRecognition /> */}
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — INSTITUTIONAL AND INDUSTRY CONNECTIONS
-            To restore this section, uncomment the component below.
-        ===================================================== */}
-        {/* <InstitutionalIndustryConnections /> */}
-
-        <AnnualSummit />
-        <FutureVision />
 
         {/* =====================================================
             TEMPORARILY HIDDEN — CODE OF CONDUCT
