@@ -46,6 +46,7 @@ import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
+import StructuralResponse from "@/components/citadel/StructuralResponse";
 import MentorshipInside from "@/components/citadel/MentorshipInside";
 import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
 import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
@@ -444,37 +445,7 @@ export default function CitadelPage() {
         </section>
         */}
 
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <h2 className="font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                A Structural Response - <br className="hidden md:block" />
-                Not a Cosmetic Upgrade
-              </h2>
-            </ScrollReveal>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {pillars.map((pillar, index) => {
-                const Icon = pillar.icon;
-                return (
-                  <ScrollReveal key={pillar.title} delay={index * 100}>
-                    <div className="rounded-3xl border border-black/10 bg-white/80 p-7 shadow-[0_12px_34px_rgba(23,23,23,0.06)]">
-                      <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
-                        <Icon className="h-5 w-5" aria-hidden="true" />
-                      </div>
-                      <h3 className="mt-5 font-jakarta text-lg font-semibold text-foreground">
-                        {pillar.title}
-                      </h3>
-                      <p className="mt-2 font-jakarta text-sm leading-relaxed text-foreground/70">
-                        {pillar.body}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <StructuralResponse />
 
         <CardGrid
           eyebrow="The Citadel Experience"
