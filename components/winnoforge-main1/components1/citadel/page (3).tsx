@@ -44,6 +44,7 @@ import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import MentorshipInside from "@/components/citadel/MentorshipInside";
 import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
@@ -330,49 +331,7 @@ export default function CitadelPage() {
       <Navbar />
 
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
-        <section className="relative px-4 py-12 md:px-8 md:py-20">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-8rem] top-10 h-48 w-48 rounded-full bg-primary/16 blur-3xl" />
-            <div className="absolute right-[-6rem] top-12 h-56 w-56 rounded-full bg-primary/12 blur-3xl" />
-          </div>
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                FORGE Winnovation Citadel
-              </span>
-
-              <h1 className="mx-auto mt-5 max-w-5xl font-varela text-center text-5xl font-semibold leading-[1.1] text-foreground md:text-6xl lg:text-[4.25rem]">
-                <span className="block">Not a Lab.</span>
-                <span className="mt-2 block">Not a Co-Working Space.</span>
-                <span className="mt-4 block text-primary">
-                  An Execution Environment.
-                </span>
-              </h1>
-
-              <p className="mx-auto mt-6 max-w-2xl font-jakarta text-lg leading-relaxed text-foreground/70 md:text-xl">
-                A system that converts students into builders - continuously.
-              </p>
-
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                {/* Temporarily hidden section navigation — uncomment when sections are restored
-                <Link
-                  href="#system"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-jakarta text-sm font-semibold tracking-wide text-white transition hover:-translate-y-0.5 hover:opacity-95 sm:w-auto"
-                >
-                  Explore the System
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="#layout"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-foreground/15 bg-white/70 px-7 py-3.5 font-jakarta text-sm font-semibold tracking-wide text-foreground transition hover:-translate-y-0.5 hover:bg-white sm:w-auto"
-                >
-                  View Layout
-                </Link>
-                */}
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
+        <CitadelHero />
 
         <WhatIsCitadel />
 
