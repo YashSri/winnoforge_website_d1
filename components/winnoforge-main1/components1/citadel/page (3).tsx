@@ -48,6 +48,7 @@ import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import StructuralResponse from "@/components/citadel/StructuralResponse";
 import CitadelExperienceBento from "@/components/citadel/CitadelExperienceBento";
+import CitadelPrinciples from "@/components/citadel/CitadelPrinciples";
 import MentorshipInside from "@/components/citadel/MentorshipInside";
 import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
 import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
@@ -450,12 +451,7 @@ export default function CitadelPage() {
 
         <CitadelExperienceBento />
 
-        <CardGrid
-          eyebrow="The Principles"
-          heading="The Principles Behind the Citadel"
-          cards={citadelPrincipleCards}
-          columns={4}
-        />
+        <CitadelPrinciples />
 
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
