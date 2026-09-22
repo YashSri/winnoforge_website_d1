@@ -39,16 +39,13 @@ import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/winnoforge-main1/components1/citadel/ScrollReveal";
 import PartnerButton from "@/components/modal/PartnerButton";
 import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
-import Lightbox from "@/components/shared/Lightbox";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion from "@/components/shared/FaqAccordion";
-import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import StructuralResponse from "@/components/citadel/StructuralResponse";
 import CitadelExperienceBento from "@/components/citadel/CitadelExperienceBento";
-import CitadelPrinciples from "@/components/citadel/CitadelPrinciples";
 import MentorshipInside from "@/components/citadel/MentorshipInside";
 import ProjectInnovationCulture from "@/components/citadel/ProjectInnovationCulture";
 import IntegrityAuthenticWork from "@/components/citadel/IntegrityAuthenticWork";
@@ -451,8 +448,6 @@ export default function CitadelPage() {
 
         <CitadelExperienceBento />
 
-        <CitadelPrinciples />
-
         <section className="px-4 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-7xl">
             <ScrollReveal>
@@ -548,32 +543,6 @@ export default function CitadelPage() {
           </div>
         </section>
 
-        <CardGrid
-          eyebrow="Spaces and Modes of Engagement"
-          heading="Designed for Learning, Collaboration, and Creation"
-          cards={citadelSpaceCards}
-          columns={3}
-        />
-
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                How the Citadel Works
-              </span>
-              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                From Participation to Demonstrated Capability
-              </h2>
-            </ScrollReveal>
-            <div className="mt-14">
-              <ProcessTimeline steps={citadelJourneySteps} />
-            </div>
-            <p className="mx-auto mt-10 max-w-2xl text-center font-jakarta text-base italic text-primary/65">
-              The Citadel is not defined by a single event. It is defined by the habits built
-              through repeated practice.
-            </p>
-          </div>
-        </section>
 
         {/* =====================================================
             TEMPORARILY HIDDEN — HOW IT RUNS
@@ -674,87 +643,8 @@ export default function CitadelPage() {
         </section>
         */}
 
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                Results
-              </span>
-              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                Built For Real Outcomes
-              </h2>
-            </ScrollReveal>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              <ScrollReveal delay={0}>
-                <article className="rounded-[2rem] border border-black/10 bg-white/85 p-8 shadow-[0_18px_55px_rgba(23,23,23,0.06)] md:p-10">
-                  <h3 className="font-varela text-3xl font-semibold text-primary md:text-4xl">
-                    For Institutions
-                  </h3>
-                  <ul className="mt-7 space-y-4">
-                    {institutionOutcomes.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-3 font-jakarta text-base text-foreground/72"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="h-2 w-2 shrink-0 rounded-full bg-primary"
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </ScrollReveal>
 
-              <ScrollReveal delay={120}>
-                <article className="rounded-[2rem] border border-primary/15 bg-gradient-to-br from-primary to-[#78B2FF] p-8 shadow-[0_18px_55px_rgba(77,150,255,0.24)] md:p-10">
-                  <h3 className="font-varela text-3xl font-semibold text-white md:text-4xl">
-                    For Students
-                  </h3>
-                  <ul className="mt-7 space-y-4">
-                    {studentOutcomes.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-3 font-jakarta text-base text-white/90"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="h-2 w-2 shrink-0 rounded-full bg-white/90"
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-
-        <CardGrid
-          eyebrow="Who Is the Citadel For?"
-          heading="A Shared Environment for Different Contributors"
-          cards={citadelAudienceCards}
-          columns={4}
-        />
-
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                Inside the Space
-              </span>
-              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                Photo Gallery
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={60}>
-              <Lightbox images={galleryImages} />
-            </ScrollReveal>
-          </div>
-        </section>
 
         <VoicesCarousel title="From Our Founder" voices={founderVoice} />
 
