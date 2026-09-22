@@ -25,6 +25,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import JoinButton from "@/components/modal/JoinButton";
 import PartnerButton from "@/components/modal/PartnerButton";
+import CommunityHero from "@/components/community/CommunityHero";
+import WhoMakesUpCommunity from "@/components/community/WhoMakesUpCommunity";
 import CommunityGrid from "@/components/community/CommunityGrid";
 import Lightbox from "@/components/shared/Lightbox";
 import WhatCommunityMeans from "@/components/community/WhatCommunityMeans";
@@ -191,7 +193,7 @@ export default function CommunityNewPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
-        <HeroSection />
+        <CommunityHero />
 
         {/* =====================================================
             TEMPORARILY HIDDEN — WHAT THE COMMUNITY MEANS
@@ -199,12 +201,7 @@ export default function CommunityNewPage() {
         ===================================================== */}
         {/* <WhatCommunityMeans /> */}
 
-        <CardGrid
-          eyebrow="Who Makes Up the Community"
-          heading="Different Paths. Shared Possibility."
-          cards={communityAudienceCards}
-          columns={4}
-        />
+        <WhoMakesUpCommunity />
         <CommunityGrid />
         <UpcomingEvents />
         <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
@@ -331,33 +328,6 @@ export default function CommunityNewPage() {
   );
 }
 
-// ─── 1. HERO ──────────────────────────────────────────────────────────────────
-
-function HeroSection() {
-  return (
-    <section className="relative px-4 py-14 sm:px-6 md:py-18 lg:px-8">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-120 bg-[radial-gradient(circle_at_18%_20%,rgba(77,150,255,0.22),transparent_42%),radial-gradient(circle_at_85%_12%,rgba(77,150,255,0.14),transparent_40%)]" />
-
-      <div className="mx-auto max-w-5xl px-2 text-center">
-        <h1 className="mt-6 font-varela text-4xl font-bold leading-tight text-foreground md:text-7xl">
-          The FORGE Community
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-3xl font-jakarta text-lg leading-relaxed text-foreground/75 md:text-2xl">
-          Join a growing ecosystem of builders, institutions, and innovators.
-          Here's everything you get as a FORGE Community Partner.
-        </p>
-
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <JoinButton className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_16px_35px_rgba(77,150,255,0.3)]">
-            Join the Community
-            <ArrowRight className="h-4 w-4" />
-          </JoinButton>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── 2–5. BENEFIT SECTIONS ────────────────────────────────────────────────────
 
