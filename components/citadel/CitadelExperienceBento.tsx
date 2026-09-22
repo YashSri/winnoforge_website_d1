@@ -1,129 +1,30 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import {
   BookOpen,
-  Hammer,
+  Layers,
   Users,
   UserCheck,
   RefreshCw,
   Monitor,
-  TrendingUp,
   ArrowRight,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- * CITADEL CARDS DATA — 7 Categories
- * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-interface CitadelCardItem {
-  id: string;
-  number: string;
-  title: string;
-  description: string;
-  tag: string;
-  ctaText: string;
-  icon: LucideIcon;
-  href: string;
-}
-
-const CITADEL_CARDS: CitadelCardItem[] = [
-  {
-    id: "structured-learning",
-    number: "01",
-    title: "Structured Learning",
-    description:
-      "Participants engage with planned learning experiences that provide direction, context, and foundational understanding.",
-    tag: "FORGE / 01",
-    ctaText: "EXPLORE →",
-    icon: BookOpen,
-    href: "/citadel1#structured-learning",
-  },
-  {
-    id: "practical-execution",
-    number: "02",
-    title: "Practical Execution",
-    description:
-      "Learning is connected to assignments, projects, experiments, prototypes, and real tasks wherever applicable.",
-    tag: "FORGE / 02",
-    ctaText: "EXPLORE →",
-    icon: Hammer,
-    href: "/citadel1#practical-execution",
-  },
-  {
-    id: "peer-collaboration",
-    number: "03",
-    title: "Peer Collaboration",
-    description:
-      "Participants learn through discussion, teamwork, review, and shared problem-solving.",
-    tag: "FORGE / 03",
-    ctaText: "EXPLORE →",
-    icon: Users,
-    href: "/citadel1#peer-collaboration",
-  },
-  {
-    id: "mentorship",
-    number: "04",
-    title: "Mentorship",
-    description:
-      "Mentors, trainers, and experts may provide guidance, feedback, context, and perspective.",
-    tag: "FORGE / 04",
-    ctaText: "EXPLORE →",
-    icon: UserCheck,
-    href: "/citadel1#mentorship",
-  },
-  {
-    id: "reflection-iteration",
-    number: "05",
-    title: "Reflection and Iteration",
-    description:
-      "Participants are encouraged to review their work, understand gaps, improve outcomes, and learn from mistakes.",
-    tag: "FORGE / 05",
-    ctaText: "EXPLORE →",
-    icon: RefreshCw,
-    href: "/citadel1#reflection-iteration",
-  },
-  {
-    id: "demonstration",
-    number: "06",
-    title: "Demonstration",
-    description:
-      "Work can be presented through reviews, showcases, project demonstrations, or other approved formats.",
-    tag: "FORGE / 06",
-    ctaText: "EXPLORE →",
-    icon: Monitor,
-    href: "/citadel1#demonstration",
-  },
-  {
-    id: "progression",
-    number: "07",
-    title: "Progression",
-    description:
-      "Participants can explore further learning, advanced projects, leadership responsibilities, entrepreneurship, or professional pathways.",
-    tag: "FORGE / 07",
-    ctaText: "EXPLORE →",
-    icon: TrendingUp,
-    href: "/citadel1#progression",
-  },
-];
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- * THE CITADEL EXPERIENCE — UIVERSE HOVER INTERACTION
- * Editorial FORGE card architecture:
- * - Idle: Clean minimal identical white cards
- * - Hover: Main content slides upward (-46px) revealing divider & CTA underneath
- * - Static 1px subtle border, no animated/glowing borders
+ * CITADEL EXPERIENCE — ASYMMETRIC BENTO SYSTEM
+ * Editorial layout with 7 distinct cards, featured
+ * cards, subtle moving borders, and hover micro-animations
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function CitadelExperienceBento() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   useGSAP(
     () => {
@@ -157,56 +58,53 @@ export default function CitadelExperienceBento() {
         },
       });
 
-      // 1. Section eyebrow reveals upward
+      // Eyebrow
       tl.fromTo(
         ".ceb-eyebrow",
         { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
         0
       );
       tl.fromTo(
         ".ceb-eyebrow-line",
         { scaleX: 0 },
-        { scaleX: 1, duration: 0.5, ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        { scaleX: 1, duration: 0.5, ease: "power3.out" },
         0
       );
 
-      // 2. Main heading reveals upward
+      // Heading line-by-line masked reveal
       tl.fromTo(
         ".ceb-heading-line-1",
         { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.65, ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
         0.08
       );
       tl.fromTo(
         ".ceb-heading-line-2",
         { opacity: 0, y: "100%" },
-        { opacity: 1, y: "0%", duration: 0.65, ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
+        { opacity: 1, y: "0%", duration: 0.7, ease: "power3.out" },
         0.16
       );
 
-      // 3. Supporting text fades upward
+      // Subtitle
       tl.fromTo(
         ".ceb-desc",
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
-        0.22
+        { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" },
+        0.24
       );
 
-      // 4. Cards appear sequentially: opacity 0 -> 1, translateY(30px) -> 0, duration 650ms, stagger 70ms
+      // Bento cards staggered entrance (01 -> 07)
       tl.fromTo(
         ".ceb-card",
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 30, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 0.65,
-          ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-          stagger: 0.07,
-          onComplete: () => {
-            // Clear inline transforms so CSS hover translateY works cleanly
-            gsap.set(".ceb-card", { clearProps: "transform" });
-          },
+          ease: "power3.out",
+          stagger: 0.06,
         },
         0.18
       );
@@ -219,7 +117,7 @@ export default function CitadelExperienceBento() {
         0.4
       );
 
-      // Subtle Background Parallax
+      // ── Subtle Background Parallax ──
       gsap.to(".ceb-deco-circle-left", {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -251,109 +149,10 @@ export default function CitadelExperienceBento() {
       id="citadel-experience"
       className="relative w-full overflow-hidden px-4 py-16 sm:px-6 md:px-10 md:py-24 lg:px-12 lg:py-28"
     >
-      {/* ── Scoped CSS for Uiverse Hover Interaction ── */}
       <style>{`
-        /* Static Subtle Card Shell */
-        .forge-citadel-card {
-          position: relative;
-          overflow: hidden;
-          background: #FFFFFF;
-          border: 1px solid #E2E8F0;
-          border-radius: 24px;
-          box-shadow: 0 4px 20px rgba(20, 50, 90, 0.04);
-          transition: box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
-          height: 340px;
-        }
-
-        .forge-citadel-card:hover,
-        .forge-citadel-card:focus-within,
-        .forge-citadel-card.is-active {
-          box-shadow: 0 18px 40px rgba(20, 50, 90, 0.08);
-        }
-
-        /* 1. Main visual/content moves upward on hover */
-        .forge-card-content {
-          transform: translateY(0);
-          transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-          will-change: transform;
-        }
-
-        .forge-citadel-card:hover .forge-card-content,
-        .forge-citadel-card:focus-within .forge-card-content,
-        .forge-citadel-card.is-active .forge-card-content {
-          transform: translateY(-46px);
-        }
-
-        /* 2. 2D Icon micro-animation: translateY(-2px) scale(1.04) */
-        .forge-card-icon {
-          transform: translateY(0) scale(1);
-          transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .forge-citadel-card:hover .forge-card-icon,
-        .forge-citadel-card:focus-within .forge-card-icon,
-        .forge-citadel-card.is-active .forge-card-icon {
-          transform: translateY(-2px) scale(1.04);
-        }
-
-        /* 3. Divider appears: opacity 0 -> 1 */
-        .forge-card-divider {
-          opacity: 0;
-          transform: scaleX(0.96);
-          transform-origin: left;
-          transition: opacity 300ms ease 80ms, transform 350ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
-        }
-
-        .forge-citadel-card:hover .forge-card-divider,
-        .forge-citadel-card:focus-within .forge-card-divider,
-        .forge-citadel-card.is-active .forge-card-divider {
-          opacity: 1;
-          transform: scaleX(1);
-        }
-
-        /* 4. CTA / metadata reveals upward: opacity 0 -> 1, translateY(12px) -> 0 */
-        .forge-card-reveal {
-          opacity: 0;
-          transform: translateY(12px);
-          transition: opacity 350ms ease 120ms, transform 450ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
-          pointer-events: none;
-        }
-
-        .forge-citadel-card:hover .forge-card-reveal,
-        .forge-citadel-card:focus-within .forge-card-reveal,
-        .forge-citadel-card.is-active .forge-card-reveal {
-          opacity: 1;
-          transform: translateY(0);
-          pointer-events: auto;
-        }
-
-        /* 5. Arrow moves slightly to the right: translateX(4px) */
-        .forge-card-arrow {
-          transform: translateX(0);
-          transition: transform 300ms ease 180ms;
-        }
-
-        .forge-citadel-card:hover .forge-card-arrow,
-        .forge-citadel-card:focus-within .forge-card-arrow,
-        .forge-citadel-card.is-active .forge-card-arrow {
-          transform: translateX(4px);
-        }
-
-        /* Accessibility: Respect prefers-reduced-motion */
-        @media (prefers-reduced-motion: reduce) {
-          .forge-card-content,
-          .forge-card-icon,
-          .forge-card-divider,
-          .forge-card-reveal,
-          .forge-card-arrow {
-            transition: none !important;
-            transform: none !important;
-          }
-          .forge-card-reveal,
-          .forge-card-divider {
-            opacity: 1 !important;
-            pointer-events: auto !important;
-          }
+        @keyframes borderTravel {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -100; }
         }
       `}</style>
 
@@ -462,7 +261,7 @@ export default function CitadelExperienceBento() {
       </div>
 
       {/* ━━━━━ MAIN CONTAINER ━━━━━ */}
-      <div className="relative z-10 mx-auto max-w-[1320px]">
+      <div className="relative z-10 mx-auto max-w-[1360px]">
         {/* ── Section Header ── */}
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           {/* Eyebrow: ───── THE CITADEL EXPERIENCE ───── */}
@@ -495,76 +294,398 @@ export default function CitadelExperienceBento() {
           </p>
         </div>
 
-        {/* ── Citadel Cards Grid (Identical Minimal Editorial Cards) ── */}
-        <div className="mt-14 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {CITADEL_CARDS.map((card, idx) => {
-            const Icon = card.icon;
-            const isLastCard = idx === CITADEL_CARDS.length - 1;
-            const isActive = activeCardId === card.id;
+        {/* ── Bento Cards Layout ── */}
+        <div className="mt-14 sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
+          {/* ═════════════════════════════════════════════
+              ROW 1: CARD 01, CARD 02 (FEATURED), CARD 03
+             ═════════════════════════════════════════════ */}
 
-            return (
-              <div
-                key={card.id}
-                tabIndex={0}
-                role="article"
-                aria-label={`${card.number} — ${card.title}`}
-                onClick={() => setActiveCardId(isActive ? null : card.id)}
-                onMouseLeave={() => setActiveCardId(null)}
-                className={`ceb-card forge-citadel-card opacity-0 group/citadel-card cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1683E8] ${
-                  isActive ? "is-active" : ""
-                } ${
-                  isLastCard
-                    ? "md:col-span-2 lg:col-span-1 lg:col-start-2"
-                    : ""
-                }`}
-              >
-                {/* ── 1. Upper Visual / Content Layer ── */}
-                <div className="forge-card-content p-7 sm:p-8 pt-8 sm:pt-9 flex flex-col justify-start">
-                  {/* Top Row: Number + 2D Icon */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-mono text-sm font-bold text-[#111111] tracking-wider">
-                        {card.number}
-                      </span>
-                      <div className="h-[2px] w-4 bg-[#1683E8] mt-0.5 rounded-full" />
-                    </div>
+          {/* ── CARD 01: Structured Learning (Standard, 3 cols) ── */}
+          <div className="ceb-card group/card lg:col-span-3 relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0]/90 shadow-[0_12px_36px_rgba(20,40,80,0.05)] p-7 sm:p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(20,40,80,0.1)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#1683E8"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-20 group-hover/card:opacity-75 transition-opacity duration-500"
+                style={{ animation: "borderTravel 16s linear infinite" }}
+              />
+            </svg>
 
-                    <div className="forge-card-icon flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8] shrink-0">
-                      <Icon className="h-5 w-5 stroke-[2]" aria-hidden="true" />
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="mt-6 font-jakarta text-[21px] sm:text-[22px] font-bold text-[#111111] tracking-tight leading-tight">
-                    {card.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-3 font-jakarta text-[14px] leading-[1.65] text-[#64748B]">
-                    {card.description}
-                  </p>
+            <div>
+              {/* Top Row: 01 + Icon */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-sm font-bold text-[#111111]">01</span>
+                  <div className="h-[2px] w-4 bg-[#1683E8] mt-0.5 rounded-full" />
                 </div>
-
-                {/* ── 2. Bottom Reveal Layer (Divider + CTA / Metadata) ── */}
-                <div className="absolute bottom-0 inset-x-0 px-7 pb-7 pt-2 sm:px-8 sm:pb-8 bg-white/95 backdrop-blur-[2px]">
-                  {/* Subtle 1px Divider */}
-                  <div className="forge-card-divider h-px w-full bg-[#E2E8F0]" />
-
-                  {/* CTA & Metadata row */}
-                  <div className="forge-card-reveal mt-4 flex items-center justify-between">
-                    <span className="font-jakarta text-[11px] font-bold uppercase tracking-[0.2em] text-[#1683E8]">
-                      {card.tag}
-                    </span>
-
-                    <div className="flex items-center gap-1.5 font-jakarta text-[12px] font-semibold text-[#111111]">
-                      <span>EXPLORE</span>
-                      <ArrowRight className="forge-card-arrow h-3.5 w-3.5 text-[#1683E8]" aria-hidden="true" />
-                    </div>
-                  </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8] transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+                  <BookOpen className="h-4 w-4 stroke-[2]" />
                 </div>
               </div>
-            );
-          })}
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[20px] font-bold text-[#111111] tracking-tight leading-tight">
+                Structured Learning
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] text-[#64748B] leading-relaxed">
+                Participants engage with planned learning experiences that provide direction, context, and foundational understanding.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-[#F1F5F9] flex items-center justify-between">
+              <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-[#94A3B8]">
+                LEARN AND GROW.
+              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 02: Practical Execution (FEATURED DARK NAVY, 6 cols) ── */}
+          <div className="ceb-card group/card md:col-span-2 lg:col-span-6 relative flex flex-col justify-between rounded-[24px] bg-[#0A192F] border border-[#1E2E48] shadow-[0_20px_50px_rgba(10,25,47,0.22)] p-7 sm:p-9 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_26px_65px_rgba(10,25,47,0.3)] opacity-0 overflow-hidden">
+            {/* Subtle decorative internal arc */}
+            <svg className="pointer-events-none absolute right-0 top-0 h-48 w-48 opacity-25" viewBox="0 0 200 200" fill="none">
+              <circle cx="200" cy="0" r="140" stroke="#60A5FA" strokeWidth="1.2" />
+            </svg>
+            <div className="pointer-events-none absolute right-16 top-16 h-2 w-2 rounded-full bg-[#3B82F6] opacity-70" />
+
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#60A5FA"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-30 group-hover/card:opacity-85 transition-opacity duration-500"
+                style={{ animation: "borderTravel 14s linear infinite" }}
+              />
+            </svg>
+
+            <div>
+              {/* Top Row: IDEAS INTO IMPACT + 02 */}
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#93C5FD]">
+                    IDEAS INTO IMPACT
+                  </span>
+                  <div className="h-[2px] w-6 bg-[#3B82F6] mt-1 rounded-full" />
+                </div>
+                <span className="font-mono text-base font-bold text-white tracking-wider">
+                  02
+                </span>
+              </div>
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[24px] sm:text-[28px] font-bold text-white tracking-tight leading-tight">
+                Practical Execution
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] sm:text-[15px] text-[#94A3B8] leading-relaxed max-w-lg">
+                Learning is connected to assignments, projects, experiments, prototypes, and real tasks wherever applicable.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/70">
+                BUILD AND DEMONSTRATE.
+              </span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition-all duration-300 group-hover/card:border-white group-hover/card:bg-[#1683E8]">
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 03: Peer Collaboration (Standard, 3 cols) ── */}
+          <div className="ceb-card group/card lg:col-span-3 relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0]/90 shadow-[0_12px_36px_rgba(20,40,80,0.05)] p-7 sm:p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(20,40,80,0.1)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#1683E8"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-20 group-hover/card:opacity-75 transition-opacity duration-500"
+                style={{ animation: "borderTravel 16s linear infinite" }}
+              />
+            </svg>
+
+            <div>
+              {/* Top Row: 03 + Icon */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-sm font-bold text-[#111111]">03</span>
+                  <div className="h-[2px] w-4 bg-[#1683E8] mt-0.5 rounded-full" />
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8] transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+                  <Users className="h-4 w-4 stroke-[2]" />
+                </div>
+              </div>
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[20px] font-bold text-[#111111] tracking-tight leading-tight">
+                Peer Collaboration
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] text-[#64748B] leading-relaxed">
+                Participants learn through discussion, teamwork, review, and shared problem-solving.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-[#F1F5F9] flex items-center justify-between">
+              <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-[#94A3B8]">
+                STRONGER TOGETHER.
+              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ═════════════════════════════════════════════
+              ROW 2: CARD 04 (WIDE), CARD 05 (BLUE), CARD 06 (DARK)
+             ═════════════════════════════════════════════ */}
+
+          {/* ── CARD 04: Mentorship (Wide White Card, 5 cols) ── */}
+          <div className="ceb-card group/card lg:col-span-5 relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0]/90 shadow-[0_12px_36px_rgba(20,40,80,0.05)] p-7 sm:p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(20,40,80,0.1)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#1683E8"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-20 group-hover/card:opacity-75 transition-opacity duration-500"
+                style={{ animation: "borderTravel 16s linear infinite" }}
+              />
+            </svg>
+
+            <div>
+              {/* Top Row: 04 + Icon */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-sm font-bold text-[#111111]">04</span>
+                  <div className="h-[2px] w-4 bg-[#1683E8] mt-0.5 rounded-full" />
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-[#EDF4FF] text-[#1683E8] transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+                  <UserCheck className="h-4 w-4 stroke-[2]" />
+                </div>
+              </div>
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[22px] font-bold text-[#111111] tracking-tight leading-tight">
+                Mentorship
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] text-[#64748B] leading-relaxed max-w-md">
+                Mentors, trainers, and experts may provide guidance, feedback, context, and perspective.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-[#F1F5F9] flex items-center justify-between">
+              <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-[#94A3B8]">
+                GUIDANCE AT EVERY STEP.
+              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 05: Reflection and Iteration (FORGE BLUE ACCENT, 3 cols) ── */}
+          <div className="ceb-card group/card lg:col-span-3 relative flex flex-col justify-between rounded-[24px] bg-[#1683E8] border border-[#1579D6] shadow-[0_20px_45px_rgba(22,131,232,0.25)] p-7 sm:p-8 text-white transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_26px_55px_rgba(22,131,232,0.35)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-30 group-hover/card:opacity-85 transition-opacity duration-500"
+                style={{ animation: "borderTravel 15s linear infinite" }}
+              />
+            </svg>
+
+            <div>
+              {/* Top Row: 05 + Icon */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-sm font-bold text-white">05</span>
+                  <div className="h-[2px] w-4 bg-white mt-0.5 rounded-full" />
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-white/20 text-white transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+                  <RefreshCw className="h-4 w-4 stroke-[2]" />
+                </div>
+              </div>
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[20px] font-bold text-white tracking-tight leading-tight">
+                Reflection and Iteration
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] text-white/90 leading-relaxed">
+                Participants are encouraged to review their work, understand gaps, improve outcomes, and learn from mistakes.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-white/20 flex items-center justify-between">
+              <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">
+                IMPROVE CONTINUOUSLY.
+              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white transition-all duration-300 group-hover/card:border-white group-hover/card:bg-white group-hover/card:text-[#1683E8]">
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ── CARD 06: Demonstration (Dark Navy Feature, 4 cols) ── */}
+          <div className="ceb-card group/card lg:col-span-4 relative flex flex-col justify-between rounded-[24px] bg-[#0A192F] border border-[#1E2E48] shadow-[0_16px_44px_rgba(10,25,47,0.2)] p-7 sm:p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_24px_55px_rgba(10,25,47,0.28)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#60A5FA"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="10 90"
+                strokeDashoffset="0"
+                className="opacity-25 group-hover/card:opacity-80 transition-opacity duration-500"
+                style={{ animation: "borderTravel 15s linear infinite" }}
+              />
+            </svg>
+
+            <div>
+              {/* Top Row: 06 + Icon */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="font-mono text-sm font-bold text-white">06</span>
+                  <div className="h-[2px] w-4 bg-[#3B82F6] mt-0.5 rounded-full" />
+                </div>
+                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-[#162744] text-[#60A5FA] transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+                  <Monitor className="h-4 w-4 stroke-[2]" />
+                </div>
+              </div>
+
+              {/* Title & Body */}
+              <h3 className="mt-8 font-jakarta text-[22px] font-bold text-white tracking-tight leading-tight">
+                Demonstration
+              </h3>
+              <p className="mt-3 font-jakarta text-[14px] text-[#94A3B8] leading-relaxed">
+                Work can be presented through reviews, showcases, project demonstrations, or other approved formats.
+              </p>
+            </div>
+
+            {/* Bottom Row */}
+            <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span className="font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">
+                SHARE WHAT YOU BUILD.
+              </span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition-all duration-300 group-hover/card:border-white group-hover/card:bg-[#1683E8]">
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* ═════════════════════════════════════════════
+              ROW 3: CARD 07 (HORIZONTAL FULL-WIDTH BANNER)
+             ═════════════════════════════════════════════ */}
+          <div className="ceb-card group/card lg:col-span-12 relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8 rounded-[24px] bg-white border border-[#E2E8F0]/90 shadow-[0_12px_36px_rgba(20,40,80,0.05)] px-7 py-6 sm:px-9 sm:py-7 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(20,40,80,0.08)] opacity-0">
+            {/* Subtle traveling border */}
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+              <rect
+                x="1"
+                y="1"
+                width="calc(100% - 2px)"
+                height="calc(100% - 2px)"
+                rx="23"
+                ry="23"
+                fill="none"
+                stroke="#1683E8"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="8 92"
+                strokeDashoffset="0"
+                className="opacity-20 group-hover/card:opacity-75 transition-opacity duration-500"
+                style={{ animation: "borderTravel 18s linear infinite" }}
+              />
+            </svg>
+
+            {/* Left: 07 Number + Title */}
+            <div className="flex items-center gap-6 sm:gap-8 shrink-0">
+              <div>
+                <span className="font-mono text-sm font-bold text-[#111111]">07</span>
+                <div className="h-[2px] w-4 bg-[#1683E8] mt-0.5 rounded-full" />
+              </div>
+              <h3 className="font-jakarta text-[22px] sm:text-[24px] font-bold text-[#111111] tracking-tight">
+                Progression
+              </h3>
+            </div>
+
+            {/* Middle: Body Text */}
+            <p className="font-jakarta text-[14px] sm:text-[15px] text-[#64748B] leading-relaxed max-w-2xl sm:px-4">
+              Participants can explore further learning, advanced projects, leadership responsibilities, entrepreneurship, or professional pathways.
+            </p>
+
+            {/* Right: Tag + Arrow */}
+            <div className="flex items-center gap-4 shrink-0 sm:self-center">
+              <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-[#94A3B8] whitespace-nowrap">
+                WHAT&apos;S NEXT.
+              </span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#D1D5DB] text-[#1683E8] transition-all duration-300 group-hover/card:border-[#1683E8] group-hover/card:bg-[#EDF4FF]">
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/card:translate-x-0.5" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
