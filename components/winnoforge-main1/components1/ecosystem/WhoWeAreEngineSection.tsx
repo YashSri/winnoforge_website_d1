@@ -2,21 +2,19 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ArrowDown,
   ArrowRight,
-  ArrowUp,
+  ArrowUpRight,
   Building2,
   CheckCircle2,
-  MousePointer,
   Play,
   TrendingUp,
   Wrench,
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -24,10 +22,16 @@ if (typeof window !== "undefined") {
 
 interface CapabilityStage {
   num: string;
+  eyebrow: string;
   title: string;
+  subtitle: string;
   tagline: string;
   description: string;
-  badge: string;
+  badgeBg: string;
+  badgeText: string;
+  accentColor: string;
+  bgGradient: string;
+  tag: string;
   icon: typeof Building2;
   highlights: string[];
 }
@@ -35,11 +39,17 @@ interface CapabilityStage {
 const CAPABILITY_STAGES: CapabilityStage[] = [
   {
     num: "01",
+    eyebrow: "INDUSTRY STANDARDS",
     title: "Industry Alignment",
+    subtitle: "Foundation",
     tagline: "Bridging education and real-world needs.",
     description:
       "Learning is directly connected to tools, workflows, problem statements, and operational expectations that exist beyond the classroom.",
-    badge: "INDUSTRY STANDARDS",
+    badgeBg: "bg-blue-50/90 border-blue-200/80",
+    badgeText: "text-[#1683E8]",
+    accentColor: "#1683E8",
+    bgGradient: "from-blue-50/90 via-white to-white",
+    tag: "FORGE / 01",
     icon: Building2,
     highlights: [
       "Enterprise tools and production workflows",
@@ -49,11 +59,17 @@ const CAPABILITY_STAGES: CapabilityStage[] = [
   },
   {
     num: "02",
+    eyebrow: "APPLIED EXECUTION",
     title: "Applied Learning",
+    subtitle: "Execution",
     tagline: "Execution-led, not lecture-led.",
     description:
       "Students build, document, present, receive rapid mentor feedback, and iterate until prototypes work under real-world conditions.",
-    badge: "FROM KNOWLEDGE TO IMPACT",
+    badgeBg: "bg-sky-50/90 border-sky-200/80",
+    badgeText: "text-[#0284C7]",
+    accentColor: "#0284C7",
+    bgGradient: "from-sky-50/80 via-white to-white",
+    tag: "FORGE / 02",
     icon: Wrench,
     highlights: [
       "Sprint-driven rapid prototype build cycles",
@@ -63,11 +79,17 @@ const CAPABILITY_STAGES: CapabilityStage[] = [
   },
   {
     num: "03",
+    eyebrow: "CAPABILITY PROOF",
     title: "Capability Development",
+    subtitle: "Outcomes",
     tagline: "Demonstrated ability over credentials.",
     description:
       "The goal is not only course completion. The goal is the development and verifiable proof of demonstrated problem-solving capability.",
-    badge: "DEMONSTRATED OUTCOMES",
+    badgeBg: "bg-indigo-50/90 border-indigo-200/80",
+    badgeText: "text-[#1D4ED8]",
+    accentColor: "#1D4ED8",
+    bgGradient: "from-indigo-50/70 via-white to-white",
+    tag: "FORGE / 03",
     icon: TrendingUp,
     highlights: [
       "Verifiable proof-of-work project portfolio",
@@ -77,16 +99,33 @@ const CAPABILITY_STAGES: CapabilityStage[] = [
   },
 ];
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ * WHO WE ARE: THE ENGINE BEHIND THE ECOSYSTEM
+ * Square layered card stack matching home page Philosophy.tsx
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function WhoWeAreEngineSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const card0Ref = useRef<HTMLDivElement>(null);
-  const card1Ref = useRef<HTMLDivElement>(null);
-  const card2Ref = useRef<HTMLDivElement>(null);
-  const scrollTriggerInstance = useRef<ScrollTrigger | null>(null);
+  const cardsStageRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
+  const [activeCardIndex, setActiveCardIndex] = useState<number>(0);
+  const activeIndexRef = useRef<number>(0);
   const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
-  const [activeStep, setActiveStep] = useState<number>(0);
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [isReducedMotion, setIsReducedMotion] = useState<boolean>(false);
+
+  // Check prefers-reduced-motion
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   // Close modal on escape key
   useEffect(() => {
@@ -105,636 +144,533 @@ export default function WhoWeAreEngineSection() {
     };
   }, [isVideoOpen]);
 
-  // Smooth scroll to card step within pinned section
-  const goToStep = useCallback((targetIdx: number) => {
-    setActiveStep(targetIdx);
+  // Ensure ScrollTrigger accurately calculates layout once window and assets load
+  useEffect(() => {
+    const handleRefresh = () => {
+      ScrollTrigger.refresh();
+    };
 
-    const st = scrollTriggerInstance.current;
-    if (st) {
-      const scrollRange = st.end - st.start;
-      const targetY =
-        targetIdx === 0
-          ? st.start + 20
-          : targetIdx === 1
-          ? st.start + scrollRange * 0.5
-          : st.end - 40;
-
-      window.scrollTo({ top: targetY, behavior: "smooth" });
+    if (document.readyState === "complete") {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", handleRefresh);
+      return () => window.removeEventListener("load", handleRefresh);
     }
   }, []);
 
-  const handleNext = () => {
-    const nextIdx = Math.min(2, activeStep + 1);
-    goToStep(nextIdx);
-  };
+  /**
+   * Ultra-smooth continuous card transform matching Philosophy.tsx
+   * Active: distance = 0
+   * Next: distance = +1
+   * Previous: distance = -1
+   */
+  const applyCardState = (
+    el: HTMLElement,
+    distance: number,
+    isMobile: boolean
+  ) => {
+    const yUnit = isMobile ? 28 : 42;
+    const rotUnit = isMobile ? 0.3 : 0.8;
 
-  const handlePrev = () => {
-    const prevIdx = Math.max(0, activeStep - 1);
-    goToStep(prevIdx);
+    // Vertical offset
+    const translateY = Math.max(-84, Math.min(84, distance * yUnit));
+
+    // Smooth physical scale curve
+    const absDist = Math.abs(distance);
+    const scale = Math.max(0.9, 1 - Math.min(absDist, 1.5) * 0.045);
+
+    // Subtle natural tilt
+    const rotation = Math.max(-2.0, Math.min(2.0, distance * -rotUnit));
+
+    // Opacity interpolation
+    let opacity = 0;
+    if (absDist === 0) {
+      opacity = 1;
+    } else if (distance > 0) {
+      if (distance <= 1) {
+        opacity = 1 - distance * 0.15; // 1 -> 0.85
+      } else if (distance <= 1.5) {
+        opacity = 0.85 - ((distance - 1) / 0.5) * 0.45; // 0.85 -> 0.40
+      } else if (distance <= 2.0) {
+        opacity = Math.max(0, 0.4 - ((distance - 1.5) / 0.5) * 0.4); // 0.40 -> 0
+      } else {
+        opacity = 0;
+      }
+    } else {
+      if (absDist <= 1) {
+        opacity = 1 - absDist * 0.2; // 1 -> 0.80
+      } else if (absDist <= 1.5) {
+        opacity = 0.8 - ((absDist - 1) / 0.5) * 0.45; // 0.80 -> 0.35
+      } else if (absDist <= 2.0) {
+        opacity = Math.max(0, 0.35 - ((absDist - 1.5) / 0.5) * 0.35); // 0.35 -> 0
+      } else {
+        opacity = 0;
+      }
+    }
+
+    // Dynamic depth shadow: deeper when active, lighter when layered
+    const shadowAlpha = Math.max(0.04, 0.12 - absDist * 0.04);
+    const shadowOffsetY = Math.max(8, Math.round(26 - absDist * 8));
+    const shadowBlur = Math.max(20, Math.round(60 - absDist * 16));
+
+    // Z-Index: Active card has highest layer
+    const zIndex = Math.max(1, 100 - Math.round(absDist * 15));
+
+    // Apply continuous GPU-accelerated transform
+    el.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotate(${rotation.toFixed(2)}deg)`;
+    el.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
+    el.style.boxShadow = `0 ${shadowOffsetY}px ${shadowBlur}px rgba(16, 42, 67, ${shadowAlpha.toFixed(3)}), 0 4px 12px rgba(16, 42, 67, 0.03)`;
+    el.style.zIndex = String(zIndex);
+    el.style.pointerEvents = absDist < 0.3 ? "auto" : "none";
   };
 
   useGSAP(
     () => {
-      if (
-        typeof window === "undefined" ||
-        !containerRef.current ||
-        !card0Ref.current ||
-        !card1Ref.current ||
-        !card2Ref.current
-      )
-        return;
+      if (isReducedMotion) return;
 
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
+      const mm = gsap.matchMedia();
 
-      if (prefersReducedMotion) {
-        gsap.set([card0Ref.current, card1Ref.current, card2Ref.current], {
-          clearProps: "all",
+      // Desktop & Tablet (>= 768px)
+      mm.add("(min-width: 768px)", () => {
+        cardRefs.current.forEach((cardEl, idx) => {
+          if (!cardEl) return;
+          applyCardState(cardEl, idx, false);
         });
-        return;
-      }
 
-      // Initial entrance reveal for left column narrative
-      gsap.from(".wwa-reveal", {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          once: true,
-        },
-        opacity: 0,
-        y: 20,
-        stagger: 0.08,
-        duration: 0.6,
-        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-      });
-
-      // Set initial card states
-      // Card 0: in front, active, dominant
-      gsap.set(card0Ref.current, {
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        zIndex: 30,
-      });
-
-      // Card 1: directly behind card 0
-      gsap.set(card1Ref.current, {
-        y: 32,
-        scale: 0.95,
-        opacity: 0.88,
-        zIndex: 20,
-      });
-
-      // Card 2: behind card 1
-      gsap.set(card2Ref.current, {
-        y: 64,
-        scale: 0.90,
-        opacity: 0.70,
-        zIndex: 10,
-      });
-
-      // Master scrubbed timeline with ScrollTrigger pinning
-      const cardTl = gsap.timeline({
-        scrollTrigger: {
+        const st = ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
-          end: "+=1700",
+          end: "+=150%", // Fast, responsive scroll distance
           pin: true,
-          anticipatePin: 1,
-          scrub: 0.6,
+          scrub: 0.35, // Fast, silky-smooth response without lag
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
-            setScrollProgress(p);
-            if (p < 0.40) {
-              setActiveStep(0);
-            } else if (p < 0.78) {
-              setActiveStep(1);
-            } else {
-              setActiveStep(2);
+
+            // Direct, continuous 1:1 card progress from 0 to 2 without dead zones
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
+
+            // Synchronized active index for counter and vertical indicator
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
+            if (nextIdx !== activeIndexRef.current) {
+              activeIndexRef.current = nextIdx;
+              setActiveCardIndex(nextIdx);
             }
+
+            cardRefs.current.forEach((cardEl, idx) => {
+              if (!cardEl) return;
+              const distance = idx - cardProgress;
+              applyCardState(cardEl, distance, false);
+            });
           },
-        },
+        });
+
+        scrollTriggerRef.current = st;
       });
 
-      scrollTriggerInstance.current = cardTl.scrollTrigger || null;
+      // Mobile (< 768px)
+      mm.add("(max-width: 767px)", () => {
+        cardRefs.current.forEach((cardEl, idx) => {
+          if (!cardEl) return;
+          applyCardState(cardEl, idx, true);
+        });
 
-      // ──────────────── PHASE 1: CARD 0 (01 Industry Alignment) ACTIVE ────────────────
-      // Hold card 0 active through initial scroll (from t=0.0 to 0.40)
-      cardTl.to({}, { duration: 0.4 });
+        const st = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=130%",
+          pin: true,
+          scrub: 0.35,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const cardProgress = Math.max(0, Math.min(2, p * 2));
 
-      // ──────────────── PHASE 2: TRANSITION TO CARD 1 (02 Applied Learning) ────────────
-      // Smoothly transition card 0 away and bring card 1 to dominant front (from t=0.4 to 1.0)
-      cardTl.to(
-        card0Ref.current,
-        {
-          y: -90,
-          opacity: 0,
-          scale: 0.95,
-          zIndex: 10,
-          duration: 0.6,
-          ease: "power1.inOut",
-        },
-        0.4,
-      );
+            const nextIdx = cardProgress < 0.5 ? 0 : cardProgress < 1.5 ? 1 : 2;
+            if (nextIdx !== activeIndexRef.current) {
+              activeIndexRef.current = nextIdx;
+              setActiveCardIndex(nextIdx);
+            }
 
-      cardTl.to(
-        card1Ref.current,
-        {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          zIndex: 30,
-          duration: 0.6,
-          ease: "power1.inOut",
-        },
-        0.4,
-      );
+            cardRefs.current.forEach((cardEl, idx) => {
+              if (!cardEl) return;
+              const distance = idx - cardProgress;
+              applyCardState(cardEl, distance, true);
+            });
+          },
+        });
 
-      cardTl.to(
-        card2Ref.current,
-        {
-          y: 32,
-          scale: 0.95,
-          opacity: 0.88,
-          zIndex: 20,
-          duration: 0.6,
-          ease: "power1.inOut",
-        },
-        0.4,
-      );
-
-      // Hold card 1 active through middle scroll (from t=1.0 to 1.4)
-      cardTl.to({}, { duration: 0.4 });
-
-      // ──────────────── PHASE 3: TRANSITION TO CARD 2 (03 Capability Development) ─────────
-      // Smoothly transition card 1 away and bring card 2 to dominant front (from t=1.4 to 2.0)
-      cardTl.to(
-        card1Ref.current,
-        {
-          y: -90,
-          opacity: 0,
-          scale: 0.95,
-          zIndex: 10,
-          duration: 0.6,
-          ease: "power1.inOut",
-        },
-        1.4,
-      );
-
-      cardTl.to(
-        card2Ref.current,
-        {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          zIndex: 30,
-          duration: 0.6,
-          ease: "power1.inOut",
-        },
-        1.4,
-      );
-
-      // Hold card 2 active through final scroll so it is 100% visible and enjoyed (from t=2.0 to 2.5)
-      cardTl.to({}, { duration: 0.5 });
+        scrollTriggerRef.current = st;
+      });
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [isReducedMotion] }
   );
+
+  // Smooth scroll to card when clicking progress indicator
+  const handleJumpToCard = (targetIndex: number) => {
+    if (!scrollTriggerRef.current) return;
+    const st = scrollTriggerRef.current;
+    const progressMap = [0.02, 0.5, 0.98];
+    const targetProgress = progressMap[targetIndex] ?? 0;
+    const targetScroll = st.start + (st.end - st.start) * targetProgress;
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  };
 
   return (
     <section
       ref={containerRef}
       id="who-we-are"
-      className="relative w-full bg-[#F7F8FC] select-none"
+      aria-label="Who We Are: The Engine Behind The Ecosystem"
+      className="relative w-full bg-[#F7F8FC] text-[#111111] overflow-hidden select-none border-t border-[#D9DEE7]/70"
     >
-      {/* Pinned Viewport Container (Centered & Proportionate) */}
-      <div className="w-full min-h-screen flex flex-col justify-center py-10 sm:py-14 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12 select-none relative">
-        {/* Subtle Solid Editorial Background Grid */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none"
-        >
-          <svg
-            className="h-full w-full"
-            xmlns="http://www.w3.org/2000/svg"
-            width="100%"
-            height="100%"
-          >
-            <defs>
-              <pattern
-                id="wwa-grid"
-                width="80"
-                height="80"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 80 0 L 0 0 0 80"
-                  fill="none"
-                  stroke="#D9DEE7"
-                  strokeWidth="1"
-                  strokeOpacity="0.4"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#wwa-grid)" />
-          </svg>
-        </div>
+      <style>{`
+        @keyframes borderTravel {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -100; }
+        }
+      `}</style>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1360px]">
-          {/* ━━━━━━━━ TOP BAR: BRAND MARK & EDITORIAL TAGS ━━━━━━━━ */}
-          <div className="mb-6 sm:mb-8 flex items-center justify-between text-xs select-none">
-            <span className="font-clash text-sm sm:text-base font-bold tracking-wider text-[#111111]">
-              FORGE
+      {/* Reduced motion static fallback */}
+      {isReducedMotion ? (
+        <div className="w-full max-w-[1360px] mx-auto px-6 py-20 flex flex-col gap-12">
+          <div className="max-w-xl">
+            <span className="font-jakarta text-xs font-bold tracking-[0.25em] text-[#1683E8] uppercase">
+              — WHO WE ARE —
             </span>
-            <div className="flex items-center gap-2 font-jakarta text-[11px] font-bold uppercase tracking-[0.2em] text-[#667085]">
-              <span>PEOPLE</span>
-              <span>&times;</span>
-              <span>IDEAS</span>
-              <span>&times;</span>
-              <span>IMPACT</span>
+            <h2 className="mt-3 font-clash font-bold text-4xl sm:text-5xl text-[#111111] leading-tight tracking-tight">
+              Winnovation FORGE:{" "}
+              <span className="text-[#1683E8]">Building What Comes Next.</span>
+            </h2>
+            <p className="mt-4 font-sans text-base text-[#5F6672] leading-relaxed">
+              Winnovation FORGE is built around a simple belief: education
+              becomes more valuable when knowledge is applied, tested,
+              reviewed, and transformed into something real.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {CAPABILITY_STAGES.map((card) => (
+              <article
+                key={card.num}
+                className="aspect-square rounded-[28px] sm:rounded-[32px] border border-slate-200/90 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(16,42,67,0.08)]"
+              >
+                <div>
+                  <div className="flex justify-between items-start pb-4 border-b border-slate-200/80">
+                    <span className="font-poppins text-sm font-bold text-[#111111]">
+                      {card.num}
+                    </span>
+                    <span className="font-poppins text-xs font-bold tracking-[0.2em] text-[#5F6672] uppercase">
+                      {card.eyebrow}
+                    </span>
+                  </div>
+                  <h3 className="mt-7 font-poppins font-bold text-3xl sm:text-4xl text-[#111111] tracking-tight">
+                    {card.title}
+                    <span style={{ color: card.accentColor }}>.</span>
+                  </h3>
+                  <p className="mt-4 font-sans text-sm text-[#5F6672] leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+                <div className="pt-5 border-t border-slate-200/80 flex items-center justify-between mt-8">
+                  <span className="font-mono text-xs font-bold tracking-wider text-[#111111]">
+                    {card.tag}
+                  </span>
+                  <div className="inline-flex items-center gap-1 text-xs font-semibold text-[#1683E8]">
+                    <span>Explore Stage</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ) : (
+        /* Pinned 100vh Viewport Stage matching Philosophy.tsx */
+        <div className="relative w-full h-screen min-h-screen flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 max-w-[1440px] mx-auto">
+          {/* Mobile Top Header */}
+          <div className="md:hidden flex items-center justify-between w-full pt-6 pb-2 z-10">
+            <h2 className="font-clash font-bold text-2xl text-[#111111]">
+              Who We <span className="text-[#1683E8]">Are.</span>
+            </h2>
+            <div className="font-mono text-xs font-bold text-[#1683E8]">
+              0{activeCardIndex + 1} / 03
             </div>
           </div>
 
-          {/* ━━━━━━━━ MAIN COMPOSITION: LEFT NARRATIVE + RIGHT CARD STACK ━━━━━━━━ */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
-            {/* ──────── LEFT COLUMN: EDITORIAL NARRATIVE (~48%) ──────── */}
-            <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center text-left">
-              {/* Eyebrow */}
-              <div className="wwa-reveal flex items-center gap-3 select-none">
-                <span className="h-[1.5px] w-8 sm:w-10 bg-[#1683E8]" />
-                <span className="font-jakarta text-xs sm:text-[13px] font-bold uppercase tracking-[0.22em] text-[#1683E8]">
-                  WHO WE ARE
+          {/* Desktop Left Column: Narrative & Stats */}
+          <div className="hidden md:flex w-full md:w-5/12 lg:w-5/12 xl:w-5/12 z-10 flex-col justify-center text-left pr-6">
+            {/* Top Tag */}
+            <div className="flex items-center gap-2.5 mb-5">
+              <span
+                aria-hidden="true"
+                className="w-2 h-2 rounded-full bg-[#1683E8] animate-pulse"
+              />
+              <span className="font-jakarta text-xs font-bold tracking-[0.22em] text-[#1683E8] uppercase">
+                THE ENGINE BEHIND THE ECOSYSTEM
+              </span>
+            </div>
+
+            {/* Main Editorial Headline */}
+            <h2 className="font-clash font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.96] tracking-tight text-[#111111]">
+              Winnovation
+              <br />
+              FORGE:
+              <br />
+              <span className="text-[#1683E8]">Building What</span>
+              <br />
+              <span className="text-[#1683E8]">Comes Next.</span>
+            </h2>
+
+            {/* Statement */}
+            <p className="mt-6 font-sans text-base sm:text-lg text-[#5F6672] max-w-md leading-relaxed border-l-2 border-[#1683E8] pl-5 font-normal">
+              Winnovation FORGE is built around a simple belief: education
+              becomes more valuable when knowledge is applied, tested,
+              reviewed, and transformed into something real.
+            </p>
+
+            {/* Metrics Bar */}
+            <div className="mt-6 pt-5 border-t border-[#D9DEE7] flex flex-wrap items-center gap-4 sm:gap-6 select-none">
+              <div>
+                <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
+                  50+
+                </span>
+                <span className="font-jakarta text-[10px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
+                  STARTUPS
                 </span>
               </div>
-
-              {/* Headline */}
-              <h2 className="wwa-reveal mt-4 sm:mt-5 font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[50px] font-bold text-[#111111] leading-[0.96] tracking-[-0.03em] select-none">
-                <span className="block">Winnovation</span>
-                <span className="block">FORGE:</span>
-                <span className="block">Building What</span>
-                <span className="block text-[#1683E8]">Comes Next</span>
-              </h2>
-
-              {/* Supporting Paragraph */}
-              <p className="wwa-reveal mt-4 sm:mt-5 font-jakarta text-sm sm:text-base leading-relaxed text-[#667085] max-w-[500px]">
-                Winnovation FORGE is built around a simple belief: education
-                becomes more valuable when knowledge is applied, tested,
-                reviewed, and transformed into something real.
-              </p>
-
-              {/* Metrics Bar */}
-              <div className="wwa-reveal mt-6 pt-5 border-t border-[#D9DEE7] flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-7 select-none">
-                <div>
-                  <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
-                    50+
-                  </span>
-                  <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
-                    STARTUPS
-                  </span>
-                </div>
-                <div className="hidden sm:block w-[1px] h-7 bg-[#D9DEE7]" />
-                <div>
-                  <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
-                    1000+
-                  </span>
-                  <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
-                    STUDENTS
-                  </span>
-                </div>
-                <div className="hidden sm:block w-[1px] h-7 bg-[#D9DEE7]" />
-                <div>
-                  <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
-                    20+
-                  </span>
-                  <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
-                    INSTITUTIONS
-                  </span>
-                </div>
-                <div className="hidden sm:block w-[1px] h-7 bg-[#D9DEE7]" />
-                <div>
-                  <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
-                    &infin;
-                  </span>
-                  <span className="font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
-                    OPPORTUNITIES
-                  </span>
-                </div>
+              <div className="w-[1px] h-7 bg-[#D9DEE7]" />
+              <div>
+                <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
+                  1000+
+                </span>
+                <span className="font-jakarta text-[10px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
+                  STUDENTS
+                </span>
               </div>
-
-              {/* Action Buttons */}
-              <div className="wwa-reveal mt-7 flex flex-wrap items-center gap-3.5 sm:gap-4">
-                <Link
-                  href="/programs"
-                  className="group inline-flex h-[50px] items-center gap-2 rounded-full bg-[#1683E8] px-6 sm:px-7 font-jakarta text-xs sm:text-sm font-bold text-white shadow-[0_10px_25px_rgba(22,131,232,0.25)] transition-all duration-300 hover:bg-[#102A43] hover:-translate-y-0.5 active:scale-95"
-                >
-                  <span>Explore Our Journey</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-
-                <button
-                  type="button"
-                  onClick={() => setIsVideoOpen(true)}
-                  className="inline-flex h-[50px] items-center gap-3 rounded-full border border-[#D9DEE7] bg-white px-5 font-jakarta text-xs sm:text-sm font-semibold text-[#111111] shadow-sm transition-all duration-300 hover:border-[#1683E8] hover:bg-[#F7F8FC] active:scale-95"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF3FF] text-[#1683E8]">
-                    <Play className="h-3.5 w-3.5 fill-current ml-0.5" />
-                  </span>
-                  <div className="text-left leading-tight">
-                    <span className="block font-bold text-[#111111]">
-                      Watch Video
-                    </span>
-                    <span className="block text-[10px] text-[#667085]">
-                      1 min overview
-                    </span>
-                  </div>
-                </button>
+              <div className="w-[1px] h-7 bg-[#D9DEE7]" />
+              <div>
+                <span className="font-clash text-xl sm:text-2xl font-bold text-[#111111] block leading-none">
+                  20+
+                </span>
+                <span className="font-jakarta text-[10px] font-bold uppercase tracking-wider text-[#667085] mt-1 block">
+                  INSTITUTIONS
+                </span>
               </div>
             </div>
 
-            {/* ──────── RIGHT COLUMN: TEXT-ONLY CAPABILITY CARD STACK (~52%) ──────── */}
-            <div className="lg:col-span-6 xl:col-span-7 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 relative">
-              {/* Card Stack Stage */}
-              <div className="relative w-full sm:w-[440px] md:w-[480px] lg:w-[450px] xl:w-[490px] h-[440px] sm:h-[460px] flex items-center justify-center select-none">
-                {CAPABILITY_STAGES.map((stage, idx) => {
-                  const Icon = stage.icon;
-                  const cardRef =
-                    idx === 0 ? card0Ref : idx === 1 ? card1Ref : card2Ref;
-                  const isActive = activeStep === idx;
+            {/* Actions */}
+            <div className="mt-7 flex items-center gap-4">
+              <Link
+                href="/programs"
+                className="group inline-flex h-[46px] items-center gap-2 rounded-full bg-[#1683E8] px-6 font-jakarta text-xs sm:text-sm font-bold text-white shadow-[0_10px_25px_rgba(22,131,232,0.25)] transition-all duration-300 hover:bg-[#102A43] hover:-translate-y-0.5 active:scale-95"
+              >
+                <span>Explore Journey</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
 
-                  return (
-                    <div
-                      key={stage.num}
-                      ref={cardRef}
-                      onClick={() => goToStep(idx)}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`View stage ${stage.num}: ${stage.title}`}
-                      className={`absolute inset-0 rounded-[28px] p-6 sm:p-7 flex flex-col justify-between overflow-hidden cursor-pointer will-change-transform border transition-colors duration-400 select-none ${
-                        isActive
-                          ? "bg-[#1683E8] text-white border-[#1474CE] shadow-[0_22px_50px_rgba(22,131,232,0.30)]"
-                          : "bg-white text-[#111111] border-[#D9DEE7] shadow-[0_12px_30px_rgba(16,42,67,0.06)] hover:border-[#1683E8]"
-                      }`}
-                    >
-                      {/* Top Row: Index + Icon Badge */}
-                      <div className="flex items-start justify-between">
-                        <div className="flex flex-col">
-                          <span
-                            className={`font-clash text-2xl sm:text-3xl font-bold leading-none ${
-                              isActive ? "text-white" : "text-[#1683E8]"
-                            }`}
-                          >
-                            {stage.num}
-                          </span>
-                          <span
-                            className={`font-jakarta text-[10px] font-bold uppercase tracking-[0.16em] mt-1 ${
-                              isActive ? "text-white/80" : "text-[#667085]"
-                            }`}
-                          >
-                            CAPABILITY STAGE
-                          </span>
-                        </div>
+              <button
+                type="button"
+                onClick={() => setIsVideoOpen(true)}
+                className="inline-flex h-[46px] items-center gap-2.5 rounded-full border border-[#D9DEE7] bg-white px-5 font-jakarta text-xs sm:text-sm font-semibold text-[#111111] shadow-sm transition-all duration-300 hover:border-[#1683E8] hover:bg-[#F7F8FC] active:scale-95 cursor-pointer"
+              >
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#EAF3FF] text-[#1683E8]">
+                  <Play className="h-3 w-3 fill-current ml-0.5" />
+                </span>
+                <span>Watch Video</span>
+              </button>
+            </div>
 
-                        <div
-                          className={`flex h-11 w-11 items-center justify-center rounded-2xl shadow-sm transition-transform duration-300 ${
-                            isActive
-                              ? "bg-white/20 text-white"
-                              : "bg-[#EAF3FF] text-[#1683E8]"
-                          }`}
-                        >
-                          <Icon className="h-5 w-5 stroke-[1.8]" />
-                        </div>
-                      </div>
-
-                      {/* Middle Block: Title, Tagline, Description, and Highlights (100% Text-Only) */}
-                      <div className="my-auto py-2">
-                        <h3
-                          className={`font-clash text-2xl sm:text-[26px] font-bold leading-tight ${
-                            isActive ? "text-white" : "text-[#111111]"
-                          }`}
-                        >
-                          {stage.title}
-                        </h3>
-
-                        <p
-                          className={`mt-1 font-jakarta text-xs sm:text-[13px] font-semibold ${
-                            isActive ? "text-white/90" : "text-[#1683E8]"
-                          }`}
-                        >
-                          {stage.tagline}
-                        </p>
-
-                        <p
-                          className={`mt-2.5 font-jakarta text-xs sm:text-[13px] leading-relaxed ${
-                            isActive ? "text-white/85" : "text-[#667085]"
-                          }`}
-                        >
-                          {stage.description}
-                        </p>
-
-                        {/* Text Highlights (Replacing Images) */}
-                        <div className="mt-3.5 space-y-1.5 pt-3 border-t border-current/15">
-                          {stage.highlights.map((highlight) => (
-                            <div
-                              key={highlight}
-                              className="flex items-center gap-2"
-                            >
-                              <CheckCircle2
-                                className={`h-3.5 w-3.5 shrink-0 ${
-                                  isActive ? "text-white" : "text-[#1683E8]"
-                                }`}
-                              />
-                              <span
-                                className={`font-jakarta text-[11px] sm:text-xs font-medium leading-tight ${
-                                  isActive ? "text-white/90" : "text-[#4A5568]"
-                                }`}
-                              >
-                                {highlight}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Bottom Metadata */}
-                      <div className="flex items-center justify-between pt-3 border-t border-current/15">
-                        <span
-                          className={`inline-flex items-center rounded-full px-3 py-1 font-jakarta text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] ${
-                            isActive
-                              ? "bg-white/15 text-white"
-                              : "bg-[#EAF3FF] text-[#1683E8]"
-                          }`}
-                        >
-                          {stage.badge}
-                        </span>
-                        <span
-                          className={`font-jakarta text-[10px] font-bold uppercase tracking-wider ${
-                            isActive ? "text-white/70" : "text-[#667085]"
-                          }`}
-                        >
-                          WINNOVATION FORGE
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* ━━━━━━━━ VERTICAL STEP SELECTOR & NAVIGATION (01 / 02 / 03) ━━━━━━━━ */}
-              <div className="flex sm:flex-col items-center justify-center gap-2.5 sm:gap-3 select-none">
-                {/* Prev Arrow */}
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  disabled={activeStep === 0}
-                  aria-label="Previous capability stage"
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D9DEE7] bg-white shadow-sm transition-all active:scale-95 ${
-                    activeStep === 0
-                      ? "opacity-40 cursor-not-allowed text-[#CBD5E1]"
-                      : "text-[#111111] hover:bg-[#1683E8] hover:text-white hover:border-[#1683E8]"
-                  }`}
-                >
-                  <ArrowUp className="h-4 w-4" />
-                </button>
-
-                {/* Step Indicator with Progress Bar */}
-                <div className="flex sm:flex-col items-center gap-1.5">
-                  {/* Step 01 */}
-                  <button
-                    type="button"
-                    onClick={() => goToStep(0)}
-                    aria-label="Jump to stage 01"
-                    className={`h-9 w-9 rounded-full font-clash text-xs font-bold transition-all duration-300 flex items-center justify-center ${
-                      activeStep === 0
-                        ? "bg-[#1683E8] text-white scale-110 shadow-md"
-                        : "bg-white border border-[#D9DEE7] text-[#667085] hover:border-[#1683E8] hover:text-[#1683E8]"
-                    }`}
-                  >
-                    01
-                  </button>
-
-                  {/* Connecting Line 1 */}
-                  <div className="hidden sm:block w-[2px] h-6 bg-[#D9DEE7] relative overflow-hidden rounded-full">
-                    <div
-                      className="absolute top-0 w-full bg-[#1683E8] transition-all duration-150"
-                      style={{
-                        height: `${Math.min(
-                          100,
-                          Math.max(0, (scrollProgress / 0.5) * 100),
-                        )}%`,
-                      }}
-                    />
-                  </div>
-
-                  {/* Step 02 */}
-                  <button
-                    type="button"
-                    onClick={() => goToStep(1)}
-                    aria-label="Jump to stage 02"
-                    className={`h-9 w-9 rounded-full font-clash text-xs font-bold transition-all duration-300 flex items-center justify-center ${
-                      activeStep === 1
-                        ? "bg-[#1683E8] text-white scale-110 shadow-md"
-                        : "bg-white border border-[#D9DEE7] text-[#667085] hover:border-[#1683E8] hover:text-[#1683E8]"
-                    }`}
-                  >
-                    02
-                  </button>
-
-                  {/* Connecting Line 2 */}
-                  <div className="hidden sm:block w-[2px] h-6 bg-[#D9DEE7] relative overflow-hidden rounded-full">
-                    <div
-                      className="absolute top-0 w-full bg-[#1683E8] transition-all duration-150"
-                      style={{
-                        height: `${Math.min(
-                          100,
-                          Math.max(0, ((scrollProgress - 0.5) / 0.5) * 100),
-                        )}%`,
-                      }}
-                    />
-                  </div>
-
-                  {/* Step 03 */}
-                  <button
-                    type="button"
-                    onClick={() => goToStep(2)}
-                    aria-label="Jump to stage 03"
-                    className={`h-9 w-9 rounded-full font-clash text-xs font-bold transition-all duration-300 flex items-center justify-center ${
-                      activeStep === 2
-                        ? "bg-[#1683E8] text-white scale-110 shadow-md"
-                        : "bg-white border border-[#D9DEE7] text-[#667085] hover:border-[#1683E8] hover:text-[#1683E8]"
-                    }`}
-                  >
-                    03
-                  </button>
-                </div>
-
-                {/* Next Arrow */}
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  disabled={activeStep === 2}
-                  aria-label="Next capability stage"
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border border-[#D9DEE7] bg-white shadow-sm transition-all active:scale-95 ${
-                    activeStep === 2
-                      ? "opacity-40 cursor-not-allowed text-[#CBD5E1]"
-                      : "text-[#111111] hover:bg-[#1683E8] hover:text-white hover:border-[#1683E8]"
-                  }`}
-                >
-                  <ArrowDown className="h-4 w-4" />
-                </button>
-              </div>
+            {/* Layer Indicator */}
+            <div className="mt-8 flex items-center gap-3 text-xs font-jakarta text-[#5F6672]">
+              <span className="text-[#1683E8] font-bold font-mono">
+                0{activeCardIndex + 1} / 03
+              </span>
+              <span aria-hidden="true" className="w-8 h-[1px] bg-[#CBD5E1]" />
+              <span className="uppercase tracking-wider font-semibold text-[#111111]">
+                {CAPABILITY_STAGES[activeCardIndex].eyebrow}
+              </span>
             </div>
           </div>
 
-          {/* ━━━━━━━━ COMPACT EDITORIAL FOOTNOTE BAR ━━━━━━━━ */}
-          <div className="mt-8 sm:mt-10 pt-5 border-t border-[#D9DEE7] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs select-none">
-            {/* Bottom Left Footnote */}
-            <div className="hidden md:flex flex-col gap-0.5 font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-[#667085]">
-              <span>REAL LEARNING.</span>
-              <span>REAL OPPORTUNITIES.</span>
-              <span>A BRIGHTER TOMORROW.</span>
-            </div>
+          {/* Right Column: Square Card Stage matching Philosophy.tsx */}
+          <div className="w-full md:w-7/12 lg:w-7/12 xl:w-7/12 flex items-center justify-center md:justify-end xl:justify-center relative my-auto">
+            {/* Square Visual Stage */}
+            <div
+              ref={cardsStageRef}
+              className="relative aspect-square w-[88vw] max-w-[420px] sm:max-w-[480px] md:w-[min(560px,46vw)] md:h-[min(560px,46vw)] md:max-w-[560px] md:max-h-[560px] mx-auto"
+            >
+              {CAPABILITY_STAGES.map((card, idx) => (
+                <article
+                  key={card.num}
+                  ref={(el) => {
+                    cardRefs.current[idx] = el;
+                  }}
+                  className={`absolute inset-0 aspect-square w-full h-full rounded-[28px] sm:rounded-[32px] border border-slate-200/90 bg-gradient-to-br ${card.bgGradient} p-6 sm:p-9 lg:p-10 flex flex-col justify-between backdrop-blur-2xl will-change-transform select-none overflow-hidden`}
+                  style={{
+                    transformOrigin: "center center",
+                  }}
+                >
+                  {/* Subtle Background Accent Aura in Blue Shade */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-[60px] opacity-40 pointer-events-none"
+                    style={{ backgroundColor: card.accentColor }}
+                  />
 
-            {/* Center Interactive Indicator */}
-            <div className="flex items-center gap-2 font-jakarta text-[11px] font-bold uppercase tracking-[0.2em] text-[#1683E8]">
-              <MousePointer className="h-3.5 w-3.5 animate-bounce" />
-              <span>SCROLL OR CLICK 01 &bull; 02 &bull; 03 TO CYCLE STAGES</span>
-            </div>
+                  {/* Card Header: 01 and Eyebrow with rounded pill badge */}
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-center pb-4 sm:pb-5 border-b border-slate-200/80">
+                      <div className="flex items-center gap-3">
+                        <span className="font-poppins text-sm sm:text-base font-bold text-[#111111]">
+                          {card.num}
+                        </span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                        <span className="font-poppins text-xs sm:text-[13px] font-semibold tracking-[0.18em] text-[#5F6672] uppercase">
+                          {card.eyebrow}
+                        </span>
+                      </div>
 
-            {/* Bottom Right Footnote */}
-            <div className="hidden md:flex flex-col items-end gap-0.5 font-jakarta text-[10px] font-bold uppercase tracking-[0.18em] text-[#667085]">
-              <span>BUILT BY PEOPLE.</span>
-              <span>FOR WHAT&apos;S NEXT.</span>
+                      {/* Layer Pill Badge */}
+                      <span
+                        className={`font-poppins text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full border ${card.badgeBg} ${card.badgeText} tracking-wide`}
+                      >
+                        {card.subtitle}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Title, Tagline & Description in Lower-Middle */}
+                  <div className="my-auto py-2 sm:py-3 relative z-10">
+                    <h3 className="font-poppins font-bold text-[clamp(28px,3.4vw,48px)] leading-[0.96] tracking-[-0.04em] text-[#111111]">
+                      {card.title}
+                      <span style={{ color: card.accentColor }}>.</span>
+                    </h3>
+
+                    <p
+                      className="mt-2 font-jakarta text-xs sm:text-sm font-semibold"
+                      style={{ color: card.accentColor }}
+                    >
+                      {card.tagline}
+                    </p>
+
+                    <p className="mt-3 font-sans text-xs sm:text-sm text-[#5F6672] leading-relaxed max-w-[430px] font-normal">
+                      {card.description}
+                    </p>
+
+                    {/* Highlights Pills */}
+                    <div className="mt-4 flex flex-wrap gap-1.5 sm:gap-2">
+                      {card.highlights.map((item) => (
+                        <span
+                          key={item}
+                          className="inline-flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 text-[#111111] text-[10px] sm:text-[11px] font-medium px-2.5 py-1 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+                        >
+                          <CheckCircle2
+                            className="h-3 w-3 shrink-0"
+                            style={{ color: card.accentColor }}
+                          />
+                          <span>{item}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Card Footer: FORGE / 01 ───── Explore Stage → */}
+                  <div className="pt-4 sm:pt-5 border-t border-slate-200/80 flex items-center justify-between gap-4 relative z-10">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-xs sm:text-[13px] font-bold tracking-wider text-[#111111]">
+                        {card.tag}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="hidden sm:inline-block w-8 h-[1px] bg-slate-300"
+                      />
+                    </div>
+
+                    <div className="group/link inline-flex items-center gap-1.5 font-poppins text-xs sm:text-sm font-semibold text-[#111111] hover:text-[#1683E8] transition-colors cursor-pointer">
+                      <span>Explore Stage</span>
+                      <ArrowUpRight
+                        className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1683E8] transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
+          </div>
+
+          {/* Minimal Vertical Progress Indicator matching Philosophy.tsx */}
+          <div
+            className="hidden md:flex absolute right-4 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 py-4 px-2.5 rounded-full bg-white/90 border border-slate-200/80 shadow-[0_4px_20px_rgba(16,42,67,0.06)] backdrop-blur-md select-none"
+            aria-label="Stage progress indicator"
+          >
+            {CAPABILITY_STAGES.map((card, idx) => {
+              const isActive = activeCardIndex === idx;
+
+              return (
+                <button
+                  key={card.num}
+                  type="button"
+                  onClick={() => handleJumpToCard(idx)}
+                  className="group flex flex-col items-center gap-1.5 cursor-pointer focus:outline-none p-1 transition-transform"
+                  aria-label={`Jump to stage ${card.num}: ${card.title}`}
+                >
+                  <span
+                    className={`font-poppins text-xs font-bold transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#1683E8]"
+                        : "text-[#5F6672] group-hover:text-[#111111]"
+                    }`}
+                  >
+                    {card.num}
+                  </span>
+                  <span
+                    className={`rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "w-2.5 h-2.5 bg-[#1683E8] ring-2 ring-[#1683E8]/30 scale-125"
+                        : "w-1.5 h-1.5 bg-slate-300 group-hover:bg-slate-500"
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </div>
         </div>
-      </div>
+      )}
 
-      {/* ━━━━━━━━ VIDEO MODAL ━━━━━━━━ */}
+      {/* Video Modal */}
       {isVideoOpen && (
         <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 sm:p-6"
           onClick={() => setIsVideoOpen(false)}
         >
           <div
-            className="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-[#D9DEE7] bg-black shadow-2xl"
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-black shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              type="button"
-              onClick={() => setIsVideoOpen(false)}
-              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-colors hover:bg-white/40"
-              aria-label="Close video"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <video
-              src="/forge-hero-logo.mp4"
-              controls
-              autoPlay
-              className="aspect-video w-full object-cover"
-            />
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
+              <span className="font-jakarta text-xs font-bold uppercase tracking-widest text-white/70">
+                Winnovation FORGE Overview
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsVideoOpen(false)}
+                className="rounded-lg p-1.5 text-white/70 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+                aria-label="Close overview video"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="relative aspect-video w-full bg-black">
+              <video
+                src="/forge-hero-logo.mp4"
+                controls
+                autoPlay
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       )}
