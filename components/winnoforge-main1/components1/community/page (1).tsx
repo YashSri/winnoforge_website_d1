@@ -221,7 +221,6 @@ export default function CommunityNewPage() {
 
         <CommunityEngagementSection />
         <CommunityAdvantageSection />
-        <ValueStripSection />
         <CommunityGuidelines />
 
         {/* =====================================================
@@ -326,46 +325,6 @@ function BenefitSection({ section }: BenefitSectionProps) {
               </article>
             );
           })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── 6. VALUE STRIP ───────────────────────────────────────────────────────────
-
-function ValueStripSection() {
-  return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-10 text-center">
-          <h2 className="font-varela text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            Inside the FORGE Community
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl font-jakarta text-lg text-foreground/70">
-            Built for builders. Backed by institutions. Connected to industry.
-          </p>
-        </div>
-
-        <div className="rounded-4xl border border-black/10 bg-gradient-to-br from-[#F7FBFF] via-white to-[#EEF5FF] px-6 py-8 shadow-[0_16px_40px_rgba(24,42,72,0.08)] backdrop-blur-sm md:px-10">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {valuePills.map((pill) => {
-              const Icon = pill.Icon;
-              return (
-                <div
-                  key={pill.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-black/10 bg-white/88 px-4 py-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(77,150,255,0.12)]"
-                >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[#78B2FF] text-white shadow-[0_10px_24px_rgba(77,150,255,0.22)]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <p className="font-jakarta text-sm font-semibold leading-snug text-foreground">
-                    {pill.label}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
