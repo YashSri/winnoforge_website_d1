@@ -77,18 +77,6 @@ const participationLoopSteps = [
   { title: "Continue", description: "Explore the next activity, pathway, or opportunity within the ecosystem." },
 ];
 
-const communityFaqs = [
-  { question: "Who can participate in the FORGE community?", answer: "Learners, builders, mentors, faculty, institutions, founders, and industry contributors — subject to specific program or activity requirements." },
-  { question: "Is the community open to everyone?", answer: "Most activities are open, but some are restricted to approved participants or partners depending on the program." },
-  { question: "How can I join an event?", answer: "Use the Register Interest button on the relevant event card above, or the Join FORGE CTA." },
-  { question: "Can I share my project?", answer: "Yes — approved project showcases and stories are published through our review process." },
-  { question: "Can I start a community activity?", answer: "Participants can propose workshops, discussions, challenges, or initiatives — reach out through the Join or Collaborate pathways." },
-  { question: "Can I become a mentor or speaker?", answer: "Yes — visit the Mentors & Experts page to express interest." },
-  { question: "Are community activities online or offline?", answer: "Both — see the Online and Offline Engagement section above for the actual formats available." },
-  { question: "Are there campus-based communities?", answer: "Yes, through confirmed campus chapters and institutional activities — see Campus & Institutional Community above." },
-  { question: "Can industry professionals participate?", answer: "Yes — use the Collaborate page to explore the approved industry collaboration pathway." },
-  { question: "How are community stories selected?", answer: "Stories are reviewed and published based on relevance, accuracy, permissions, and approval." },
-];
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -251,14 +239,7 @@ export default function CommunityNewPage() {
           </JoinButton>
         </section>
         */}
-        <section className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-24">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-              Frequently Asked <span className="text-[#1683EA]">Questions</span>
-            </h2>
-          </div>
-          <FaqAccordion items={communityFaqs} />
-        </section>
+        <FaqAccordion />
       </main>
       <Footer />
     </div>

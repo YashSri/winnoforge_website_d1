@@ -222,44 +222,6 @@ const citadelSpaceCards = [
   { icon: Monitor, title: "Digital Spaces", description: "For resources, communication, submissions, scheduling, and approved ecosystem activities." },
 ];
 
-const citadelFaqs = [
-  {
-    question: "What is the FORGE Citadel?",
-    answer: "The Citadel is a structured environment within the FORGE ecosystem where learning, discipline, mentorship, collaboration, project execution, and innovation come together.",
-  },
-  {
-    question: "Who can use the Citadel?",
-    answer: "Builders enrolled in an active FORGE program or partner-institution cohort get access to the Citadel during their sprint cycles.",
-  },
-  {
-    question: "Is the Citadel a physical location or a digital environment?",
-    answer: "The Citadel is primarily a physical execution environment, supported by digital spaces for resources, scheduling, and communication.",
-  },
-  {
-    question: "Is the Citadel available outside program hours?",
-    answer: "Zones like the Build Floor and Community Space have extended access hours; private cabins are bookable per sprint schedule.",
-  },
-  {
-    question: "Are mentors available to all participants?",
-    answer: "Mentor participation follows confirmed arrangements per program — not every participant receives unlimited one-to-one access to a specific mentor.",
-  },
-  {
-    question: "Are there rules for participation?",
-    answer: "Yes — participants are expected to follow the Code of Conduct above, along with applicable integrity, safety, and institutional requirements.",
-  },
-  {
-    question: "Does participation guarantee a job or investment?",
-    answer: "No. The Citadel focuses on capability-building, exposure, project work, and progression — not guaranteed employment, funding, or investment.",
-  },
-  {
-    question: "Can institutions bring their own equipment into Lab-in-a-Box?",
-    answer: "Yes — Lab-in-a-Box is a modular bench designed to accommodate partner-institution hardware alongside FORGE's own tooling.",
-  },
-  {
-    question: "How does my institution bring the Citadel to campus?",
-    answer: "Reach out through the Collaborate page — the Citadel deploys in a single partnership cycle once a site is confirmed.",
-  },
-];
 
 export default function CitadelPage() {
   return (
@@ -502,16 +464,7 @@ export default function CitadelPage() {
         ===================================================== */}
         {/* <CitadelFinalCta /> */}
 
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <h2 className="font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                Citadel FAQs
-              </h2>
-            </ScrollReveal>
-            <FaqAccordion items={citadelFaqs} />
-          </div>
-        </section>
+        <FaqAccordion />
 
         <section className="px-4 pb-6 pt-10 md:px-8 md:pt-14">
           <div className="mx-auto max-w-7xl">

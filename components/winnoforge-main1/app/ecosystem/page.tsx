@@ -36,38 +36,6 @@ export const metadata = pageMetadata({
   path: "/ecosystem",
 });
 
-const ecosystemFaqs = [
-  {
-    question: "What is Winnovation?",
-    answer:
-      "Winnovation is the organization behind FORGE — it partners with institutions, industry, and mentors to build a student-led innovation ecosystem on campuses.",
-  },
-  {
-    question: "What is FORGE?",
-    answer:
-      "FORGE is the execution system that turns campus talent into builders — moving students from ideas to shipped prototypes through structured sprints and mentorship.",
-  },
-  {
-    question: "How do I join as a student?",
-    answer:
-      "If your institution already partners with FORGE, you can join through your campus chapter. Otherwise, use the Collaborate page to bring FORGE to your campus.",
-  },
-  {
-    question: "Do I need prior experience to get involved?",
-    answer:
-      "No. FORGE is built to take builders from wherever they're starting — the structure and mentorship are what close the experience gap.",
-  },
-  {
-    question: "How can my company get involved?",
-    answer:
-      "Industry partners bring problem statements, mentor builders, and evaluate outcomes. Reach out through the Collaborate page to start a conversation.",
-  },
-  {
-    question: "How does progression work?",
-    answer:
-      "Progression is evidence-driven. As builders demonstrate capability across sprints and projects, they advance to higher-responsibility challenges and industry opportunities.",
-  },
-];
 
 const whoWeAreCards = [
   {
@@ -212,19 +180,8 @@ export default function EcosystemPage() {
         {/* How Innovation Scales (Stationary Card Stage with Continuous Scroll Interpolation) */}
         <HowInnovationScalesSection />
 
-        {/* Frequently Asked Questions (3D Flip Cards in Single Line Row + Bottom CTA) */}
-        <FAQSection
-          id="faq-section"
-          eyebrow="COMMON QUESTIONS"
-          heading="Frequently Asked"
-          headingAccent="Questions"
-          description="Everything you need to know about the FORGE ecosystem and how to participate."
-          items={ecosystemFaqs}
-          showContactCta={true}
-          ctaText="Contact Us"
-          ctaLink="/collaborate"
-          layout="row"
-        />
+        {/* Frequently Asked Questions (Apple/Swiss Editorial Two-Column FAQ) */}
+        <FAQSection id="faq-section" />
 
         {/* Bottom Editorial Bar (Matches Home Page) */}
         <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-12 py-12">

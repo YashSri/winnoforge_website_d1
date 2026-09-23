@@ -52,17 +52,6 @@ const mentorJourneySteps = [
   { title: "Continue", description: "The participant returns with improved work or moves toward the next challenge." },
 ];
 
-const mentorsFaqs = [
-  { question: "Who can become a FORGE mentor?", answer: "Practitioners, educators, founders, researchers, and industry professionals with relevant experience to share — submit an interest form and the FORGE team will follow up." },
-  { question: "What can mentors contribute?", answer: "Workshops, project reviews, mentorship conversations, industry sessions, founder guidance, speaker sessions, challenge evaluation, and faculty engagement." },
-  { question: "Is one-to-one mentorship guaranteed?", answer: "No — mentor access follows confirmed program arrangements, not a guaranteed individual assignment." },
-  { question: "Can experts conduct sessions for partner campuses?", answer: "Yes — use the Invite an Expert flow above to submit a request." },
-  { question: "Can founders and industry professionals participate?", answer: "Yes — both are welcome to express interest in mentoring through the form above." },
-  { question: "How are expert profiles added?", answer: "Profiles go through a verification and approval process before publication — see Responsible Representation above." },
-  { question: "Can I invite a particular speaker?", answer: "You can name a preferred expert or topic in your invitation, but participation depends on confirmation and availability." },
-  { question: "Are mentor sessions recorded?", answer: "This depends on the specific session's recording and consent policy, confirmed at the time of the session." },
-  { question: "How can I contact the FORGE team?", answer: "Use the Collaborate page for a general enquiry, or the forms on this page for mentoring or expert-invitation requests." },
-];
 
 export default function MentorsPage() {
   const { open } = useModal();
@@ -191,14 +180,7 @@ export default function MentorsPage() {
         <InstitutionalIndustryParticipation />
         <ResponsibleRepresentation />
 
-        <section className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-24">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-              Frequently Asked <span className="text-[#1683EA]">Questions</span>
-            </h2>
-          </div>
-          <FaqAccordion items={mentorsFaqs} />
-        </section>
+        <FaqAccordion />
 
         <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
           <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">

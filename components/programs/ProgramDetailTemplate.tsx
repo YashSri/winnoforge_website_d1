@@ -181,12 +181,7 @@ export default function ProgramDetailTemplate({ program }: { program: Program })
       </section>
 
       {/* FAQ */}
-      <section className="py-10">
-        <SectionHeading>FAQs</SectionHeading>
-        <div className="mt-4">
-          <FaqAccordion items={program.faqs} />
-        </div>
-      </section>
+      <FaqAccordion />
 
       {/* Final CTA */}
       <section className="flex flex-col items-center gap-4 py-16 text-center md:py-24">

@@ -116,25 +116,6 @@ const collaborateTestimonials = [
   },
 ];
 
-const collaborateFaqs: (FaqItem & { topic: string })[] = [
-  { topic: "Collaboration", question: "Who can collaborate with FORGE?", answer: "Institutions, industry organisations, mentors and experts, founders, communities, and researchers — see the Collaboration Pathways above for the full range." },
-  { topic: "Collaboration", question: "What types of collaboration are possible?", answer: "Campus programs, workshops, mentorship series, industry challenges, innovation showcases, community events, applied projects, and research initiatives — see What Can We Build Together above." },
-  { topic: "Winnovation", question: "What is Winnovation?", answer: "Winnovation is the organization behind FORGE, partnering with institutions, industry, and mentors to build a student-led innovation ecosystem." },
-  { topic: "FORGE", question: "What is FORGE?", answer: "FORGE is the execution system that turns campus talent into builders through structured sprints, mentorship, and real problem statements." },
-  { topic: "Institutions", question: "Does FORGE work with schools and colleges?", answer: "Yes — through the Institutional Collaboration pathway above, covering campus programs, skill pathways, campus chapters, and faculty development." },
-  { topic: "Industry", question: "Can companies bring real-world problem statements?", answer: "Yes — industry problem statements are one of the core Industry Collaboration areas. Use the form below to start that conversation." },
-  { topic: "Programs", question: "What certification tracks does FORGE offer?", answer: "Data Science, Business Analyst, Data Analytics, Full Stack Development, and AI Productivity & Automation." },
-  { topic: "Eligibility", question: "Do I need prior experience to join a program?", answer: "It depends on the track — check each program's Eligibility section, but most tracks are designed to take builders from wherever they're starting." },
-  { topic: "Fees", question: "Does collaboration involve a fee?", answer: "This depends on the specific engagement — we don't publish general pricing here since it varies by scope and format. Share your context in the form below and we'll clarify." },
-  { topic: "Partnerships", question: "How does my institution or company partner with FORGE?", answer: "Pick your pathway above or fill out the form below — most partnerships move from discovery call to pilot within one cycle." },
-  { topic: "Response time", question: "How long does it take to respond?", answer: "Response times vary by enquiry type and season — we haven't published a fixed standard yet, but we aim to follow up promptly." },
-  { topic: "Citadel", question: "Who can access the FORGE Citadel?", answer: "Builders enrolled in an active FORGE program or partner-institution cohort get access during their sprint cycles." },
-  { topic: "Events", question: "Can we organise an event with FORGE?", answer: "Yes — use the Community and Event Collaboration pathway above, or submit the form with your proposed format and timeline." },
-  { topic: "Mentorship", question: "How do I become a mentor?", answer: "Select Mentor/Expert above and submit the form — we're always looking for practicing operators to mentor builders." },
-  { topic: "Guarantees", question: "Does FORGE guarantee placements, funding, or investment?", answer: "No. FORGE supports capability-building, exposure, and structured collaboration — not guaranteed placement, funding, or investment outcomes." },
-  { topic: "Enquiry", question: "What information should I include in my enquiry?", answer: "Your objective, audience, proposed format, timeline, and any relevant context — see the Readiness Checklist above." },
-  { topic: "Community", question: "Is the FORGE Community open to everyone?", answer: "Yes — students, mentors, and partner organizations can all join the FORGE Community." },
-];
 
 export default function CollaboratePage() {
   const [stakeholder, setStakeholder] = useState<StakeholderType>("General Enquiry");
@@ -282,14 +263,7 @@ export default function CollaboratePage() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-6 py-16 md:px-12 md:py-24">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-              Frequently Asked <span className="text-[#1683EA]">Questions</span>
-            </h2>
-          </div>
-          <FaqAccordion items={collaborateFaqs} />
-        </section>
+        <FaqAccordion />
 
         <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
           <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">

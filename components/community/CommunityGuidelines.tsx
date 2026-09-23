@@ -278,7 +278,7 @@ export default function CommunityGuidelines() {
                   alt="FORGE Campus Building with trees and sky"
                   fill
                   sizes="(max-width: 1024px) 100vw, 420px"
-                  className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
+                  className="object-cover object-right sm:object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
                 />
                 {/* Left Deep Navy Badge Overlay */}
                 <div className="absolute inset-y-0 left-0 w-[42%] bg-[#0B1528]/95 p-5 flex flex-col justify-between backdrop-blur-xs">

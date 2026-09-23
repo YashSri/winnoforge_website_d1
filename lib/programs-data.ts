@@ -1,3 +1,5 @@
+import { FORGE_CANONICAL_FAQS, type FaqItem } from "./faq-data";
+
 export interface Program {
   slug: string;
   name: string;
@@ -18,7 +20,7 @@ export interface Program {
   trainerBio: string;
   trainerQuote: string;
   industryRelevance: string;
-  faqs: { question: string; answer: string }[];
+  faqs: FaqItem[];
   featured?: boolean;
   price?: string;
   status?: "published" | "draft" | "coming-soon";
@@ -90,11 +92,7 @@ export const programs: Program[] = [
       "The builders who do well here aren't the ones who memorize algorithms — they're the ones who get curious about messy data.",
     industryRelevance:
       "Data science remains one of the highest-demand skill sets across FORGE's industry partners, from fintech risk modeling to healthcare analytics.",
-    faqs: [
-      { question: "Do I need a math or CS background?", answer: "No — the foundations module covers what you need. A willingness to work through statistics is more important than a specific degree." },
-      { question: "What tools will I use?", answer: "Python, pandas, scikit-learn, and a deep learning framework for the neural network module." },
-      { question: "Is this remote-friendly?", answer: "Yes — delivery is hybrid, with core sessions available both in-person at the Citadel and online." },
-    ],
+    faqs: FORGE_CANONICAL_FAQS,
   },
   {
     slug: "business-analyst",
@@ -145,11 +143,7 @@ export const programs: Program[] = [
       "Most of this job is asking the right question before anyone writes a line of SQL — that's what we train first.",
     industryRelevance:
       "Business analysts sit at the intersection of every function — this track is built directly around what FORGE's industry partners hire for.",
-    faqs: [
-      { question: "Is this a technical role?", answer: "It's lightly technical — you'll learn SQL and dashboarding, but the core skill is structured thinking and communication." },
-      { question: "Can I do this alongside a full course load?", answer: "Yes, delivery is fully online and asynchronous-friendly outside of live review sessions." },
-      { question: "What's the capstone like?", answer: "A real business case study with a stakeholder brief provided by a FORGE industry partner." },
-    ],
+    faqs: FORGE_CANONICAL_FAQS,
   },
   {
     slug: "data-analytics",
@@ -199,11 +193,7 @@ export const programs: Program[] = [
       "A dashboard nobody opens twice is a failed project — we train builders to design for the person who has to use it.",
     industryRelevance:
       "Every partner organization in the FORGE network runs on some form of analytics stack — this is one of the most directly hireable tracks.",
-    faqs: [
-      { question: "How is this different from Data Science?", answer: "Data Analytics focuses on querying, visualizing, and communicating existing data; Data Science goes further into building predictive models." },
-      { question: "What BI tool will I learn?", answer: "The curriculum covers general BI/dashboarding principles applicable across common tools used by partner organizations." },
-      { question: "Is there a live component?", answer: "Yes — the capstone includes a live dashboard walkthrough with mentor feedback." },
-    ],
+    faqs: FORGE_CANONICAL_FAQS,
   },
   {
     slug: "full-stack",
@@ -254,11 +244,7 @@ export const programs: Program[] = [
       "Shipping with a team under a deadline teaches you things no solo tutorial project ever will.",
     industryRelevance:
       "Full stack engineers remain the most consistently in-demand role across FORGE's industry partners and the Citadel's own build projects.",
-    faqs: [
-      { question: "Do I need prior coding experience?", answer: "Basic programming fundamentals are expected — this isn't a first-ever-code course, but you don't need framework experience." },
-      { question: "How big are the capstone teams?", answer: "Small teams of 3-4 builders, mirroring a real early-stage engineering team." },
-      { question: "What happens to the product we build?", answer: "It's yours for your portfolio; standout capstones sometimes continue inside the Citadel as ongoing builds." },
-    ],
+    faqs: FORGE_CANONICAL_FAQS,
   },
   {
     slug: "ai-productivity",
@@ -306,11 +292,7 @@ export const programs: Program[] = [
       "The best automations aren't flashy — they just quietly save someone two hours a week, every week.",
     industryRelevance:
       "AI-assisted productivity is now a baseline expectation across every FORGE track and partner organization, not just AI-specific roles.",
-    faqs: [
-      { question: "Is this a coding course?", answer: "No — lightweight scripting is introduced, but the focus is on using and chaining AI tools, not software engineering." },
-      { question: "How is this different from Data Science?", answer: "This track is about applying existing AI tools to automate work; Data Science is about building models from scratch." },
-      { question: "Can I take this alongside another track?", answer: "Yes — at 6 weeks, it's designed to run alongside a longer track like Full Stack or Data Science." },
-    ],
+    faqs: FORGE_CANONICAL_FAQS,
   },
 ];
 
