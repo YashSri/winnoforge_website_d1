@@ -38,7 +38,6 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/winnoforge-main1/components1/citadel/ScrollReveal";
 import PartnerButton from "@/components/modal/PartnerButton";
-import ZoneCard, { type Zone } from "@/components/citadel/ZoneCard";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
@@ -102,11 +101,6 @@ const pillars = [
   },
 ];
 
-const stats = [
-  { value: "375 sqm", label: "Physical footprint" },
-  { value: "8+", label: "Functional zones" },
-  { value: "80-120", label: "Capacity" },
-];
 
 const modes = [
   {
@@ -155,53 +149,6 @@ const studentOutcomes = [
   "Portfolio of shipped work",
 ];
 
-const zones: Zone[] = [
-  {
-    name: "Build Floor",
-    description: "The main open-plan execution space where sprint teams build and iterate.",
-    dimensions: "120 sqm",
-  },
-  {
-    name: "Flex Room 1",
-    description: "A reconfigurable space for workshops, reviews, and team breakouts.",
-    dimensions: "40 sqm",
-  },
-  {
-    name: "Flex Room 2",
-    description: "A second flex space for parallel sessions and smaller sprint pods.",
-    dimensions: "35 sqm",
-  },
-  {
-    name: "Cabin 1",
-    description: "A private cabin for focused work and founder/mentor 1:1s.",
-    dimensions: "12 sqm",
-  },
-  {
-    name: "Cabin 2",
-    description: "A private cabin for focused work and founder/mentor 1:1s.",
-    dimensions: "12 sqm",
-  },
-  {
-    name: "Cabin 3",
-    description: "A private cabin for focused work and founder/mentor 1:1s.",
-    dimensions: "12 sqm",
-  },
-  {
-    name: "Cabin 4",
-    description: "A private cabin for focused work and founder/mentor 1:1s.",
-    dimensions: "12 sqm",
-  },
-  {
-    name: "Community Space",
-    description: "An open lounge for cross-team collaboration, demos, and downtime.",
-    dimensions: "60 sqm",
-  },
-  {
-    name: "Lab-in-a-Box",
-    description: "A modular hardware/prototyping bench for physical builds.",
-    dimensions: "25 sqm",
-  },
-];
 
 const founderVoice = [
   {
@@ -285,7 +232,7 @@ const citadelFaqs = [
   },
   {
     question: "Is the Citadel a physical location or a digital environment?",
-    answer: "The Citadel is primarily a physical execution environment (see the zones above), supported by digital spaces for resources, scheduling, and communication.",
+    answer: "The Citadel is primarily a physical execution environment, supported by digital spaces for resources, scheduling, and communication.",
   },
   {
     question: "Is the Citadel available outside program hours?",
@@ -435,101 +382,6 @@ export default function CitadelPage() {
         <StructuralResponse />
 
         <CitadelExperienceBento />
-
-        <section className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal>
-              <div className="relative overflow-hidden rounded-[30px] border border-black/10 bg-gradient-to-br from-[#f7fbff] via-white to-[#eef5ff] px-7 py-12 shadow-[0_28px_80px_rgba(23,23,23,0.08)] md:px-10 md:py-14">
-                <div className="pointer-events-none absolute inset-0">
-                  <div className="absolute left-0 top-12 h-px w-full bg-gradient-to-r from-transparent via-primary/12 to-transparent" />
-                  <div className="absolute bottom-12 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary/12 to-transparent" />
-                  <div className="absolute left-[33.333%] top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/8 to-transparent" />
-                  <div className="absolute right-[33.333%] top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/8 to-transparent" />
-                </div>
-
-                <div className="relative">
-                  <div className="mx-auto max-w-3xl text-center">
-                    <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                      What It Is
-                    </span>
-                    <h2 className="mt-4 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                      The Citadel
-                    </h2>
-                    <p className="mx-auto mt-5 max-w-2xl font-jakarta text-base leading-relaxed text-foreground/72 md:text-lg">
-                      A modular, execution-driven innovation environment
-                      embedded inside a campus. Not a lab. A system.
-                    </p>
-                  </div>
-
-                  <div className="mt-12 grid gap-4 md:grid-cols-3">
-                    {stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="rounded-2xl border border-black/10 bg-white/80 p-5 text-center shadow-[0_10px_30px_rgba(23,23,23,0.05)]"
-                      >
-                        <p className="font-varela text-3xl font-semibold text-primary md:text-4xl">
-                          {stat.value}
-                        </p>
-                        <p className="mt-2 font-jakarta text-xs font-medium uppercase tracking-[0.18em] text-foreground/70">
-                          {stat.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* =====================================================
-            TEMPORARILY HIDDEN — PHYSICAL DESIGN
-            To restore this section, uncomment the block below.
-        ===================================================== */}
-        {/*
-        <section id="layout" className="px-4 py-8 md:px-8 md:py-12">
-          <div className="mx-auto max-w-7xl">
-            <ScrollReveal className="mb-10 text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                Physical Design
-              </span>
-              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-foreground md:text-5xl">
-                Built to Operate, Not Just Occupy
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal delay={60}>
-              <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-3xl border border-black/10 bg-gradient-to-br from-[#f7fbff] via-white to-[#eef6ff] shadow-[0_18px_50px_rgba(23,23,23,0.06)] md:min-h-96">
-                <div className="text-center">
-                  <Layers className="mx-auto h-10 w-10 text-primary/35" />
-                  <p className="mt-3 font-jakarta text-sm font-medium text-foreground/50">
-                    Floor Plan - Coming Soon
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-        */}
-
-        <section className="px-4 py-14 md:px-8 md:py-20">
-          <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,#0E2E48_0%,#1E4D72_45%,#628ECB_100%)] px-6 py-14 shadow-[0_20px_70px_rgba(2,8,20,0.4)] md:px-10 md:py-16">
-            <ScrollReveal className="mb-10 text-center">
-              <span className="font-jakarta text-xs font-semibold uppercase tracking-[0.28em] text-[#78D8C6]">
-                Inside the Citadel
-              </span>
-              <h2 className="mt-3 font-varela text-4xl font-semibold leading-tight text-white md:text-5xl">
-                Nine Zones, One System
-              </h2>
-            </ScrollReveal>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {zones.map((zone) => (
-                <ZoneCard key={zone.name} zone={zone} />
-              ))}
-            </div>
-          </div>
-        </section>
 
 
         {/* =====================================================
