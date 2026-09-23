@@ -261,30 +261,6 @@ export default function CommunityNewPage() {
           </div>
           <FaqAccordion items={communityFaqs} />
         </section>
-        <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
-          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Bring Your Questions, Ideas, and Energy
-          </h2>
-          <p className="max-w-xl font-jakarta text-base text-foreground/70">
-            The FORGE community grows when people learn openly, build responsibly, and
-            contribute generously. Find an activity, meet a collaborator, share your work, or
-            start a conversation.
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="#activities"
-              className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]"
-            >
-              Explore Community Activities
-            </Link>
-            <JoinButton className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]">
-              Join FORGE
-            </JoinButton>
-            <PartnerButton className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]">
-              Partner With FORGE
-            </PartnerButton>
-          </div>
-        </section>
         <FinalCtaSection />
       </main>
       <Footer />
