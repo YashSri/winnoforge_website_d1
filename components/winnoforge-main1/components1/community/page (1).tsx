@@ -37,6 +37,8 @@ import CampusInstitutionalCommunity from "@/components/community/CampusInstituti
 import CommunityGuidelines from "@/components/community/CommunityGuidelines";
 import CommunityRecognition from "@/components/community/CommunityRecognition";
 import CardGrid from "@/components/shared/CardGrid";
+import CommunityEngagementSection from "@/components/community/CommunityEngagementSection";
+import CommunityParticipationLoop from "@/components/community/CommunityParticipationLoop";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 
@@ -202,22 +204,7 @@ export default function CommunityNewPage() {
         ===================================================== */}
         {/* <FeaturedVoicesEditorial /> */}
 
-        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
-          <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-            <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              Community Participation Loop
-            </span>
-            <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-              Participate. Contribute. Grow Together.
-            </h2>
-          </div>
-          <div className="mt-14">
-            <ProcessTimeline steps={participationLoopSteps} />
-          </div>
-          <p className="mx-auto mt-10 max-w-xl text-center font-jakarta text-base italic text-primary/65">
-            Community is not something you simply join. It is something you help create.
-          </p>
-        </section>
+        <CommunityParticipationLoop />
 
         {/* =====================================================
             TEMPORARILY HIDDEN — FIND YOUR COMMUNITY PATHS
@@ -231,12 +218,7 @@ export default function CommunityNewPage() {
         ===================================================== */}
         {/* <CampusInstitutionalCommunity /> */}
 
-        <CardGrid
-          eyebrow="Online & Offline Engagement"
-          heading="Different Ways to Stay Connected"
-          cards={engagementModeCards}
-          columns={3}
-        />
+        <CommunityEngagementSection />
         {benefitSections.map((section) => (
           <BenefitSection key={section.id} section={section} />
         ))}
