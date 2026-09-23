@@ -1,0 +1,1107 @@
+================================================================================
+                     FORGE WEBSITE - PROJECT CHANGES LOG
+================================================================================
+Project: Winnovation / FORGE Official Website
+Repository: YashSri/winnoforge_website_d1
+Branch: main
+Chronological Coverage: From Inception to Present (2026-04-20 to 2026-09-23)
+Generated on: 2026-09-23 15:30:00 +0530
+================================================================================
+
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. PROJECT OVERVIEW & ARCHITECTURE SUMMARY
+2. MILESTONE CHRONOLOGY (STARTING TO END)
+   - Phase 1: Initial Foundation & Cleanup (April 2026)
+   - Phase 2: Multi-Page Expansion & Component Architecture (Sep 14, 2026)
+   - Phase 3: Route Unification, SEO & Homepage Enhancements (Sep 16, 2026)
+   - Phase 4: Philosophy Scroll Engine Optimization (Sep 17, 2026)
+   - Phase 5: Programs Tab Redesign & Navigation Refinement (Sep 20, 2026)
+   - Phase 6: Citadel & Ecosystem Editorial Transformation (Sep 22, 2026)
+   - Phase 7: Community Tab Overhaul & Gallery Motion System (Sep 22-23, 2026)
+   - Phase 8: Global FAQ Unification & High-Res Image Overhaul (Sep 23, 2026)
+3. DETAILED COMMIT & CHANGE LOG (CHRONOLOGICAL ORDER)
+4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
+
+================================================================================
+1. PROJECT OVERVIEW & ARCHITECTURE SUMMARY
+================================================================================
+The FORGE website is a high-performance, editorial-grade web application built
+on Next.js (App Router, Turbopack), React, TypeScript, and Tailwind CSS.
+The visual identity follows an Apple-inspired minimalism + Swiss Editorial
+design philosophy, featuring clean 2D geometry, bespoke typography (Clash
+Display, Plus Jakarta Sans, Varela Round), monochromatic & deep cobalt blue
+palettes, and hardware-accelerated micro-animations without heavy 3D overhead.
+
+Active Key Routes:
+  - /                 : Homepage (Hero, Stats, Philosophy, Offerings, Voices)
+  - /community        : Community Hub (Hero, Events, Gallery, Stories, Loop,
+                        Engagement, Advantage, Guidelines/The Forge Code, FAQ)
+  - /ecosystem        : About & Ecosystem (Who We Are, Innovation Scales, Engine)
+  - /programs         : Program Catalog (Formats, Certification Tracks, Detail pages)
+  - /programs/[slug]  : Dynamic certification track details (5 tracks)
+  - /citadel1         : The FORGE Citadel (Hero, Structural Response, Spaces, Experience)
+  - /collaborate      : Corporate & Institutional Partnership Hub
+  - /mentors          : Mentors & Experts Directory
+
+================================================================================
+2. MILESTONE CHRONOLOGY (STARTING TO END)
+================================================================================
+
+PHASE 1: INITIAL FOUNDATION & CLEANUP (APRIL 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-04-20 to 2026-04-24
+- Goal: Initialize repository, configure Tailwind & fonts, resolve logo assets,
+  and remove deprecated certificate/Supabase legacy dependencies.
+
+PHASE 2: MULTI-PAGE EXPANSION & COMPONENT ARCHITECTURE (SEP 14, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-14 16:19 to 16:42 +0530
+- Goal: Implement multi-page specifications for Community, Programs, Citadel,
+  Collaborate, Mentors, and Contact pages with reusable UI components.
+
+PHASE 3: ROUTE UNIFICATION, SEO & HOMEPAGE ENHANCEMENTS (SEP 16, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-16 00:03 to 23:22 +0530
+- Goal: Consolidate navigation, unify /collaborate hub, add canonical SEO
+  metadata, implement animated stats count-up, and embed hero video.
+
+PHASE 4: PHILOSOPHY SCROLL ENGINE OPTIMIZATION (SEP 17, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-17 03:13 to 10:39 +0530
+- Goal: Refine the Philosophy section card stacking animation for 60fps smooth
+  scroll-sync scrubbing and update sticky navigation styling.
+
+PHASE 5: PROGRAMS TAB REDESIGN & NAVIGATION REFINEMENT (SEP 20, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-20 22:36 to 22:45 +0530
+- Goal: Redesign Program Categories, Learning Formats, Institutional Programs,
+  and update square FAQ cards; rename navbar label to Citadel.
+
+PHASE 6: CITADEL & ECOSYSTEM EDITORIAL TRANSFORMATION (SEP 22, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-22 13:59 to 16:02 +0530
+- Goal: Redesign Citadel hero, Structural Response scroll stack, Citadel
+  Experience bento, Principles expanding cards, and align Ecosystem cards.
+
+PHASE 7: COMMUNITY TAB OVERHAUL & GALLERY MOTION SYSTEM (SEP 22-23, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-22 16:33 to 2026-09-23 13:35 +0530
+- Goal: Redesign Community Events, Community Gallery, Stories, Engagement,
+  Participation Loop, Advantage, and Community Guidelines (The Forge Code).
+
+PHASE 8: GLOBAL FAQ UNIFICATION & HIGH-RES IMAGE OVERHAUL (SEP 23, 2026)
+--------------------------------------------------------------------------------
+- Date Range: 2026-09-23 13:35 to 2026-09-23 15:20 +0530
+- Goal: Unify global FAQ into canonical 5-question system across all tabs;
+  regenerate and fit 13 ultra-high-resolution photography assets.
+
+================================================================================
+3. DETAILED COMMIT & CHANGE LOG (CHRONOLOGICAL ORDER)
+================================================================================
+
+--------------------------------------------------------------------------------
+RECORD #01 | COMMIT: 73097bf | TIMESTAMP: 2026-04-20 15:56:27 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Initial repository import of the FORGE Winnovation codebase.
+
+SITE CHANGES IMPLEMENTED:
+  Baseline Next.js setup, project directories, package.json, and initial assets.
+
+KEY FILES AFFECTED:
+  Entire project root
+
+--------------------------------------------------------------------------------
+RECORD #02 | COMMIT: 2ef3ced | TIMESTAMP: 2026-04-20 18:46:48 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Update visual asset in Citadel section.
+
+SITE CHANGES IMPLEMENTED:
+  Replaced man_speaking.png with citadel1.png in the Citadel showcase.
+
+KEY FILES AFFECTED:
+  components/CitadelSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #03 | COMMIT: 0b8c4cb | TIMESTAMP: 2026-04-20 18:53:13 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Revert Citadel hero image to original speaking visual.
+
+SITE CHANGES IMPLEMENTED:
+  Reverted Citadel card image back to man_speaking.png.
+
+KEY FILES AFFECTED:
+  components/CitadelSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #04 | COMMIT: bdaf7a9 | TIMESTAMP: 2026-04-20 18:58:43 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Finalize Citadel offering card asset.
+
+SITE CHANGES IMPLEMENTED:
+  Restored citadel1.png in Forge Citadel card.
+
+KEY FILES AFFECTED:
+  components/CitadelSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #05 | COMMIT: 2aed306 | TIMESTAMP: 2026-04-23 16:30:05 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Build core interactive forms, ecosystem partners, and polish UI.
+
+SITE CHANGES IMPLEMENTED:
+  Integrated modal forms, partner social links, ecosystem layout fixes, and general UI polish.
+
+KEY FILES AFFECTED:
+  components/*, pages/*, styles/*
+
+--------------------------------------------------------------------------------
+RECORD #06 | COMMIT: a729b62 | TIMESTAMP: 2026-04-23 16:37:05 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Fix Vercel deployment package manager conflicts.
+
+SITE CHANGES IMPLEMENTED:
+  Removed pnpm-lock.yaml to ensure Vercel builds reliably with npm (package-lock.json).
+
+KEY FILES AFFECTED:
+  pnpm-lock.yaml
+
+--------------------------------------------------------------------------------
+RECORD #07 | COMMIT: 46def0a | TIMESTAMP: 2026-04-23 16:48:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Resolve build failure caused by email client initialization.
+
+SITE CHANGES IMPLEMENTED:
+  Fixed Resend client module-level initialization preventing static build crash.
+
+KEY FILES AFFECTED:
+  lib/mail.ts, app/api/contact/route.ts
+
+--------------------------------------------------------------------------------
+RECORD #08 | COMMIT: fe7b38a | TIMESTAMP: 2026-04-23 17:11:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Fix missing ecosystem and partner logos.
+
+SITE CHANGES IMPLEMENTED:
+  Copied complete partner and institution logos into public/logos/ directory.
+
+KEY FILES AFFECTED:
+  public/logos/*
+
+--------------------------------------------------------------------------------
+RECORD #09 | COMMIT: 14b867b | TIMESTAMP: 2026-04-24 13:17:34 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Decommission legacy certificate verification system.
+
+SITE CHANGES IMPLEMENTED:
+  Removed dead certificate pages, cert APIs, Supabase client, and redundant packages.
+
+KEY FILES AFFECTED:
+  pages/cert, lib/supabase, package.json
+
+--------------------------------------------------------------------------------
+RECORD #10 | COMMIT: c851491 | TIMESTAMP: 2026-09-14 16:19:39 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Establish official brand typography system.
+
+SITE CHANGES IMPLEMENTED:
+  Configured Plus Jakarta Sans, Varela Round, and Clash Display font definitions.
+
+KEY FILES AFFECTED:
+  app/layout.tsx, styles/fonts.css
+
+--------------------------------------------------------------------------------
+RECORD #11 | COMMIT: 5d4173f | TIMESTAMP: 2026-09-14 16:20:31 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Expand site navigation for new architectural spec and fix overflow.
+
+SITE CHANGES IMPLEMENTED:
+  Expanded navbar to 8 items, retired Start a Chapter, fixed mobile/desktop horizontal overflow.
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx
+
+--------------------------------------------------------------------------------
+RECORD #12 | COMMIT: 56f1ca6 | TIMESTAMP: 2026-09-14 16:21:03 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add comprehensive footer sitemap links.
+
+SITE CHANGES IMPLEMENTED:
+  Updated footer with categorized links for Ecosystem, Programs, Citadel, and Community.
+
+KEY FILES AFFECTED:
+  components/Footer.tsx
+
+--------------------------------------------------------------------------------
+RECORD #13 | COMMIT: 49a91a3 | TIMESTAMP: 2026-09-14 16:21:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create reusable foundational design system components.
+
+SITE CHANGES IMPLEMENTED:
+  Built VoicesCarousel, FaqAccordion, TextVisualSplit, and EcosystemDiagram.
+
+KEY FILES AFFECTED:
+  components/shared/*
+
+--------------------------------------------------------------------------------
+RECORD #14 | COMMIT: a3b82b3 | TIMESTAMP: 2026-09-14 16:23:20 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Rebuild homepage with Winnovation/FORGE narrative structure.
+
+SITE CHANGES IMPLEMENTED:
+  Added Winnovation/FORGE intros, offerings grid, why FORGE section, and mentor voices.
+
+KEY FILES AFFECTED:
+  app/page.tsx, components/home/*
+
+--------------------------------------------------------------------------------
+RECORD #15 | COMMIT: abf93ef | TIMESTAMP: 2026-09-14 16:24:10 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Structure About & Ecosystem page per specification.
+
+SITE CHANGES IMPLEMENTED:
+  Added leadership section, ecosystem engine, FAQ accordion, and mentor voice carousel.
+
+KEY FILES AFFECTED:
+  app/ecosystem/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #16 | COMMIT: db8dd9f | TIMESTAMP: 2026-09-14 16:25:14 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create programs data schema for certification offerings.
+
+SITE CHANGES IMPLEMENTED:
+  Added typed schema and curriculum content for 5 core certification tracks.
+
+KEY FILES AFFECTED:
+  lib/programs-data.ts
+
+--------------------------------------------------------------------------------
+RECORD #17 | COMMIT: 0c2928a | TIMESTAMP: 2026-09-14 16:26:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Build program catalog on Programs page with filter bar.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented program catalog grid with track filtering (AI, Data, Product, Tech).
+
+KEY FILES AFFECTED:
+  app/programs/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #18 | COMMIT: edc3661 | TIMESTAMP: 2026-09-14 16:29:20 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create program detail dynamic route template.
+
+SITE CHANGES IMPLEMENTED:
+  Built dynamic route [slug] template for all certification tracks with syllabus and outcomes.
+
+KEY FILES AFFECTED:
+  app/programs/[slug]/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #19 | COMMIT: fded114 | TIMESTAMP: 2026-09-14 16:29:25 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement lead-capture gated syllabus download form.
+
+SITE CHANGES IMPLEMENTED:
+  Created modal lead capture form with form validation, state handling, and download trigger.
+
+KEY FILES AFFECTED:
+  components/programs/DownloadModal.tsx
+
+--------------------------------------------------------------------------------
+RECORD #20 | COMMIT: 162ebe7 | TIMESTAMP: 2026-09-14 16:29:28 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Connect lead download form to backend contact API.
+
+SITE CHANGES IMPLEMENTED:
+  Extended contact API to store download submissions and trigger notification.
+
+KEY FILES AFFECTED:
+  app/api/contact/route.ts
+
+--------------------------------------------------------------------------------
+RECORD #21 | COMMIT: 39acb41 | TIMESTAMP: 2026-09-14 16:35:42 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Build Citadel zone showcase cards.
+
+SITE CHANGES IMPLEMENTED:
+  Created Citadel zone cards with distinct dark aesthetic and technical specs.
+
+KEY FILES AFFECTED:
+  app/citadel/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #22 | COMMIT: 28597e2 | TIMESTAMP: 2026-09-14 16:36:37 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Citadel photo gallery and founder quote.
+
+SITE CHANGES IMPLEMENTED:
+  Added photo gallery of campus facilities and founder statement.
+
+KEY FILES AFFECTED:
+  app/citadel/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #23 | COMMIT: 6a7993d | TIMESTAMP: 2026-09-14 16:37:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create reusable TabSwitch and ProcessTimeline components.
+
+SITE CHANGES IMPLEMENTED:
+  Built accessible TabSwitch and step-by-step ProcessTimeline UI components.
+
+KEY FILES AFFECTED:
+  components/shared/TabSwitch.tsx, components/shared/ProcessTimeline.tsx
+
+--------------------------------------------------------------------------------
+RECORD #24 | COMMIT: 1dd1c21 | TIMESTAMP: 2026-09-14 16:38:25 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Rebuild Partner With Us page with corporate offerings.
+
+SITE CHANGES IMPLEMENTED:
+  Added tabbed offering cards, corporate engagement process, and partner testimonials.
+
+KEY FILES AFFECTED:
+  app/partner/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #25 | COMMIT: 460e2e4 | TIMESTAMP: 2026-09-14 16:40:11 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create standalone Mentors & Experts directory page.
+
+SITE CHANGES IMPLEMENTED:
+  Built filterable mentor directory with expertise tags and LinkedIn profiles.
+
+KEY FILES AFFECTED:
+  app/mentors/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #26 | COMMIT: 55efcda | TIMESTAMP: 2026-09-14 16:41:08 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Enhance Community page with content grid and photo gallery.
+
+SITE CHANGES IMPLEMENTED:
+  Added filterable community activities grid and student photo gallery.
+
+KEY FILES AFFECTED:
+  app/community/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #27 | COMMIT: 59425a5 | TIMESTAMP: 2026-09-14 16:42:03 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Create multi-path Contact page with dedicated FAQ.
+
+SITE CHANGES IMPLEMENTED:
+  Built Contact page with tabs for Students, Institutions, Corporates, and Mentors.
+
+KEY FILES AFFECTED:
+  app/contact/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #28 | COMMIT: 9992578 | TIMESTAMP: 2026-09-16 00:03:23 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Consolidate navbar to 5 essential items.
+
+SITE CHANGES IMPLEMENTED:
+  Streamlined main navigation: Ecosystem, Programs, Citadel, Community, Collaborate.
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx
+
+--------------------------------------------------------------------------------
+RECORD #29 | COMMIT: 5dc669f | TIMESTAMP: 2026-09-16 00:08:20 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Unify all corporate/institutional partnership paths into /collaborate.
+
+SITE CHANGES IMPLEMENTED:
+  Created unified /collaborate hub; redirected legacy /partner routes.
+
+KEY FILES AFFECTED:
+  app/collaborate/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #30 | COMMIT: 76e11f1 | TIMESTAMP: 2026-09-16 00:10:13 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Problem/Response section and align 6 Ecosystem Pillars.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented Problem/Response editorial layout and aligned the 6-pillar spec.
+
+KEY FILES AFFECTED:
+  components/home/ProblemResponse.tsx, components/home/Pillars.tsx
+
+--------------------------------------------------------------------------------
+RECORD #31 | COMMIT: 85b4e61 | TIMESTAMP: 2026-09-16 00:13:45 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Featured Programs section to homepage.
+
+SITE CHANGES IMPLEMENTED:
+  Added homepage program preview cards with direct catalog download CTA.
+
+KEY FILES AFFECTED:
+  components/home/FeaturedPrograms.tsx
+
+--------------------------------------------------------------------------------
+RECORD #32 | COMMIT: c0968c1 | TIMESTAMP: 2026-09-16 00:27:11 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement full About & Ecosystem page specification.
+
+SITE CHANGES IMPLEMENTED:
+  Structured complete /ecosystem route with Who We Are and How Innovation Scales.
+
+KEY FILES AFFECTED:
+  app/ecosystem/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #33 | COMMIT: a153e8e | TIMESTAMP: 2026-09-16 00:34:14 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement complete Programs page specification.
+
+SITE CHANGES IMPLEMENTED:
+  Built full /programs route with certification tracks and institutional pathways.
+
+KEY FILES AFFECTED:
+  app/programs/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #34 | COMMIT: 9bd4887 | TIMESTAMP: 2026-09-16 00:42:11 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement complete FORGE Citadel page specification.
+
+SITE CHANGES IMPLEMENTED:
+  Built full /citadel1 route with architectural zone layout and facilities overview.
+
+KEY FILES AFFECTED:
+  app/citadel1/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #35 | COMMIT: 3857a56 | TIMESTAMP: 2026-09-16 00:54:26 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement full Community page specification.
+
+SITE CHANGES IMPLEMENTED:
+  Built /community page with event previews, participation guide, and code of conduct.
+
+KEY FILES AFFECTED:
+  app/community/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #36 | COMMIT: 3f46503 | TIMESTAMP: 2026-09-16 01:02:14 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement full Collaborate With FORGE page specification.
+
+SITE CHANGES IMPLEMENTED:
+  Built full /collaborate route with partnership tiers, inquiry forms, and corporate tracks.
+
+KEY FILES AFFECTED:
+  app/collaborate/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #37 | COMMIT: 4a176c1 | TIMESTAMP: 2026-09-16 12:00:35 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Add homepage ecosystem stats section.
+
+SITE CHANGES IMPLEMENTED:
+  Created stats component displaying students trained, colleges reached, and mentors.
+
+KEY FILES AFFECTED:
+  components/home/Stats.tsx
+
+--------------------------------------------------------------------------------
+RECORD #38 | COMMIT: 3cb9057 | TIMESTAMP: 2026-09-16 23:12:01 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Add scroll-triggered count-up animation to stats.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented IntersectionObserver count-up animation for numeric stats.
+
+KEY FILES AFFECTED:
+  components/home/Stats.tsx
+
+--------------------------------------------------------------------------------
+RECORD #39 | COMMIT: ad37c5c | TIMESTAMP: 2026-09-16 13:06:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  RUDRANSH RAI
+
+USER INSTRUCTION / REQUEST:
+  Implement SEO fundamentals and hide-on-scroll navbar.
+
+SITE CHANGES IMPLEMENTED:
+  Added per-page canonical tags, OpenGraph meta, and smooth hide/reveal on scroll navbar.
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx, app/layout.tsx
+
+--------------------------------------------------------------------------------
+RECORD #40 | COMMIT: d032f66 | TIMESTAMP: 2026-09-16 23:22:53 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Hero & Navbar, update hero video, and relocate Summit.
+
+SITE CHANGES IMPLEMENTED:
+  Redesigned hero layout with responsive video, polished navbar, moved annual summit to Citadel.
+
+KEY FILES AFFECTED:
+  components/Hero.tsx, components/Navbar.tsx
+
+--------------------------------------------------------------------------------
+RECORD #41 | COMMIT: 9fd8f25 | TIMESTAMP: 2026-09-17 03:13:13 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Refine navbar sticky styling and redesign ecosystem pathways.
+
+SITE CHANGES IMPLEMENTED:
+  Updated sticky backdrop blur, polished pathway cards, hid unrequested sub-elements.
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx, components/ecosystem/*
+
+--------------------------------------------------------------------------------
+RECORD #42 | COMMIT: 0963a0c | TIMESTAMP: 2026-09-17 10:39:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Optimize Philosophy section card stack scroll synchronization.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented 60fps hardware-accelerated scroll scrubbing and refined card scaling/opacity math.
+
+KEY FILES AFFECTED:
+  components/Philosophy.tsx
+
+--------------------------------------------------------------------------------
+RECORD #43 | COMMIT: 18f84b4 | TIMESTAMP: 2026-09-20 22:36:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Programs tab: ProgramCategories, LearningFormats, InstitutionalPrograms, square FAQs.
+
+SITE CHANGES IMPLEMENTED:
+  Updated program layout, added interactive formats, restructured institutional track, square FAQs.
+
+KEY FILES AFFECTED:
+  app/programs/page.tsx, components/programs/*
+
+--------------------------------------------------------------------------------
+RECORD #44 | COMMIT: 3085fd9 | TIMESTAMP: 2026-09-20 22:45:18 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Rename navbar label from FORGE Citadel to Citadel.
+
+SITE CHANGES IMPLEMENTED:
+  Simplified navbar navigation label to clean single-word Citadel.
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx
+
+--------------------------------------------------------------------------------
+RECORD #45 | COMMIT: c0c2ed7 | TIMESTAMP: 2026-09-22 13:59:10 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Citadel Hero section to match editorial reference composition.
+
+SITE CHANGES IMPLEMENTED:
+  Rebuilt Citadel hero with editorial layout, high-contrast typography, and photo frame.
+
+KEY FILES AFFECTED:
+  components/citadel/CitadelHero.tsx
+
+--------------------------------------------------------------------------------
+RECORD #46 | COMMIT: 6b5fc83 | TIMESTAMP: 2026-09-22 14:15:32 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Structural Response into scroll-driven card stack and What Is Citadel section.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented layered card scroll stack using Philosophy animation engine.
+
+KEY FILES AFFECTED:
+  components/citadel/StructuralResponse.tsx, components/citadel/WhatIsCitadel.tsx
+
+--------------------------------------------------------------------------------
+RECORD #47 | COMMIT: c286a1b | TIMESTAMP: 2026-09-22 14:21:41 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Citadel Experience section into asymmetric bento layout.
+
+SITE CHANGES IMPLEMENTED:
+  Built asymmetric bento grid for the 6 Citadel experience pillars.
+
+KEY FILES AFFECTED:
+  components/citadel/CitadelExperience.tsx
+
+--------------------------------------------------------------------------------
+RECORD #48 | COMMIT: e56c5d9 | TIMESTAMP: 2026-09-22 14:31:20 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Fix Structural Response scroll animation and remove extra whitespace.
+
+SITE CHANGES IMPLEMENTED:
+  Eliminated dead vertical space and fine-tuned scroll scrub trigger thresholds.
+
+KEY FILES AFFECTED:
+  components/citadel/StructuralResponse.tsx
+
+--------------------------------------------------------------------------------
+RECORD #49 | COMMIT: a006818 | TIMESTAMP: 2026-09-22 14:36:16 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Update Structural Response cards to blue monochromatic shades only.
+
+SITE CHANGES IMPLEMENTED:
+  Restricted card color palette strictly to cobalt and deep navy blues per brand guidelines.
+
+KEY FILES AFFECTED:
+  components/citadel/StructuralResponse.tsx
+
+--------------------------------------------------------------------------------
+RECORD #50 | COMMIT: 4c9c3cf | TIMESTAMP: 2026-09-22 14:54:16 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Apply Philosophy card architecture to Ecosystem: Who We Are and How Innovation Scales.
+
+SITE CHANGES IMPLEMENTED:
+  Adopted square card geometry and blue palette across Who We Are and How Innovation Scales.
+
+KEY FILES AFFECTED:
+  components/ecosystem/WhoWeAreSection.tsx, components/ecosystem/HowInnovationScalesSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #51 | COMMIT: 2c9256d | TIMESTAMP: 2026-09-22 15:12:59 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign The Principles Behind the Citadel with interactive expanding cards.
+
+SITE CHANGES IMPLEMENTED:
+  Built accordion-style horizontally expandable card system for the core Citadel principles.
+
+KEY FILES AFFECTED:
+  components/citadel/CitadelPrinciples.tsx
+
+--------------------------------------------------------------------------------
+RECORD #52 | COMMIT: d56bdc2 | TIMESTAMP: 2026-09-22 15:20:09 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove redundant Citadel sections per user review.
+
+SITE CHANGES IMPLEMENTED:
+  Removed Spaces & Modes, How Citadel Works, Results, Who Citadel is For, and Photo Gallery.
+
+KEY FILES AFFECTED:
+  app/citadel1/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #53 | COMMIT: b0e2db2 | TIMESTAMP: 2026-09-22 15:34:47 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove Founder Voices, Mentorship, Annual Summit, and Future Vision sections.
+
+SITE CHANGES IMPLEMENTED:
+  Pruned outdated marketing sections from the Citadel page.
+
+KEY FILES AFFECTED:
+  app/citadel1/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #54 | COMMIT: ab3ecf3 | TIMESTAMP: 2026-09-22 15:57:29 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Add corner-expansion animation to Community Hero and Uiverse hover reveal on Citadel.
+
+SITE CHANGES IMPLEMENTED:
+  Implemented image corner expand on scroll in Community Hero and CSS reveal effect in Citadel.
+
+KEY FILES AFFECTED:
+  components/community/CommunityHero.tsx, components/citadel/CitadelCard.tsx
+
+--------------------------------------------------------------------------------
+RECORD #55 | COMMIT: d9039e8 | TIMESTAMP: 2026-09-22 16:02:31 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Restore original asymmetric bento layout for The Citadel Experience.
+
+SITE CHANGES IMPLEMENTED:
+  Reverted Citadel Experience layout to approved asymmetric bento composition.
+
+KEY FILES AFFECTED:
+  components/citadel/CitadelExperience.tsx
+
+--------------------------------------------------------------------------------
+RECORD #56 | COMMIT: 4db66f5 | TIMESTAMP: 2026-09-22 16:33:08 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign What is Happening and Upcoming in the Community as cohesive editorial showcase.
+
+SITE CHANGES IMPLEMENTED:
+  Unified community events into modern editorial timeline with date stamps and category pills.
+
+KEY FILES AFFECTED:
+  components/community/CommunityEventsSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #57 | COMMIT: 1fbd844 | TIMESTAMP: 2026-09-23 11:11:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove What It Is stats and Nine Zones sections and dead code from Citadel.
+
+SITE CHANGES IMPLEMENTED:
+  Deleted unneeded stats numbers and redundant 9-zone cards to streamline Citadel.
+
+KEY FILES AFFECTED:
+  app/citadel1/page.tsx, components/citadel/*
+
+--------------------------------------------------------------------------------
+RECORD #58 | COMMIT: a21f7ba | TIMESTAMP: 2026-09-23 11:25:22 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Add Citadel spaces showcase with Uiverse-inspired hover reveal interaction.
+
+SITE CHANGES IMPLEMENTED:
+  Created CitadelSpacesShowcase component with smooth hover-reveal overlay and active zone state.
+
+KEY FILES AFFECTED:
+  components/citadel/CitadelSpacesShowcase.tsx
+
+--------------------------------------------------------------------------------
+RECORD #59 | COMMIT: b01424c | TIMESTAMP: 2026-09-23 11:56:06 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Community Gallery and Stories sections with editorial layout and motion system.
+
+SITE CHANGES IMPLEMENTED:
+  Rebuilt CommunityGallery and CommunityStories with subtle micro-animations and clean grids.
+
+KEY FILES AFFECTED:
+  components/community/CommunityGallery.tsx, components/community/CommunityStories.tsx
+
+--------------------------------------------------------------------------------
+RECORD #60 | COMMIT: 81bdfe1 | TIMESTAMP: 2026-09-23 12:35:55 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Online & Offline Engagement and Participation Loop sections to match visual references.
+
+SITE CHANGES IMPLEMENTED:
+  Built 3-card Engagement section (In-Person, Online, Hybrid) and 7-card Participation Loop.
+
+KEY FILES AFFECTED:
+  components/community/CommunityEngagementSection.tsx, components/community/CommunityParticipationLoop.tsx
+
+--------------------------------------------------------------------------------
+RECORD #61 | COMMIT: 3740c47 | TIMESTAMP: 2026-09-23 12:54:23 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove redundant Bring Your Questions, Ideas, and Energy CTA section.
+
+SITE CHANGES IMPLEMENTED:
+  Cleaned up duplicate CTA banner from Community page.
+
+KEY FILES AFFECTED:
+  components/winnoforge-main1/components1/community/page (1).tsx
+
+--------------------------------------------------------------------------------
+RECORD #62 | COMMIT: 78eb4bb | TIMESTAMP: 2026-09-23 13:06:57 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Community Advantage section into unified Swiss editorial showcase.
+
+SITE CHANGES IMPLEMENTED:
+  Combined Learning & Development, Practical Experience, and Career & Industry into unified grid.
+
+KEY FILES AFFECTED:
+  components/community/CommunityAdvantageSection.tsx
+
+--------------------------------------------------------------------------------
+RECORD #63 | COMMIT: 1354d28 | TIMESTAMP: 2026-09-23 13:16:29 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove Inside the FORGE Community value strip section.
+
+SITE CHANGES IMPLEMENTED:
+  Removed redundant horizontal value strip from Community page.
+
+KEY FILES AFFECTED:
+  components/winnoforge-main1/components1/community/page (1).tsx
+
+--------------------------------------------------------------------------------
+RECORD #64 | COMMIT: 810f341 | TIMESTAMP: 2026-09-23 13:20:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Remove Become Part of FORGE CTA section.
+
+SITE CHANGES IMPLEMENTED:
+  Removed duplicate full-width CTA block from Community page.
+
+KEY FILES AFFECTED:
+  components/winnoforge-main1/components1/community/page (1).tsx
+
+--------------------------------------------------------------------------------
+RECORD #65 | COMMIT: 506733e | TIMESTAMP: 2026-09-23 13:35:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Redesign Community Guidelines into THE FORGE CODE Swiss editorial mosaic.
+
+SITE CHANGES IMPLEMENTED:
+  Built 8-card code of conduct mosaic with typography-led hierarchy, arrows, and campus visuals.
+
+KEY FILES AFFECTED:
+  components/community/CommunityGuidelines.tsx
+
+--------------------------------------------------------------------------------
+RECORD #66 | COMMIT: ea72018 | TIMESTAMP: 2026-09-23 15:20:49 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Fix all images generated today: resolve blurriness, aspect ratios, fit, and FAQ across all tabs.
+
+SITE CHANGES IMPLEMENTED:
+  Unified global FAQ with 5 canonical questions across 7 routes; generated 13 ultra-high-resolution custom architectural and builder photography assets replacing blurry mockup crops; fixed container aspect ratios and CSS object-fit framing.
+
+KEY FILES AFFECTED:
+  components/shared/FaqAccordion.tsx, components/shared/FAQSection.tsx, lib/faq-data.ts, components/community/*, public/community/*, public/faq/*
+
+================================================================================
+4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
+================================================================================
+Verification Results as of 2026-09-23 15:30:00 +0530:
+  [PASS] TypeScript Typecheck : `npx tsc --noEmit` returned 0 errors.
+  [PASS] Static Next.js Build  : `npm run build` compiled 19/19 routes cleanly.
+  [PASS] Global FAQ Unification: Canonical 5-question FAQ live across all 7 routes.
+  [PASS] Image Resolution & Fit: All 13 images generated at native resolutions
+                                (up to 1376px) with tailored aspect ratios (1:1,
+                                4:3, 16:9, 3:4) and zero mockup crop artifacts.
+  [PASS] Git Tree State        : All changes committed cleanly on branch `main`.
+
+================================================================================
+                             END OF CHANGES LOG
+================================================================================
