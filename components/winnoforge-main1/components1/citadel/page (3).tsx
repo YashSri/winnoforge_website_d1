@@ -43,6 +43,7 @@ import CitadelHero from "@/components/citadel/CitadelHero";
 import WhatIsCitadel from "@/components/citadel/WhatIsCitadel";
 import StructuralResponse from "@/components/citadel/StructuralResponse";
 import CitadelExperienceBento from "@/components/citadel/CitadelExperienceBento";
+import CitadelSpacesShowcase from "@/components/citadel/CitadelSpacesShowcase";
 
 export const metadata = pageMetadata({
   title: "FORGE Innovation Citadel",
@@ -382,6 +383,8 @@ export default function CitadelPage() {
         <StructuralResponse />
 
         <CitadelExperienceBento />
+
+        <CitadelSpacesShowcase />
 
 
         {/* =====================================================
