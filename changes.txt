@@ -1143,6 +1143,411 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   GitHub origin/main, Vercel Production Deployment
 
+--------------------------------------------------------------------------------
+RECORD #70 | COMMIT: baf28d4 | TIMESTAMP: 2026-04-21 15:06:46 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  commit
+
+SITE CHANGES IMPLEMENTED:
+  commit
+
+KEY FILES AFFECTED:
+  app/citadel1/page.tsx, app/community/page.tsx, app/impact/page.tsx, app/institution/page.tsx, app/page.tsx (+45 more)
+
+--------------------------------------------------------------------------------
+RECORD #71 | COMMIT: 8692ecf | TIMESTAMP: 2026-09-14 16:19:47 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Remove dead cert/Supabase residue from winnoforge-main1
+
+SITE CHANGES IMPLEMENTED:
+  Remove dead cert/Supabase residue from winnoforge-main1
+
+KEY FILES AFFECTED:
+  .../winnoforge-main1/app/api/cert/admin/route.ts, .../app/api/cert/certificates/[id]/qrcode/route.ts, .../app/api/cert/certificates/[id]/revoke/route.ts, .../app/api/cert/certificates/route.ts, .../winnoforge-main1/app/api/cert/upload/route.ts (+8 more)
+
+--------------------------------------------------------------------------------
+RECORD #72 | COMMIT: cc6a450 | TIMESTAMP: 2026-09-14 16:29:32 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Wire gated-download modal into program catalog and detail pages
+
+SITE CHANGES IMPLEMENTED:
+  Wire gated-download modal into program catalog and detail pages
+
+KEY FILES AFFECTED:
+  components/programs/ProgramCard.tsx
+
+--------------------------------------------------------------------------------
+RECORD #73 | COMMIT: 6a5f02e | TIMESTAMP: 2026-09-14 16:34:51 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Fix VoicesCarousel layout for non-3-multiple item counts
+
+SITE CHANGES IMPLEMENTED:
+  Fix VoicesCarousel layout for non-3-multiple item counts
+
+KEY FILES AFFECTED:
+  components/shared/VoicesCarousel.tsx
+
+--------------------------------------------------------------------------------
+RECORD #74 | COMMIT: 9e84301 | TIMESTAMP: 2026-09-14 16:39:17 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add mentor modal type for Become a Mentor CTA
+
+SITE CHANGES IMPLEMENTED:
+  Add mentor modal type for Become a Mentor CTA
+
+KEY FILES AFFECTED:
+  app/api/contact/route.ts, components/modal/FormModal.tsx, components/modal/MentorForm.tsx, components/modal/ModalContext.tsx
+
+--------------------------------------------------------------------------------
+RECORD #75 | COMMIT: cea27fb | TIMESTAMP: 2026-09-16 00:05:49 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Fold mentor directory into Community page
+
+SITE CHANGES IMPLEMENTED:
+  Fold mentor directory into Community page
+
+KEY FILES AFFECTED:
+  app/mentors/page.tsx, components/community/MentorsSection.tsx, .../components1/community/page (1).tsx
+
+--------------------------------------------------------------------------------
+RECORD #76 | COMMIT: b2c83da | TIMESTAMP: 2026-09-16 00:09:00 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Point stale /corporate links at /collaborate directly
+
+SITE CHANGES IMPLEMENTED:
+  Point stale /corporate links at /collaborate directly
+
+KEY FILES AFFECTED:
+  components/Philosophy.tsx, components/home/OfferingsGrid.tsx
+
+--------------------------------------------------------------------------------
+RECORD #77 | COMMIT: 1e1a501 | TIMESTAMP: 2026-09-16 00:10:45 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Learning Journey timeline to homepage
+
+SITE CHANGES IMPLEMENTED:
+  Add Learning Journey timeline to homepage
+
+KEY FILES AFFECTED:
+  app/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #78 | COMMIT: 1c281b3 | TIMESTAMP: 2026-09-16 00:14:56 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Experts & Speakers and Built Through FORGE sections
+
+SITE CHANGES IMPLEMENTED:
+  Add Experts & Speakers and Built Through FORGE sections
+
+KEY FILES AFFECTED:
+  app/page.tsx, components/home/BuiltThroughForge.tsx, components/home/ExpertsSpeakers.tsx, lib/experts-data.ts, lib/projects-data.ts
+
+--------------------------------------------------------------------------------
+RECORD #79 | COMMIT: dd0154b | TIMESTAMP: 2026-09-16 00:16:08 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Citadel Preview and Community Highlights sections; reposition Voices
+
+SITE CHANGES IMPLEMENTED:
+  Add Citadel Preview and Community Highlights sections; reposition Voices
+
+KEY FILES AFFECTED:
+  app/page.tsx, components/home/CitadelPreview.tsx, components/home/CommunityHighlights.tsx
+
+--------------------------------------------------------------------------------
+RECORD #80 | COMMIT: b793717 | TIMESTAMP: 2026-09-16 00:17:40 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add Final CTA section and homepage SEO metadata
+
+SITE CHANGES IMPLEMENTED:
+  Add Final CTA section and homepage SEO metadata
+
+KEY FILES AFFECTED:
+  app/layout.tsx, app/page.tsx, components/home/FinalCta.tsx
+
+--------------------------------------------------------------------------------
+RECORD #81 | COMMIT: 282b7cc | TIMESTAMP: 2026-09-16 00:27:55 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Add SEO metadata to the About & Ecosystem page
+
+SITE CHANGES IMPLEMENTED:
+  Add SEO metadata to the About & Ecosystem page
+
+KEY FILES AFFECTED:
+  app/ecosystem/page.tsx, components/winnoforge-main1/app/ecosystem/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #82 | COMMIT: 7f2fbe3 | TIMESTAMP: 2026-09-16 00:50:20 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  unknown
+
+USER INSTRUCTION / REQUEST:
+  Implement full Mentors & Experts page as its own standalone page
+
+SITE CHANGES IMPLEMENTED:
+  Implement full Mentors & Experts page as its own standalone page
+
+KEY FILES AFFECTED:
+  app/api/contact/route.ts, app/mentors/page.tsx, components/citadel/CitadelFinalCta.tsx, components/citadel/MentorshipInside.tsx, components/community/MentorsSection.tsx (+15 more)
+
+--------------------------------------------------------------------------------
+RECORD #83 | COMMIT: dc6176d | TIMESTAMP: 2026-09-16 06:51:16 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Move Stats section to appear right after Hero
+
+SITE CHANGES IMPLEMENTED:
+  Move Stats section to appear right after Hero
+
+KEY FILES AFFECTED:
+  app/page.tsx
+
+--------------------------------------------------------------------------------
+RECORD #84 | COMMIT: c68b56d | TIMESTAMP: 2026-09-16 15:49:24 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Merge remote-tracking branch 'origin/main' into claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge remote-tracking branch 'origin/main' into claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , app/api/contact/route.ts, app/collaborate/layout.tsx, app/collaborate/page.tsx, app/corporate/page.tsx (+122 more)
+
+--------------------------------------------------------------------------------
+RECORD #85 | COMMIT: 6a5c0bb | TIMESTAMP: 2026-09-16 15:51:28 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Fix lint: sort imports and format Stats/page after merge
+
+SITE CHANGES IMPLEMENTED:
+  Fix lint: sort imports and format Stats/page after merge
+
+KEY FILES AFFECTED:
+  app/page.tsx, components/Stats.tsx
+
+--------------------------------------------------------------------------------
+RECORD #86 | COMMIT: a8f989c | TIMESTAMP: 2026-09-16 21:22:04 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Merge pull request #1 from YashSri/claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge pull request #1 from YashSri/claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , app/page.tsx, components/Stats.tsx
+
+--------------------------------------------------------------------------------
+RECORD #87 | COMMIT: 651568b | TIMESTAMP: 2026-09-16 23:15:42 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Merge pull request #2 from YashSri/claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge pull request #2 from YashSri/claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , components/Stats.tsx
+
+--------------------------------------------------------------------------------
+RECORD #88 | COMMIT: 9ac260e | TIMESTAMP: 2026-09-16 17:51:19 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Use brand palette colors for the FORGE Citadel offering card
+
+SITE CHANGES IMPLEMENTED:
+  Use brand palette colors for the FORGE Citadel offering card
+
+KEY FILES AFFECTED:
+  components/home/OfferingsGrid.tsx
+
+--------------------------------------------------------------------------------
+RECORD #89 | COMMIT: bd80955 | TIMESTAMP: 2026-09-16 17:51:41 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Merge remote-tracking branch 'origin/main' into claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge remote-tracking branch 'origin/main' into claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  Repository root
+
+--------------------------------------------------------------------------------
+RECORD #90 | COMMIT: 19bb787 | TIMESTAMP: 2026-09-16 23:22:13 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Merge pull request #3 from YashSri/claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge pull request #3 from YashSri/claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , components/home/OfferingsGrid.tsx
+
+--------------------------------------------------------------------------------
+RECORD #91 | COMMIT: e8e72e7 | TIMESTAMP: 2026-09-17 03:23:29 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Make Philosophy section's scroll animation smoother and faster
+
+SITE CHANGES IMPLEMENTED:
+  Make Philosophy section's scroll animation smoother and faster
+
+KEY FILES AFFECTED:
+  components/Philosophy.tsx
+
+--------------------------------------------------------------------------------
+RECORD #92 | COMMIT: 8533458 | TIMESTAMP: 2026-09-17 08:53:40 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Merge pull request #4 from YashSri/claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge pull request #4 from YashSri/claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , components/Philosophy.tsx
+
+--------------------------------------------------------------------------------
+RECORD #93 | COMMIT: 9dbb8e4 | TIMESTAMP: 2026-09-17 03:26:05 +0000
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Claude
+
+USER INSTRUCTION / REQUEST:
+  Revert Philosophy scroll animation tuning
+
+SITE CHANGES IMPLEMENTED:
+  Revert Philosophy scroll animation tuning
+
+KEY FILES AFFECTED:
+  components/Philosophy.tsx
+
+--------------------------------------------------------------------------------
+RECORD #94 | COMMIT: fef8fc6 | TIMESTAMP: 2026-09-17 08:56:14 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  tanishqsharma24
+
+USER INSTRUCTION / REQUEST:
+  Merge pull request #5 from YashSri/claude/affectionate-turing-knks9g
+
+SITE CHANGES IMPLEMENTED:
+  Merge pull request #5 from YashSri/claude/affectionate-turing-knks9g
+
+KEY FILES AFFECTED:
+  , components/Philosophy.tsx
+
+--------------------------------------------------------------------------------
+RECORD #95 | COMMIT: ea582ba | TIMESTAMP: 2026-09-17 10:20:51 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  Restore all changes
+
+SITE CHANGES IMPLEMENTED:
+  Restore all changes
+
+KEY FILES AFFECTED:
+  Repository root
+
+--------------------------------------------------------------------------------
+RECORD #96 | COMMIT: 505f983 | TIMESTAMP: 2026-09-23 16:49:02 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: update CHANGES_LOG.txt and changes.txt with GitHub push and Vercel production deployment records
+
+SITE CHANGES IMPLEMENTED:
+  docs: update CHANGES_LOG.txt and changes.txt with GitHub push and Vercel production deployment records
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
