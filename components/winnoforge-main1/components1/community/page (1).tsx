@@ -38,6 +38,7 @@ import CommunityGuidelines from "@/components/community/CommunityGuidelines";
 import CommunityRecognition from "@/components/community/CommunityRecognition";
 import CardGrid from "@/components/shared/CardGrid";
 import CommunityEngagementSection from "@/components/community/CommunityEngagementSection";
+import CommunityAdvantageSection from "@/components/community/CommunityAdvantageSection";
 import CommunityParticipationLoop from "@/components/community/CommunityParticipationLoop";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
 import FaqAccordion from "@/components/shared/FaqAccordion";
@@ -219,9 +220,7 @@ export default function CommunityNewPage() {
         {/* <CampusInstitutionalCommunity /> */}
 
         <CommunityEngagementSection />
-        {benefitSections.map((section) => (
-          <BenefitSection key={section.id} section={section} />
-        ))}
+        <CommunityAdvantageSection />
         <ValueStripSection />
         <CommunityGuidelines />
 
