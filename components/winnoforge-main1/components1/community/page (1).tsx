@@ -28,7 +28,7 @@ import PartnerButton from "@/components/modal/PartnerButton";
 import CommunityHero from "@/components/community/CommunityHero";
 import WhoMakesUpCommunity from "@/components/community/WhoMakesUpCommunity";
 import WhatsHappeningSection from "@/components/community/WhatsHappeningSection";
-import Lightbox from "@/components/shared/Lightbox";
+import CommunityEditorialGallery from "@/components/community/CommunityEditorialGallery";
 import WhatCommunityMeans from "@/components/community/WhatCommunityMeans";
 import StoriesSection from "@/components/community/StoriesSection";
 import FeaturedVoicesEditorial from "@/components/community/FeaturedVoicesEditorial";
@@ -176,16 +176,7 @@ const valuePills = [
   { Icon: FlaskConical, label: "Research Programs" },
 ];
 
-// ─── PAGE ─────────────────────────────────────────────────────────────────────
 
-const communityGalleryImages = [
-  { src: "/webp/2.webp", alt: "FORGE community event" },
-  { src: "/webp/3.webp", alt: "FORGE community workshop" },
-  { src: "/webp/4.webp", alt: "FORGE community demo day" },
-  { src: "/webp/8.webp", alt: "FORGE community builders" },
-  { src: "/impact-campus-wide.jpg", alt: "FORGE community on campus" },
-  { src: "/launch-step-4.jpg", alt: "FORGE community launch" },
-];
 
 export default function CommunityNewPage() {
   return (
@@ -202,14 +193,7 @@ export default function CommunityNewPage() {
 
         <WhoMakesUpCommunity />
         <WhatsHappeningSection />
-        <section className="mx-auto w-full max-w-[1400px] px-6 py-16 md:px-12 md:py-24">
-          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Community Gallery
-          </h2>
-          <div className="mt-10">
-            <Lightbox images={communityGalleryImages} />
-          </div>
-        </section>
+        <CommunityEditorialGallery />
         <StoriesSection />
 
         {/* =====================================================
