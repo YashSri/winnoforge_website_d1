@@ -25,6 +25,7 @@ import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion, { type FaqItem } from "@/components/shared/FaqAccordion";
 import CardGrid from "@/components/shared/CardGrid";
 import ProcessTimeline from "@/components/shared/ProcessTimeline";
+import CollaborationFormats from "@/components/collaborate/CollaborationFormats";
 
 const whyCollaborateCards = [
   { icon: Network, title: "Connect Learning With Practice", description: "Bring practical challenges, projects, and real-world context into learning environments." },
@@ -46,17 +47,6 @@ const collaborationModelSteps = [
   { title: "Review", description: "Reflect on participation, outputs, feedback, and future possibilities." },
 ];
 
-const collaborationFormatCards = [
-  { title: "Campus Program", description: "A structured learning or innovation experience delivered with an institution." },
-  { title: "Workshop or Masterclass", description: "A focused session led by an approved mentor, expert, trainer, or practitioner." },
-  { title: "Industry Challenge", description: "A practical problem or challenge presented to participants for exploration and solution development." },
-  { title: "Innovation Showcase", description: "A platform for presenting approved projects, prototypes, research, or ideas." },
-  { title: "Mentorship Series", description: "A structured sequence of guidance, feedback, and learning interactions." },
-  { title: "Faculty Development Session", description: "An experience designed to support educators and institutional teams." },
-  { title: "Community Event", description: "A workshop, discussion, panel, meetup, or collaborative activity." },
-  { title: "Applied Project", description: "A practical project developed around a confirmed problem, objective, or learning goal." },
-  { title: "Research or Experimentation Initiative", description: "A collaboration focused on exploring a defined question, problem, or technical possibility." },
-];
 
 const audiences: {
   icon: typeof GraduationCap;
@@ -179,12 +169,7 @@ export default function CollaboratePage() {
         </section>
         */}
 
-        <CardGrid
-          eyebrow="What Can We Build Together"
-          heading="Possible Collaboration Formats"
-          cards={collaborationFormatCards}
-          columns={3}
-        />
+        <CollaborationFormats />
 
         <ReadinessChecklist />
 
