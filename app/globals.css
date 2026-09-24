@@ -11,6 +11,14 @@
   --color-secondary: #C4F14E;
   --color-accent: #FF6B6B;
   --color-solar: #FACC15;
+
+  /* Shared FORGE Liquid Glass System Variables */
+  --forge-blue: #1683E8;
+  --glass-white: rgba(255, 255, 255, 0.12);
+  --glass-form: rgba(255, 255, 255, 0.20);
+  --glass-border: rgba(255, 255, 255, 0.30);
+  --glass-highlight: rgba(255, 255, 255, 0.45);
+  --glass-shadow: rgba(20, 50, 100, 0.10);
 }
 
 @theme inline {
@@ -175,6 +183,50 @@ body {
   animation: ambientCircle 28s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
+@keyframes glassLightSweepNav {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.10;
+  }
+  50% {
+    transform: translateX(200%) skewX(-20deg);
+    opacity: 0.08;
+  }
+  51%, 100% {
+    transform: translateX(200%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glassLightSweepForm {
+  0% {
+    transform: translateX(-120%) skewX(-15deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.09;
+  }
+  60% {
+    transform: translateX(240%) skewX(-15deg);
+    opacity: 0.06;
+  }
+  61%, 100% {
+    transform: translateX(240%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+.animate-glass-sweep-nav {
+  animation: glassLightSweepNav 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.animate-glass-sweep-form {
+  animation: glassLightSweepForm 12s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ambient-arc,
   .animate-ambient-dot,
@@ -183,7 +235,9 @@ body {
   .animate-ambient-float-2,
   .animate-ambient-float-3,
   .animate-drift-slow,
-  .animate-drift-reverse {
+  .animate-drift-reverse,
+  .animate-glass-sweep-nav,
+  .animate-glass-sweep-form {
     animation: none !important;
   }
 }

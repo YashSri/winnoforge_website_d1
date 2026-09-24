@@ -144,14 +144,14 @@ export default function Navbar() {
         defaults: { ease: "cubic-bezier(0.22, 1, 0.36, 1)" },
       });
 
-      // 1. Glass navbar container enters
+      // 1. Glass navbar container enters: opacity 0 -> 1, translateY(-18px) scale(.98) -> translateY(0) scale(1), 700ms cubic-bezier(.22,1,.36,1)
       tl.fromTo(
         barRef.current,
-        { opacity: 0, y: -15 },
-        { opacity: 1, y: 0, duration: 0.7, delay: 0.05 }
+        { opacity: 0, y: -18, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, delay: 0.05 }
       );
 
-      // 2. Logo enters
+      // 2. Logo enters first
       if (logoRef.current) {
         tl.fromTo(
           logoRef.current,
@@ -161,13 +161,13 @@ export default function Navbar() {
         );
       }
 
-      // 3. Navigation links stagger
+      // 3. Navigation links stagger: 50–70ms
       if (navContainerRef.current) {
         const links = navContainerRef.current.querySelectorAll("a");
         tl.fromTo(
           links,
           { opacity: 0, y: -6 },
-          { opacity: 1, y: 0, stagger: 0.05, duration: 0.45 },
+          { opacity: 1, y: 0, stagger: 0.06, duration: 0.45 },
           "-=0.4"
         );
       }
@@ -188,30 +188,33 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        /* Liquid Glass Inner Highlights */
+        /* Liquid Glass Physical Reflections */
+        .liquid-glass-navbar::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0.04) 40%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          pointer-events: none;
+          opacity: 0.7;
+        }
+
         .liquid-glass-navbar::after {
           content: "";
           position: absolute;
           inset: 0;
           border-radius: inherit;
           box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.9),
-            inset 2px 2px 6px -3px rgba(255, 255, 255, 0.85),
-            inset -2px -2px 6px -3px rgba(255, 255, 255, 0.65),
-            inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+            inset 0 1px 0 rgba(255, 255, 255, 0.55),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+            inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.45),
+            inset 0 0 14px rgba(255, 255, 255, 0.16);
           pointer-events: none;
-        }
-
-        @keyframes navbarGlassShine {
-          0% {
-            left: -40%;
-          }
-          50% {
-            left: 95%;
-          }
-          100% {
-            left: -40%;
-          }
         }
 
         @keyframes ambientDrift {
@@ -227,6 +230,7 @@ export default function Navbar() {
         }
 
         @media (prefers-reduced-motion: reduce) {
+          .liquid-glass-navbar::before,
           .liquid-glass-navbar::after,
           .animate-ambient-drift {
             animation: none !important;
@@ -239,20 +243,14 @@ export default function Navbar() {
         onPointerEnter={expandBar}
         onFocusCapture={expandBar}
         className={`fixed top-0 left-0 right-0 z-50 pointer-events-none transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)] ${
-          scrolled ? "pt-2.5 md:pt-3.5" : "pt-5 md:pt-6"
+          scrolled ? "pt-3" : "pt-6"
         }`}
       >
-        <div
-          className={`mx-auto px-4 sm:px-6 md:px-8 relative transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)] ${
-            isCompact
-              ? "max-w-[1080px] sm:max-w-[1140px]"
-              : "w-full max-w-[1440px]"
-          }`}
-        >
+        <div className="w-[calc(100%-48px)] max-w-[1380px] mx-auto relative transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)]">
           {/* Subtle Ambient FORGE Blue Glow behind the capsule */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2 w-3/4 max-w-[700px] h-20 rounded-full bg-[#1683EA]/[0.08] blur-[28px] -z-10"
+            className="pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2 w-3/4 max-w-[700px] h-20 rounded-full bg-[#1683EA]/[0.07] blur-[28px] -z-10"
             style={{
               animation: "ambientDrift 24s ease-in-out infinite",
             }}
@@ -261,25 +259,30 @@ export default function Navbar() {
           {/* Liquid Glass Capsule Bar */}
           <div
             ref={barRef}
-            className={`liquid-glass-navbar pointer-events-auto relative w-full rounded-[999px] flex items-center justify-between overflow-hidden transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)] ${
-              scrolled
-                ? isCompact
-                  ? "py-2 px-5 md:px-7 bg-white/[0.84] backdrop-blur-[24px] border border-white/85 shadow-[0_16px_40px_-15px_rgba(30,70,130,0.14)]"
-                  : "py-2.5 md:py-3 px-6 md:px-8 bg-white/[0.80] backdrop-blur-[24px] border border-white/80 shadow-[0_14px_44px_rgba(30,70,130,0.10)]"
-                : "py-3 md:py-3.5 px-6 md:px-9 bg-white/[0.70] backdrop-blur-[20px] border border-white/75 shadow-[0_12px_40px_rgba(30,70,130,0.08)]"
+            className={`liquid-glass-navbar pointer-events-auto relative w-full rounded-[24px] flex items-center justify-between overflow-hidden transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)] ${
+              isCompact
+                ? "h-[64px] px-5 sm:px-6 md:px-7 bg-white/[0.18]"
+                : "h-[76px] px-6 sm:px-7 md:px-8 bg-white/[0.12]"
             }`}
             style={{
-              WebkitBackdropFilter: "blur(24px) saturate(180%)",
+              border: "1px solid rgba(255, 255, 255, 0.35)",
+              backdropFilter: isCompact
+                ? "blur(28px) saturate(190%)"
+                : "blur(24px) saturate(180%)",
+              WebkitBackdropFilter: isCompact
+                ? "blur(28px) saturate(190%)"
+                : "blur(24px) saturate(180%)",
+              boxShadow:
+                "inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.15), inset 1.5px 1.5px 0 rgba(255, 255, 255, 0.45), inset 0 0 14px rgba(255, 255, 255, 0.16), 0 20px 44px -20px rgba(20, 50, 100, 0.16)",
             }}
           >
-            {/* Very Subtle Moving Liquid Glass Shimmer */}
+            {/* Natural Glass Light Sweep Moving Across the Glass */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -top-px h-[2px] w-[50%] bg-gradient-to-r from-transparent via-white/95 to-transparent blur-[6px] -z-0"
-              style={{
-                animation: "navbarGlassShine 14s ease-in-out infinite",
-              }}
-            />
+              className="pointer-events-none absolute inset-0 -z-0 overflow-hidden rounded-[24px]"
+            >
+              <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent blur-md animate-glass-sweep-nav pointer-events-none" />
+            </div>
 
             {/* Left: FORGE Logo (smoothly condenses on scroll) */}
             <Link
@@ -316,16 +319,16 @@ export default function Navbar() {
               {/* Sliding Active Liquid Pill Element */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-[#E6F0FF]/90 border border-[#1683E8]/18 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_4px_16px_-4px_rgba(22,131,232,0.22)] transition-all duration-400 ease-[cubic-bezier(0.34,1.4,0.5,1)] motion-reduce:transition-none"
+                className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-full transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] motion-reduce:transition-none"
                 style={{
                   transform: `translateX(${pillStyle.left}px)`,
                   width: `${pillStyle.width}px`,
                   opacity: pillStyle.opacity,
+                  background: "rgba(230, 240, 255, 0.55)",
+                  boxShadow:
+                    "inset 1px 1px 5px rgba(255, 255, 255, 0.55), 0 4px 14px rgba(22, 131, 232, 0.10)",
                 }}
-              >
-                {/* Active micro accent underline */}
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-[#1683E8] rounded-full" />
-              </div>
+              />
 
               {navItems.map((item) => {
                 const active = isItemActive(item.href);
@@ -338,14 +341,14 @@ export default function Navbar() {
                     }}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`group/nav relative z-10 rounded-full transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.5,1)] outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-2 select-none ${
+                    className={`group/nav relative z-10 rounded-full transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-2 select-none ${
                       isCompact
                         ? "px-3 xl:px-3.5 py-1.5 text-xs xl:text-[13px]"
                         : "px-4 py-2 text-sm xl:text-[15px]"
                     } font-semibold tracking-tight whitespace-nowrap ${
                       active
                         ? "text-[#1683E8]"
-                        : "text-[#151515] hover:text-[#1683E8] hover:bg-white/60 hover:-translate-y-px hover:shadow-[inset_1px_1px_4px_rgba(255,255,255,0.7)]"
+                        : "text-[#111111] hover:text-[#1683E8] hover:bg-white/20 hover:-translate-y-px hover:shadow-[inset_1px_1px_3px_rgba(255,255,255,0.6)]"
                     }`}
                   >
                     <span className="inline-block transition-transform duration-200 group-hover/nav:-translate-y-px">
@@ -368,7 +371,7 @@ export default function Navbar() {
 
               <Link
                 href="/collaborate#collaborate-form"
-                className={`group/cta inline-flex items-center gap-2 bg-[#1683E8] hover:bg-[#1272cb] text-white rounded-full font-bold tracking-wide transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.5,1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_24px_rgba(22,131,232,0.22)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_12px_30px_rgba(22,131,232,0.30)] hover:-translate-y-0.5 active:scale-[0.98] select-none outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-3 ${
+                className={`group/cta inline-flex items-center gap-2 bg-[#1683E8] hover:bg-[#1272cb] text-white rounded-full font-bold tracking-wide transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.5,1)] shadow-[inset_1px_1px_0_rgba(255,255,255,0.30),0_8px_24px_rgba(22,131,232,0.18)] hover:shadow-[inset_1px_1px_0_rgba(255,255,255,0.30),0_12px_28px_rgba(22,131,232,0.24)] hover:-translate-y-0.5 active:scale-[0.98] select-none outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-3 ${
                   isCompact
                     ? "px-5 py-2 text-xs"
                     : "px-6 xl:px-7 py-2.5 text-sm"
@@ -393,7 +396,7 @@ export default function Navbar() {
                     ? "Close navigation menu"
                     : "Open navigation menu"
                 }
-                className="relative flex items-center justify-center h-10 w-10 rounded-2xl border border-white/70 bg-white/60 backdrop-blur-md text-[#111111] transition-all duration-200 hover:bg-[#E6F0FF]/80 hover:text-[#1683E8] active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1683E8] cursor-pointer shadow-xs"
+                className="relative flex items-center justify-center min-h-[44px] min-w-[44px] h-11 w-11 rounded-2xl border border-white/40 bg-white/20 backdrop-blur-md text-[#111111] transition-all duration-200 hover:bg-[#E6F0FF]/80 hover:text-[#1683E8] active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1683E8] cursor-pointer shadow-xs"
               >
                 <div className="relative h-5 w-5 flex items-center justify-center">
                   <Menu
