@@ -39,11 +39,15 @@ export default function Navbar() {
   const [isCompact, setIsCompact] = useState(false);
   const [pillStyle, setPillStyle] = useState<{
     left: number;
+    top: number;
     width: number;
+    height: number;
     opacity: number;
   }>({
     left: 0,
+    top: 0,
     width: 0,
+    height: 0,
     opacity: 0,
   });
 
@@ -67,8 +71,10 @@ export default function Navbar() {
         const navRect = navContainerRef.current.getBoundingClientRect();
         const elRect = el.getBoundingClientRect();
         setPillStyle({
-          left: elRect.left - navRect.left,
-          width: elRect.width,
+          left: Math.round(elRect.left - navRect.left),
+          top: Math.round(elRect.top - navRect.top),
+          width: Math.round(elRect.width),
+          height: Math.round(elRect.height),
           opacity: 1,
         });
       }
@@ -77,14 +83,37 @@ export default function Navbar() {
     }
   }, [pathname]);
 
-  // Recalculate on route, compactness change, and resize
+  // Recalculate on route, compactness change, resize, and DOM layout changes
   useEffect(() => {
-    const timer = setTimeout(updateActivePill, 40);
+    updateActivePill();
+
+    // Multi-tier timer updates during CSS collapse/expand animation
+    const t1 = setTimeout(updateActivePill, 30);
+    const t2 = setTimeout(updateActivePill, 100);
+    const t3 = setTimeout(updateActivePill, 250);
+    const t4 = setTimeout(updateActivePill, 460);
+
     window.addEventListener("resize", updateActivePill);
 
+    // ResizeObserver on nav container and active items for real-time tracking
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && navContainerRef.current) {
+      ro = new ResizeObserver(() => {
+        updateActivePill();
+      });
+      ro.observe(navContainerRef.current);
+      Object.values(itemRefs.current).forEach((el) => {
+        if (el) ro?.observe(el);
+      });
+    }
+
     return () => {
-      clearTimeout(timer);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
       window.removeEventListener("resize", updateActivePill);
+      ro?.disconnect();
     };
   }, [updateActivePill, isCompact]);
 
@@ -312,17 +341,18 @@ export default function Navbar() {
             <nav
               ref={navContainerRef}
               aria-label="Main Navigation"
-              className={`hidden lg:flex items-center relative z-10 p-1 transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)] ${
-                isCompact ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-1.5"
-              }`}
+              className="hidden lg:flex items-center relative z-10 p-1 gap-1 xl:gap-1.5 transition-all duration-450 ease-[cubic-bezier(0.34,1.4,0.5,1)]"
             >
               {/* Sliding Active Liquid Pill Element */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-full transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] motion-reduce:transition-none"
+                className="pointer-events-none absolute rounded-full transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] motion-reduce:transition-none"
                 style={{
-                  transform: `translateX(${pillStyle.left}px)`,
+                  left: 0,
+                  top: 0,
+                  transform: `translate3d(${pillStyle.left}px, ${pillStyle.top}px, 0)`,
                   width: `${pillStyle.width}px`,
+                  height: `${pillStyle.height}px`,
                   opacity: pillStyle.opacity,
                   background: "rgba(230, 240, 255, 0.55)",
                   boxShadow:
@@ -341,11 +371,9 @@ export default function Navbar() {
                     }}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`group/nav relative z-10 rounded-full transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-2 select-none ${
-                      isCompact
-                        ? "px-3 xl:px-3.5 py-1.5 text-xs xl:text-[13px]"
-                        : "px-4 py-2 text-sm xl:text-[15px]"
-                    } font-semibold tracking-tight whitespace-nowrap ${
+                    className={`group/nav relative z-10 rounded-full transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none focus-visible:outline-2 focus-visible:outline-[#1683E8] focus-visible:outline-offset-2 select-none px-4 ${
+                      isCompact ? "py-1.5" : "py-2"
+                    } font-semibold tracking-tight text-sm xl:text-[15px] whitespace-nowrap ${
                       active
                         ? "text-[#1683E8]"
                         : "text-[#111111] hover:text-[#1683E8] hover:bg-white/20 hover:-translate-y-px hover:shadow-[inset_1px_1px_3px_rgba(255,255,255,0.6)]"
