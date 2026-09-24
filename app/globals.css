@@ -136,3 +136,56 @@ body {
   animation: spinSlow 40s linear infinite;
 }
 
+@keyframes ambientArc {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(20px, -10px, 0);
+  }
+}
+
+@keyframes ambientDot {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes ambientCircle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-25px, 15px, 0);
+  }
+}
+
+.animate-ambient-arc {
+  animation: ambientArc 22s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-ambient-dot {
+  animation: ambientDot 8.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-ambient-circle {
+  animation: ambientCircle 28s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-arc,
+  .animate-ambient-dot,
+  .animate-ambient-circle,
+  .animate-ambient-float-1,
+  .animate-ambient-float-2,
+  .animate-ambient-float-3,
+  .animate-drift-slow,
+  .animate-drift-reverse {
+    animation: none !important;
+  }
+}
+
+

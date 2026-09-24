@@ -15,6 +15,7 @@ import {
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AudienceCard from "@/components/collaborate/AudienceCard";
+import CollaborateHero from "@/components/collaborate/CollaborateHero";
 import CollaborateForm, { type StakeholderType } from "@/components/collaborate/CollaborateForm";
 import CollaborationPathways from "@/components/collaborate/CollaborationPathways";
 import ReadinessChecklist from "@/components/collaborate/ReadinessChecklist";
@@ -124,40 +125,8 @@ export default function CollaboratePage() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <main className="overflow-x-hidden pb-16 pt-28 md:pt-32">
-        <section className="mx-auto w-full max-w-4xl px-6 py-16 text-center md:px-12 md:py-24">
-          <span className="font-jakarta text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Collaborate
-          </span>
-          <h1 className="mt-4 font-varela text-4xl font-bold text-foreground md:text-6xl">
-            Build the Future With FORGE
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl font-jakarta text-lg text-foreground/70">
-            FORGE works with institutions, companies, mentors, experts, and strategic partners who
-            want to contribute to a stronger culture of learning, innovation, and execution.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={() => document.getElementById("collaborate-form")?.scrollIntoView({ behavior: "smooth" })}
-              className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]"
-            >
-              Start a Conversation
-            </button>
-            <Link
-              href="/programs"
-              className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]"
-            >
-              Explore FORGE Programs
-            </Link>
-            <Link
-              href="/ecosystem"
-              className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]"
-            >
-              View the Ecosystem
-            </Link>
-          </div>
-        </section>
+      <main className="overflow-x-hidden pb-16 pt-24 md:pt-28">
+        <CollaborateHero />
 
         <CollaborationPathways
           onSelect={(s) => {
