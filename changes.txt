@@ -1818,6 +1818,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   components/Navbar.tsx
 
+--------------------------------------------------------------------------------
+RECORD #115 | COMMIT: 19e5470 | TIMESTAMP: 2026-09-24 14:19:03 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: sync changelogs and Excel report after navbar glass upgrade
+
+SITE CHANGES IMPLEMENTED:
+  docs: sync changelogs and Excel report after navbar glass upgrade
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #116 | COMMIT: b62fd0b | TIMESTAMP: 2026-09-24 14:32:02 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  feat(navbar,form): integrate CodeFronts liquid glass floating capsule and scroll collapse physics
+
+SITE CHANGES IMPLEMENTED:
+  feat(navbar,form): integrate CodeFronts liquid glass floating capsule and scroll collapse physics
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx, components/collaborate/CollaborateForm.tsx
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
