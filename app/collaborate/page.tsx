@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import AudienceCard from "@/components/collaborate/AudienceCard";
 import CollaborateHero from "@/components/collaborate/CollaborateHero";
 import CollaborateForm, { type StakeholderType } from "@/components/collaborate/CollaborateForm";
 import CollaborationPathways from "@/components/collaborate/CollaborationPathways";
@@ -135,23 +134,6 @@ export default function CollaboratePage() {
           }}
         />
 
-        <section className="mx-auto w-full max-w-[1400px] px-6 pb-10 md:px-12">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {audiences.map((audience) => (
-              <AudienceCard
-                key={audience.title}
-                icon={audience.icon}
-                title={audience.title}
-                description={audience.description}
-                cta={audience.cta}
-                onSelect={() => {
-                  setStakeholder(audience.stakeholder);
-                  document.getElementById("collaborate-form")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              />
-            ))}
-          </div>
-        </section>
 
         {/* =====================================================
             TEMPORARILY HIDDEN
