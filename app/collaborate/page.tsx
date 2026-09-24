@@ -185,16 +185,8 @@ export default function CollaboratePage() {
 
         <PartnerRepresentation />
 
-        <section
-          id="collaborate-form"
-          className="mx-auto w-full max-w-2xl scroll-mt-28 px-6 py-16 md:px-12 md:py-24"
-        >
-          <h2 className="text-center font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Tell Us What You Have in Mind
-          </h2>
-          <div className="mt-10 rounded-[2rem] border border-black/5 bg-white p-8 shadow-[0_18px_40px_rgba(24,42,72,0.08)] md:p-12">
-            <CollaborateForm stakeholder={stakeholder} onStakeholderChange={setStakeholder} />
-          </div>
+        <section id="collaborate-form" className="scroll-mt-24">
+          <CollaborateForm stakeholder={stakeholder} onStakeholderChange={setStakeholder} />
         </section>
 
         <FaqAccordion />

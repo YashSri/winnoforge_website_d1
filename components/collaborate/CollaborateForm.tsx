@@ -1,14 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-
-const input =
-  "w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 font-jakarta text-sm text-foreground placeholder:text-foreground/40 outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition";
-const select =
-  "w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 font-jakarta text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition appearance-none cursor-pointer";
-const label =
-  "block font-jakarta text-xs font-semibold uppercase tracking-wider text-foreground/50 mb-1.5";
+import Image from "next/image";
+import {
+  ArrowRight,
+  BarChart3,
+  Briefcase,
+  Building2,
+  Calendar,
+  CheckCircle2,
+  FileText,
+  Lightbulb,
+  Link2,
+  Loader2,
+  Mail,
+  Phone,
+  User,
+  Users,
+} from "lucide-react";
+import ScrollReveal from "@/components/shared/ScrollReveal";
 
 export const stakeholderTypes = [
   "Student",
@@ -26,6 +36,24 @@ export const stakeholderTypes = [
 export type StakeholderType = (typeof stakeholderTypes)[number];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const valueBlocks = [
+  {
+    icon: Users,
+    title: "Programs & Partnerships",
+    description: "Build impactful learning experiences together.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Ideas & Opportunities",
+    description: "Bring your challenges, we'll find ways to solve them.",
+  },
+  {
+    icon: BarChart3,
+    title: "Real Impact",
+    description: "Turn conversations into meaningful outcomes.",
+  },
+];
 
 export default function CollaborateForm({
   stakeholder,
@@ -50,10 +78,23 @@ export default function CollaborateForm({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [mouseParallax, setMouseParallax] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setSuccess(false);
   }, [stakeholder]);
+
+  // Subtle mouse parallax on decorative elements only
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMouseParallax({ x: x * 12, y: y * 12 });
+  };
 
   const set =
     (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -107,125 +148,527 @@ export default function CollaborateForm({
     }
   }
 
-  if (success) {
-    return (
-      <div className="flex flex-col items-center gap-3 py-6 text-center">
-        <CheckCircle2 className="h-12 w-12 text-primary" />
-        <h3 className="font-varela text-xl font-bold text-foreground">Thanks — we've got it.</h3>
-        <p className="max-w-xs font-jakarta text-sm text-foreground/65">
-          We've received your details and will be in touch shortly.
-        </p>
-      </div>
-    );
-  }
+  const inputContainer = "group relative transition-all duration-300";
+  const inputLabel =
+    "block font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0D1117]/60 mb-1.5 transition-colors duration-200 group-focus-within:text-[#0052FF]";
+  const inputBase =
+    "w-full rounded-[14px] border border-black/[0.08] bg-white/70 backdrop-blur-sm pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#0D1117] placeholder:text-[#0D1117]/35 outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#0052FF] focus:bg-white focus:ring-2 focus:ring-[#0052FF]/15";
+  const selectField =
+    "w-full rounded-[14px] border border-black/[0.08] bg-white/70 backdrop-blur-sm pl-10 pr-9 py-2.5 font-jakarta text-sm text-[#0D1117] outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#0052FF] focus:bg-white focus:ring-2 focus:ring-[#0052FF]/15 appearance-none cursor-pointer";
+  const iconBase =
+    "pointer-events-none absolute left-3.5 top-[35px] -translate-y-1/2 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#0052FF]";
 
   return (
-    <form onSubmit={submit} className="space-y-4">
-      <div>
-        <p className={label}>I am a... *</p>
-        <div className="relative">
-          <select
-            required
-            className={select}
-            value={stakeholder}
-            onChange={(e) => onStakeholderChange(e.target.value as StakeholderType)}
-          >
-            {stakeholderTypes.map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40">
-            ▾
-          </span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <p className={label}>Full Name *</p>
-          <input required className={input} placeholder="Jane Doe" value={form["Full Name"]} onChange={set("Full Name")} />
-        </div>
-        <div>
-          <p className={label}>Email *</p>
-          <input required type="email" className={input} placeholder="jane@example.com" value={form.Email} onChange={set("Email")} />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <p className={label}>Phone</p>
-          <input className={input} placeholder="9876543210" value={form.Phone} onChange={set("Phone")} />
-        </div>
-        <div>
-          <p className={label}>Organization / Institution</p>
-          <input className={input} placeholder="Optional" value={form.Organization} onChange={set("Organization")} />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <p className={label}>Role / Designation</p>
-          <input className={input} placeholder="Optional" value={form["Role / Designation"]} onChange={set("Role / Designation")} />
-        </div>
-        <div>
-          <p className={label}>Website / Profile Link</p>
-          <input className={input} placeholder="Optional" value={form["Website / Profile Link"]} onChange={set("Website / Profile Link")} />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div>
-          <p className={label}>Preferred Timeline</p>
-          <input className={input} placeholder="e.g. Next semester (optional)" value={form["Preferred Timeline"]} onChange={set("Preferred Timeline")} />
-        </div>
-        <div>
-          <p className={label}>Expected Audience</p>
-          <input className={input} placeholder="Optional" value={form["Expected Audience"]} onChange={set("Expected Audience")} />
-        </div>
-      </div>
-
-      <div>
-        <p className={label}>Preferred Contact Method</p>
-        <div className="relative">
-          <select className={select} value={form["Preferred Contact Method"]} onChange={set("Preferred Contact Method")}>
-            <option>Email</option>
-            <option>Phone</option>
-            <option>WhatsApp</option>
-          </select>
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40">▾</span>
-        </div>
-      </div>
-
-      <div>
-        <p className={label}>Message</p>
-        <textarea
-          rows={3}
-          className={`${input} resize-none`}
-          placeholder="Tell us a bit about what you're looking for (optional)"
-          value={form.Message}
-          onChange={set("Message")}
-        />
-      </div>
-
-      <label className="flex items-start gap-2.5 font-jakarta text-xs text-foreground/60">
-        <input
-          type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20 text-primary focus:ring-primary/30"
-        />
-        I'm okay with FORGE contacting me about programs, partnerships, or relevant opportunities.
-      </label>
-
-      {error && <p className="text-sm text-red-500">{error}</p>}
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold tracking-wide text-white transition hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_14px_30px_rgba(77,150,255,0.3)] disabled:opacity-60 disabled:cursor-not-allowed"
+    <div
+      onMouseMove={handleMouseMove}
+      className="relative w-full overflow-hidden bg-[#F7F8FC] py-20 md:py-28 lg:py-32"
+    >
+      {/* ========================================================
+          BACKGROUND: SUBTLE FORGE AMBIENT GEOMETRICS + PARALLAX
+      ======================================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       >
-        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Start a Conversation <ArrowRight className="h-4 w-4" /></>}
-      </button>
-    </form>
+        {/* Large thin circular arc — Top Left */}
+        <div
+          className="absolute -top-32 -left-28 h-[540px] w-[540px] rounded-full border border-[#0052FF]/[0.08] animate-ambient-circle"
+          style={{
+            transform: `translate3d(${mouseParallax.x * 0.7}px, ${mouseParallax.y * 0.7}px, 0)`,
+            transition: "transform 400ms ease-out",
+          }}
+        />
+
+        {/* Large thin circular arc — Center Right */}
+        <div
+          className="absolute top-1/4 -right-36 h-[620px] w-[620px] rounded-full border border-[#0052FF]/[0.07] animate-ambient-arc"
+          style={{
+            transform: `translate3d(${mouseParallax.x * -0.6}px, ${mouseParallax.y * -0.6}px, 0)`,
+            transition: "transform 400ms ease-out",
+          }}
+        />
+
+        {/* Subtle royal blue dots */}
+        <div
+          className="absolute top-24 left-[46%] h-2.5 w-2.5 rounded-full bg-[#0052FF] animate-ambient-dot"
+          style={{
+            transform: `translate3d(${mouseParallax.x * 1.1}px, ${mouseParallax.y * 1.1}px, 0)`,
+            animationDuration: "14s",
+            transition: "transform 400ms ease-out",
+          }}
+        />
+        <div
+          className="absolute bottom-28 left-[12%] h-2 w-2 rounded-full bg-[#0052FF] animate-ambient-dot"
+          style={{
+            transform: `translate3d(${mouseParallax.x * -0.8}px, ${mouseParallax.y * -0.8}px, 0)`,
+            animationDuration: "18s",
+            animationDelay: "3s",
+            transition: "transform 400ms ease-out",
+          }}
+        />
+        <div
+          className="absolute top-[65%] right-12 h-2.5 w-2.5 rounded-full bg-[#0052FF] animate-ambient-dot"
+          style={{
+            transform: `translate3d(${mouseParallax.x * 0.9}px, ${mouseParallax.y * 0.9}px, 0)`,
+            animationDuration: "16s",
+            animationDelay: "2s",
+            transition: "transform 400ms ease-out",
+          }}
+        />
+
+        {/* Subtle geometric hairline SVG */}
+        <svg
+          className="absolute inset-0 h-full w-full opacity-35"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M -60 160 C 350 100, 850 220, 1600 120"
+            fill="none"
+            stroke="#0052FF"
+            strokeWidth="0.75"
+            strokeDasharray="4 8"
+            strokeOpacity="0.12"
+          />
+          <path
+            d="M 60 720 C 500 640, 1000 780, 1550 680"
+            fill="none"
+            stroke="#0052FF"
+            strokeWidth="0.75"
+            strokeDasharray="6 10"
+            strokeOpacity="0.1"
+          />
+        </svg>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-12">
+        {/* ========================================================
+            TWO-COLUMN EDITORIAL COMPOSITION (APPLE × FORGE)
+        ======================================================== */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+          {/* ========================================================
+              LEFT COLUMN: HERO HEADLINE + VALUE BLOCKS + EDITORIAL IMAGE
+          ======================================================== */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              {/* Eyebrow */}
+              <ScrollReveal delay={0}>
+                <div className="flex items-center gap-2.5 select-none">
+                  <span className="font-jakarta text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.22em] text-[#0052FF]">
+                    GET IN TOUCH
+                  </span>
+                  <span className="h-[1px] w-8 sm:w-12 bg-[#0052FF]/30" />
+                </div>
+              </ScrollReveal>
+
+              {/* Headline with "Mind." in FORGE Royal Blue */}
+              <ScrollReveal delay={80}>
+                <h2 className="font-clash text-4xl sm:text-5xl lg:text-[54px] font-bold tracking-tight text-[#0D1117] leading-[1.06] mt-4">
+                  Tell Us What
+                  <br />
+                  You Have in <span className="text-[#0052FF]">Mind.</span>
+                </h2>
+              </ScrollReveal>
+
+              {/* Supporting Copy */}
+              <ScrollReveal delay={180}>
+                <p className="font-jakarta text-sm sm:text-base leading-relaxed text-[#5F6672] mt-4 max-w-lg">
+                  Share a few details and our team will get in touch to explore how we can work
+                  together.
+                </p>
+              </ScrollReveal>
+
+              {/* Three Compact Value Blocks */}
+              <div className="mt-8 sm:mt-10 space-y-4">
+                {valueBlocks.map((block, idx) => {
+                  const Icon = block.icon;
+                  return (
+                    <ScrollReveal key={block.title} delay={280 + idx * 90}>
+                      <div className="group/val flex items-start gap-4 rounded-2xl p-3 sm:p-3.5 transition-all duration-300 hover:bg-white/60 hover:shadow-[0_8px_24px_rgba(24,42,72,0.04)] select-none cursor-default">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#EBF3FF] text-[#0052FF] transition-all duration-300 group-hover/val:bg-[#0052FF] group-hover/val:text-white shadow-xs">
+                          <Icon className="h-5 w-5 transition-transform duration-300 group-hover/val:scale-105" />
+                        </div>
+                        <div className="transition-transform duration-300 group-hover/val:translate-x-1">
+                          <h4 className="font-clash text-base font-bold text-[#0D1117] leading-snug">
+                            {block.title}
+                          </h4>
+                          <p className="font-jakarta text-xs sm:text-[13px] leading-relaxed text-[#5F6672] mt-0.5">
+                            {block.description}
+                          </p>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Editorial Photograph + Stats Lockup */}
+            <ScrollReveal delay={350} className="mt-10 sm:mt-12">
+              <div className="relative rounded-[24px] overflow-hidden bg-slate-900 shadow-[0_16px_40px_rgba(16,42,67,0.08)] group">
+                <div className="relative h-[240px] sm:h-[280px] w-full overflow-hidden">
+                  <Image
+                    src="/collaborate/get-in-touch-campus.jpg"
+                    alt="Modern campus environment with builders collaborating"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover object-center transition-transform duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025] motion-reduce:transform-none"
+                  />
+                  {/* Subtle Scrim */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"
+                  />
+                </div>
+
+                {/* Handwritten Accent Badge in Photo */}
+                <div className="absolute bottom-4 right-5 z-10 pointer-events-none">
+                  <span className="font-serif italic text-xs sm:text-[13px] text-white/90 drop-shadow-md">
+                    From Conversations to Collaboration.
+                  </span>
+                </div>
+              </div>
+
+              {/* Stats Metrics Strip */}
+              <div className="mt-7 grid grid-cols-3 gap-4 pt-6 border-t border-[#D9DEE7]/70">
+                <div>
+                  <div className="font-clash text-2xl sm:text-3xl font-bold text-[#0D1117]">
+                    100<span className="text-[#0052FF]">+</span>
+                  </div>
+                  <div className="font-jakarta text-[11px] sm:text-xs text-[#5F6672] mt-0.5 leading-snug">
+                    Institutions Engaged
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-clash text-2xl sm:text-3xl font-bold text-[#0D1117]">
+                    5000<span className="text-[#0052FF]">+</span>
+                  </div>
+                  <div className="font-jakarta text-[11px] sm:text-xs text-[#5F6672] mt-0.5 leading-snug">
+                    Builders in Ecosystem
+                  </div>
+                </div>
+
+                <div>
+                  <div className="font-clash text-2xl sm:text-3xl font-bold text-[#0D1117]">
+                    50<span className="text-[#0052FF]">+</span>
+                  </div>
+                  <div className="font-jakarta text-[11px] sm:text-xs text-[#5F6672] mt-0.5 leading-snug">
+                    Industry Partners
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Left Editorial Tag */}
+              <div className="mt-6 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7A8492]">
+                <span className="h-[1.5px] w-6 bg-[#0052FF]" />
+                <span>IDEAS &nbsp;PEOPLE &nbsp;OPPORTUNITIES &nbsp;REAL IMPACT.</span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* ========================================================
+              RIGHT COLUMN: SUBTLE RESTRAINED GLASS FORM CONTAINER
+          ======================================================== */}
+          <div className="lg:col-span-7">
+            <ScrollReveal delay={250}>
+              <div className="relative rounded-[28px] border border-white/80 bg-white/70 backdrop-blur-[18px] p-6 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(30,70,130,0.08)] transition-all duration-500 hover:shadow-[0_24px_70px_rgba(30,70,130,0.12)] hover:border-white">
+                {/* Form Top Category Indicator */}
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-black/[0.06]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-4 w-1 rounded-full bg-[#0052FF]" />
+                    <span className="font-jakarta text-[11px] font-bold uppercase tracking-[0.2em] text-[#0052FF]">
+                      {stakeholder ? stakeholder.toUpperCase() : "GENERAL ENQUIRY"}
+                    </span>
+                  </div>
+
+                  <span className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    FORGE ENQUIRY
+                  </span>
+                </div>
+
+                {success ? (
+                  <div className="flex flex-col items-center gap-4 py-12 text-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#EBF3FF] text-[#0052FF] shadow-xs">
+                      <CheckCircle2 className="h-8 w-8" />
+                    </div>
+                    <h3 className="font-clash text-2xl font-bold text-[#0D1117]">
+                      Thank you — we've got your details.
+                    </h3>
+                    <p className="max-w-md font-jakarta text-sm leading-relaxed text-[#5F6672]">
+                      Our team will review your objectives and reach out shortly to explore how we
+                      can collaborate together.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSuccess(false)}
+                      className="mt-4 rounded-full border border-black/10 bg-white px-6 py-2.5 font-jakarta text-xs font-semibold text-[#0D1117] transition-all hover:bg-slate-50 cursor-pointer"
+                    >
+                      Submit Another Enquiry
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={submit} className="space-y-4">
+                    {/* 01. Stakeholder Type Dropdown */}
+                    <div className={inputContainer}>
+                      <label htmlFor="stakeholder-select" className={inputLabel}>
+                        I am a... *
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="stakeholder-select"
+                          required
+                          className={selectField}
+                          value={stakeholder}
+                          onChange={(e) => onStakeholderChange(e.target.value as StakeholderType)}
+                        >
+                          {stakeholderTypes.map((type) => (
+                            <option key={type} value={type}>
+                              {type}
+                            </option>
+                          ))}
+                        </select>
+                        <User className={iconBase} size={15} />
+                        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#0D1117]/40 text-xs">
+                          ▾
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 02. Full Name + Email */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className={inputContainer}>
+                        <label htmlFor="full-name-input" className={inputLabel}>
+                          Full Name *
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="full-name-input"
+                            required
+                            className={inputBase}
+                            placeholder="Jane Doe"
+                            value={form["Full Name"]}
+                            onChange={set("Full Name")}
+                          />
+                          <User className={iconBase} size={15} />
+                        </div>
+                      </div>
+
+                      <div className={inputContainer}>
+                        <label htmlFor="email-input" className={inputLabel}>
+                          Email *
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="email-input"
+                            required
+                            type="email"
+                            className={inputBase}
+                            placeholder="jane@example.com"
+                            value={form.Email}
+                            onChange={set("Email")}
+                          />
+                          <Mail className={iconBase} size={15} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 03. Phone + Organization */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className={inputContainer}>
+                        <label htmlFor="phone-input" className={inputLabel}>
+                          Phone
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="phone-input"
+                            className={inputBase}
+                            placeholder="9876543210"
+                            value={form.Phone}
+                            onChange={set("Phone")}
+                          />
+                          <Phone className={iconBase} size={15} />
+                        </div>
+                      </div>
+
+                      <div className={inputContainer}>
+                        <label htmlFor="org-input" className={inputLabel}>
+                          Organization / Institution
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="org-input"
+                            className={inputBase}
+                            placeholder="Optional"
+                            value={form.Organization}
+                            onChange={set("Organization")}
+                          />
+                          <Building2 className={iconBase} size={15} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 04. Role + Website */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className={inputContainer}>
+                        <label htmlFor="role-input" className={inputLabel}>
+                          Role / Designation
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="role-input"
+                            className={inputBase}
+                            placeholder="Optional"
+                            value={form["Role / Designation"]}
+                            onChange={set("Role / Designation")}
+                          />
+                          <Briefcase className={iconBase} size={15} />
+                        </div>
+                      </div>
+
+                      <div className={inputContainer}>
+                        <label htmlFor="website-input" className={inputLabel}>
+                          Website / Profile Link
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="website-input"
+                            className={inputBase}
+                            placeholder="Optional"
+                            value={form["Website / Profile Link"]}
+                            onChange={set("Website / Profile Link")}
+                          />
+                          <Link2 className={iconBase} size={15} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 05. Timeline + Expected Audience */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className={inputContainer}>
+                        <label htmlFor="timeline-input" className={inputLabel}>
+                          Preferred Timeline
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="timeline-input"
+                            className={inputBase}
+                            placeholder="e.g. Next semester (optional)"
+                            value={form["Preferred Timeline"]}
+                            onChange={set("Preferred Timeline")}
+                          />
+                          <Calendar className={iconBase} size={15} />
+                        </div>
+                      </div>
+
+                      <div className={inputContainer}>
+                        <label htmlFor="audience-input" className={inputLabel}>
+                          Expected Audience
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="audience-input"
+                            className={inputBase}
+                            placeholder="Optional"
+                            value={form["Expected Audience"]}
+                            onChange={set("Expected Audience")}
+                          />
+                          <Users className={iconBase} size={15} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 06. Preferred Contact Method */}
+                    <div className={inputContainer}>
+                      <label htmlFor="contact-method-select" className={inputLabel}>
+                        Preferred Contact Method
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="contact-method-select"
+                          className={selectField}
+                          value={form["Preferred Contact Method"]}
+                          onChange={set("Preferred Contact Method")}
+                        >
+                          <option value="Email">Email</option>
+                          <option value="Phone">Phone</option>
+                          <option value="WhatsApp">WhatsApp</option>
+                        </select>
+                        <Mail className={iconBase} size={15} />
+                        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#0D1117]/40 text-xs">
+                          ▾
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 07. Message */}
+                    <div className={inputContainer}>
+                      <label htmlFor="message-input" className={inputLabel}>
+                        Message
+                      </label>
+                      <div className="relative">
+                        <textarea
+                          id="message-input"
+                          rows={3}
+                          className="w-full rounded-[14px] border border-black/[0.08] bg-white/70 backdrop-blur-sm pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#0D1117] placeholder:text-[#0D1117]/35 outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#0052FF] focus:bg-white focus:ring-2 focus:ring-[#0052FF]/15 resize-none"
+                          placeholder="Tell us a bit about what you're looking for (optional)"
+                          value={form.Message}
+                          onChange={set("Message")}
+                        />
+                        <FileText
+                          className="pointer-events-none absolute left-3.5 top-3.5 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#0052FF]"
+                          size={15}
+                        />
+                      </div>
+                    </div>
+
+                    {/* 08. Consent Checkbox */}
+                    <div className="pt-1">
+                      <label className="flex items-start gap-2.5 font-jakarta text-xs text-[#0D1117]/70 cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          checked={consent}
+                          onChange={(e) => setConsent(e.target.checked)}
+                          className="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20 text-[#0052FF] focus:ring-[#0052FF]/30 cursor-pointer accent-[#0052FF]"
+                        />
+                        <span>
+                          I'm okay with FORGE contacting me about programs, partnerships, or
+                          relevant opportunities.
+                        </span>
+                      </label>
+                    </div>
+
+                    {error && (
+                      <p className="font-jakarta text-xs font-medium text-red-500 pt-1">
+                        {error}
+                      </p>
+                    )}
+
+                    {/* 09. Primary CTA Button with Smooth Hover Arrow */}
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="group relative flex w-full items-center justify-between rounded-full bg-[#0052FF] pl-8 pr-3 py-3 font-jakarta text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-[#003ECB] hover:shadow-[0_16px_36px_rgba(0,82,255,0.28)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none"
+                      >
+                        <span className="mx-auto pl-6 font-jakarta text-sm font-semibold tracking-wide">
+                          {loading ? "Sending Details..." : "Start a Conversation"}
+                        </span>
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-white group-hover:text-[#0052FF]">
+                          {loading ? (
+                            <Loader2 className="h-4 w-4 animate-spin text-white" />
+                          ) : (
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                          )}
+                        </div>
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
