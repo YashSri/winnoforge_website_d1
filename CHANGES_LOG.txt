@@ -1878,6 +1878,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   app/globals.css, components/Navbar.tsx, components/collaborate/CollaborateForm.tsx
 
+--------------------------------------------------------------------------------
+RECORD #119 | COMMIT: 77da489 | TIMESTAMP: 2026-09-24 14:49:55 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: sync changelogs and Excel report with FORGE liquid glass system
+
+SITE CHANGES IMPLEMENTED:
+  docs: sync changelogs and Excel report with FORGE liquid glass system
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #120 | COMMIT: b2d59d0 | TIMESTAMP: 2026-09-24 14:57:42 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  fix(navbar): lock active pill alignment on scroll with stable link geometry and ResizeObserver
+
+SITE CHANGES IMPLEMENTED:
+  fix(navbar): lock active pill alignment on scroll with stable link geometry and ResizeObserver
+
+KEY FILES AFFECTED:
+  components/Navbar.tsx
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
