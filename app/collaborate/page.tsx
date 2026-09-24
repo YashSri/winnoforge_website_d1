@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   Building2,
   FlaskConical,
@@ -200,36 +199,6 @@ export default function CollaboratePage() {
 
         <FaqAccordion />
 
-        <section className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-6 py-16 text-center md:px-12 md:py-24">
-          <h2 className="font-clash text-3xl font-semibold text-foreground md:text-4xl">
-            Have an Idea for Collaboration?
-          </h2>
-          <p className="max-w-xl font-jakarta text-base text-foreground/70">
-            Share your objective, context, and vision. Together, we can explore whether there is
-            a meaningful way to connect learning, people, institutions, and innovation.
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={() => document.getElementById("collaborate-form")?.scrollIntoView({ behavior: "smooth" })}
-              className="rounded-full bg-primary px-7 py-3 font-jakarta text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(77,150,255,0.28)]"
-            >
-              Start a Conversation
-            </button>
-            <Link
-              href="/programs"
-              className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]"
-            >
-              Explore FORGE Programs
-            </Link>
-            <Link
-              href="/mentors"
-              className="rounded-full border border-black/10 bg-white px-7 py-3 font-jakarta text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(24,42,72,0.1)]"
-            >
-              Meet the Mentors
-            </Link>
-          </div>
-        </section>
       </main>
 
       <Footer />
