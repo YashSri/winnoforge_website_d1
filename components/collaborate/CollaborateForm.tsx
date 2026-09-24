@@ -182,13 +182,13 @@ export default function CollaborateForm({
   const inputLabel =
     "block font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0D1117]/60 mb-1.5 transition-colors duration-200 group-focus-within:text-[#1683E8]";
   const inputBase =
-    "w-full rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#111111] placeholder:text-[rgba(20,30,50,0.48)] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08]";
+    "w-full h-[42px] rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-4 py-2.5 font-jakarta text-sm leading-normal text-[#111111] placeholder:text-[rgba(20,30,50,0.48)] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08]";
   const selectField =
-    "w-full rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-9 py-2.5 font-jakarta text-sm text-[#111111] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08] appearance-none cursor-pointer";
+    "w-full h-[42px] rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-9 py-2.5 font-jakarta text-sm leading-normal text-[#111111] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08] appearance-none cursor-pointer";
   const textArea =
-    "w-full rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#111111] placeholder:text-[rgba(20,30,50,0.48)] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08] resize-none";
+    "w-full rounded-[12px] border border-[rgba(20,30,50,0.08)] bg-[rgba(255,255,255,0.28)] hover:bg-[rgba(255,255,255,0.36)] backdrop-blur-md pl-10 pr-4 py-2.5 font-jakarta text-sm leading-normal text-[#111111] placeholder:text-[rgba(20,30,50,0.48)] outline-none transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#1683E8] focus:bg-[rgba(255,255,255,0.48)] focus:ring-[3px] focus:ring-[#1683E8]/[0.08] resize-none";
   const iconBase =
-    "pointer-events-none absolute left-3.5 top-[35px] -translate-y-1/2 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#1683E8]";
+    "pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#1683E8]";
 
   // Sequential field entrance: Stagger 50–70ms (60ms), no height shift
   const fieldEnterStyle = (index: number) => ({
@@ -738,7 +738,7 @@ export default function CollaborateForm({
                         onChange={set("Message")}
                       />
                       <FileText
-                        className="pointer-events-none absolute left-3.5 top-3.5 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#1683E8]"
+                        className="pointer-events-none absolute left-3.5 top-3 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#1683E8]"
                         size={15}
                       />
                     </div>
