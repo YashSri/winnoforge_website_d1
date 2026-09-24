@@ -1908,6 +1908,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   components/Navbar.tsx
 
+--------------------------------------------------------------------------------
+RECORD #121 | COMMIT: 2c8b82b | TIMESTAMP: 2026-09-24 14:58:04 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: sync changelogs and Excel report with navbar active pill fix
+
+SITE CHANGES IMPLEMENTED:
+  docs: sync changelogs and Excel report with navbar active pill fix
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #122 | COMMIT: f226702 | TIMESTAMP: 2026-09-24 15:19:02 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  fix(form): center icons and normalize text alignment in collaborate form
+
+SITE CHANGES IMPLEMENTED:
+  fix(form): center icons and normalize text alignment in collaborate form
+
+KEY FILES AFFECTED:
+  components/collaborate/CollaborateForm.tsx
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
