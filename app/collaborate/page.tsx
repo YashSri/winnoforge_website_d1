@@ -20,7 +20,7 @@ import CollaborationPathways from "@/components/collaborate/CollaborationPathway
 import ReadinessChecklist from "@/components/collaborate/ReadinessChecklist";
 import CollaborationStoriesEditorial from "@/components/collaborate/CollaborationStoriesEditorial";
 import PartnerRepresentation from "@/components/collaborate/PartnerRepresentation";
-import PartnerAudienceSection from "@/components/partner/PartnerAudienceSection";
+import PartnerWithForge from "@/components/partner/PartnerWithForge";
 import VoicesCarousel from "@/components/shared/VoicesCarousel";
 import FaqAccordion, { type FaqItem } from "@/components/shared/FaqAccordion";
 import CardGrid from "@/components/shared/CardGrid";
@@ -151,8 +151,7 @@ export default function CollaboratePage() {
         />
         */}
 
-        {/* Note: "How It Runs" is inside PartnerAudienceSection and is temporarily hidden there */}
-        <PartnerAudienceSection />
+        <PartnerWithForge />
 
         {/* =====================================================
             TEMPORARILY HIDDEN
