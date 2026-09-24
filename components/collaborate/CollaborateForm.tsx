@@ -152,9 +152,9 @@ export default function CollaborateForm({
   const inputLabel =
     "block font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0D1117]/60 mb-1.5 transition-colors duration-200 group-focus-within:text-[#0052FF]";
   const inputBase =
-    "w-full rounded-[14px] border border-black/[0.08] bg-white/70 backdrop-blur-sm pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#0D1117] placeholder:text-[#0D1117]/35 outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#0052FF] focus:bg-white focus:ring-2 focus:ring-[#0052FF]/15";
+    "w-full rounded-[14px] border border-white/90 bg-white/60 backdrop-blur-[14px] pl-10 pr-4 py-2.5 font-jakarta text-sm text-[#0D1117] placeholder:text-[#0D1117]/35 outline-none shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.9),0_2px_8px_-2px_rgba(20,40,80,0.04)] transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] focus:border-[#0052FF] focus:bg-white/95 focus:ring-2 focus:ring-[#0052FF]/20 focus:shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_4px_16px_rgba(0,82,255,0.12)]";
   const selectField =
-    "w-full rounded-[14px] border border-black/[0.08] bg-white/70 backdrop-blur-sm pl-10 pr-9 py-2.5 font-jakarta text-sm text-[#0D1117] outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus:border-[#0052FF] focus:bg-white focus:ring-2 focus:ring-[#0052FF]/15 appearance-none cursor-pointer";
+    "w-full rounded-[14px] border border-white/90 bg-white/60 backdrop-blur-[14px] pl-10 pr-9 py-2.5 font-jakarta text-sm text-[#0D1117] outline-none shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.9),0_2px_8px_-2px_rgba(20,40,80,0.04)] transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] focus:border-[#0052FF] focus:bg-white/95 focus:ring-2 focus:ring-[#0052FF]/20 focus:shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_4px_16px_rgba(0,82,255,0.12)] appearance-none cursor-pointer";
   const iconBase =
     "pointer-events-none absolute left-3.5 top-[35px] -translate-y-1/2 text-[#0D1117]/40 transition-colors duration-200 group-focus-within:text-[#0052FF]";
 
@@ -371,7 +371,12 @@ export default function CollaborateForm({
           ======================================================== */}
           <div className="lg:col-span-7">
             <ScrollReveal delay={250}>
-              <div className="relative rounded-[28px] border border-white/80 bg-white/70 backdrop-blur-[18px] p-6 sm:p-8 md:p-10 shadow-[0_20px_60px_rgba(30,70,130,0.08)] transition-all duration-500 hover:shadow-[0_24px_70px_rgba(30,70,130,0.12)] hover:border-white">
+              <div
+                className="relative rounded-[28px] border border-white/85 bg-white/[0.72] backdrop-blur-[24px] p-6 sm:p-8 md:p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_24px_60px_-15px_rgba(30,70,130,0.12)] transition-all duration-400 ease-[cubic-bezier(0.34,1.4,0.5,1)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_28px_70px_-15px_rgba(30,70,130,0.16)] hover:border-white"
+                style={{
+                  WebkitBackdropFilter: "blur(24px) saturate(180%)",
+                }}
+              >
                 {/* Form Top Category Indicator */}
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-black/[0.06]">
                   <div className="flex items-center gap-2.5">
@@ -648,7 +653,7 @@ export default function CollaborateForm({
                       <button
                         type="submit"
                         disabled={loading}
-                        className="group relative flex w-full items-center justify-between rounded-full bg-[#0052FF] pl-8 pr-3 py-3 font-jakarta text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-[#003ECB] hover:shadow-[0_16px_36px_rgba(0,82,255,0.28)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none"
+                        className="group relative flex w-full items-center justify-between rounded-full bg-[#0052FF] pl-8 pr-3 py-3 font-jakarta text-sm font-semibold tracking-wide text-white transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_12px_32px_-6px_rgba(0,82,255,0.38)] hover:bg-[#003ECB] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_16px_40px_-4px_rgba(0,82,255,0.48)] hover:-translate-y-0.5 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer select-none"
                       >
                         <span className="mx-auto pl-6 font-jakarta text-sm font-semibold tracking-wide">
                           {loading ? "Sending Details..." : "Start a Conversation"}
