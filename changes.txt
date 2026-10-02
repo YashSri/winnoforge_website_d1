@@ -2043,6 +2043,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   components/Hero.tsx, public/supporters/faceoff-clean.png, public/supporters/faceoff.png, public/supporters/founder-cube-clean.png, public/supporters/founder-cube.png (+9 more)
 
+--------------------------------------------------------------------------------
+RECORD #130 | COMMIT: 4250f8e | TIMESTAMP: 2026-10-02 20:49:09 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: update changelog and excel report for supporter logos fix
+
+SITE CHANGES IMPLEMENTED:
+  docs: update changelog and excel report for supporter logos fix
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #131 | COMMIT: 2ba47d3 | TIMESTAMP: 2026-10-02 21:19:37 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  feat(community): link hero CTA and whats happening cards to official Commudle community and real workshop events
+
+SITE CHANGES IMPLEMENTED:
+  feat(community): link hero CTA and whats happening cards to official Commudle community and real workshop events
+
+KEY FILES AFFECTED:
+  components/community/CommunityHero.tsx, components/community/WhatsHappeningSection.tsx, public/commudle-events/decode-the-machine.png, public/commudle-events/forging-the-ai-era.png, .../commudle-events/foundations-to-frontiers.png
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
