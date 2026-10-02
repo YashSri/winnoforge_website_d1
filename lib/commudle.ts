@@ -161,6 +161,7 @@ function formatDate(isoStr: string): string {
       day: "numeric",
       month: "short",
       year: "numeric",
+      timeZone: "Asia/Kolkata",
     });
   } catch {
     return isoStr;
@@ -176,12 +177,14 @@ function formatTime(startIso: string, endIso: string): string {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
+      timeZone: "Asia/Kolkata",
     });
     if (isNaN(e.getTime())) return startTimeStr;
     const endTimeStr = e.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
+      timeZone: "Asia/Kolkata",
     });
     return `${startTimeStr} – ${endTimeStr}`;
   } catch {
@@ -193,7 +196,10 @@ export function transformCommudleEvent(raw: CommudleRawEvent): TransformedEvent 
   const isWorkshop =
     raw.tags?.some((t) => t.name.toLowerCase().includes("workshop")) ||
     raw.name.toLowerCase().includes("workshop") ||
-    raw.name.toLowerCase().includes("hands-on");
+    raw.name.toLowerCase().includes("hands-on") ||
+    raw.slug.includes("machine") ||
+    raw.slug.includes("frontiers") ||
+    raw.slug.includes("forging");
 
   const category: "Events" | "Workshops" = isWorkshop ? "Workshops" : "Events";
   const type: "Workshop" | "Event" = isWorkshop ? "Workshop" : "Event";
