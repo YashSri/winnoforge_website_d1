@@ -21,6 +21,105 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const MONTH_MAP: Record<string, number> = {
+  jan: 0, january: 0,
+  feb: 1, february: 1,
+  mar: 2, march: 2,
+  apr: 3, april: 3,
+  may: 4,
+  jun: 5, june: 5,
+  jul: 6, july: 6,
+  aug: 7, august: 7,
+  sep: 8, sept: 8, september: 8,
+  oct: 9, october: 9,
+  nov: 10, november: 10,
+  dec: 11, december: 11,
+};
+
+export function parseEventDate(dateStr?: string): number {
+  if (!dateStr) return 0;
+  const lower = dateStr.toLowerCase().trim();
+
+  // Handle in-progress or sprint
+  if (
+    lower.includes("in progress") ||
+    lower.includes("sprint") ||
+    lower.includes("tba") ||
+    lower.includes("coming")
+  ) {
+    return new Date(2026, 9, 15).getTime();
+  }
+
+  // Format: "26 Sep 2026", "19 Sep 2026", etc.
+  const dmyMatch = lower.match(/^(\d{1,2})\s+([a-z]+)\s+(\d{4})$/);
+  if (dmyMatch) {
+    const day = parseInt(dmyMatch[1], 10);
+    const mStr = dmyMatch[2];
+    const month =
+      MONTH_MAP[mStr] ??
+      MONTH_MAP[mStr.slice(0, 4)] ??
+      MONTH_MAP[mStr.slice(0, 3)] ??
+      0;
+    const year = parseInt(dmyMatch[3], 10);
+    return new Date(year, month, day).getTime();
+  }
+
+  // Format: "Dec 2026", "October 2026", etc.
+  const myMatch = lower.match(/^([a-z]+)\s+(\d{4})$/);
+  if (myMatch) {
+    const mStr = myMatch[1];
+    const month =
+      MONTH_MAP[mStr] ??
+      MONTH_MAP[mStr.slice(0, 4)] ??
+      MONTH_MAP[mStr.slice(0, 3)] ??
+      0;
+    const year = parseInt(myMatch[2], 10);
+    return new Date(year, month, 1).getTime();
+  }
+
+  const parsed = Date.parse(dateStr);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
+function EventThumbnail({
+  src,
+  alt,
+  priority = false,
+}: {
+  src?: string;
+  alt: string;
+  priority?: boolean;
+}) {
+  const fallback = "/community-events/demo-day-winter.png";
+  const [imgSrc, setImgSrc] = useState(src || fallback);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(src || fallback);
+    setHasError(false);
+  }, [src, fallback]);
+
+  return (
+    <div className="relative h-full w-full bg-[#EDF4FF]">
+      <Image
+        src={hasError ? fallback : imgSrc}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 100vw, 360px"
+        unoptimized
+        priority={priority}
+        onError={() => {
+          if (!hasError) {
+            setHasError(true);
+            setImgSrc(fallback);
+          }
+        }}
+        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/featured:scale-[1.04]"
+      />
+    </div>
+  );
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * DATA DEFINITIONS
  * Preserving all existing community events, categories,
@@ -248,7 +347,7 @@ const UPCOMING_CARDS_DATA: UpcomingEventItem[] = [
   },
 ];
 
-const CATEGORIES = ["Events", "Workshops", "Projects", "Stories", "Announcements"] as const;
+const CATEGORIES = ["All", "Events", "Workshops", "Projects", "Stories", "Announcements"] as const;
 const STATUS_FILTERS = [
   { key: "all", label: "All" },
   { key: "upcoming", label: "Upcoming" },
@@ -263,7 +362,7 @@ const STATUS_FILTERS = [
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function WhatsHappeningSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>("Events");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedStatus, setSelectedStatus] = useState<"all" | "upcoming" | "past">("all");
   const [carouselIndex, setCarouselIndex] = useState(0);
 
@@ -331,14 +430,35 @@ export default function WhatsHappeningSection() {
     };
   }, []);
 
-  // Filter items based on selected category and status
+  // Filter items based on selected category, status, and sort strictly by latest date
   const filteredFeatured = useMemo(() => {
-    const list = communityItems.filter(
-      (item) =>
-        item.category === selectedCategory &&
-        (selectedStatus === "all" || item.status === selectedStatus)
-    );
-    return list.length > 0 ? list : communityItems.slice(0, 2);
+    let list = communityItems;
+
+    // 1. Filter by category
+    if (selectedCategory !== "All") {
+      list = list.filter((item) => item.category === selectedCategory);
+    } else {
+      // Deduplicate items with similar titles across categories when "All" is active
+      const seen = new Set<string>();
+      list = list.filter((item) => {
+        const key = item.title.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 16);
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    // 2. Filter by status
+    if (selectedStatus !== "all") {
+      list = list.filter((item) => item.status === selectedStatus);
+    }
+
+    // 3. Sort strictly by latest date (most recent first)
+    return [...list].sort((a, b) => {
+      const timeA = parseEventDate(a.date);
+      const timeB = parseEventDate(b.date);
+      return timeB - timeA;
+    });
   }, [communityItems, selectedCategory, selectedStatus]);
 
   // Carousel navigation
@@ -435,9 +555,7 @@ export default function WhatsHappeningSection() {
           scale: 1,
           duration: 0.8,
           stagger: 0.12,
-          onComplete: () => {
-            gsap.set(".wh-featured-card", { clearProps: "transform" });
-          },
+          clearProps: "all",
         },
         0.35
       );
@@ -479,9 +597,7 @@ export default function WhatsHappeningSection() {
           y: 0,
           duration: 0.75,
           stagger: 0.1,
-          onComplete: () => {
-            gsap.set(".wh-upcoming-card", { clearProps: "transform" });
-          },
+          clearProps: "all",
         },
         0.68
       );
@@ -542,7 +658,7 @@ export default function WhatsHappeningSection() {
         <div className="relative">
           {/* Top Filters Row (Categories + Status) */}
           <div className="wh-filters opacity-0 mb-8 sm:mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            {/* Category Pills (Events, Workshops, Projects, Stories, Announcements) */}
+            {/* Category Pills (All, Events, Workshops, Projects, Stories, Announcements) */}
             <div
               role="tablist"
               aria-label="Filter events by category"
@@ -559,7 +675,7 @@ export default function WhatsHappeningSection() {
                       setSelectedCategory(cat);
                       setCarouselIndex(0);
                     }}
-                    className={`rounded-full px-4 py-2 font-jakarta text-xs sm:text-[13px] font-semibold transition-all duration-300 cursor-pointer ${
+                    className={`rounded-full px-3.5 sm:px-4 py-2 font-jakarta text-xs sm:text-[13px] font-semibold transition-all duration-300 cursor-pointer ${
                       isActive
                         ? "bg-[#0066FF] text-white shadow-sm"
                         : "bg-transparent text-[#5F6672] hover:text-[#111111] hover:bg-black/5"
@@ -579,6 +695,12 @@ export default function WhatsHappeningSection() {
             >
               {STATUS_FILTERS.map((f) => {
                 const isActive = selectedStatus === f.key;
+                const count = communityItems.filter((it) => {
+                  const catMatch = selectedCategory === "All" || it.category === selectedCategory;
+                  const statusMatch = f.key === "all" || it.status === f.key;
+                  return catMatch && statusMatch;
+                }).length;
+
                 return (
                   <button
                     key={f.key}
@@ -588,13 +710,22 @@ export default function WhatsHappeningSection() {
                       setSelectedStatus(f.key);
                       setCarouselIndex(0);
                     }}
-                    className={`rounded-full px-4 py-2 font-jakarta text-xs sm:text-[13px] font-semibold transition-all duration-300 cursor-pointer ${
+                    className={`rounded-full px-3.5 sm:px-4 py-2 font-jakarta text-xs sm:text-[13px] font-semibold transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
                       isActive
                         ? "bg-[#0066FF] text-white shadow-sm"
                         : "bg-transparent text-[#5F6672] hover:text-[#111111] hover:bg-black/5"
                     }`}
                   >
-                    {f.label}
+                    <span>{f.label}</span>
+                    <span
+                      className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                        isActive
+                          ? "bg-white/25 text-white"
+                          : "bg-black/5 text-[#5F6672]"
+                      }`}
+                    >
+                      {count}
+                    </span>
                   </button>
                 );
               })}
@@ -639,98 +770,140 @@ export default function WhatsHappeningSection() {
             {/* ── CENTER: Featured Event Cards (7 Cols on desktop) ── */}
             <div className="lg:col-span-7 flex flex-col">
               {/* Cards Row (shows 2 cards side by side on desktop) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                {filteredFeatured.slice(carouselIndex, carouselIndex + 2).map((item, idx) => (
-                  <article
-                    key={item.id + idx}
+              {filteredFeatured.length === 0 ? (
+                <div className="flex flex-col items-center justify-center rounded-[24px] bg-white border border-[#E2E8F0] p-10 text-center shadow-[0_12px_36px_rgba(20,40,80,0.05)] min-h-[340px]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#EBF4FF] text-[#0066FF] mb-3">
+                    <Calendar className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-clash text-lg font-bold text-[#111111]">
+                    No {selectedStatus === "upcoming" ? "upcoming" : selectedStatus === "past" ? "past" : ""}{" "}
+                    {selectedCategory === "All" ? "activities" : selectedCategory.toLowerCase()} scheduled
+                  </h3>
+                  <p className="mt-2 font-jakarta text-xs sm:text-[13px] text-[#5F6672] max-w-sm">
+                    Explore all events across the FORGE network or reset your filters.
+                  </p>
+                  <button
                     onClick={() => {
-                      if (item.link) {
-                        window.open(item.link, "_blank", "noopener,noreferrer");
-                      }
+                      setSelectedCategory("All");
+                      setSelectedStatus("all");
+                      setCarouselIndex(0);
                     }}
-                    className="wh-featured-card opacity-0 group/featured relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-3 sm:p-3.5 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer"
+                    className="mt-5 rounded-full bg-[#0066FF] hover:bg-[#0052D4] px-5 py-2.5 font-jakarta text-xs font-semibold text-white transition-all shadow-sm cursor-pointer"
                   >
-                    {/* Image Area with Overlays */}
-                    <div className="relative h-44 sm:h-48 md:h-52 w-full rounded-[18px] overflow-hidden bg-[#EDF4FF]">
-                      <Image
-                        src={item.image || "/community-events/demo-day-winter.png"}
-                        alt={item.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 360px"
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/featured:scale-[1.04]"
-                      />
+                    View All Activities
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 transition-all duration-300">
+                  {filteredFeatured.slice(carouselIndex, carouselIndex + 2).map((item) => (
+                    <article
+                      key={item.id}
+                      onClick={() => {
+                        if (item.link) {
+                          window.open(item.link, "_blank", "noopener,noreferrer");
+                        }
+                      }}
+                      className="wh-featured-card group/featured relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-3 sm:p-3.5 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer"
+                    >
+                      {/* Image Area with Overlays */}
+                      <div className="relative h-44 sm:h-48 md:h-52 w-full rounded-[18px] overflow-hidden bg-[#EDF4FF]">
+                        <EventThumbnail
+                          src={item.image}
+                          alt={item.title}
+                        />
 
-                      {/* Top Left: Date Pill Overlay */}
-                      <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3 py-1 font-jakarta text-[11px] font-bold text-[#0066FF] shadow-sm">
-                        <Calendar className="h-3 w-3 stroke-[2.2]" />
-                        <span>{item.date}</span>
-                      </div>
-
-                      {/* Top Right: Arrow Button Overlay */}
-                      <div className="absolute top-3 right-3 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white/95 backdrop-blur-md text-[#111111] shadow-sm transition-transform duration-300 group-hover/featured:translate-x-0.5 group-hover/featured:-translate-y-0.5">
-                        <ArrowUpRight className="h-4 w-4 stroke-[2.2]" />
-                      </div>
-                    </div>
-
-                    {/* Content Beneath Image */}
-                    <div className="px-3 pt-4 pb-2 flex flex-col flex-1 justify-between">
-                      <div>
-                        <h3 className="font-clash text-lg sm:text-[19px] font-bold text-[#111111] leading-snug group-hover/featured:text-[#0066FF] transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="mt-2 font-jakarta text-[13px] leading-relaxed text-[#5F6672] line-clamp-2">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      {/* Bottom Attendee Row */}
-                      <div className="mt-4 pt-3 border-t border-[#F1F5F9] flex items-center justify-between">
-                        <div className="flex items-center">
-                          {/* Overlapping Avatar Circles */}
-                          <div className="flex -space-x-2 overflow-hidden">
-                            <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#0A192F] text-white text-[9px] font-bold flex items-center justify-center">
-                              B1
+                        {/* Top Left: Date Pill Overlay */}
+                        <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3 py-1 font-jakarta text-[11px] font-bold text-[#0066FF] shadow-sm">
+                          <Calendar className="h-3 w-3 stroke-[2.2]" />
+                          <span>{item.date}</span>
+                          {item.status === "upcoming" && (
+                            <span className="ml-1 inline-flex items-center gap-1 rounded-full bg-[#10B981]/15 px-1.5 py-0.5 text-[9px] font-bold text-[#059669]">
+                              <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
+                              Upcoming
                             </span>
-                            <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#0066FF] text-white text-[9px] font-bold flex items-center justify-center">
-                              B2
-                            </span>
-                            <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#78D8C6] text-[#0A192F] text-[9px] font-bold flex items-center justify-center">
-                              B3
-                            </span>
-                          </div>
-                          <span className="ml-3 font-jakarta text-[11px] font-semibold text-[#8896A6]">
-                            {item.attendeesCount || "+120 attended"}
-                          </span>
+                          )}
                         </div>
 
-                        <span className="font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0066FF] group-hover/featured:translate-x-1 transition-transform">
-                          {item.link ? "COMMUDLE ↗" : "VIEW →"}
-                        </span>
+                        {/* Top Right: Arrow Button Overlay */}
+                        <div className="absolute top-3 right-3 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white/95 backdrop-blur-md text-[#111111] shadow-sm transition-transform duration-300 group-hover/featured:translate-x-0.5 group-hover/featured:-translate-y-0.5">
+                          <ArrowUpRight className="h-4 w-4 stroke-[2.2]" />
+                        </div>
                       </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+
+                      {/* Content Beneath Image */}
+                      <div className="px-3 pt-4 pb-2 flex flex-col flex-1 justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 mb-1.5">
+                            <span className="rounded-full bg-[#EBF4FF] px-2.5 py-0.5 font-jakarta text-[10px] font-semibold text-[#0066FF]">
+                              {item.category}
+                            </span>
+                          </div>
+                          <h3 className="font-clash text-lg sm:text-[19px] font-bold text-[#111111] leading-snug group-hover/featured:text-[#0066FF] transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 font-jakarta text-[13px] leading-relaxed text-[#5F6672] line-clamp-2">
+                            {item.description}
+                          </p>
+                        </div>
+
+                        {/* Bottom Attendee Row */}
+                        <div className="mt-4 pt-3 border-t border-[#F1F5F9] flex items-center justify-between">
+                          <div className="flex items-center">
+                            {/* Overlapping Avatar Circles */}
+                            <div className="flex -space-x-2 overflow-hidden">
+                              <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#0A192F] text-white text-[9px] font-bold flex items-center justify-center">
+                                B1
+                              </span>
+                              <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#0066FF] text-white text-[9px] font-bold flex items-center justify-center">
+                                B2
+                              </span>
+                              <span className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-[#78D8C6] text-[#0A192F] text-[9px] font-bold flex items-center justify-center">
+                                B3
+                              </span>
+                            </div>
+                            <span className="ml-3 font-jakarta text-[11px] font-semibold text-[#8896A6]">
+                              {item.attendeesCount || "+120 attended"}
+                            </span>
+                          </div>
+
+                          <span className="font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0066FF] group-hover/featured:translate-x-1 transition-transform">
+                            {item.link ? "COMMUDLE ↗" : "VIEW →"}
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
 
               {/* Carousel Controls & Scribble Note Row */}
               <div className="mt-6 flex items-center justify-between">
-                {/* Arrow Controls */}
-                <div className="flex items-center gap-2.5">
-                  <button
-                    aria-label="Previous events"
-                    onClick={handlePrev}
-                    disabled={carouselIndex === 0}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#111111] shadow-sm transition-all duration-300 hover:scale-105 hover:bg-black/5 disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    aria-label="Next events"
-                    onClick={handleNext}
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0066FF] text-white shadow-md transition-all duration-300 hover:bg-[#0052D4] hover:scale-105 active:scale-95 cursor-pointer"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
+                {/* Arrow Controls & Pagination Indicator */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <button
+                      aria-label="Previous events"
+                      onClick={handlePrev}
+                      disabled={carouselIndex === 0}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#111111] shadow-sm transition-all duration-300 hover:scale-105 hover:bg-black/5 disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button
+                      aria-label="Next events"
+                      onClick={handleNext}
+                      disabled={filteredFeatured.length <= 2 || carouselIndex >= maxIndex}
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0066FF] text-white shadow-md transition-all duration-300 hover:bg-[#0052D4] hover:scale-105 active:scale-95 disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  {filteredFeatured.length > 0 && (
+                    <span className="font-jakarta text-xs font-semibold text-[#8896A6]">
+                      {carouselIndex + 1}–{Math.min(carouselIndex + 2, filteredFeatured.length)} of {filteredFeatured.length}
+                    </span>
+                  )}
                 </div>
 
                 {/* Hand-Drawn Scribble Annotation: Real builders. Real progress. */}
@@ -836,7 +1009,7 @@ export default function WhatsHappeningSection() {
                 {upcomingCards.map((event) => (
                   <article
                     key={event.title}
-                    className="wh-upcoming-card opacity-0 group/card relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-6 sm:p-7 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 hover:border-[#0066FF]/35 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-h-[380px]"
+                    className="wh-upcoming-card group/card relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-6 sm:p-7 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 hover:border-[#0066FF]/35 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-h-[380px]"
                   >
                     <div>
                       {/* Top Row: Category Pill + Status Pill */}
@@ -909,7 +1082,7 @@ export default function WhatsHappeningSection() {
                 href="https://www.commudle.com/communities/codeconsortium"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="wh-upcoming-card opacity-0 group/viewall shrink-0 flex flex-col items-center justify-center gap-2 self-center text-center p-3 cursor-pointer"
+                className="wh-upcoming-card group/viewall shrink-0 flex flex-col items-center justify-center gap-2 self-center text-center p-3 cursor-pointer"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#0066FF] shadow-sm transition-all duration-300 group-hover/viewall:bg-[#0066FF] group-hover/viewall:border-[#0066FF] group-hover/viewall:text-white group-hover/viewall:scale-105">
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/viewall:translate-x-0.5 group-hover/viewall:-translate-y-0.5" />
