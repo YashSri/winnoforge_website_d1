@@ -6,6 +6,22 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: rootDir,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "json.commudle.com",
+      },
+      {
+        protocol: "https",
+        hostname: "commudle.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.commudle.com",
+      },
+    ],
+  },
   async redirects() {
     return [
       { source: "/corporate", destination: "/collaborate", permanent: true },

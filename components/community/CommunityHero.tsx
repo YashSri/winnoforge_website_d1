@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * FORGE COMMUNITY HERO SECTION
@@ -18,6 +18,18 @@ export default function CommunityHero() {
   const leftGroupRef = useRef<HTMLDivElement>(null);
   const rightGroupRef = useRef<HTMLDivElement>(null);
   const centerGroupRef = useRef<HTMLDivElement>(null);
+  const [membersCount, setMembersCount] = useState<number>(356);
+
+  useEffect(() => {
+    fetch("/api/events")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.stats?.membersCount && typeof data.stats.membersCount === "number") {
+          setMembersCount(data.stats.membersCount);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useGSAP(
     () => {
@@ -436,7 +448,7 @@ export default function CommunityHero() {
               </a>
               <span className="font-jakarta text-xs text-[#8896A6] flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
-                Official FORGE Hub on Commudle &middot; 350+ Members
+                Official FORGE Hub on Commudle &middot; {membersCount}+ Members
               </span>
             </div>
 

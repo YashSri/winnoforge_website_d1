@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -267,15 +267,79 @@ export default function WhatsHappeningSection() {
   const [selectedStatus, setSelectedStatus] = useState<"all" | "upcoming" | "past">("all");
   const [carouselIndex, setCarouselIndex] = useState(0);
 
+  // Live state initialized with static fallback data for 0 layout shift and instant SSR
+  const [communityItems, setCommunityItems] = useState<CommunityItem[]>(ALL_COMMUNITY_ITEMS);
+  const [upcomingCards, setUpcomingCards] = useState<UpcomingEventItem[]>(UPCOMING_CARDS_DATA);
+
+  // Background auto-sync with Commudle via /api/events
+  useEffect(() => {
+    let active = true;
+    fetch("/api/events")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!active || !data?.success) return;
+
+        // Auto-update Upcoming in Community cards
+        if (Array.isArray(data.upcoming) && data.upcoming.length > 0) {
+          const liveUpcoming: UpcomingEventItem[] = data.upcoming.map((ev: any) => ({
+            title: ev.title,
+            type: ev.type,
+            date: ev.date,
+            time: ev.time,
+            location: ev.location,
+            host: ev.host,
+            audience: ev.audience,
+            description: ev.description,
+            status: ev.displayStatus,
+            link: ev.link,
+          }));
+
+          setUpcomingCards((prev) => {
+            const liveSlugs = new Set(liveUpcoming.map((u) => u.title.toLowerCase()));
+            const nonDuplicatePrev = prev.filter((p) => !liveSlugs.has(p.title.toLowerCase()));
+            return [...liveUpcoming, ...nonDuplicatePrev].slice(0, 3);
+          });
+        }
+
+        // Auto-update Featured items
+        if (Array.isArray(data.events) && data.events.length > 0) {
+          const liveItems: CommunityItem[] = data.events.map((ev: any) => ({
+            id: ev.id,
+            category: ev.category,
+            status: ev.status,
+            title: ev.title,
+            description: ev.description,
+            date: ev.date,
+            image: ev.image,
+            attendeesCount: ev.attendeesCount,
+            link: ev.link,
+          }));
+
+          setCommunityItems((prev) => {
+            const liveIds = new Set(liveItems.map((item) => item.id));
+            const retainedInternal = prev.filter(
+              (item) => !liveIds.has(item.id) && !item.id.startsWith("cm-")
+            );
+            return [...liveItems, ...retainedInternal];
+          });
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Filter items based on selected category and status
   const filteredFeatured = useMemo(() => {
-    const list = ALL_COMMUNITY_ITEMS.filter(
+    const list = communityItems.filter(
       (item) =>
         item.category === selectedCategory &&
         (selectedStatus === "all" || item.status === selectedStatus)
     );
-    return list.length > 0 ? list : ALL_COMMUNITY_ITEMS.slice(0, 2);
-  }, [selectedCategory, selectedStatus]);
+    return list.length > 0 ? list : communityItems.slice(0, 2);
+  }, [communityItems, selectedCategory, selectedStatus]);
 
   // Carousel navigation
   const maxIndex = Math.max(0, filteredFeatured.length - 2);
@@ -769,7 +833,7 @@ export default function WhatsHappeningSection() {
             <div className="lg:col-span-9 flex flex-col lg:flex-row items-center gap-6">
               {/* 3 Identical Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 flex-1 w-full">
-                {UPCOMING_CARDS_DATA.map((event) => (
+                {upcomingCards.map((event) => (
                   <article
                     key={event.title}
                     className="wh-upcoming-card opacity-0 group/card relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-6 sm:p-7 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 hover:border-[#0066FF]/35 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-h-[380px]"
