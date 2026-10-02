@@ -2103,6 +2103,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   app/api/events/route.ts, components/community/CommunityHero.tsx, components/community/WhatsHappeningSection.tsx, lib/commudle.ts, next.config.ts
 
+--------------------------------------------------------------------------------
+RECORD #134 | COMMIT: 29c04ba | TIMESTAMP: 2026-10-02 21:50:29 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: sync changelog and excel report for automated event framework
+
+SITE CHANGES IMPLEMENTED:
+  docs: sync changelog and excel report for automated event framework
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #135 | COMMIT: e1b4da6 | TIMESTAMP: 2026-10-02 21:54:12 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  fix(commudle): enforce Asia/Kolkata IST timezone for event start and end time formatting
+
+SITE CHANGES IMPLEMENTED:
+  fix(commudle): enforce Asia/Kolkata IST timezone for event start and end time formatting
+
+KEY FILES AFFECTED:
+  lib/commudle.ts
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
