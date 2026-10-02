@@ -2163,6 +2163,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
 
+--------------------------------------------------------------------------------
+RECORD #138 | COMMIT: 4a41d4d | TIMESTAMP: 2026-10-02 22:27:30 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  fix(community): resolve event filtering for upcoming/past/all by latest date, add EventThumbnail direct unoptimized loading with fallback, and fix card opacity-0 re-render visibility
+
+SITE CHANGES IMPLEMENTED:
+  fix(community): resolve event filtering for upcoming/past/all by latest date, add EventThumbnail direct unoptimized loading with fallback, and fix card opacity-0 re-render visibility
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt, components/community/WhatsHappeningSection.tsx
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================

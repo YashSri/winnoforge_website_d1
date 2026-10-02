@@ -323,16 +323,18 @@ export default function Navbar() {
               <div
                 className={`relative transition-all duration-350 ease-[cubic-bezier(0.34,1.4,0.5,1)] group-hover:scale-[1.02] ${
                   isCompact
-                    ? "w-28 sm:w-32 md:w-36 h-7 sm:h-8"
-                    : "w-32 sm:w-38 md:w-44 h-8 sm:h-9 md:h-10"
+                    ? "w-32 sm:w-34 md:w-36 h-7 sm:h-8"
+                    : "w-36 sm:w-40 md:w-44 h-8 sm:h-9 md:h-10"
                 }`}
               >
                 <Image
-                  src="/forge-logo.svg"
+                  src="/forge-logo.png"
                   alt="FORGE"
                   fill
+                  sizes="(max-width: 768px) 140px, 180px"
                   className="object-contain object-left"
                   priority
+                  unoptimized
                 />
               </div>
             </Link>
