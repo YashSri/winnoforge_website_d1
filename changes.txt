@@ -2013,6 +2013,36 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
 
+--------------------------------------------------------------------------------
+RECORD #128 | COMMIT: 628e0b3 | TIMESTAMP: 2026-10-02 19:51:19 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs: sync automated changelog and Excel report
+
+SITE CHANGES IMPLEMENTED:
+  docs: sync automated changelog and Excel report
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
+--------------------------------------------------------------------------------
+RECORD #129 | COMMIT: c035825 | TIMESTAMP: 2026-10-02 20:47:48 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  feat(hero): upgrade supporter and founder logos to high-res transparent assets without background boxes
+
+SITE CHANGES IMPLEMENTED:
+  feat(hero): upgrade supporter and founder logos to high-res transparent assets without background boxes
+
+KEY FILES AFFECTED:
+  components/Hero.tsx, public/supporters/faceoff-clean.png, public/supporters/faceoff.png, public/supporters/founder-cube-clean.png, public/supporters/founder-cube.png (+9 more)
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
