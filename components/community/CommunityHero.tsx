@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import JoinButton from "@/components/modal/JoinButton";
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  * FORGE COMMUNITY HERO SECTION
@@ -425,11 +424,20 @@ export default function CommunityHero() {
             </p>
 
             {/* CTA Button */}
-            <div className="fch-cta opacity-0 mt-8 sm:mt-10">
-              <JoinButton className="group/btn inline-flex items-center gap-3 rounded-full bg-[#0066FF] hover:bg-[#0052D4] text-white px-8 sm:px-9 py-4 font-jakarta text-sm sm:text-base font-semibold tracking-wide shadow-[0_8px_25px_rgba(0,102,255,0.30)] hover:shadow-[0_12px_32px_rgba(0,102,255,0.45)] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+            <div className="fch-cta opacity-0 mt-8 sm:mt-10 flex flex-col items-center gap-3">
+              <a
+                href="https://www.commudle.com/communities/codeconsortium"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/btn inline-flex items-center gap-3 rounded-full bg-[#0066FF] hover:bg-[#0052D4] text-white px-8 sm:px-9 py-4 font-jakarta text-sm sm:text-base font-semibold tracking-wide shadow-[0_8px_25px_rgba(0,102,255,0.30)] hover:shadow-[0_12px_32px_rgba(0,102,255,0.45)] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+              >
                 <span>Join the Community</span>
                 <ArrowRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
-              </JoinButton>
+              </a>
+              <span className="font-jakarta text-xs text-[#8896A6] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+                Official FORGE Hub on Commudle &middot; 350+ Members
+              </span>
             </div>
 
             {/* Center Vertical Guide Line & Solid Blue Dot at Bottom */}

@@ -36,6 +36,7 @@ export interface CommunityItem {
   image?: string;
   attendeesCount?: string;
   avatars?: string[];
+  link?: string;
 }
 
 export interface UpcomingEventItem {
@@ -48,9 +49,32 @@ export interface UpcomingEventItem {
   audience: string;
   description: string;
   status: "Registration Open" | "Coming Soon" | "Registration Closed" | "Completed" | "To Be Announced";
+  link?: string;
 }
 
 const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
+  {
+    id: "cm-event-1",
+    category: "Events",
+    status: "past",
+    title: "DECODE THE MACHINE — NLP × Transformers",
+    description: "Hands-on AI workshop taking builders behind the scenes of NLP, tokenizer pipelines, and Transformer architecture.",
+    date: "26 Sep 2026",
+    image: "/commudle-events/decode-the-machine.png",
+    attendeesCount: "+88 attended",
+    link: "https://www.commudle.com/communities/codeconsortium/events/decode-the-machine",
+  },
+  {
+    id: "cm-event-2",
+    category: "Events",
+    status: "past",
+    title: "From Foundations To Frontiers AI",
+    description: "Structured learning journey from AI fundamentals and neural networks to generative AI and agentic frontiers.",
+    date: "19 Sep 2026",
+    image: "/commudle-events/foundations-to-frontiers.png",
+    attendeesCount: "+80 attended",
+    link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
+  },
   {
     id: "e1",
     category: "Events",
@@ -59,7 +83,7 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
     description: "Builders present shipped prototypes to mentors and industry guests.",
     date: "Dec 2026",
     image: "/community-events/demo-day-winter.png",
-    attendeesCount: "+120 attended",
+    attendeesCount: "+120 registered",
   },
   {
     id: "e2",
@@ -70,6 +94,39 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
     date: "Jun 2026",
     image: "/community-events/demo-day-summer.png",
     attendeesCount: "+89 attended",
+  },
+  {
+    id: "cm-ws-1",
+    category: "Workshops",
+    status: "past",
+    title: "DECODE THE MACHINE: NLP & Transformers",
+    description: "Hands-on session with Trinity Institute of Innovations on how machines process language and reasoning.",
+    date: "26 Sep 2026",
+    image: "/commudle-events/decode-the-machine.png",
+    attendeesCount: "+88 attended",
+    link: "https://www.commudle.com/communities/codeconsortium/events/decode-the-machine",
+  },
+  {
+    id: "cm-ws-2",
+    category: "Workshops",
+    status: "past",
+    title: "From Foundations To Frontiers AI",
+    description: "Interactive demonstrations on Neural Networks, Prompting, and Agentic AI workflows at Trinity Institute.",
+    date: "19 Sep 2026",
+    image: "/commudle-events/foundations-to-frontiers.png",
+    attendeesCount: "+80 attended",
+    link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
+  },
+  {
+    id: "cm-ws-3",
+    category: "Workshops",
+    status: "past",
+    title: "FORGING THE AI ERA — Hands-on Workshop",
+    description: "Build AI foundations from scratch. Machine learning, prompt engineering, and live vibe-coding demonstration.",
+    date: "22 Feb 2026",
+    image: "/commudle-events/forging-the-ai-era.png",
+    attendeesCount: "+62 attended",
+    link: "https://www.commudle.com/communities/codeconsortium/events/forging-the-ai-era",
   },
   {
     id: "w1",
@@ -155,6 +212,30 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
 
 const UPCOMING_CARDS_DATA: UpcomingEventItem[] = [
   {
+    title: "DECODE THE MACHINE",
+    type: "Workshop",
+    date: "26 Sep 2026",
+    time: "10:00 AM – 4:00 PM",
+    location: "Trinity Institute of Innovations, Gr. Noida",
+    host: "TEAM FORGE & Commudle",
+    audience: "Beginner to Intermediate",
+    description: "NLP × Transformers — A hands-on workshop on how AI understands language, tokens, and model reasoning.",
+    status: "Completed",
+    link: "https://www.commudle.com/communities/codeconsortium/events/decode-the-machine",
+  },
+  {
+    title: "From Foundations To Frontiers",
+    type: "Workshop",
+    date: "19 Sep 2026",
+    time: "10:00 AM – 4:00 PM",
+    location: "Trinity Institute of Innovations, Gr. Noida",
+    host: "FORGE Community",
+    audience: "Curious builders & learners",
+    description: "From AI fundamentals and Neural Networks to Prompting, Generative AI, and Agentic Frontiers.",
+    status: "Completed",
+    link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
+  },
+  {
     title: "FORGE Demo Day — Winter Cohort",
     type: "Event",
     date: "Dec 2026",
@@ -164,28 +245,6 @@ const UPCOMING_CARDS_DATA: UpcomingEventItem[] = [
     audience: "Open to all",
     description: "Builders present shipped prototypes to mentors and industry guests.",
     status: "Coming Soon",
-  },
-  {
-    title: "Intro to Systems Thinking",
-    type: "Workshop",
-    date: "Nov 2026",
-    time: "To Be Announced",
-    location: "Online",
-    host: "FORGE Mentor Network",
-    audience: "Beginners welcome",
-    description: "A hands-on workshop on breaking down real-world problems.",
-    status: "Registration Open",
-  },
-  {
-    title: "New Certification Track: AI Productivity",
-    type: "Announcement",
-    date: "Oct 2026",
-    time: "—",
-    location: "Online",
-    host: "FORGE Team",
-    audience: "All learners",
-    description: "Enrollment opens for the newest FORGE certification track.",
-    status: "To Be Announced",
   },
 ];
 
@@ -520,6 +579,11 @@ export default function WhatsHappeningSection() {
                 {filteredFeatured.slice(carouselIndex, carouselIndex + 2).map((item, idx) => (
                   <article
                     key={item.id + idx}
+                    onClick={() => {
+                      if (item.link) {
+                        window.open(item.link, "_blank", "noopener,noreferrer");
+                      }
+                    }}
                     className="wh-featured-card opacity-0 group/featured relative flex flex-col justify-between rounded-[24px] bg-white border border-[#E2E8F0] p-3 sm:p-3.5 shadow-[0_12px_36px_rgba(20,40,80,0.05)] hover:shadow-[0_20px_50px_rgba(20,40,80,0.12)] hover:-translate-y-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer"
                   >
                     {/* Image Area with Overlays */}
@@ -576,7 +640,7 @@ export default function WhatsHappeningSection() {
                         </div>
 
                         <span className="font-jakarta text-[11px] font-bold uppercase tracking-[0.16em] text-[#0066FF] group-hover/featured:translate-x-1 transition-transform">
-                          VIEW →
+                          {item.link ? "COMMUDLE ↗" : "VIEW →"}
                         </span>
                       </div>
                     </div>
@@ -755,29 +819,43 @@ export default function WhatsHappeningSection() {
 
                     {/* Bottom CTA Button */}
                     <div className="mt-6 pt-2">
-                      <JoinButton className="group/btn inline-flex items-center gap-2 rounded-full bg-[#0066FF] hover:bg-[#0052D4] text-white px-6 py-2.5 font-jakarta text-xs sm:text-[13px] font-semibold shadow-[0_6px_20px_rgba(0,102,255,0.22)] hover:shadow-[0_10px_25px_rgba(0,102,255,0.35)] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                        <span>Register Interest</span>
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                      </JoinButton>
+                      {event.link ? (
+                        <a
+                          href={event.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/btn inline-flex items-center gap-2 rounded-full bg-[#0066FF] hover:bg-[#0052D4] text-white px-6 py-2.5 font-jakarta text-xs sm:text-[13px] font-semibold shadow-[0_6px_20px_rgba(0,102,255,0.22)] hover:shadow-[0_10px_25px_rgba(0,102,255,0.35)] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                        >
+                          <span>View on Commudle</span>
+                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                        </a>
+                      ) : (
+                        <JoinButton className="group/btn inline-flex items-center gap-2 rounded-full bg-[#0066FF] hover:bg-[#0052D4] text-white px-6 py-2.5 font-jakarta text-xs sm:text-[13px] font-semibold shadow-[0_6px_20px_rgba(0,102,255,0.22)] hover:shadow-[0_10px_25px_rgba(0,102,255,0.35)] transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                          <span>Register Interest</span>
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                        </JoinButton>
+                      )}
                     </div>
                   </article>
                 ))}
               </div>
 
               {/* Far Right "View All Events" Pill Link */}
-              <Link
-                href="#activities"
+              <a
+                href="https://www.commudle.com/communities/codeconsortium"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="wh-upcoming-card opacity-0 group/viewall shrink-0 flex flex-col items-center justify-center gap-2 self-center text-center p-3 cursor-pointer"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#0066FF] shadow-sm transition-all duration-300 group-hover/viewall:bg-[#0066FF] group-hover/viewall:border-[#0066FF] group-hover/viewall:text-white group-hover/viewall:scale-105">
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/viewall:translate-x-0.5" />
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/viewall:translate-x-0.5 group-hover/viewall:-translate-y-0.5" />
                 </div>
                 <span className="font-jakarta text-xs font-bold text-[#0066FF] underline underline-offset-4 decoration-[#0066FF]/40 group-hover/viewall:decoration-[#0066FF]">
-                  View all
+                  View all on
                   <br />
-                  events
+                  Commudle ↗
                 </span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
