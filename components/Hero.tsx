@@ -23,12 +23,48 @@ if (typeof window !== "undefined") {
 }
 
 const founderLogos = [
-  { src: "/supporters/founder-remote.png", alt: "Founder company mark" },
-  { src: "/supporters/xonier.png", alt: "Xonier Technologies" },
-  { src: "/supporters/founder-cube.png", alt: "Founder technology mark" },
-  { src: "/supporters/we360ai.png", alt: "we360.ai" },
-  { src: "/supporters/hrjee.png", alt: "HRJee / Jio" },
-  { src: "/supporters/faceoff.png", alt: "Faceoff" },
+  {
+    src: "/supporters/founder-remote-clean.svg",
+    alt: "Founder company mark",
+    width: 36,
+    height: 36,
+    className: "h-6 sm:h-7 w-auto object-contain",
+  },
+  {
+    src: "/supporters/xonier-clean.png",
+    alt: "Xonier Technologies",
+    width: 600,
+    height: 187,
+    className: "h-5 sm:h-5.5 w-auto object-contain max-w-[85px] sm:max-w-[95px]",
+  },
+  {
+    src: "/supporters/founder-cube-clean.png",
+    alt: "Founder technology mark",
+    width: 410,
+    height: 384,
+    className: "h-6 sm:h-7 w-auto object-contain",
+  },
+  {
+    src: "/supporters/we360ai-clean.png",
+    alt: "we360.ai",
+    width: 320,
+    height: 71,
+    className: "h-4.5 sm:h-5 w-auto object-contain max-w-[80px] sm:max-w-[90px]",
+  },
+  {
+    src: "/supporters/hrjee-clean.png",
+    alt: "HRJee",
+    width: 240,
+    height: 240,
+    className: "h-6 sm:h-7 w-auto object-contain",
+  },
+  {
+    src: "/supporters/faceoff-clean.png",
+    alt: "Faceoff",
+    width: 372,
+    height: 160,
+    className: "h-5 sm:h-5.5 w-auto object-contain max-w-[75px] sm:max-w-[85px]",
+  },
 ];
 
 const featurePills = [
@@ -492,18 +528,18 @@ export default function Hero() {
                 <span className="font-jakarta text-[11px] font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
                   SUPPORTED BY FOUNDERS FROM
                 </span>
-                <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
                   {founderLogos.map((logo) => (
                     <div
                       key={logo.src}
-                      className="h-11 sm:h-12 md:h-13 px-3.5 sm:px-4 py-1.5 bg-white border border-[#D9DEE7] rounded-xl flex items-center justify-center shadow-[0_2px_6px_rgba(16,42,67,0.04)] hover:shadow-md hover:border-[#1683E8]/50 hover:-translate-y-0.5 transition-all duration-200"
+                      className="h-11 sm:h-12 px-3 sm:px-3.5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                     >
                       <Image
                         src={logo.src}
                         alt={logo.alt}
-                        width={90}
-                        height={40}
-                        className="h-7 sm:h-8 w-auto object-contain max-w-[85px] sm:max-w-[100px]"
+                        width={logo.width}
+                        height={logo.height}
+                        className={logo.className}
                       />
                     </div>
                   ))}
@@ -515,13 +551,13 @@ export default function Hero() {
                 <span className="font-jakarta text-[11px] font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
                   BACKED BY
                 </span>
-                <div className="h-11 sm:h-12 md:h-13 px-4 sm:px-5 py-1.5 bg-white border border-[#D9DEE7] rounded-xl flex items-center justify-center shadow-[0_2px_6px_rgba(16,42,67,0.04)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                <div className="h-11 sm:h-12 px-4 sm:px-5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                   <Image
-                    src="/supporters/winnovation.png"
+                    src="/supporters/winnovation-clean.png"
                     alt="WinNovation"
-                    width={150}
-                    height={45}
-                    className="h-7 sm:h-8 w-auto object-contain max-w-[140px]"
+                    width={440}
+                    height={88}
+                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px]"
                   />
                 </div>
               </div>
