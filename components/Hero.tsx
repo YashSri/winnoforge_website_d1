@@ -22,50 +22,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const partnerCompanyLogos = [
-  {
-    src: "/logos/partners/lenovo.png",
-    alt: "Lenovo",
-    width: 1024,
-    height: 238,
-    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[70px] sm:max-w-[80px]",
-  },
-  {
-    src: "/logos/partners/claude.png",
-    alt: "Claude Anthropic",
-    width: 722,
-    height: 180,
-    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[75px] sm:max-w-[85px]",
-  },
-  {
-    src: "/logos/partners/fortinet.png",
-    alt: "Fortinet",
-    width: 1050,
-    height: 150,
-    className: "h-3 sm:h-3.5 w-auto object-contain max-w-[80px] sm:max-w-[90px]",
-  },
-  {
-    src: "/logos/partners/we360-ai.png",
-    alt: "we360.ai",
-    width: 992,
-    height: 231,
-    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[70px] sm:max-w-[80px]",
-  },
-  {
-    src: "/logos/partners/sophos.png",
-    alt: "Sophos",
-    width: 854,
-    height: 605,
-    className: "h-4.5 sm:h-5.5 w-auto object-contain max-w-[65px] sm:max-w-[75px]",
-  },
-  {
-    src: "/logos/partners/honda.png",
-    alt: "Honda",
-    width: 677,
-    height: 440,
-    className: "h-5 sm:h-6 w-auto object-contain max-w-[60px] sm:max-w-[70px]",
-  },
-];
 
 const featurePills = [
   { icon: BarChart3, label: "Execution Pipeline" },
@@ -518,63 +474,37 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom Strip: Partners & Statistics */}
+        {/* Bottom Strip: Backed By & Statistics */}
         <div className="hero-bottom-strip mt-10 sm:mt-12 lg:mt-14 pt-6 border-t border-[#D9DEE7]">
-          <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 lg:gap-8">
-            {/* Left Group: Supported By Founders From & Backed By */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 lg:gap-7 flex-wrap">
-              {/* Supported by Founders From */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                <span className="font-jakarta text-[11px] font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
-                  PARTNERS &amp; FOUNDERS FROM
-                </span>
-                <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
-                  {partnerCompanyLogos.map((logo) => (
-                    <div
-                      key={logo.src}
-                      className="h-11 sm:h-12 px-3 sm:px-3.5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                      <Image
-                        src={logo.src}
-                        alt={logo.alt}
-                        width={logo.width}
-                        height={logo.height}
-                        className={logo.className}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Middle: Backed By Winnovation */}
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span className="font-jakarta text-[11px] font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
-                  BACKED BY
-                </span>
-                <div className="h-11 sm:h-12 px-4 sm:px-5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <Image
-                    src="/supporters/winnovation-clean.png"
-                    alt="WinNovation"
-                    width={440}
-                    height={88}
-                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px]"
-                  />
-                </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-8">
+            {/* Backed By Winnovation */}
+            <div className="flex items-center gap-3.5 sm:gap-4 w-full md:w-auto justify-center md:justify-start">
+              <span className="font-jakarta text-[11px] sm:text-xs font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
+                BACKED BY
+              </span>
+              <div className="h-11 sm:h-12 px-4 sm:px-5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                <Image
+                  src="/supporters/winnovation-clean.png"
+                  alt="WinNovation"
+                  width={440}
+                  height={88}
+                  className="h-6 sm:h-7 w-auto object-contain max-w-[130px]"
+                />
               </div>
             </div>
 
             {/* Right Group: Statistics Counters Area */}
             <div
               ref={statsRef}
-              className="flex items-center justify-between sm:justify-start gap-6 sm:gap-8 lg:gap-10 w-full xl:w-auto pt-4 xl:pt-0 border-t xl:border-t-0 border-[#D9DEE7]/70"
+              className="flex items-center justify-around sm:justify-start gap-6 sm:gap-8 lg:gap-10 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-[#D9DEE7]/70"
             >
               {statsData.map((stat, idx) => (
                 <div
                   key={stat.label}
                   className="flex items-center gap-6 sm:gap-8 lg:gap-10"
                 >
-                  <div className="flex flex-col">
-                    <span className="font-clash font-bold text-3xl sm:text-4xl lg:text-[2.6rem] text-[#111111] leading-none tracking-tight tabular-nums flex items-baseline">
+                  <div className="flex flex-col text-center sm:text-left">
+                    <span className="font-clash font-bold text-3xl sm:text-4xl lg:text-[2.6rem] text-[#111111] leading-none tracking-tight tabular-nums flex items-baseline justify-center sm:justify-start">
                       <span>{counters[idx]}</span>
                       <span className="text-[#1683E8] text-2xl sm:text-3xl lg:text-[2.2rem] ml-0.5 font-bold">
                         {stat.suffix}

@@ -1,0 +1,1903 @@
+================================================================================
+           FORGE WEBSITE — COMPLETE MASTER ANIMATION CATALOG & REPLICATION GUIDE
+================================================================================
+Project: Winnovation FORGE (winnoforge.com)
+File Format: Universal AI & Developer Instruction Manual (.txt)
+Purpose: Portable catalog of all micro-interactions, scroll triggers, card reveals,
+         text masks, 3D physics, SVG paths, and background shaders across the site.
+How to use in another project:
+  1. Provide this document to an AI coding assistant (like Antigravity / Claude / ChatGPT).
+  2. Simply state: "Apply [ANIMATION_NAME] from the catalog to my [Target Component]".
+  3. The agent will read the exact implementation, timings, easing, and dependencies below
+     and generate the exact reproduction without guesswork.
+================================================================================
+
+
+================================================================================
+       TABLE OF CONTENTS — MASTER VISUAL INDEX & QUICK RECALL MATRIX
+================================================================================
+This Table of Contents provides a fast visual recognition system for all 32
+animations across the Winnovation FORGE website.
+
+Use this section to instantly recall:
+  1. The Animation Name & ID
+  2. Where it is used in FORGE
+  3. State 0: Idle State (Resting / before trigger)
+  4. Trigger Event (Scroll, Hover, Mousemove, Interval, Click)
+  5. State 1: After Animation State (Active / completed state)
+  6. Visual Diagram (ASCII diagram showing before -> after transformation)
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS — COMPLETE CATALOG INDEX (BY CATEGORY)
+--------------------------------------------------------------------------------
+
+CATEGORY 1: GLOBAL BACKGROUNDS & AMBIENT SHADERS
+  • [ANIM-BG-01]: Smooth Cursor Lerp Spotlight (Ambient Damped Follower)
+  • [ANIM-BG-02]: Ambient Floating Orbs (Tri-Orb Asymmetric Orbit)
+  • [ANIM-BG-03]: Drift & Pulse Builder Nodes (Micro Parallax Layer)
+  • [ANIM-BG-04]: Continuous Ambient Vector Arcs & Orbiting Dots
+  • [ANIM-BG-05]: Liquid Glass Light Sweep Shimmer (Specular Highlight)
+  • [ANIM-BG-06]: Pure Solid Geometric Multi-Orb Float (Swiss Graphic Style)
+
+CATEGORY 2: DISPLAY TYPOGRAPHY & TEXT REVEALS
+  • [ANIM-TXT-01]: Line-by-Line Masked Typography Slide (Clipped Upward Reveal)
+  • [ANIM-TXT-02]: Cinematic Blur-Clearing Stagger Reveal (Hero Headline Entrance)
+  • [ANIM-TXT-03]: Expanding Horizontal Eyebrow Wings (ScaleX Origin Expand)
+  • [ANIM-TXT-04]: Bi-Directional Numeric Ticker Counter (Scroll-Triggered Tween)
+
+CATEGORY 3: CARD REVEALS, BENTO GRIDS & SCROLL TRIGGERS
+  • [ANIM-CRD-01]: Asymmetric Bento Grid Stagger Cascade
+  • [ANIM-CRD-02]: Alternating Zig-Zag Directional Slide Entrance
+  • [ANIM-CRD-03]: Alternating Vertical Slot Entrance (Memory Grid)
+  • [ANIM-CRD-04]: Capability Row Cascade with Micro Parallax
+  • [ANIM-CRD-05]: ScrollReveal Zero-Dependency Observer Wrapper
+
+CATEGORY 4: CARD HOVER INTERACTIONS & 3D PERSPECTIVES
+  • [ANIM-HVR-01]: Diagonal Corner Expansion (Uiverse Style Dual Expand)
+  • [ANIM-HVR-02]: 3D Perspective Card Carousel with Focus Expand & Outer Tilt
+  • [ANIM-HVR-03]: Double-Sided 3D Perspective Flip Card (180deg Flip)
+  • [ANIM-HVR-04]: Interactive Story Card with 3D Tilt & Origin Story Drawer
+  • [ANIM-HVR-05]: Card Brand Color Inversion & Number Circle Scale
+  • [ANIM-HVR-06]: Asymmetric Bento Card Hover Lift & Arrow Micro-Nudge
+
+CATEGORY 5: SVG PATH DRAWS & PERIMETER BEAMS
+  • [ANIM-SVG-01]: Traveling SVG Perimeter Border Beam (Citadel Bento Rect)
+  • [ANIM-SVG-02]: Continuous Perimeter Travel Loop (Philosophy Rail Card)
+  • [ANIM-SVG-03]: Single-Shot Perimeter Border Draw (Government Innovation)
+  • [ANIM-SVG-04]: Scroll-Scrubbed Dynamic SVG Route Draw (Zig-Zag Engine)
+
+CATEGORY 6: COMPLEX SCROLL EXPERIENCES & PINNED DECKS
+  • [ANIM-PIN-01]: Pinned 3D Stacking Card Deck (Continuous Scrub Layer Deck)
+  • [ANIM-PIN-02]: Liquid Glass Dynamic Navbar Collapse & Spring-Back
+
+CATEGORY 7: MORPHING, ORBITAL SHUFFLES & MODAL TRANSITIONS
+  • [ANIM-SHF-01]: Orbital Memory Grid Drift & Staggered Reshuffle
+  • [ANIM-MRP-01]: Organic Morphing Blob Border-Radius Loop (Footer Morph)
+  • [ANIM-MOD-01]: Backdrop Blur Fade & Scaled Dialog Entrance (Form Modal)
+  • [ANIM-ACC-01]: Smooth FAQ Accordion Expand & Collapse with Icon Morph
+  • [ANIM-SPL-01]: Gear Preloader Spin with Coordinated Body Fade-Out
+
+
+================================================================================
+VISUAL RECALL MATRIX: IDLE STATE -> AFTER STATE & DIAGRAMS
+================================================================================
+
+--------------------------------------------------------------------------------
+1. GLOBAL BACKGROUNDS & AMBIENT SHADERS
+--------------------------------------------------------------------------------
+
+[ANIM-BG-01]: Smooth Cursor Lerp Spotlight (Ambient Damped Follower)
+  • Where in FORGE : Across entire site background (components/shared/AmbientBackground.tsx)
+  • Idle State     : 500px soft blue radial gradient circle resting at last mouse position.
+  • Trigger        : Mouse movement (mousemove event).
+  • After State    : Spotlight smoothly glides toward cursor with 0.08 linear damping (lerp),
+                     following with a natural, organic trailing lag.
+  • Visual Diagram :
+    [IDLE / RESTING STATE]                  [AFTER MOUSE MOVEMENT]
+    +--------------------------------+      +--------------------------------+
+    |                                |      |                                |
+    |      ( * ) Last position       |      |                  * (New Mouse) |
+    |     [::: 500px Glow :::]       | ---> |               .~~ (0.08 Lerp)  |
+    |                                |      |        [::: 500px Glow :::]    |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-BG-02]: Ambient Floating Orbs (Tri-Orb Asymmetric Orbit)
+  • Where in FORGE : Across entire site background (globals.css & AmbientBackground.tsx)
+  • Idle State     : 3 large blurred color orbs resting at Top-Right, Mid-Left, and Bottom.
+  • Trigger        : Continuous automatic CSS keyframe animation loop (18s, 22s, 20s).
+  • After State    : Orbs drift on distinct elliptical trajectories with subtle scale pulses (1.05x-1.1x),
+                     producing an ever-shifting, living atmospheric background.
+  • Visual Diagram :
+    [IDLE STATE (0s)]                       [AFTER / MID-CYCLE (10s)]
+    +--------------------------------+      +--------------------------------+
+    |                 [Orb 1: 500px] |      |              ~>[Orb 1: Scale+] |
+    |  [Orb 2: 600px]                | ---> |       [Orb 2]~>                |
+    |          [Orb 3: 500px]        |      |             <~[Orb 3]          |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-BG-03]: Drift & Pulse Builder Nodes (Micro Parallax Layer)
+  • Where in FORGE : Background behind Citadel, Programs & Experience cards
+  • Idle State     : Small glowing blue dots with rings resting at opacity 0.4 and scale 1.0.
+  • Trigger        : Continuous 10s-12s drift keyframes + mouse parallax offset (0.02 ratio).
+  • After State    : Nodes slowly drift +/-20px, pulse to opacity 0.85 and scale 1.15,
+                     and subtly counter-shift against cursor movement.
+  • Visual Diagram :
+    [IDLE STATE (Dim & Small)]              [AFTER / PULSE & PARALLAX]
+    +--------------------------------+      +--------------------------------+
+    |   . (dim node)                 |      |   ( * ) (Glow & scale 1.15)    |
+    |                . (dim node)    | ---> |                ( * )           |
+    |      . (dim node)              |      |      ( * )  <- shifts parallax |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-BG-04]: Continuous Ambient Vector Arcs & Orbiting Dots
+  • Where in FORGE : Collaborate Hero & Community Hero backgrounds
+  • Idle State     : Thin dashed architectural circular arcs and dots sitting static at 0 deg.
+  • Trigger        : Continuous linear rotation (22s to 28s CSS keyframe loop).
+  • After State    : Precision blueprint curves and accent satellites revolve smoothly around
+                     coordinate anchors, delivering a high-tech architectural ambiance.
+  • Visual Diagram :
+    [IDLE STATE (Static Arcs)]              [AFTER / ROTATING LOOP]
+    +--------------------------------+      +--------------------------------+
+    |          / - - - - \           |      |          \ - - - - /           |
+    |         (     *     )          | ---> |         (     *     ) ↺ (Spin)   |
+    |          \ - - - - /           |      |          / - - - - \           |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-BG-05]: Liquid Glass Light Sweep Shimmer (Specular Highlight)
+  • Where in FORGE : Floating Navbar & Dialog Form Headers
+  • Idle State     : Frosted glass panel with clean border stroke and static reflection.
+  • Trigger        : Automated 10-second CSS keyframe interval.
+  • After State    : A bright diagonal specular light band sweeps rapidly from left (-100%)
+                     to right (+200%), mimicking an Apple-style liquid glass sheen.
+  • Visual Diagram :
+    [IDLE STATE (Frosted Glass)]            [AFTER / SWEEP TRIGGER (Every 10s)]
+    +--------------------------------+      +--------------------------------+
+    | [ Frosted Glass Navbar Panel ] | ---> | [ Frosted // Glass Navbar ]    |
+    |   Clean static background      |      |   Specular // Sheen Sweeps ->  |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-BG-06]: Pure Solid Geometric Multi-Orb Float (Swiss Graphic Style)
+  • Where in FORGE : Why FORGE Section (behind cards) & Testimonials background
+  • Idle State     : Crisp, solid blue geometric circles (zero blur) resting behind card text.
+  • Trigger        : Continuous 10s-12s 4-point orbital loop keyframes.
+  • After State    : Circles travel smoothly along a 4-point coordinate path while scaling
+                     between 0.9x and 1.1x and rotating in continuous geometric choreography.
+  • Visual Diagram :
+    [IDLE STATE (Static Discs)]             [AFTER / 4-POINT ORBIT]
+    +--------------------------------+      +--------------------------------+
+    |         (o) (0, 0)             |      |         (o) --------> (o)      |
+    |                                | ---> |          ^             | (10s) |
+    |              (o) (0, 0)        |      |          | <---------- V       |
+    +--------------------------------+      +--------------------------------+
+
+
+--------------------------------------------------------------------------------
+2. DISPLAY TYPOGRAPHY & TEXT REVEALS
+--------------------------------------------------------------------------------
+
+[ANIM-TXT-01]: Line-by-Line Masked Typography Slide (Clipped Upward Reveal)
+  • Where in FORGE : Citadel Hero ("Not a Lab..."), Community Hero, Collaborate Hero
+  • Idle State     : Text lines shifted down by 115% (y: '115%') with opacity: 0,
+                     completely hidden inside parent containers having overflow: hidden.
+  • Trigger        : Heading section enters viewport (ScrollTrigger at top 80%).
+  • After State    : Text lines slide up to y: '0%' and opacity: 1 with an 80ms stagger,
+                     snapping into crisp, sharp typography without clipping.
+  • Visual Diagram :
+    [IDLE STATE (Clipped Mask)]             [AFTER ANIMATION HAPPENS]
+    +--------------------------------+      +--------------------------------+
+    | [Mask: overflow-hidden]        |      | Not a Lab.                     |
+    | ============================== | ---> | An Engine.                     |
+    | [Text hidden below: y: 115%]   |      | ============================== |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-TXT-02]: Cinematic Blur-Clearing Stagger Reveal (Hero Headline Entrance)
+  • Where in FORGE : Homepage Main Hero Headline ("Where Builders Are Made")
+  • Idle State     : Headline lines displaced 35px downward (y: 35), opacity: 0,
+                     and blurred with filter: blur(6px).
+  • Trigger        : Hero section mounts on initial page entrance timeline.
+  • After State    : Lines glide upward to y: 0, opacity: 1, and filter: blur(0px)
+                     with a 0.12s stagger, focusing like a camera lens into crystal clarity.
+  • Visual Diagram :
+    [IDLE STATE (Sunken & Blurry)]          [AFTER ANIMATION HAPPENS]
+    +--------------------------------+      +--------------------------------+
+    |                                |      | WHERE BUILDERS                 |
+    |   ::::::::::::::::::::::::::   | ---> | ARE MADE                       |
+    |   (y: +35px, Blur: 6px, Op: 0) |      | (y: 0px, Blur: 0px, Op: 1)     |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-TXT-03]: Expanding Horizontal Eyebrow Wings (ScaleX Origin Expand)
+  • Where in FORGE : Category badge eyebrows across Citadel, Programs & Home
+  • Idle State     : Uppercase badge text is hidden (opacity: 0). Flanking 1px left and
+                     right lines are collapsed to zero width (scaleX: 0).
+  • Trigger        : Heading row scrolls into viewport.
+  • After State    : Badge text fades in (opacity: 1) while the left wing expands outward
+                     to the left and right wing expands outward to the right (scaleX: 1).
+  • Visual Diagram :
+    [IDLE STATE (Collapsed Wings)]          [AFTER ANIMATION HAPPENS]
+              [ (Hidden) ]                  ------ [ CITADEL EXPERIENCE ] ------
+           scaleX: 0   scaleX: 0     --->   (<- Left Wing)       (Right Wing ->)
+
+[ANIM-TXT-04]: Bi-Directional Numeric Ticker Counter (Scroll-Triggered Tween)
+  • Where in FORGE : Homepage Hero Stats ("500+ Builders", "50+ Projects", "20+ Mentors")
+  • Idle State     : Stat numbers display starting baseline "0+" (or 0).
+  • Trigger        : Stats section enters viewport. Resets if user scrolls back above top.
+  • After State    : Numbers smoothly roll up from 0 to target values (500+, 50+, 20+)
+                     over 1.4s with cubic ease-out. Re-triggerable upon re-entering.
+  • Visual Diagram :
+    [IDLE / RESET STATE]                    [AFTER ANIMATION HAPPENS]
+    +-------+  +-------+  +-------+         +-------+  +-------+  +-------+
+    |  0+   |  |  0+   |  |  0+   |  --->   | 500+  |  |  50+  |  |  20+  |
+    |Builds |  |Proj   |  |Mentors|         |Builds |  |Proj   |  |Mentors|
+    +-------+  +-------+  +-------+         +-------+  +-------+  +-------+
+
+
+--------------------------------------------------------------------------------
+3. CARD REVEALS, BENTO GRIDS & SCROLL TRIGGERS
+--------------------------------------------------------------------------------
+
+[ANIM-CRD-01]: Asymmetric Bento Grid Stagger Cascade
+  • Where in FORGE : Citadel Experience Bento Section & Impact Section
+  • Idle State     : All 7 Bento grid cards are shifted down by 30px (translateY: 30px),
+                     scaled down to 0.97, with opacity: 0.
+  • Trigger        : Bento grid scrolls into view (ScrollTrigger at top 75%).
+  • After State    : Cards pop up in a wave cascade (60ms stagger delay per card)
+                     to translateY: 0, scale: 1, and opacity: 1 with rich tactile bounce.
+  • Visual Diagram :
+    [IDLE STATE (Sunken & Dim)]             [AFTER ANIMATION CASCADE]
+      ::: Card 1 :::    ::: Card 2 :::      +------------+  +------------+
+      ::: Card 3 :::    ::: Card 4 ::: ---> | Card 1     |  | Card 2     |
+      (y: +30px, scale: 0.97, op: 0)        +------------+  +------------+
+                                            | Card 3     |  | Card 4     |
+                                            +------------+  +------------+
+
+[ANIM-CRD-02]: Alternating Zig-Zag Directional Slide Entrance
+  • Where in FORGE : How It Works / Programs Section (Activation, Bootcamp, Citadel, Launch)
+  • Idle State     : Left-hand cards at x: -50px, opacity: 0; right-hand cards at
+                     x: +50px, opacity: 0; center cards at y: +40px, opacity: 0.
+  • Trigger        : User scrolls down to each program milestone row.
+  • After State    : Cards slide in horizontally from opposite sides toward the center,
+                     locking into an alternating zig-zag layout at x: 0, opacity: 1.
+  • Visual Diagram :
+    [IDLE STATE (Split Flanks)]             [AFTER ANIMATION (Zig-Zag Lock)]
+     [Card Left] ---> (x: -50px)            +---------------+
+                                     --->   | STEP 01 (Left)| (x: 0, op: 1)
+                     (x: +50px) <--- [Right]| +---------------+---------------+
+                                            |                 | STEP 02 (Rgt) |
+                                            +-----------------+---------------+
+
+[ANIM-CRD-03]: Alternating Vertical Slot Entrance (Memory Grid)
+  • Where in FORGE : Built Through FORGE (7-card photo wall on Home)
+  • Idle State     : Odd column cards are shifted up (y: -60px, opacity: 0);
+                     even column cards are shifted down (y: +60px, opacity: 0).
+  • Trigger        : Built Through FORGE section enters viewport.
+  • After State    : Cards converge vertically from opposite directions (odds slide down,
+                     evens slide up) simultaneously locking into a flush photo wall.
+  • Visual Diagram :
+    [IDLE STATE (Opposite Verticals)]       [AFTER ANIMATION (Uniform Grid)]
+      [Card 1] | (From Top -60px)           +-----+ +-----+ +-----+ +-----+
+               V   ^ [Card 2] (+60px) --->  |Card1| |Card2| |Card3| |Card4|
+      [Card 3] |   |                        +-----+ +-----+ +-----+ +-----+
+               V
+
+[ANIM-CRD-04]: Capability Row Cascade with Micro Parallax
+  • Where in FORGE : Community Advantage Section (Learn, Build, Belong rows)
+  • Idle State     : 3 capability rows shifted down (y: 25px, opacity: 0); background
+                     decorative arc is static.
+  • Trigger        : ScrollTrigger enters section.
+  • After State    : Rows reveal sequentially downward (stagger: 0.15s) to y: 0, opacity: 1,
+                     while background circular arc subtly shifts with mouse/scrollbar.
+  • Visual Diagram :
+    [IDLE STATE (Dim Rows)]                 [AFTER ANIMATION CASCADE]
+      ::: Row 1: Learn  (y: +25px)          +--------------------------------+
+      ::: Row 2: Build  (y: +25px)   --->   | Row 1: Learn  (y: 0, op: 1)    |
+      ::: Row 3: Belong (y: +25px)          | Row 2: Build  (y: 0, op: 1)    |
+                                            | Row 3: Belong (y: 0, op: 1)    |
+                                            +--------------------------------+
+
+[ANIM-CRD-05]: ScrollReveal Zero-Dependency Observer Wrapper
+  • Where in FORGE : Used across lightweight standalone cards & sections
+  • Idle State     : Element has CSS opacity: 0, transform: translateY(24px).
+  • Trigger        : IntersectionObserver triggers when element reaches 15% in viewport.
+  • After State    : Class .revealed is appended: element smoothly lifts to translateY(0px)
+                     and fades to opacity: 1 over 700ms with cubic-bezier(0.16, 1, 0.3, 1).
+  • Visual Diagram :
+    [IDLE STATE (Below Fold)]               [AFTER SCROLL INTO VIEW]
+      ::: Standalone Card :::               +--------------------------------+
+      (y: +24px, opacity: 0)         --->   | Standalone Card (Revealed)     |
+      (Hidden until scrolled)               | (y: 0px, opacity: 1, 700ms)    |
+                                            +--------------------------------+
+
+
+--------------------------------------------------------------------------------
+4. CARD HOVER INTERACTIONS & 3D PERSPECTIVES
+--------------------------------------------------------------------------------
+
+[ANIM-HVR-01]: Diagonal Corner Expansion (Uiverse Style Dual Expand)
+  • Where in FORGE : Community Hero (Student Photo Cards)
+  • Idle State     : Photo card has two small diagonal blue corner tabs (top-right
+                     and bottom-left) at only 20% size; image at scale: 1.0.
+  • Trigger        : Mouse hover over the .community-image-card.
+  • After State    : Both corner tabs expand from 20% to 100% full card size, tinting
+                     the card in a brand-blue wash while the photo zooms to 1.035x scale.
+  • Visual Diagram :
+    [IDLE STATE (Resting)]                  [HOVER / AFTER ANIMATION]
+    +--------------------------------+      +================================+
+    | Photo (1.0x)             [20%] |      | [=========== 100% ===========] |
+    |                                | ---> |   Photo Zooms (1.035x)         |
+    | [20%]                          |      |   Full Blue Overlay Wash       |
+    +--------------------------------+      +================================+
+
+[ANIM-HVR-02]: 3D Perspective Card Carousel with Focus Expand & Outer Tilt
+  • Where in FORGE : Voices From FORGE (Testimonials Carousel)
+  • Idle State     : 3 cards in 3D perspective: Left card tilted +8deg, Center at 0deg,
+                     Right card tilted -8deg. All white background cards.
+  • Trigger        : Mouse hovers any of the 3 cards.
+  • After State    : Hovered card snaps to 0deg (flat), turns solid FORGE Blue with white
+                     text, and expands in width; sibling cards tilt outward (+/-10deg) and shrink.
+  • Visual Diagram :
+    [IDLE STATE (Resting 3-Card Deck)]
+      [Card 1: +8 deg]       [Card 2: 0 deg]        [Card 3: -8 deg]  (All cards white)
+
+                                  HOVER CARD 2 (Center)
+                                            |
+                                            V
+    [AFTER ANIMATION HAPPENS (Focused)]
+      [Card 1: +10 deg]     +--------------------------+     [Card 3: -10 deg]
+       (Tilted away)        | Card 2: 0 deg (Expanded) |      (Tilted away)
+                            | Solid Blue (#1683E8)     |
+                            | White Typography / Pop   |
+                            +--------------------------+
+
+[ANIM-HVR-03]: Double-Sided 3D Perspective Flip Card (180deg Flip)
+  • Where in FORGE : Ecosystem Page ("Who Participates" 8 Cards)
+  • Idle State     : Front face showing role title, icon, and "Hover to learn more"
+                     (rotateY: 0deg). Back face is rotated 180deg and hidden.
+  • Trigger        : Mouse hover or mobile tap.
+  • After State    : Card flips 180 degrees along the Y-axis. Front face turns away;
+                     back face rotates to 0deg showing detailed bullets and CTA link.
+  • Visual Diagram :
+    [IDLE STATE (Front Face 0 deg)]         [AFTER HOVER / TAP (Back Face 180 deg)]
+    +--------------------------------+      +--------------------------------+
+    | FRONT FACE (0 deg)             |      | BACK FACE (180 deg)            |
+    | * Role Icon & Title            | ---> | * Core Deliverables            |
+    | * Brief overview               |      | * Deep Action Items            |
+    | * [Hover to flip ↷]            |      | * [Explore Track ->]           |
+    +--------------------------------+      +--------------------------------+
+
+[ANIM-HVR-04]: Interactive Story Card with 3D Tilt & Origin Story Drawer
+  • Where in FORGE : Leadership & Milestones Section (Ecosystem Page)
+  • Idle State     : Main card sits flat at rotate: 0deg. Blue origin drawer inside
+                     is hidden at rotate: -6deg, opacity: 0, x: -20px.
+  • Trigger        : Mouse hover over the story card.
+  • After State    : Main card tilts slightly in 3D (rotate: -1deg, scale: 1.01),
+                     while origin drawer swivels to 0deg, slides in (x: 0), and fades in.
+  • Visual Diagram :
+    [IDLE STATE (Drawer Tucked)]            [HOVER / AFTER ANIMATION]
+    +--------------------------------+      +----------------------------------+
+    | Main Card (Flat 0 deg)         |      | Main Card (Tilted -1 deg)        |
+    |                                | ---> | +------------------------------+ |
+    | [Hidden Drawer: -6 deg, op: 0] |      | | Story Drawer: 0 deg / Slide  | |
+    +--------------------------------+      | +------------------------------+ |
+                                            +----------------------------------+
+
+[ANIM-HVR-05]: Card Brand Color Inversion & Number Circle Scale
+  • Where in FORGE : Process Timeline Steps (Step 01, 02, 03, 04)
+  • Idle State     : White card (bg-white), dark typography, small step number badge
+                     (scale: 1, bg-slate-100), resting arrow at x: 0.
+  • Trigger        : Mouse hovers timeline card.
+  • After State    : Card flips to solid vibrant blue (bg-[#1683E8]), typography turns white,
+                     number badge scales up (scale: 1.15), and arrow nudges right (+6px).
+  • Visual Diagram :
+    [IDLE STATE (White Card)]               [HOVER / AFTER ANIMATION]
+    +--------------------------------+      +================================+
+    | (01)  Step Title          ---> |      | ((01)) Step Title         ---->|
+    |       White background         | ---> |        Solid Brand Blue        |
+    |       Dark typography          |      |        White text & Scale Icon |
+    +--------------------------------+      +================================+
+
+[ANIM-HVR-06]: Asymmetric Bento Card Hover Lift & Arrow Micro-Nudge
+  • Where in FORGE : Citadel Bento Grid Cards
+  • Idle State     : Bento card resting at y: 0, subtle border-slate-200, standard
+                     drop shadow, corner arrow at (0, 0).
+  • Trigger        : Mouse hovers bento card.
+  • After State    : Card lifts y: -6px, border turns glowing blue border-[#1683E8]/40,
+                     luxury shadow blooms, and corner arrow nudges x: +4px, y: -4px.
+  • Visual Diagram :
+    [IDLE STATE (Resting Bento)]            [HOVER / AFTER ANIMATION]
+                                            +--------------------------------+ ↗ (+4px)
+    +--------------------------------+      | Card Lifts (y: -6px)           |
+    | Card Flat (y: 0)           [↗] | ---> | Glowing Blue Border Stroke     |
+    | Subtle border & shadow         |      | Deep Luxury Shadow Bloom       |
+    +--------------------------------+      +--------------------------------+
+
+
+--------------------------------------------------------------------------------
+5. SVG PATH DRAWS & PERIMETER BEAMS
+--------------------------------------------------------------------------------
+
+[ANIM-SVG-01]: Traveling SVG Perimeter Border Beam (Citadel Bento Rect)
+  • Where in FORGE : Citadel Bento Grid (Structured Learning, Practical Execution)
+  • Idle State     : A 120px glowing dash continuously circulates around the card
+                     border at regular brightness (opacity: 0.5, stroke-width: 2).
+  • Trigger        : Infinite loop + Mouse hover.
+  • After State    : On hover, the beam glow expands 4x (stroke-width: 3.5, opacity: 1,
+                     filter: drop-shadow(0 0 10px #1683E8)), racing brightly around edges.
+  • Visual Diagram :
+    [IDLE STATE (Subtle Beam Travel)]       [HOVER / AFTER ANIMATION (Neon Flare)]
+     +------*------------------------+       +======*****====================+
+     |      | (120px beam)           |       |      | (4x Brighter Flare)    |
+     |      V circulating            | --->  |      V Intense drop-shadow    |
+     +-------------------------------+       +===============================+
+
+[ANIM-SVG-02]: Continuous Perimeter Travel Loop (Philosophy Rail Card)
+  • Where in FORGE : Philosophy Rail Section (Our Philosophy cards)
+  • Idle State     : SVG perimeter stroke has strokeDasharray: 200, 1000 and
+                     strokeDashoffset: 1200.
+  • Trigger        : Automatic infinite CSS loop (10-second duration).
+  • After State    : Light stroke continuously glides around the card perimeter
+                     without ever stopping, creating an elegant orbital border trace.
+  • Visual Diagram :
+    [TRAVEL LOOP (Continuous 10s)]
+      +--->>>------------------------+
+      | Light stroke travels forever | ---> Continuously cycles top, right, bottom, left
+      +------------------------<<<---+
+
+[ANIM-SVG-03]: Single-Shot Perimeter Border Draw (Government Innovation)
+  • Where in FORGE : Government Innovation Feature Frame (Ecosystem Page)
+  • Idle State     : Frame outline border is completely invisible (strokeDashoffset: 2400).
+  • Trigger        : Frame scrolls into viewport (ScrollTrigger at top 75%).
+  • After State    : SVG border draws itself cleanly around all 4 sides over 1.3 seconds
+                     (strokeDashoffset: 0), framing the content and locking into place.
+  • Visual Diagram :
+    [IDLE STATE (Invisible Outline)]        [AFTER ANIMATION (Drawn Frame)]
+     . . . . . . . . . . . . . . . .        +--------------------------------+
+     . (Border invisible)          .  --->  | Border fully drawn (1.3s)      |
+     . strokeDashoffset: 2400      .        | strokeDashoffset: 0            |
+     . . . . . . . . . . . . . . . .        +--------------------------------+
+
+[ANIM-SVG-04]: Scroll-Scrubbed Dynamic SVG Route Draw (Zig-Zag Engine)
+  • Where in FORGE : How It Works / Forge Engine Section
+  • Idle State     : Thick SVG journey pipeline is empty and un-drawn (strokeDashoffset: 100%).
+  • Trigger        : Mouse wheel scrolling through the Forge Engine section (scrub: 0.5).
+  • After State    : The blue path physically inks onto screen proportional to scroll position;
+                     pauses when scroll stops, rewinds smoothly if scrolled upward.
+  • Visual Diagram :
+    [IDLE STATE (Top of Section)]           [AFTER SCROLL SCRUB (Inked Path)]
+      Start [o]                               Start [o]
+      |                                       |
+      :  (Empty path)                  --->   +-----+
+      :  (Dashoffset: 100%)                         +-----+
+      :                                                   +---> [o] Inked to scroll
+
+
+--------------------------------------------------------------------------------
+6. COMPLEX SCROLL EXPERIENCES & PINNED DECKS
+--------------------------------------------------------------------------------
+
+[ANIM-PIN-01]: Pinned 3D Stacking Card Deck (Continuous Scrub Layer Deck)
+  • Where in FORGE : Home Philosophy ("The FORGE Way") & Ecosystem ("How Innovation Scales")
+  • Idle State     : Card 1 is at front (scale: 1, y: 0). Cards 2 and 3 sit underneath
+                     in perspective depth (scale: 0.94, y: 30px).
+  • Trigger        : User scrolls into pinned section (pin: true, scrub: 1).
+  • After State    : Viewport freezes in place. Scrolling pushes Card 1 back into the 3D stack
+                     while Card 2 scales to front (scale: 1) and locks, followed by Card 3.
+  • Visual Diagram :
+    [IDLE STATE (Card 1 Active)]            [AFTER SCROLL SCRUB (Card 2 Replaces Card 1)]
+       +-------------------------+             +---------------------------+
+       | CARD 1 (Scale 1.0)      |    SCROLL   | +-----------------------+ | (Card 1 back)
+       |                         |    SCRUB    | | CARD 1 (Scale 0.92)   | |
+       +-------------------------+    ----->   +-+-----------------------+-+
+         [Card 2 peeking below]                  | CARD 2 (Scale 1.0)      | (Card 2 front)
+                                                 +-------------------------+
+
+[ANIM-PIN-02]: Liquid Glass Dynamic Navbar Collapse & Spring-Back
+  • Where in FORGE : Top Floating Navbar (Every Page)
+  • Idle State     : Full-width glass navbar (max-w-6xl, showing full logo, all navigation
+                     links, and CTA button).
+  • Trigger        : User scrolls down past threshold (scrollY > 50px).
+  • After State    : Navbar shrinks into a compact floating pill (width: 580px, logo icon only,
+                     essential links), springing back to full width when scrolling up.
+  • Visual Diagram :
+    [IDLE STATE (At Page Top)]
+    +--------------------------------------------------------------------+
+    | [FORGE LOGO]         Citadel     Ecosystem     FAQ     [Join FORGE]|
+    +--------------------------------------------------------------------+
+                                | Scroll Down (> 50px)
+                                V
+    [AFTER ANIMATION HAPPENS (Compact Floating Pill)]
+                 +------------------------------------------+
+                 | [F]     Citadel    Ecosystem     [Join]  |
+                 +------------------------------------------+
+
+
+--------------------------------------------------------------------------------
+7. MORPHING, ORBITAL SHUFFLES & MODAL TRANSITIONS
+--------------------------------------------------------------------------------
+
+[ANIM-SHF-01]: Orbital Memory Grid Drift & Staggered Reshuffle
+  • Where in FORGE : Built Through FORGE Photo Gallery (Home)
+  • Idle State     : 7 photo tiles aligned in their normal grid positions.
+  • Trigger        : Automated 20-second interval timer.
+  • After State    : Tiles drift outward at alternating angles (+/-15px, +/-10px, scale: 0.95,
+                     opacity: 0.2), image URLs swap behind fade, and tiles glide back into place.
+  • Visual Diagram :
+    [IDLE STATE (Grid)]         [TRANSITION (Drift & Swap)]      [AFTER RESHUFFLE]
+    +---+ +---+ +---+            ^[Tile 1]   ^[Tile 2]          +---+ +---+ +---+
+    | 1 | | 2 | | 3 |   20s       (Swap images during fade) --->| 1b| | 2b| | 3b|
+    +---+ +---+ +---+  ----->    v[Tile 3]   v[Tile 4]          +---+ +---+ +---+
+
+[ANIM-MRP-01]: Organic Morphing Blob Border-Radius Loop (Footer Morph)
+  • Where in FORGE : Giant Blue Footer ("Ready to Forge?")
+  • Idle State     : Blue footer with organic curved upper boundary
+                     (border-radius: 60% 40% 70% 30% / 30% 60% 40% 70%).
+  • Trigger        : Continuous 3-second CSS keyframe animation loop.
+  • After State    : Boundary continuously morphs into liquid wave states
+                     (border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%), simulating fluid water.
+  • Visual Diagram :
+    [STATE A (0s)]                          [STATE B (1.5s)]
+      /~~~~~~~~~~~~~~~~~~~~~~~~~~\            /~~~~\                    /~~~~\
+      |                          |   LOOP     |    \~~~~~~~~~~~~~~~~~~~~/    |
+      |    BLUE FORGE FOOTER     |  ----->    |       BLUE FORGE FOOTER      |
+      +--------------------------+            +------------------------------+
+
+[ANIM-MOD-01]: Backdrop Blur Fade & Scaled Dialog Entrance (Form Modal)
+  • Where in FORGE : Popups (Join FORGE, Partner, Download Brochure)
+  • Idle State     : Modal is unmounted or hidden (opacity: 0, pointer-events: none, scale: 0.95).
+  • Trigger        : User clicks modal trigger CTA button ("Join FORGE", "Partner", etc.).
+  • After State    : Dark blurred backdrop fades in (backdrop-blur-md, bg-black/60), modal dialog
+                     lifts 8px and scales smoothly up to scale: 1, opacity: 1 into screen center.
+  • Visual Diagram :
+    [IDLE STATE (Modal Closed)]             [AFTER TRIGGER (Modal Open)]
+    +--------------------------------+      +--------------------------------+
+    |                                |      | :::::: Dark Backdrop Blur :::: |
+    | (Normal Page Content)          | ---> |    +----------------------+    |
+    |                                |      |    | Scaled Modal Dialog  |    |
+    +--------------------------------+      +----+----------------------+----+
+
+[ANIM-ACC-01]: Smooth FAQ Accordion Expand & Collapse with Icon Morph
+  • Where in FORGE : FAQ Section on Homepage and Collaborate
+  • Idle State     : Answer panel collapsed (max-h-0, opacity: 0); right-hand icon is
+                     a horizontal Plus sign (+) at rotate: 0deg.
+  • Trigger        : User clicks question header row.
+  • After State    : Answer panel expands smoothly to max-h-[600px], opacity: 1, while
+                     Plus icon rotates 45deg into a Minus/Close sign (-).
+  • Visual Diagram :
+    [IDLE STATE (Collapsed)]                [CLICK / AFTER EXPAND]
+    +--------------------------------+      +--------------------------------+
+    | Q: What is FORGE?          [+] | ---> | Q: What is FORGE?          [-] |
+    +--------------------------------+      +--------------------------------+
+                                            | A: FORGE is an institutional   |
+                                            |    venture building model...   |
+                                            +--------------------------------+
+
+[ANIM-SPL-01]: Gear Preloader Spin with Coordinated Body Fade-Out
+  • Where in FORGE : Initial Website Loading Screen (components/SplashScreen.tsx)
+  • Idle State     : Preloader covers full screen (z-index: 9999, opacity: 1), gear spins
+                     infinitely (spin 1.2s), and document body scroll is locked.
+  • Trigger        : Window fires load event (or 600ms DOM readiness timeout).
+  • After State    : Preloader smoothly fades out to opacity: 0 over 700ms, is removed from
+                     display, and page scroll unlocks (overflow: auto).
+  • Visual Diagram :
+    [IDLE STATE (Page Loading)]             [AFTER LOAD (700ms Fade-Out)]
+    +--------------------------------+      +--------------------------------+
+    |       ⚙️ Spinning Gear          | ---> |   (Overlay fades to opacity 0) |
+    |     Screen locked (z: 9999)    |      |   Website unlocked & visible   |
+    +--------------------------------+      +--------------------------------+
+
+
+================================================================================
+FIND ANIMATION BY FORGE SITE SECTION
+================================================================================
+Need to quickly identify an animation from a specific place on the site?
+
+• TOP NAVBAR:
+  -> ANIM-PIN-02 : Liquid Glass Dynamic Navbar Collapse & Spring-Back
+  -> ANIM-BG-05  : Liquid Glass Light Sweep Shimmer (Specular Highlight)
+
+• HOMEPAGE HERO:
+  -> ANIM-TXT-02 : Cinematic Blur-Clearing Stagger Reveal (Hero Headline Entrance)
+  -> ANIM-TXT-04 : Bi-Directional Numeric Ticker Counter (Scroll-Triggered Tween)
+  -> ANIM-TXT-03 : Expanding Horizontal Eyebrow Wings (ScaleX Origin Expand)
+
+• PHILOSOPHY SECTION ("The FORGE Way"):
+  -> ANIM-PIN-01 : Pinned 3D Stacking Card Deck (Continuous Scrub Layer Deck)
+
+• HOW IT WORKS SECTION ("The FORGE Engine"):
+  -> ANIM-SVG-04 : Scroll-Scrubbed Dynamic SVG Route Draw (Zig-Zag Engine)
+  -> ANIM-CRD-02 : Alternating Zig-Zag Directional Slide Entrance
+
+• CITADEL HERO ("Not a Lab..."):
+  -> ANIM-TXT-01 : Line-by-Line Masked Typography Slide (Clipped Upward Reveal)
+  -> ANIM-BG-04  : Continuous Ambient Vector Arcs & Orbiting Dots
+
+• CITADEL EXPERIENCE (Bento Grid):
+  -> ANIM-CRD-01 : Asymmetric Bento Grid Stagger Cascade
+  -> ANIM-SVG-01 : Traveling SVG Perimeter Border Beam (Citadel Bento Rect)
+  -> ANIM-HVR-06 : Asymmetric Bento Card Hover Lift & Arrow Micro-Nudge
+
+• COMMUNITY HERO:
+  -> ANIM-HVR-01 : Diagonal Corner Expansion (Uiverse Style Dual Expand)
+  -> ANIM-TXT-01 : Line-by-Line Masked Typography Slide (Clipped Upward Reveal)
+
+• TESTIMONIALS ("Voices From FORGE"):
+  -> ANIM-HVR-02 : 3D Perspective Card Carousel with Focus Expand & Outer Tilt
+
+• ECOSYSTEM PAGE ("Who Participates"):
+  -> ANIM-HVR-03 : Double-Sided 3D Perspective Flip Card (180deg Flip)
+  -> ANIM-SVG-03 : Single-Shot Perimeter Border Draw (Government Innovation)
+  -> ANIM-HVR-04 : Interactive Story Card with 3D Tilt & Origin Story Drawer
+  -> ANIM-SVG-02 : Continuous Perimeter Travel Loop (Philosophy Rail Card)
+
+• PROCESS TIMELINE:
+  -> ANIM-HVR-05 : Card Brand Color Inversion & Number Circle Scale
+
+• PHOTO MEMORY GALLERY ("Built Through FORGE"):
+  -> ANIM-CRD-03 : Alternating Vertical Slot Entrance (Memory Grid)
+  -> ANIM-SHF-01 : Orbital Memory Grid Drift & Staggered Reshuffle
+
+• WHY FORGE SECTION:
+  -> ANIM-BG-06 : Pure Solid Geometric Multi-Orb Float (Swiss Graphic Style)
+
+• FAQ SECTION:
+  -> ANIM-ACC-01 : Smooth FAQ Accordion Expand & Collapse with Icon Morph
+
+• FOOTER ("Ready to Forge?"):
+  -> ANIM-MRP-01 : Organic Morphing Blob Border-Radius Loop (Footer Morph)
+
+• POPUPS & DIALOGS:
+  -> ANIM-MOD-01 : Backdrop Blur Fade & Scaled Dialog Entrance (Form Modal)
+
+• INITIAL PAGE LOAD:
+  -> ANIM-SPL-01 : Gear Preloader Spin with Coordinated Body Fade-Out
+================================================================================
+
+
+
+
+================================================================================
+CATEGORY 1: GLOBAL BACKGROUNDS & AMBIENT SHADERS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-BG-01]: Smooth Cursor Lerp Spotlight (Ambient Damped Follower)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/shared/AmbientBackground.tsx (Lines 15-51, 58-62)
+- Visual Description:
+  A massive, soft 500px glowing radial gradient orb that tracks the user's cursor across
+  the screen with ultra-smooth 60fps linear damping (lerp). The orb never jumps abruptly;
+  it smoothly glides and catches up with a subtle inertia delay, illuminating background
+  glass panels and text with a premium blue aura.
+- Tech Stack & Dependencies:
+  React (useEffect, useRef, requestAnimationFrame), Vanilla CSS (will-change-transform, blur-[100px])
+- Exact Implementation Code:
+  ```tsx
+  const mouseGlowRef = useRef<HTMLDivElement>(null);
+  const targetPos = useRef({ x: -1000, y: -1000 });
+  const currentPos = useRef({ x: -1000, y: -1000 });
+
+  useEffect(() => {
+    let animId: number;
+    const handleMouseMove = (e: MouseEvent) => {
+      targetPos.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const updatePosition = () => {
+      // Damping factor: 0.08 produces an elegant, fluid glide
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.08;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.08;
+
+      if (mouseGlowRef.current) {
+        mouseGlowRef.current.style.transform = `translate3d(${currentPos.current.x - 250}px, ${currentPos.current.y - 250}px, 0)`;
+      }
+      animId = requestAnimationFrame(updatePosition);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    animId = requestAnimationFrame(updatePosition);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  // JSX:
+  <div
+    ref={mouseGlowRef}
+    className="will-change-transform pointer-events-none fixed top-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-[#1683E8]/12 via-[#00B4D8]/08 to-transparent blur-[100px]"
+  />
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-01 (Smooth Cursor Lerp Spotlight). Add a fixed, pointer-events-none background layer that smoothly lerps a 500px blurred gradient radial spotlight toward the user's mouse cursor using requestAnimationFrame with a damping factor of 0.08."
+
+--------------------------------------------------------------------------------
+[ANIM-BG-02]: Ambient Floating Orbs (Tri-Orb Asymmetric Orbit)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  app/globals.css (Lines 54-80, 119-130) & components/shared/AmbientBackground.tsx (Lines 64-72)
+- Visual Description:
+  Three oversized translucent radial orbs (500px-600px) placed at top-right, center-left,
+  and bottom-center of the viewport. Each orb moves on a distinct, unsynchronized elliptical
+  floating trajectory with scale oscillations (18s, 22s, and 20s), creating an ever-shifting,
+  living atmospheric backdrop without distracting the reader.
+- Tech Stack & Dependencies:
+  Vanilla CSS Keyframes, CSS will-change-transform, prefers-reduced-motion media query
+- Exact Implementation Code:
+  ```css
+  @keyframes ambientFloat1 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-30px, 40px, 0) scale(1.08); }
+  }
+  @keyframes ambientFloat2 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(40px, -30px, 0) scale(1.1); }
+  }
+  @keyframes ambientFloat3 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-25px, -35px, 0) scale(1.05); }
+  }
+  .animate-ambient-float-1 { animation: ambientFloat1 18s ease-in-out infinite; }
+  .animate-ambient-float-2 { animation: ambientFloat2 22s ease-in-out infinite; }
+  .animate-ambient-float-3 { animation: ambientFloat3 20s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-ambient-float-1, .animate-ambient-float-2, .animate-ambient-float-3 {
+      animation: none !important;
+    }
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-02 (Tri-Orb Asymmetric Ambient Float). Add 3 large blurred backdrop orbs (500px to 600px, 8-12% opacity brand colors) with infinite ease-in-out CSS keyframe loops at 18s, 22s, and 20s with asynchronous 3D translations and 1.05x-1.1x scaling."
+
+--------------------------------------------------------------------------------
+[ANIM-BG-03]: Drift & Pulse Builder Nodes (Micro Parallax Layer)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  app/globals.css (Lines 81-108, 131-142) & components/shared/AmbientBackground.tsx (Lines 73-105)
+- Visual Description:
+  Small floating geometric dots / nodes scattered subtly across the canvas with ring accents.
+  They drift back and forth slowly (10s and 12s) while pulsating in scale and opacity (4s),
+  and shift with mouse parallax (0.02 ratio) relative to the screen center.
+- Tech Stack & Dependencies:
+  CSS Keyframes + React Mouse parallax
+- Exact Implementation Code:
+  ```css
+  @keyframes driftSlow {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(15px, -20px, 0); }
+  }
+  @keyframes driftReverse {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-20px, 15px, 0); }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.15); }
+  }
+  .animate-drift-slow { animation: driftSlow 10s ease-in-out infinite; }
+  .animate-drift-reverse { animation: driftReverse 12s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulseGlow 4s ease-in-out infinite; }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-03 (Drift & Pulse Micro Nodes). Add small floating circular nodes with ring outlines that gently drift in opposite directions with 10s/12s keyframes while pulsing scale from 1 to 1.15 over 4s."
+
+--------------------------------------------------------------------------------
+[ANIM-BG-04]: Continuous Ambient Vector Arcs & Orbiting Dots
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  app/globals.css (Lines 147-184) & components/collaborate/CollaborateHero.tsx (Lines 169-200)
+- Visual Description:
+  High-precision Swiss editorial background graphics: dashed SVG bezier curves and thin
+  circular borders drifting along smooth orbital paths (22s and 28s) while a small 2px blue
+  dot moves along an 8.5s vertical oscillation cycle.
+- Tech Stack & Dependencies:
+  SVG bezier paths + CSS cubic-bezier(0.45, 0, 0.55, 1) timing
+- Exact Implementation Code:
+  ```css
+  @keyframes ambientArc {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(20px, -10px, 0); }
+  }
+  @keyframes ambientDot {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -12px, 0); }
+  }
+  @keyframes ambientCircle {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-25px, 15px, 0); }
+  }
+  .animate-ambient-arc { animation: ambientArc 22s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+  .animate-ambient-dot { animation: ambientDot 8.5s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+  .animate-ambient-circle { animation: ambientCircle 28s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-04 (Ambient Vector Arcs & Orbiting Dots). Add thin architectural dashed SVG curves and circular outlines drifting with subtle 22s and 28s cubic-bezier translations in the background."
+
+--------------------------------------------------------------------------------
+[ANIM-BG-05]: Liquid Glass Light Sweep Shimmer (Specular Highlight)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  app/globals.css (Lines 186-228) & components/Navbar.tsx
+- Visual Description:
+  An ultra-subtle, angled specular sheen of light that sweeps across glass containers
+  (such as the floating navigation bar or inquiry form modal) once every 10-12 seconds,
+  giving glass surfaces a physical, reflective iOS/macOS sheen.
+- Tech Stack & Dependencies:
+  CSS Keyframes, skewX transforms, linear gradient opacity masks
+- Exact Implementation Code:
+  ```css
+  @keyframes glassLightSweepNav {
+    0% { transform: translateX(-100%) skewX(-20deg); opacity: 0; }
+    20% { opacity: 0.10; }
+    50% { transform: translateX(200%) skewX(-20deg); opacity: 0.08; }
+    51%, 100% { transform: translateX(200%) skewX(-20deg); opacity: 0; }
+  }
+  .animate-glass-sweep-nav {
+    animation: glassLightSweepNav 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-05 (Liquid Glass Light Sweep). Overlay an overflow-hidden sheen element with a white gradient skewed at -20deg that sweeps across the card/navbar from -100% to +200% every 10s with cubic-bezier(0.22, 1, 0.36, 1)."
+
+--------------------------------------------------------------------------------
+[ANIM-BG-06]: Pure Solid Geometric Multi-Orb Float (Swiss Graphic Style)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/home/WhySection.tsx (Lines 260-295) & components/shared/VoicesCarousel.tsx
+- Visual Description:
+  Crisp, geometric solid circles (no blur, no fuzzy gradients) that glide inside card
+  containers on distinct 4-stage orbital paths with slight rotational offsets (10s, 12s, 8s).
+- Tech Stack & Dependencies:
+  Scoped CSS keyframes with 3D translation and rotational step keyframes
+- Exact Implementation Code:
+  ```css
+  @keyframes orbFloat1 {
+    0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+    25%  { transform: translate3d(24px, -28px, 0) scale(1.08) rotate(45deg); }
+    50%  { transform: translate3d(36px, 16px, 0) scale(0.95) rotate(90deg); }
+    75%  { transform: translate3d(10px, 30px, 0) scale(1.04) rotate(135deg); }
+    100% { transform: translate3d(0, 0, 0) scale(1) rotate(180deg); }
+  }
+  @keyframes orbFloat2 {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+    25%      { transform: translate3d(-26px, 22px, 0) scale(1.06); }
+    50%      { transform: translate3d(-34px, -22px, 0) scale(0.93); }
+    75%      { transform: translate3d(12px, -28px, 0) scale(1.03); }
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-BG-06 (Solid Geometric Multi-Orb Float). Inside the card background, place crisp circular solid color divs drifting in asynchronous 4-point orbital loops using rotate and scale keyframes over 10s and 12s."
+
+
+
+================================================================================
+CATEGORY 2: DISPLAY TYPOGRAPHY & TEXT REVEALS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-TXT-01]: Line-by-Line Masked Typography Slide (Clipped Upward Reveal)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/citadel/CitadelHero.tsx (Lines 81-120),
+  components/citadel/CitadelExperienceBento.tsx (Lines 75-88),
+  components/community/CommunityHero.tsx (Lines 71-84),
+  components/collaborate/CollaborateHero.tsx (Lines 74-92),
+  components/community/WhatsHappeningSection.tsx (Lines 425-438)
+- Visual Description:
+  High-end editorial headline reveal where each line of text is wrapped in an overflow-hidden
+  container. The text starts translated 100% to 115% below its visible mask with 0 opacity,
+  and slides upward smoothly with staggered delays, snapping crisply into place.
+- Tech Stack & Dependencies:
+  GSAP 3 + @gsap/react, ScrollTrigger, cubic-bezier(0.16, 1, 0.3, 1) or power3.out
+- Exact Implementation Code:
+  ```tsx
+  // JSX Structure:
+  <h2 className="font-clash text-5xl font-bold leading-tight">
+    <span className="block overflow-hidden">
+      <span className="heading-line heading-line-1 inline-block opacity-0">
+        A Different Way to
+      </span>
+    </span>
+    <span className="block overflow-hidden mt-1">
+      <span className="heading-line heading-line-2 inline-block text-primary opacity-0">
+        Learn and Build
+      </span>
+    </span>
+  </h2>
+
+  // GSAP Timeline:
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true },
+      defaults: { ease: "cubic-bezier(0.16, 1, 0.3, 1)" }
+    });
+
+    tl.fromTo(
+      ".heading-line-1",
+      { y: "115%", opacity: 0 },
+      { y: "0%", opacity: 1, duration: 0.85 },
+      0.08
+    );
+    tl.fromTo(
+      ".heading-line-2",
+      { y: "115%", opacity: 0 },
+      { y: "0%", opacity: 1, duration: 0.85 },
+      0.18
+    );
+  }, { scope: sectionRef });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-TXT-01 (Line-by-Line Masked Text Reveal). Wrap each line of headline text in an overflow-hidden parent and animate the inner inline-block from y: '115%', opacity: 0 to y: '0%', opacity: 1 using GSAP with cubic-bezier(0.16, 1, 0.3, 1) and an 80ms stagger."
+
+--------------------------------------------------------------------------------
+[ANIM-TXT-02]: Cinematic Blur-Clearing Stagger Reveal (Hero Headline Entrance)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/Hero.tsx (Lines 232-256)
+- Visual Description:
+  Text lines enter from 35px below while carrying a gaussian blur (filter: blur(6px)). As they
+  glide upward into position, the blur clears smoothly to blur(0px) over 700ms with a 0.12s
+  stagger, creating an optical lens focusing effect.
+- Tech Stack & Dependencies:
+  GSAP 3, CSS filter blur animation
+- Exact Implementation Code:
+  ```tsx
+  gsap.set(".hero-headline-line", { opacity: 0, y: 35, filter: "blur(6px)" });
+
+  tl.to(".hero-headline-line", {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    duration: 0.7,
+    stagger: 0.12,
+    ease: "power3.out"
+  });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-TXT-02 (Cinematic Blur-Clearing Stagger Reveal). Animate headline lines on page entrance from opacity: 0, y: 35, filter: 'blur(6px)' to opacity: 1, y: 0, filter: 'blur(0px)' with duration: 0.7, stagger: 0.12, and ease: 'power3.out'."
+
+--------------------------------------------------------------------------------
+[ANIM-TXT-03]: Expanding Horizontal Eyebrow Wings (ScaleX Origin Expand)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/citadel/CitadelHero.tsx (Lines 74-79),
+  components/citadel/CitadelExperienceBento.tsx (Lines 68-73),
+  components/programs/InstitutionalPrograms.tsx (Lines 108-118)
+- Visual Description:
+  The small uppercase section category badge (eyebrow) is flanked by two fine 1px horizontal
+  lines. On entrance, the text fades in while the left line expands outward from the left
+  (origin-left) and the right line expands outward from the right (origin-right) using scaleX: 0 to 1.
+- Tech Stack & Dependencies:
+  GSAP fromTo on transformOrigin scaleX
+- Exact Implementation Code:
+  ```tsx
+  tl.fromTo(
+    ".eyebrow-line-left",
+    { scaleX: 0 },
+    { scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "left center" },
+    0
+  );
+  tl.fromTo(
+    ".eyebrow-line-right",
+    { scaleX: 0 },
+    { scaleX: 1, duration: 0.5, ease: "power3.out", transformOrigin: "right center" },
+    0
+  );
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-TXT-03 (Expanding Eyebrow Wings). Animate horizontal 1px accent lines flanking an uppercase eyebrow tag from scaleX: 0 to 1 with power3.out over 0.5s."
+
+--------------------------------------------------------------------------------
+[ANIM-TXT-04]: Bi-Directional Numeric Ticker Counter (Scroll-Triggered Tween)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/Hero.tsx (Lines 98-133, 288-315)
+- Visual Description:
+  Metric counter numbers (e.g. 500+ Builders, 50+ Projects, 20+ Mentors) that rapidly count up
+  from 0 to their target values over 2.0 seconds with ease "power2.out". Unlike standard counters,
+  this tween is bi-directional: when the user scrolls back to the top of the hero or re-enters
+  the viewport from above or below, the counter re-triggers smoothly.
+- Tech Stack & Dependencies:
+  React state + gsap.to with animated virtual state object & ScrollTrigger lifecycle hooks
+- Exact Implementation Code:
+  ```tsx
+  const [counters, setCounters] = useState<number[]>([0, 0, 0]);
+  const counterTweenRef = useRef<gsap.core.Tween | null>(null);
+
+  const triggerCounterAnimation = useCallback(() => {
+    if (counterTweenRef.current) counterTweenRef.current.kill();
+    const state = { val0: 0, val1: 0, val2: 0 };
+    setCounters([0, 0, 0]);
+
+    counterTweenRef.current = gsap.to(state, {
+      val0: 500,
+      val1: 50,
+      val2: 20,
+      duration: 2.0,
+      ease: "power2.out",
+      onUpdate: () => {
+        setCounters([Math.round(state.val0), Math.round(state.val1), Math.round(state.val2)]);
+      },
+      onComplete: () => {
+        setCounters([500, 50, 20]);
+      }
+    });
+  }, []);
+
+  // Hooked into ScrollTrigger:
+  ScrollTrigger.create({
+    trigger: statsRef.current,
+    start: "top 95%",
+    onEnter: () => triggerCounterAnimation(),
+    onEnterBack: () => triggerCounterAnimation(),
+    onLeave: () => setCounters([0, 0, 0]),
+  });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-TXT-04 (Bi-Directional Numeric Ticker Counter). Animate statistics numbers counting from 0 to target values using GSAP tweening a virtual state object over 2.0s with power2.out, linked to ScrollTrigger onEnter, onEnterBack, and onLeave."
+
+
+
+================================================================================
+CATEGORY 3: CARD REVEALS, BENTO GRIDS & SCROLL TRIGGERS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-CRD-01]: Asymmetric Bento Grid Stagger Cascade
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/citadel/CitadelExperienceBento.tsx (Lines 98-110),
+  components/Impact.tsx (Lines 22-35)
+- Visual Description:
+  An asymmetric bento layout (mix of 3-column standard cards and 6-column dark featured cards)
+  entering the viewport. Each card translates upward by 30px, scales from 0.97 to 1.0, and
+  fades from opacity 0 to 1 with an ultra-tight, polished stagger of 0.06s.
+- Tech Stack & Dependencies:
+  GSAP 3, ScrollTrigger, cubic-bezier(0.22, 1, 0.36, 1)
+- Exact Implementation Code:
+  ```tsx
+  tl.fromTo(
+    ".bento-card",
+    { opacity: 0, y: 30, scale: 0.97 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.65,
+      ease: "power3.out",
+      stagger: 0.06,
+    },
+    0.18
+  );
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-CRD-01 (Bento Grid Stagger Cascade). Reveal bento grid cards upon scrolling into view with y: 30, scale: 0.97, opacity: 0 to y: 0, scale: 1, opacity: 1, duration: 0.65s, stagger: 0.06s, and ease: 'power3.out'."
+
+--------------------------------------------------------------------------------
+[ANIM-CRD-02]: Alternating Zig-Zag Directional Slide Entrance
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/HowItWorks.tsx (Lines 87-104)
+- Visual Description:
+  Cards arranged along a central spine enter from alternating sides: cards with data-dir="left"
+  fly in from x: -100px, cards with data-dir="right" fly in from x: +100px, and center milestone
+  cards enter from y: +60px, creating a dynamic zig-zag convergence.
+- Tech Stack & Dependencies:
+  GSAP 3, ScrollTrigger with toggleActions: "restart none none reset"
+- Exact Implementation Code:
+  ```tsx
+  cards.forEach((card) => {
+    const dir = card.dataset.dir;
+    const xStart = dir === "right" ? 100 : dir === "left" ? -100 : 0;
+    const yStart = dir === "center" ? 60 : 0;
+
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top bottom-=60",
+        toggleActions: "restart none none reset",
+      },
+      x: xStart,
+      y: yStart,
+      opacity: 0,
+      duration: 1.0,
+      ease: "power3.out",
+    });
+  });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-CRD-02 (Alternating Zig-Zag Directional Slide Entrance). Loop through process cards and animate them into the viewport from alternating horizontal offsets (x: -100px or +100px depending on data-dir) with opacity: 0 over 1.0s power3.out."
+
+--------------------------------------------------------------------------------
+[ANIM-CRD-03]: Alternating Vertical Slot Entrance (Memory Grid)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/home/BuiltThroughForge.tsx (Lines 269-278)
+- Visual Description:
+  A 7-card photographic wall where adjacent cards slide into the viewport from opposing vertical
+  directions (even-indexed cards start from y: +25px below, odd-indexed cards start from y: -20px
+  above) while scaling from 0.94, creating a wave-like convergence.
+- Tech Stack & Dependencies:
+  GSAP functional index values: `y: (index) => (index % 2 === 0 ? 25 : -20)`
+- Exact Implementation Code:
+  ```tsx
+  tl.from(".mem-card-wrapper", {
+    opacity: 0,
+    scale: 0.94,
+    y: (index) => (index % 2 === 0 ? 25 : -20),
+    duration: 0.8,
+    stagger: 0.08,
+    ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+  }, "-=0.3");
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-CRD-03 (Alternating Vertical Slot Entrance). Stagger card entrances using a GSAP function for y offset where even indices enter from +25px and odd indices enter from -20px with scale: 0.94."
+
+--------------------------------------------------------------------------------
+[ANIM-CRD-04]: Capability Row Cascade with Micro Parallax
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/community/CommunityAdvantageSection.tsx (Lines 88-109)
+- Visual Description:
+  Long capability rows reveal sequentially down the page with a 0.1s delay between rows,
+  while an ambient background SVG arc subtly scrolls with scrub: 1.2 at y: -24px.
+- Tech Stack & Dependencies:
+  GSAP timeline + ScrollTrigger scrub
+- Exact Implementation Code:
+  ```tsx
+  rowRefs.current.forEach((row, index) => {
+    if (!row) return;
+    tl.fromTo(
+      row,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" },
+      0.15 + index * 0.1
+    );
+  });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-CRD-04 (Capability Row Cascade with Parallax). Animate a list of horizontal capability rows sequentially with y: 30 to 0 and opacity: 0 to 1 with an indexed timeline stagger of index * 0.1s."
+
+--------------------------------------------------------------------------------
+[ANIM-CRD-05]: ScrollReveal Zero-Dependency Observer Wrapper
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/shared/ScrollReveal.tsx (Lines 1-56)
+- Visual Description:
+  A clean, zero-dependency lightweight React wrapper component using IntersectionObserver.
+  Any element wrapped with `<ScrollReveal delay={150}>` remains hidden until 8% visible,
+  then smoothly transitions with opacity: 1 and translateY(0) using cubic-bezier(0.22, 1, 0.36, 1).
+- Tech Stack & Dependencies:
+  React, IntersectionObserver API, prefers-reduced-motion media query
+- Exact Implementation Code:
+  ```tsx
+  export default function ScrollReveal({ children, className = "", delay = 0 }) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+        return;
+      }
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        }
+      }, { threshold: 0.08 });
+      observer.observe(el);
+      return () => observer.disconnect();
+    }, []);
+
+    return (
+      <div
+        ref={ref}
+        className={className}
+        style={{
+          opacity: 0,
+          transform: "translateY(24px)",
+          transition: `opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-CRD-05 (ScrollReveal IntersectionObserver Wrapper). Create a reusable React component using IntersectionObserver that holds children at translateY(24px) opacity: 0 and animates to 0 over 0.65s cubic-bezier(0.22, 1, 0.36, 1) with custom delay prop and reduced-motion support."
+
+
+
+================================================================================
+CATEGORY 4: CARD HOVER INTERACTIONS & 3D PERSPECTIVES
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-01]: Diagonal Corner Expansion (Uiverse Style Dual Expand)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/community/CommunityHero.tsx (Lines 160-208)
+- Visual Description:
+  An ultra-engaging, signature micro-interaction: Each image card has two subtle diagonal
+  accent panels located in the top-right and bottom-left corners, each taking up only 20%
+  width/height with custom curved border radii. On hover, BOTH corners expand smoothly to
+  100% width and 100% height with rounded-2xl corners, flooding the card with a brand-blue wash
+  while the photo scales up by 1.035x.
+- Tech Stack & Dependencies:
+  CSS Transitions with cubic-bezier(0.22, 1, 0.36, 1)
+- Exact Implementation Code:
+  ```css
+  .corner {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    background: rgba(22, 131, 232, 0.08);
+    pointer-events: none;
+    z-index: 5;
+    transition:
+      width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 0.5s ease;
+  }
+  .corner-top-right {
+    top: 0;
+    right: 0;
+    border-radius: 0 16px 0 100%;
+  }
+  .corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-radius: 0 100% 0 16px;
+  }
+  /* On Hover */
+  .community-image-card:hover .corner-top-right,
+  .community-image-card:hover .corner-bottom-left {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+  }
+  .community-image-card:hover .community-photo-img {
+    transform: scale(1.035);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-01 (Diagonal Corner Expansion Hover). Add two diagonal absolute corner panels (top-right and bottom-left) at 20% width/height with curved border radii (0 16px 0 100% and 0 100% 0 16px) that smoothly expand to 100% width/height on card hover while the inner photo scales to 1.035."
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-02]: 3D Perspective Card Carousel with Focus Expand & Outer Tilt
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/shared/VoicesCarousel.tsx (Lines 320-375)
+- Visual Description:
+  A 3-card testimonials deck placed in a 3D perspective chamber (perspective: 1400px).
+  In resting state: All 3 cards are clean white, with the left card tilted +8deg and the
+  right card tilted -8deg toward the center.
+  When the user hovers any card: That card rotates to 0deg (facing the camera directly),
+  expands in flex-width, and turns solid FORGE Blue with white typography, while sibling
+  cards tilt outward (+10deg / -10deg) and shrink slightly. When mouse leaves, cards return
+  to equal white resting alignment.
+- Tech Stack & Dependencies:
+  CSS 3D Perspective [perspective:1400px], dynamic transform rotateY, React active hover state
+- Exact Implementation Code:
+  ```tsx
+  // Perspective container:
+  <div className="flex items-center justify-center gap-6 [perspective:1400px]">
+    {items.map((voice, idx) => {
+      const isHoveredActive = activeVoice === idx;
+      const isAnyHovered = activeVoice !== null;
+
+      let rotateAngle = 0;
+      if (!isAnyHovered) {
+        rotateAngle = idx === 0 ? 8 : idx === 2 ? -8 : 0;
+      } else if (!isHoveredActive) {
+        rotateAngle = idx < activeVoice ? 10 : -10;
+      }
+
+      return (
+        <div
+          key={voice.name}
+          onMouseEnter={() => setActiveVoice(idx)}
+          className={`relative rounded-3xl p-8 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isHoveredActive
+              ? "bg-[#1683E8] text-white flex-1.3 shadow-2xl scale-102"
+              : "bg-white text-foreground flex-1 opacity-90 shadow-md"
+          }`}
+          style={{
+            transform: `rotateY(${rotateAngle}deg) scale(${isHoveredActive ? 1.02 : 0.98})`,
+            transformStyle: "preserve-3d",
+          }}
+        >
+          {/* Card content */}
+        </div>
+      );
+    })}
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-02 (3D Perspective Focus Carousel). Build a 3-card container with [perspective:1400px] where resting cards have symmetrical rotateY tilts (+8deg, 0deg, -8deg). On card hover, rotate the hovered card to 0deg, expand its width and change its background to primary brand color while tilting non-hovered cards outward."
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-03]: Double-Sided 3D Perspective Flip Card (180deg Flip)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/winnoforge-main1/components1/ecosystem/WhoParticipatesFlipSection.tsx (Lines 335-370)
+- Visual Description:
+  Physical 3D flip card: Hovering, tapping, or focusing on the card smoothly flips it
+  around the Y-axis by 180 degrees over 700ms with cubic-bezier(0.23, 1, 0.32, 1).
+  The front face features a photo and category badge; the back face (rotated 180deg with
+  hidden backface) reveals bullet points, contributions, and action items.
+- Tech Stack & Dependencies:
+  CSS transformStyle: "preserve-3d", backfaceVisibility: "hidden", perspective: 1000px
+- Exact Implementation Code:
+  ```tsx
+  <div
+    className="group relative cursor-pointer select-none rounded-[22px]"
+    style={{ perspective: "1000px", height: "365px" }}
+    onClick={() => setIsFlipped(!isFlipped)}
+    onMouseEnter={() => setIsFlipped(true)}
+    onMouseLeave={() => setIsFlipped(false)}
+  >
+    <div
+      className="relative w-full h-full rounded-[22px] will-change-transform"
+      style={{
+        transformStyle: "preserve-3d",
+        transition: "transform 700ms cubic-bezier(0.23, 1, 0.32, 1)",
+        transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+      }}
+    >
+      {/* FRONT FACE */}
+      <div
+        className="absolute inset-0 w-full h-full rounded-[22px] bg-white border border-[#D9E2EE] p-4 flex flex-col justify-between"
+        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+      >
+        {/* Front Content */}
+      </div>
+
+      {/* BACK FACE */}
+      <div
+        className="absolute inset-0 w-full h-full rounded-[22px] bg-[#1683E8] text-white p-5 flex flex-col justify-between"
+        style={{
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
+          transform: "rotateY(180deg)",
+        }}
+      >
+        {/* Back Content */}
+      </div>
+    </div>
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-03 (Double-Sided 3D Flip Card). Create a card container with perspective: 1000px containing an inner preserve-3d div that rotates rotateY(180deg) over 700ms cubic-bezier(0.23, 1, 0.32, 1) on hover/tap, with two backfaceVisibility: hidden faces (front and back)."
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-04]: Interactive Story Card with 3D Tilt & Origin Story Drawer
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/winnoforge-main1/components1/ecosystem/LeadershipMilestonesSection.tsx (Lines 262-375)
+- Visual Description:
+  A large Apple-style interactive square card. Hovering causes a subtle 3D lift and tilt
+  (translateY(-4px), scale(1.015), rotate(-1deg)).
+  At the same time, a solid brand-blue origin story drawer overlay, initially held at
+  scale(0.94) and rotate(-6deg) with 0 opacity, swivels into full alignment (scale(1),
+  rotate(0deg), opacity: 1) over 700ms cubic-bezier(0.23, 1, 0.32, 1).
+- Tech Stack & Dependencies:
+  CSS Transitions, angled rotational overlay transforms
+- Exact Implementation Code:
+  ```tsx
+  // Outer Card:
+  <div className="group relative aspect-square rounded-[28px] border bg-white overflow-hidden shadow-lg transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-1 hover:scale-[1.015] hover:-rotate-1">
+    {/* Default Face */}
+    <div className="relative z-10 flex h-full w-full flex-col justify-between p-8">
+      {/* Default content */}
+    </div>
+
+    {/* Revealing Drawer Overlay */}
+    <div
+      className="absolute top-1/2 left-1/2 z-20 flex h-full w-full flex-col justify-between bg-[#1683E8] p-8 text-white transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] opacity-0 pointer-events-none -translate-x-1/2 -translate-y-1/2 scale-[0.94] -rotate-6 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:scale-100 group-hover:rotate-0"
+    >
+      {/* Story content */}
+    </div>
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-04 (Story Card with 3D Tilt & Angled Drawer Reveal). Build a card with subtle -1deg tilt on hover that reveals an internal full-bleed drawer overlay transitioning from scale(0.94) rotate(-6deg) opacity: 0 to scale(1) rotate(0deg) opacity: 1 over 700ms cubic-bezier(0.23, 1, 0.32, 1)."
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-05]: Card Brand Color Inversion & Number Circle Scale
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/shared/ProcessTimeline.tsx (Lines 68-100)
+- Visual Description:
+  Timeline cards that start with a pristine white background, neutral text, and a light blue
+  number badge. On hover, the entire card smoothly flips to solid FORGE Blue (#1683E8) with white
+  text, lifts by -8px with scale(1.02) and deep blue glow shadow, while the number circle expands
+  to scale(1.08) and the trailing arrow translates +4px to the right.
+- Tech Stack & Dependencies:
+  Tailwind CSS transition utilities with cubic-bezier(0.22, 1, 0.36, 1)
+- Exact Implementation Code:
+  ```html
+  <div class="group relative rounded-[22px] border border-[#D9DEE7] bg-[#FFFFFF] p-7 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:scale-[1.02] hover:bg-[#1683E8] hover:border-[#1474CE] hover:shadow-[0_20px_45px_rgba(22,131,232,0.26)]">
+    <div class="h-11 w-11 rounded-2xl bg-[#EAF3FF] text-[#1683E8] group-hover:bg-[#55A8F2] group-hover:text-white group-hover:scale-108 transition-all duration-350">
+      01
+    </div>
+    <h3 class="text-[#111111] group-hover:text-white transition-colors duration-300">Title</h3>
+    <ArrowRight class="text-[#1683E8] group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-05 (Card Color Inversion & Number Scale). On hover, transition card background from white to solid brand blue, scale by 1.02, lift -8px, invert text colors to white, scale the inner number badge to 1.08, and nudge the arrow icon right by 4px."
+
+--------------------------------------------------------------------------------
+[ANIM-HVR-06]: Asymmetric Bento Card Hover Lift & Arrow Micro-Nudge
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/citadel/CitadelExperienceBento.tsx (Lines 304, 351-353)
+- Visual Description:
+  Subtle, ultra-refined luxury SaaS hover: card lifts by -6px (hover:-translate-y-1.5)
+  with enhanced soft shadow, the circular icon badge lifts by -2px with scale(1.05),
+  and the bottom arrow button highlights from gray border to blue border with translate-x-0.5.
+- Tech Stack & Dependencies:
+  Tailwind transition-all duration-500 ease-[cubic-bezier(0.22, 1, 0.36, 1)]
+- Exact Implementation Code:
+  ```html
+  <div class="group/card rounded-[24px] bg-white border border-[#E2E8F0] shadow-[0_12px_36px_rgba(20,40,80,0.05)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(20,40,80,0.1)]">
+    <div class="transition-transform duration-300 group-hover/card:-translate-y-0.5 group-hover/card:scale-105">
+      <Icon />
+    </div>
+    <ArrowRight class="transition-transform duration-300 group-hover/card:translate-x-0.5" />
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-HVR-06 (Bento Card Hover Lift & Micro-Nudge). Add hover:-translate-y-1.5 and shadow enhancement to the card, group-hover:-translate-y-0.5 to the icon badge, and group-hover:translate-x-0.5 to the call-to-action arrow."
+
+
+
+================================================================================
+CATEGORY 5: SVG PATH DRAWS & PERIMETER BEAMS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-SVG-01]: Traveling SVG Perimeter Border Beam (Citadel Bento Rect)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/citadel/CitadelExperienceBento.tsx (Lines 152-157, 306-323, 366-383)
+- Visual Description:
+  An animated luminous electric beam that continuously travels around the exact rounded
+  perimeter of a card without requiring external canvas or complex shaders.
+  Using a normalized `<rect pathLength="100">` and strokeDasharray="10 90", a 10% stroke segment
+  orbits smoothly around the card perimeter every 14-16 seconds. On card hover, the beam
+  brightness intensifies from 20% opacity to 75-85%.
+- Tech Stack & Dependencies:
+  Inline SVG + CSS keyframes animating stroke-dashoffset on normalized pathLength="100"
+- Exact Implementation Code:
+  ```tsx
+  // CSS Keyframe:
+  @keyframes borderTravel {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -100; }
+  }
+
+  // JSX inside card (must be position relative):
+  <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+    <rect
+      x="1"
+      y="1"
+      width="calc(100% - 2px)"
+      height="calc(100% - 2px)"
+      rx="23"
+      ry="23"
+      fill="none"
+      stroke="#1683E8"
+      strokeWidth="1.5"
+      pathLength="100"
+      strokeDasharray="10 90"
+      strokeDashoffset="0"
+      className="opacity-20 group-hover/card:opacity-75 transition-opacity duration-500"
+      style={{ animation: "borderTravel 16s linear infinite" }}
+    />
+  </svg>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SVG-01 (Traveling SVG Perimeter Border Beam). Place an absolute SVG inside a rounded card with a <rect pathLength='100'>, strokeDasharray='10 90', and infinite CSS keyframe animation moving stroke-dashoffset from 0 to -100 over 16s linear, brightening to 75% on card hover."
+
+--------------------------------------------------------------------------------
+[ANIM-SVG-02]: Continuous Perimeter Travel Loop (Philosophy Rail Card)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/winnoforge-main1/components1/ecosystem/PhilosophyRailSection.tsx (Lines 198-210)
+- Visual Description:
+  A continuous light beam traveling along the rounded rectangular perimeter of each card in
+  a horizontal rail layout, cycling stroke-dashoffset from 0 to -1080 over 10s linear.
+- Tech Stack & Dependencies:
+  SVG stroke-dasharray and CSS keyframes
+- Exact Implementation Code:
+  ```css
+  .phil-card-border-segment {
+    stroke-dasharray: 80 1000;
+    animation: philCardBorderTravel 10s linear infinite;
+  }
+  @keyframes philCardBorderTravel {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -1080; }
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SVG-02 (Continuous Perimeter Travel Loop). Animate a stroke segment along a card outline using stroke-dasharray: 80 1000 and stroke-dashoffset from 0 to -1080 over 10s linear infinite."
+
+--------------------------------------------------------------------------------
+[ANIM-SVG-03]: Single-Shot Perimeter Border Draw (Government Innovation)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/winnoforge-main1/components1/ecosystem/GovernmentInnovation.tsx (Lines 111-137)
+- Visual Description:
+  When the section scrolls into the viewport, an architectural outline border around the entire
+  featured frame draws itself into existence from 0 to 100% length over 1.3 seconds using
+  SVG stroke-dashoffset, and then settles smoothly into a subtle static border.
+- Tech Stack & Dependencies:
+  GSAP 3, getTotalLength(), ScrollTrigger once: true
+- Exact Implementation Code:
+  ```tsx
+  if (borderRectRef.current) {
+    const length = borderRectRef.current.getTotalLength?.() || 3200;
+    gsap.set(borderRectRef.current, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+    });
+
+    tl.to(
+      borderRectRef.current,
+      {
+        strokeDashoffset: 0,
+        duration: 1.3,
+        ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+        onComplete: () => {
+          gsap.to(borderRectRef.current, { stroke: "#D9E2EE", duration: 0.35 });
+        },
+      },
+      0.1
+    );
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SVG-03 (Single-Shot Perimeter Border Draw). When the section scrolls into view, measure the SVG element's getTotalLength(), initialize strokeDashoffset to length, and animate strokeDashoffset to 0 over 1.3s cubic-bezier(0.22, 1, 0.36, 1) using GSAP."
+
+--------------------------------------------------------------------------------
+[ANIM-SVG-04]: Scroll-Scrubbed Dynamic SVG Route Draw (Zig-Zag Engine)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/HowItWorks.tsx (Lines 67-85)
+- Visual Description:
+  A thick 100px-wide expressive blue SVG connecting stroke that winds down through the
+  entire section. As the user scrolls through the page, the SVG path draws itself downwards in
+  exact real-time synchronization with the user's scrollbar (scrub: 1).
+- Tech Stack & Dependencies:
+  GSAP 3 + ScrollTrigger scrub: 1, getTotalLength()
+- Exact Implementation Code:
+  ```tsx
+  if (pathRef.current) {
+    const length = pathRef.current.getTotalLength();
+    gsap.set(pathRef.current, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+    });
+
+    gsap.to(pathRef.current, {
+      strokeDashoffset: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top+=450 center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SVG-04 (Scroll-Scrubbed SVG Path Draw). Tie an SVG path's stroke-dashoffset to the page scroll using GSAP ScrollTrigger with scrub: 1, calculating total length with getTotalLength() and drawing from 100% to 0% as the section progresses."
+
+
+
+================================================================================
+CATEGORY 6: COMPLEX SCROLL EXPERIENCES & PINNED DECKS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-PIN-01]: Pinned 3D Stacking Card Deck (Continuous Scrub Layer Deck)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/Philosophy.tsx (Lines 133-220),
+  components/winnoforge-main1/components1/ecosystem/HowInnovationScalesSection.tsx,
+  components/winnoforge-main1/components1/ecosystem/WhoWeAreEngineSection.tsx
+- Visual Description:
+  One of the site's most advanced, award-winning experiences: The entire section pins
+  to the screen (pin: true) while the user scrolls. As scroll progress advances from 0 to 1,
+  a deck of 3 to 5 cards stack, scale, and rotate in physical 3D space:
+  - Active card: translateY = 0, scale = 1.0, rotate = 0deg, opacity = 1.0, deep shadow.
+  - Previous card: lifts upward, scales down (0.95), tilts (-0.8deg), fades out.
+  - Incoming card: glides in from bottom (translateY = +42px), scales to 1.0, rotates into place.
+  - No dead zones; silky smooth scrub with 0.35 damping.
+- Tech Stack & Dependencies:
+  GSAP 3 + ScrollTrigger (pin: true, scrub: 0.35), translate3d + scale + rotate + dynamic box-shadow
+- Exact Implementation Code:
+  ```tsx
+  const applyCardState = (el: HTMLElement, distance: number) => {
+    const yUnit = 42;
+    const rotUnit = 0.8;
+    const translateY = Math.max(-84, Math.min(84, distance * yUnit));
+    const absDist = Math.abs(distance);
+    const scale = Math.max(0.90, 1 - Math.min(absDist, 1.5) * 0.045);
+    const rotation = Math.max(-2.0, Math.min(2.0, distance * -rotUnit));
+
+    let opacity = 0;
+    if (absDist === 0) opacity = 1;
+    else if (distance > 0) opacity = Math.max(0, 1 - distance * 0.45);
+    else opacity = Math.max(0, 1 - absDist * 0.50);
+
+    const shadowAlpha = Math.max(0.04, 0.12 - absDist * 0.04);
+    const zIndex = Math.max(1, 100 - Math.round(absDist * 15));
+
+    el.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotate(${rotation.toFixed(2)}deg)`;
+    el.style.opacity = opacity.toFixed(3);
+    el.style.boxShadow = `0 20px 50px rgba(16, 42, 67, ${shadowAlpha.toFixed(3)})`;
+    el.style.zIndex = String(zIndex);
+    el.style.pointerEvents = absDist < 0.3 ? "auto" : "none";
+  };
+
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "+=150%",
+      pin: true,
+      scrub: 0.35,
+      onUpdate: (self) => {
+        const cardProgress = self.progress * (cards.length - 1);
+        cardRefs.current.forEach((el, idx) => {
+          if (el) applyCardState(el, idx - cardProgress);
+        });
+      }
+    });
+  }, { scope: containerRef });
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-PIN-01 (Pinned 3D Stacking Layer Deck). Pin the section container with ScrollTrigger (pin: true, scrub: 0.35, end: '+=150%') and smoothly stack 3-5 cards using mathematical interpolation for translateY, scale (1.0 down to 0.90), rotate (-2deg to +2deg), z-index, and dynamic depth shadows."
+
+--------------------------------------------------------------------------------
+[ANIM-PIN-02]: Liquid Glass Dynamic Navbar Collapse & Spring-Back
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/Navbar.tsx (Lines 20-165)
+- Visual Description:
+  Floating liquid glass capsule with backdrop blur(24px) saturate(180%).
+  On scroll down: automatically collapses into a compact floating pill to maximize readable space.
+  On scroll up, hover, or 600ms of user inactivity: instantly springs back to its full expansive
+  capsule with all links and action buttons.
+  Features an active pill highlight that slides underneath the current page route using ResizeObserver.
+- Tech Stack & Dependencies:
+  Scroll listener with delta threshold, 600ms idle timer, ResizeObserver, GSAP entrance timeline
+- Exact Implementation Code:
+  ```tsx
+  useEffect(() => {
+    const THRESHOLD = 10;
+    let lastScrollY = 0;
+    let idleTimer: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      const y = window.scrollY || 0;
+      if (y > lastScrollY + THRESHOLD && y > 50) {
+        setIsCompact(true);
+      } else if (y < lastScrollY - THRESHOLD) {
+        setIsCompact(false);
+      }
+      lastScrollY = y;
+
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        setIsCompact(false);
+      }, 600);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(idleTimer);
+    };
+  }, []);
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-PIN-02 (Liquid Glass Dynamic Navbar). Create a floating fixed navbar with backdrop-blur that collapses to a compact pill when scrolling down, and springs back to full width on scroll-up or after 600ms idle, with a sliding active route indicator pill."
+
+
+
+================================================================================
+CATEGORY 7: MORPHING, ORBITAL SHUFFLES & MODAL TRANSITIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+[ANIM-SHF-01]: Orbital Memory Grid Drift & Staggered Reshuffle
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/home/BuiltThroughForge.tsx (Lines 300-357)
+- Visual Description:
+  A 7-card photo showcase that automatically shuffles photos every 20 seconds.
+  On reshuffle: cards drift outward in alternating directions (scale: 0.95, opacity: 0.35,
+  x: +/-12px, y: +/-14px), new photos swap in, and cards drift back in from inverse coordinates
+  with a staggered 0.03s cascade over 0.65s cubic-bezier(0.22, 1, 0.36, 1). Pauses when hovered.
+- Tech Stack & Dependencies:
+  GSAP to/fromTo with functional positional offsets, setInterval with hover interruption
+- Exact Implementation Code:
+  ```tsx
+  const reshuffle = (direction: 1 | -1) => {
+    gsap.to(".mem-card-inner", {
+      scale: 0.95,
+      opacity: 0.35,
+      y: (i) => (i % 2 === 0 ? -14 : 14),
+      x: (i) => (i % 3 === 0 ? 12 : -12),
+      duration: 0.28,
+      ease: "power2.in",
+      onComplete: () => {
+        setViewIndex((prev) => (prev + direction + 4) % 4);
+        gsap.fromTo(
+          ".mem-card-inner",
+          {
+            scale: 0.95,
+            opacity: 0.35,
+            y: (i) => (i % 2 === 0 ? 14 : -14),
+            x: (i) => (i % 3 === 0 ? -12 : 12),
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            x: 0,
+            duration: 0.65,
+            stagger: 0.03,
+            ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+            clearProps: "transform,opacity",
+          }
+        );
+      },
+    });
+  };
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SHF-01 (Orbital Grid Reshuffle). Stagger an image grid outward with x/y orbital offsets and scale(0.95), swap image data, and animate back to center with inverse offsets using cubic-bezier(0.22, 1, 0.36, 1)."
+
+--------------------------------------------------------------------------------
+[ANIM-MRP-01]: Organic Morphing Blob Border-Radius Loop (Footer Morph)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/Footer.tsx (Lines 53-73)
+- Visual Description:
+  The top boundary of the massive full-screen footer is not a rigid straight line; it is an
+  organic, living shape whose top border-radius constantly morphs and ripples infinitely
+  every 3 seconds using random percentage values (40% to 50% on desktop, 20% to 30% on mobile).
+- Tech Stack & Dependencies:
+  GSAP recursive tween on container element borderRadius with ease: "sine.inOut"
+- Exact Implementation Code:
+  ```tsx
+  const generateBlobRadius = () => {
+    const isMobile = window.innerWidth < 768;
+    const min = isMobile ? 20 : 40;
+    const max = isMobile ? 30 : 50;
+    const r = () => Math.floor(Math.random() * max + min);
+    return `${r()}% ${r()}% 0% 0% / ${r()}% ${r()}% 0% 0%`;
+  };
+
+  gsap.set(containerRef.current, { borderRadius: generateBlobRadius() });
+
+  const morphBlob = () => {
+    gsap.to(containerRef.current, {
+      borderRadius: generateBlobRadius(),
+      duration: 3.0,
+      ease: "sine.inOut",
+      onComplete: morphBlob,
+    });
+  };
+
+  morphBlob();
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-MRP-01 (Organic Morphing Blob Footer). Create a continuous GSAP loop that morphs the top border radius of a container with random percentages (`${r()}% ${r()}% 0% 0% / ${r()}% ${r()}% 0% 0%`) every 3.0 seconds with ease: 'sine.inOut'."
+
+--------------------------------------------------------------------------------
+[ANIM-MOD-01]: Backdrop Blur Fade & Scaled Dialog Entrance (Form Modal)
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/modal/FormModal.tsx (Lines 390-455)
+- Visual Description:
+  Modal dialog entrance: The dark backdrop fades in with backdrop-blur-sm (0.18s ease)
+  while the dialog modal scales from 0.95 and lifts from translateY(8px) to scale(1) translateY(0)
+  over 0.2s ease, providing an instantaneous yet smooth physical popup response.
+- Tech Stack & Dependencies:
+  CSS keyframes fadeIn + scaleIn, backdrop-blur-sm
+- Exact Implementation Code:
+  ```css
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-overlay {
+    animation: fadeIn 0.18s ease;
+    backdrop-filter: blur(4px);
+  }
+  .modal-dialog {
+    animation: scaleIn 0.20s ease;
+  }
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-MOD-01 (Backdrop Blur & Scaled Dialog Entrance). Add fadeIn keyframes (0.18s) to the backdrop blur overlay and scaleIn keyframes (from scale(0.95) translateY(8px) over 0.20s) to the modal dialog."
+
+--------------------------------------------------------------------------------
+[ANIM-ACC-01]: Smooth FAQ Accordion Expand & Collapse with Icon Morph
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/shared/FaqAccordion.tsx (Lines 320-365)
+- Visual Description:
+  FAQ item expansion: Clicking an accordion item smoothly expands the answer container from
+  max-h-0 opacity-0 to max-h-[600px] opacity-100 over 500ms using cubic-bezier(0.22, 1, 0.36, 1),
+  while the Plus (+) icon smoothly morphs/rotates into a Minus (-) icon.
+- Tech Stack & Dependencies:
+  CSS transition with cubic-bezier(0.22, 1, 0.36, 1) and max-height / opacity interpolation
+- Exact Implementation Code:
+  ```tsx
+  <div
+    className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      isOpen ? "max-h-[600px] opacity-100 mb-6" : "max-h-0 opacity-0 mb-0"
+    }`}
+  >
+    <div className="bg-[#F0F5FD] rounded-2xl p-6 border border-[#E2EAF8]">
+      <p>{answer}</p>
+    </div>
+  </div>
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-ACC-01 (Smooth Accordion Expand & Collapse). Animate an accordion panel using transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] with max-h-[600px] opacity-100 when open and max-h-0 opacity-0 when closed."
+
+--------------------------------------------------------------------------------
+[ANIM-SPL-01]: Gear Preloader Spin with Coordinated Body Fade-Out
+--------------------------------------------------------------------------------
+- Used In FORGE:
+  components/SplashScreen.tsx (Lines 1-56)
+- Visual Description:
+  Initial page preloader: Locks document scroll while loading. A clean gear SVG rotates at
+  2 seconds per revolution. When the window triggers "load" (or 600ms DOM readiness), the splash
+  overlay smoothly fades out over 700ms and unlocks body scroll.
+- Tech Stack & Dependencies:
+  React state, window "load" event listener, CSS animate-spin with custom duration
+- Exact Implementation Code:
+  ```tsx
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const handleLoad = () => {
+      setFadeOut(true);
+      setTimeout(() => {
+        setLoading(false);
+        document.body.style.overflow = "";
+      }, 700);
+    };
+    if (document.readyState === "complete") {
+      setTimeout(handleLoad, 600);
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+  ```
+- Basic Prompt to Recreate in Another Project:
+  "Implement ANIM-SPL-01 (Gear Preloader with Fade-Out). Lock body overflow while showing a 2s spinning SVG preloader, then fade out opacity over 700ms upon window load."
+
+================================================================================
+END OF CATALOG
+================================================================================

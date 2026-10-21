@@ -143,7 +143,7 @@ export default function IntroWinnovation() {
                   </span>
 
                   {/* Pillar Title */}
-                  <span className="font-clash font-bold text-base sm:text-lg text-[#111111] mt-1 leading-snug whitespace-nowrap">
+                  <span className="font-clash font-bold text-sm sm:text-base lg:text-lg text-[#111111] mt-1 leading-snug sm:whitespace-nowrap">
                     {item.title}
                   </span>
 

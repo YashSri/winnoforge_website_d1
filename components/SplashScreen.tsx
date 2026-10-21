@@ -11,20 +11,29 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
         // Lock scroll on body while loading
         document.body.style.overflow = "hidden";
 
+        let fadeTimer: NodeJS.Timeout | null = null;
+        let finishTimer: NodeJS.Timeout | null = null;
+
         const handleLoad = () => {
             setFadeOut(true);
-            setTimeout(() => {
+            finishTimer = setTimeout(() => {
                 setLoading(false);
                 document.body.style.overflow = "";
-            }, 800);
+            }, 600);
         };
 
         if (document.readyState === "complete") {
-            setTimeout(handleLoad, 600);
+            fadeTimer = setTimeout(handleLoad, 400);
         } else {
             window.addEventListener("load", handleLoad);
-            return () => window.removeEventListener("load", handleLoad);
         }
+
+        return () => {
+            window.removeEventListener("load", handleLoad);
+            if (fadeTimer) clearTimeout(fadeTimer);
+            if (finishTimer) clearTimeout(finishTimer);
+            document.body.style.overflow = "";
+        };
     }, []);
 
     return (

@@ -10,6 +10,13 @@ export default function AmbientBackground() {
   const parallaxCurrent = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
     let animId: number;
 
     const handleMouseMove = (e: MouseEvent) => {

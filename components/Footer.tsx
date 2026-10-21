@@ -25,6 +25,13 @@ export default function Footer() {
 
   useGSAP(
     () => {
+      if (
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+
       gsap.from(".footer-title", {
         scrollTrigger: {
           trigger: containerRef.current,
