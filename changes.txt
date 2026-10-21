@@ -2253,6 +2253,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
 
+--------------------------------------------------------------------------------
+RECORD #144 | COMMIT: 9f0a69b | TIMESTAMP: 2026-10-21 16:22:07 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  feat(hero): remove partners logos strip and fix landing page glitches
+
+SITE CHANGES IMPLEMENTED:
+  feat(hero): remove partners logos strip and fix landing page glitches
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_ANIMATION_CATALOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt (+6 more)
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================

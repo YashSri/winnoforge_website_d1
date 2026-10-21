@@ -368,64 +368,35 @@ export default function CuriosityToCapability() {
             </div>
           </div>
 
-          {/* Horizontal Step Selector Pill Row */}
-          <div className="mt-6 flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto py-2 px-2 no-scrollbar">
-            {JOURNEY_STEPS.map((step, idx) => {
-              const isActive = (activeStep !== null ? activeStep : mobileActiveIndex) === idx;
-              return (
-                <button
-                  key={step.num}
-                  type="button"
-                  onClick={() => setActiveStep(idx)}
-                  className={`flex flex-col items-center justify-center py-2.5 px-3 rounded-xl border transition-all duration-300 ${
-                    isActive
-                      ? "bg-[#1683E8] border-[#1683E8] text-white shadow-md scale-105"
-                      : "bg-white border-[#D9DEE7] text-[#111111] hover:border-[#1683E8]"
-                  }`}
-                >
-                  <span className="font-clash text-[10px] font-bold opacity-75">
-                    {step.num}
-                  </span>
-                  <span className="font-jakarta text-[11px] font-bold whitespace-nowrap">
-                    {step.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Mobile Controls (Prev / Next Buttons) */}
-          <div className="mt-6 flex items-center justify-between max-w-[440px] mx-auto w-full px-2">
+          {/* Mobile Step Navigation Controls */}
+          <div className="mt-8 flex items-center justify-between max-w-[400px] mx-auto w-full px-4">
             <button
               type="button"
               onClick={handlePrev}
               aria-label="Previous step"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#102A43] shadow-sm active:scale-95 hover:border-[#1683E8]"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#102A43] shadow-sm active:scale-95 hover:border-[#1683E8] cursor-pointer"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
 
-            <div className="flex items-center gap-1.5">
-              {JOURNEY_STEPS.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActiveStep(i)}
-                  aria-label={`Go to step ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    (activeStep !== null ? activeStep : mobileActiveIndex) === i
-                      ? "w-6 bg-[#1683E8]"
-                      : "w-2 bg-[#D9DEE7]"
-                  }`}
-                />
-              ))}
+            {/* Step Counter Indicator */}
+            <div className="flex items-center gap-2">
+              <span className="font-clash text-sm font-bold text-[#1683E8]">
+                {JOURNEY_STEPS[mobileActiveIndex].num}
+              </span>
+              <span className="font-jakarta text-xs font-bold text-[#111111]">
+                {JOURNEY_STEPS[mobileActiveIndex].title}
+              </span>
+              <span className="font-jakarta text-xs text-[#5F6672]/60">
+                / 07
+              </span>
             </div>
 
             <button
               type="button"
               onClick={handleNext}
               aria-label="Next step"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D9DEE7] bg-white text-[#102A43] shadow-sm active:scale-95 hover:border-[#1683E8]"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1683E8] text-white shadow-sm active:scale-95 hover:bg-[#1272cb] cursor-pointer"
             >
               <ArrowRight className="h-4 w-4" />
             </button>

@@ -379,8 +379,8 @@ export default function WhySection() {
               real-world problems come together to turn ideas into impact.
             </p>
 
-            {/* Navigation Controls: Circular Buttons + 01 / 03 Counter */}
-            <div className="why-nav mt-10 sm:mt-12 flex items-center gap-5">
+            {/* Navigation Controls: Circular Buttons + 01 / 03 Counter (Mobile & Tablet) */}
+            <div className="why-nav mt-8 sm:mt-10 flex lg:hidden items-center gap-5">
               {/* Previous Button (White with border) */}
               <button
                 type="button"

@@ -105,7 +105,7 @@ export default function IntroForge() {
           {/* Continuous Connecting Line Behind Dots (desktop only) */}
           <div
             aria-hidden="true"
-            className="hidden lg:block absolute top-[43px] left-[8%] right-[8%] h-[2px] bg-[#D9DEE7] z-0"
+            className="hidden lg:block absolute top-[41px] left-[8%] right-[8%] h-[2px] bg-[#D9DEE7] z-0"
           />
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-5 lg:gap-3 items-start justify-between relative z-10">

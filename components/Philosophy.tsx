@@ -272,15 +272,6 @@ export default function Philosophy() {
     { scope: containerRef, dependencies: [isReducedMotion] },
   );
 
-  // Smooth scroll to card when clicking progress indicator
-  const handleJumpToCard = (targetIndex: number) => {
-    if (!scrollTriggerRef.current) return;
-    const st = scrollTriggerRef.current;
-    const progressMap = [0.02, 0.50, 0.98];
-    const targetProgress = progressMap[targetIndex] ?? 0;
-    const targetScroll = st.start + (st.end - st.start) * targetProgress;
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
-  };
 
   return (
     <section
@@ -524,42 +515,6 @@ export default function Philosophy() {
             </div>
           </div>
 
-          {/* Minimal Vertical Progress Indicator (Desktop & Tablet) */}
-          <div
-            className="hidden md:flex absolute right-4 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 py-4 px-2.5 rounded-full bg-white/90 border border-slate-200/80 shadow-[0_4px_20px_rgba(16,42,67,0.06)] backdrop-blur-md select-none"
-            aria-label="Layer progress indicator"
-          >
-            {forgeWayCards.map((card, idx) => {
-              const isActive = activeCardIndex === idx;
-
-              return (
-                <button
-                  key={card.index}
-                  type="button"
-                  onClick={() => handleJumpToCard(idx)}
-                  className="group flex flex-col items-center gap-1.5 cursor-pointer focus:outline-none p-1 transition-transform"
-                  aria-label={`Jump to card ${card.index}: ${card.title}`}
-                >
-                  <span
-                    className={`font-poppins text-xs font-bold transition-colors duration-300 ${
-                      isActive
-                        ? "text-[#FF5500]"
-                        : "text-[#5F6672] group-hover:text-[#111111]"
-                    }`}
-                  >
-                    {card.index}
-                  </span>
-                  <span
-                    className={`rounded-full transition-all duration-300 ${
-                      isActive
-                        ? "w-2 h-2 bg-[#FF5500] ring-2 ring-[#FF5500]/30 scale-125"
-                        : "w-1.5 h-1.5 bg-slate-300 group-hover:bg-slate-500"
-                    }`}
-                  />
-                </button>
-              );
-            })}
-          </div>
         </div>
       )}
     </section>

@@ -146,7 +146,7 @@ export default function HowItWorks() {
         <div className="flex flex-col">
           {steps.map((step) => {
             const cfg = alignConfig[step.align];
-            const topMargin = step.id === 4 ? "mt-40 md:mt-56" : "mt-12";
+            const topMargin = step.id === 4 ? "mt-16 md:mt-48 lg:mt-56" : "mt-12";
 
             return (
               <div
@@ -179,19 +179,9 @@ export default function HowItWorks() {
                       {step.title}
                     </h3>
 
-                    <p className="font-jakarta text-foreground/70 text-base md:text-lg leading-relaxed mb-8">
+                    <p className="font-jakarta text-foreground/70 text-base md:text-lg leading-relaxed mb-4">
                       {step.description}
                     </p>
-
-                    {/* <a
-                      href="#programs"
-                      className="inline-flex items-center gap-2 border-2 border-foreground rounded-full px-5 py-2.5 font-jakarta font-semibold text-sm text-foreground hover:bg-foreground hover:text-background transition-all duration-300 group"
-                    >
-                      {step.cta}
-                      <span className="bg-primary rounded-full p-1 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                        <ArrowRight size={14} className="text-white" />
-                      </span>
-                    </a> */}
                   </div>
                 </div>
               </div>

@@ -423,7 +423,7 @@ export default function FeaturedPrograms() {
 
                     {/* CENTER: Collapsed (Vertical Title) vs Expanded (Horizontal Title & Content) */}
                     <div className="relative flex-1 my-6 flex flex-col justify-center overflow-hidden">
-                      {/* COLLAPSED STATE: Refined Vertical Program Title */}
+                      {/* COLLAPSED STATE: Responsive Title (Horizontal on Mobile, Vertical on Desktop) */}
                       <div
                         className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
                           isExpanded
@@ -432,11 +432,7 @@ export default function FeaturedPrograms() {
                         }`}
                       >
                         <span
-                          style={{
-                            writingMode: "vertical-rl",
-                            transform: "rotate(180deg)",
-                          }}
-                          className="font-clash text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-[#102A43] whitespace-nowrap"
+                          className="font-clash text-sm sm:text-base font-bold uppercase tracking-[0.16em] text-[#102A43] text-center px-3 lg:px-0 lg:[writing-mode:vertical-rl] lg:rotate-180 whitespace-normal lg:whitespace-nowrap"
                         >
                           {program.name}
                         </span>
@@ -541,16 +537,7 @@ export default function FeaturedPrograms() {
           </span>
         </div>
 
-        {/* Preserved Download Course Catalog Button (Section 29) */}
-        <div className="mt-10 sm:mt-12 flex justify-center">
-          <button
-            type="button"
-            onClick={() => open("catalogue")}
-            className="rounded-full border border-[#D9DEE7] bg-white px-8 py-3.5 font-jakarta text-sm font-semibold text-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1683E8] hover:border-[#1683E8] hover:text-white hover:shadow-[0_14px_30px_rgba(16,42,67,0.08)] cursor-pointer"
-          >
-            Download Course Catalog
-          </button>
-        </div>
+
       </div>
     </section>
   );

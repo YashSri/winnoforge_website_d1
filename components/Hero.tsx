@@ -3,18 +3,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import {
-  ArrowRight,
-  BarChart3,
-  Box,
-  Maximize2,
-  Minimize2,
-  Pause,
-  Play,
-  Users2,
-} from "lucide-react";
+import { ArrowRight, BarChart3, Box, Users2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/modal/ModalContext";
 
@@ -40,12 +30,6 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const { open } = useModal();
-
-  // Video playback states
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(10);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Counter state
   const [counters, setCounters] = useState<number[]>([0, 0, 0]);
@@ -88,71 +72,6 @@ export default function Hero() {
     });
   }, []);
 
-  // Video play/pause toggle
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  // Video fullscreen toggle
-  const toggleFullscreen = () => {
-    if (!videoRef.current) return;
-    if (!document.fullscreenElement) {
-      videoRef.current.requestFullscreen?.().catch(() => {});
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen?.().catch(() => {});
-      setIsFullscreen(false);
-    }
-  };
-
-  // Watch overview button action: scroll to video and play unmuted or restart
-  const handleWatchOverview = () => {
-    if (!videoRef.current) return;
-    videoRef.current.currentTime = 0;
-    videoRef.current.play();
-    setIsPlaying(true);
-    videoRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
-
-  // Track video time
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(video.currentTime);
-    };
-
-    const handleLoadedMetadata = () => {
-      if (video.duration && !Number.isNaN(video.duration)) {
-        setDuration(video.duration);
-      }
-    };
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-
-    return () => {
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-    };
-  }, []);
-
-  // Format time (e.g. 0:08 / 1:00)
-  const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    return `${m}:${s < 10 ? "0" : ""}${s}`;
-  };
-
-  // Listen for scroll back to top of the page
   useEffect(() => {
     let hasScrolledDown = false;
 
@@ -331,41 +250,18 @@ export default function Hero() {
               })}
             </div>
 
-            {/* Primary & Secondary CTA Area */}
-            <div className="hero-cta-area mt-8 sm:mt-9 flex flex-wrap items-center gap-4 sm:gap-6">
-              {/* Primary CTA */}
+            {/* Primary CTA Area */}
+            <div className="hero-cta-area mt-8 sm:mt-9 flex items-center">
               <button
                 type="button"
                 onClick={() => open("join")}
-                className="group inline-flex items-center gap-2.5 bg-[#102A43] hover:bg-[#163A5C] text-white px-7 py-3.5 rounded-full font-jakarta text-sm font-semibold tracking-wide transition-all duration-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
+                className="group inline-flex items-center gap-2.5 bg-[#102A43] hover:bg-[#163A5C] text-white px-8 py-3.5 rounded-full font-jakarta text-sm sm:text-base font-semibold tracking-wide transition-all duration-200 shadow-sm hover:-translate-y-0.5 hover:shadow-md cursor-pointer"
               >
                 <span>Join The Program</span>
                 <ArrowRight
                   className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </button>
-
-              {/* Secondary CTA: Watch Overview */}
-              <button
-                type="button"
-                onClick={handleWatchOverview}
-                className="group inline-flex items-center gap-3 cursor-pointer text-left focus:outline-none"
-              >
-                <span className="w-10 h-10 rounded-full border border-[#D9DEE7] bg-white flex items-center justify-center text-[#111111] shadow-[0_1px_4px_rgba(16,42,67,0.04)] group-hover:border-[#102A43] group-hover:scale-105 transition-all">
-                  <Play
-                    className="w-4 h-4 ml-0.5 fill-[#111111] text-[#111111]"
-                    aria-hidden="true"
-                  />
-                </span>
-                <span className="flex flex-col transition-transform duration-200 group-hover:translate-x-0.5">
-                  <span className="font-jakarta text-sm font-semibold text-[#111111] leading-tight">
-                    Watch Overview
-                  </span>
-                  <span className="font-jakarta text-xs text-[#5F6672]">
-                    10 seconds
-                  </span>
-                </span>
               </button>
             </div>
           </div>
@@ -410,7 +306,7 @@ export default function Hero() {
                 GROW
               </div>
 
-              <div className="absolute bottom-16 right-5 sm:bottom-18 sm:right-6 z-20 hidden sm:block pointer-events-none select-none text-[9px] sm:text-[10px] font-mono font-semibold tracking-widest text-[#102A43]/75 text-right uppercase leading-tight">
+              <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 z-20 pointer-events-none select-none text-[9px] sm:text-[10px] font-mono font-semibold tracking-widest text-[#102A43]/75 text-right uppercase leading-tight">
                 A BRIGHTER
                 <br />
                 TOMORROW
@@ -418,57 +314,6 @@ export default function Hero() {
                 IS A BUILDER
                 <br />
                 AWAY
-              </div>
-
-
-              {/* Custom Video Control Bar at Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 py-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-between gap-3 text-white">
-                <div className="flex items-center gap-3">
-                  {/* Play / Pause */}
-                  <button
-                    type="button"
-                    onClick={togglePlay}
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                    className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors cursor-pointer"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-3.5 h-3.5 fill-white text-white" />
-                    ) : (
-                      <Play className="w-3.5 h-3.5 ml-0.5 fill-white text-white" />
-                    )}
-                  </button>
-
-                  {/* Time Counter */}
-                  <span className="font-mono text-xs text-white/80 tabular-nums">
-                    {formatTime(currentTime)} / {formatTime(duration)}
-                  </span>
-                </div>
-
-                {/* Scrubber Progress Bar */}
-                <div className="flex-1 mx-2">
-                  <div className="w-full h-1 bg-white/25 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#1683E8] rounded-full transition-all duration-100"
-                      style={{
-                        width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Fullscreen Button */}
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  aria-label="Toggle fullscreen"
-                  className="p-1.5 text-white/70 hover:text-white transition-colors cursor-pointer"
-                >
-                  {isFullscreen ? (
-                    <Minimize2 className="w-4 h-4" />
-                  ) : (
-                    <Maximize2 className="w-4 h-4" />
-                  )}
-                </button>
               </div>
             </div>
           </div>

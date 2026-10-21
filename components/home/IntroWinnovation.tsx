@@ -3,10 +3,9 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
-import { useModal } from "@/components/modal/ModalContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,16 +22,6 @@ const ecosystemPillars = [
 
 export default function IntroWinnovation() {
   const sectionRef = useRef<HTMLElement>(null);
-  const { open } = useModal();
-
-  // Scroll to hero video or play overview
-  const handleWatchOverview = () => {
-    const video = document.querySelector("video");
-    if (video) {
-      video.scrollIntoView({ behavior: "smooth", block: "center" });
-      video.play();
-    }
-  };
 
   useGSAP(
     () => {
@@ -95,11 +84,11 @@ export default function IntroWinnovation() {
         </p>
 
         {/* Centered CTA Area */}
-        <div className="intro-ctas mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+        <div className="intro-ctas mt-6 sm:mt-8 flex items-center justify-center">
           {/* Primary CTA */}
           <Link
             href="/ecosystem"
-            className="group inline-flex items-center gap-2.5 bg-[#1683E8] hover:bg-[#0F75D4] text-white px-7 py-3 rounded-full font-jakarta text-sm sm:text-base font-semibold tracking-wide transition-all duration-200 shadow-[0_4px_16px_rgba(22,131,232,0.3)] hover:shadow-[0_6px_22px_rgba(22,131,232,0.45)] hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2.5 bg-[#1683E8] hover:bg-[#0F75D4] text-white px-8 py-3.5 rounded-full font-jakarta text-sm sm:text-base font-semibold tracking-wide transition-all duration-200 shadow-[0_4px_16px_rgba(22,131,232,0.3)] hover:shadow-[0_6px_22px_rgba(22,131,232,0.45)] hover:-translate-y-0.5"
           >
             <span>Explore Ecosystem</span>
             <ArrowRight
@@ -107,28 +96,6 @@ export default function IntroWinnovation() {
               aria-hidden="true"
             />
           </Link>
-
-          {/* Secondary CTA: Watch Overview */}
-          <button
-            type="button"
-            onClick={handleWatchOverview}
-            className="group inline-flex items-center gap-3 cursor-pointer text-left focus:outline-none"
-          >
-            <span className="w-10 h-10 rounded-full border border-[#D9DEE7] bg-white flex items-center justify-center text-[#111111] shadow-[0_2px_8px_rgba(16,42,67,0.04)] group-hover:border-[#1683E8] group-hover:scale-105 transition-all">
-              <Play
-                className="w-4 h-4 ml-0.5 fill-[#111111] text-[#111111]"
-                aria-hidden="true"
-              />
-            </span>
-            <span className="flex flex-col transition-transform duration-200 group-hover:translate-x-0.5">
-              <span className="font-jakarta text-sm font-semibold text-[#111111] leading-tight">
-                Watch Overview
-              </span>
-              <span className="font-jakarta text-xs text-[#5F6672]">
-                60 seconds
-              </span>
-            </span>
-          </button>
         </div>
 
         {/* 6-Step Ecosystem Pipeline Strip */}
