@@ -32,37 +32,224 @@ const statsData = [
   },
 ];
 
-const partnerLogos = [
+interface EcosystemPartner {
+  name: string;
+  alt: string;
+  src: string;
+  width: number;
+  height: number;
+  category: string;
+  customClass?: string;
+}
+
+const allPartners: EcosystemPartner[] = [
   {
-    src: "/airtel.png",
-    alt: "Bharti Airtel logo",
-    name: "Airtel",
+    name: "SOTI",
+    alt: "SOTI logo",
+    src: "/logos/partners/soti.png",
+    width: 424,
+    height: 98,
+    category: "Enterprise Mobility",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[115px]",
   },
   {
-    src: "/logos/Perfetti Van Melle.png",
-    alt: "Perfetti Van Melle logo",
-    name: "Perfetti",
+    name: "we360.ai",
+    alt: "we360.ai logo",
+    src: "/logos/partners/we360-ai.png",
+    width: 720,
+    height: 378,
+    category: "Workforce Analytics",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[120px]",
   },
   {
-    src: "/logos/CJ Darcl Logistics Ltd.jpg",
-    alt: "CJ Darcl Logistics Ltd. logo",
-    name: "CJ Darcl",
+    name: "Rediff",
+    alt: "Rediff logo",
+    src: "/logos/partners/rediff.png",
+    width: 298,
+    height: 84,
+    category: "Enterprise Media",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[105px]",
   },
   {
-    src: "/logos/lightstorm logo.jpg",
-    alt: "Lightstorm logo",
-    name: "Lightstorm",
+    name: "Aarcon",
+    alt: "Aarcon logo",
+    src: "/logos/partners/aarcon.png",
+    width: 287,
+    height: 68,
+    category: "Enterprise Tech",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[110px]",
   },
   {
-    src: "/logos/Infynix Communications Ltd..png",
-    alt: "Infynix Communications Ltd. logo",
-    name: "Infynix",
+    name: "Netwrix",
+    alt: "Netwrix logo",
+    src: "/logos/partners/netwrix.png",
+    width: 374,
+    height: 82,
+    category: "Data Security",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[115px]",
   },
   {
-    src: "/logos/mankind.png",
-    alt: "Mankind logo",
-    name: "Mankind",
+    name: "Cybercube",
+    alt: "Cybercube logo",
+    src: "/logos/partners/cybercube.png",
+    width: 518,
+    height: 154,
+    category: "Cyber Risk Analytics",
+    customClass: "max-h-[24px] sm:max-h-[28px] max-w-[120px]",
   },
+  {
+    name: "Heizen",
+    alt: "Heizen logo",
+    src: "/logos/partners/heizen.png",
+    width: 300,
+    height: 82,
+    category: "Systems Automation",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[105px]",
+  },
+  {
+    name: "Data Resolve",
+    alt: "Data Resolve logo",
+    src: "/logos/partners/data-resolve.png",
+    width: 876,
+    height: 178,
+    category: "Data Security",
+    customClass: "max-h-[24px] sm:max-h-[28px] max-w-[125px]",
+  },
+  {
+    name: "Utkarsh Bank",
+    alt: "Utkarsh Small Finance Bank logo",
+    src: "/logos/partners/utkarsh.png",
+    width: 220,
+    height: 144,
+    category: "Banking & Finance",
+    customClass: "max-h-[34px] sm:max-h-[38px] max-w-[95px]",
+  },
+  {
+    name: "Fortinet",
+    alt: "Fortinet logo",
+    src: "/logos/partners/fortinet.png",
+    width: 351,
+    height: 41,
+    category: "Network Security",
+    customClass: "max-h-[19px] sm:max-h-[22px] max-w-[125px]",
+  },
+  {
+    name: "Lenovo",
+    alt: "Lenovo logo",
+    src: "/logos/partners/lenovo.png",
+    width: 1334,
+    height: 445,
+    category: "Global Computing",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[115px]",
+  },
+  {
+    name: "Acer",
+    alt: "Acer logo",
+    src: "/logos/partners/acer.png",
+    width: 330,
+    height: 84,
+    category: "Hardware & Tech",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[105px]",
+  },
+  {
+    name: "InstaSafe",
+    alt: "InstaSafe logo",
+    src: "/logos/partners/instasafe.png",
+    width: 509,
+    height: 154,
+    category: "Zero Trust Security",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[120px]",
+  },
+  {
+    name: "Zebra",
+    alt: "Zebra Technologies logo",
+    src: "/logos/partners/zebra.png",
+    width: 459,
+    height: 151,
+    category: "Edge Solutions",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[120px]",
+  },
+  {
+    name: "Motadata",
+    alt: "Motadata logo",
+    src: "/logos/partners/motadata.png",
+    width: 1312,
+    height: 381,
+    category: "AI IT Operations",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[125px]",
+  },
+  {
+    name: "Quantum Networks",
+    alt: "Quantum Networks logo",
+    src: "/logos/partners/quantum-networks.png",
+    width: 421,
+    height: 120,
+    category: "Enterprise Wi-Fi",
+    customClass: "max-h-[24px] sm:max-h-[28px] max-w-[125px]",
+  },
+  {
+    name: "Userful",
+    alt: "Userful logo",
+    src: "/logos/partners/userful.png",
+    width: 288,
+    height: 158,
+    category: "Visual Networking",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[110px]",
+  },
+  {
+    name: "Sophos",
+    alt: "Sophos logo",
+    src: "/logos/partners/sophos.png",
+    width: 274,
+    height: 191,
+    category: "Next-Gen Cyber",
+    customClass: "max-h-[34px] sm:max-h-[38px] max-w-[90px]",
+  },
+  {
+    name: "Claude",
+    alt: "Claude Anthropic logo",
+    src: "/logos/partners/claude.png",
+    width: 496,
+    height: 108,
+    category: "Frontier AI",
+    customClass: "max-h-[24px] sm:max-h-[28px] max-w-[125px]",
+  },
+  {
+    name: "Tata AIG",
+    alt: "Tata AIG Insurance logo",
+    src: "/logos/partners/tata-aig.png",
+    width: 461,
+    height: 461,
+    category: "Insurance & Risk",
+    customClass: "max-h-[36px] sm:max-h-[40px] max-w-[55px]",
+  },
+  {
+    name: "Hexnode",
+    alt: "Hexnode logo",
+    src: "/logos/partners/hexnode.png",
+    width: 786,
+    height: 195,
+    category: "Endpoint Security",
+    customClass: "max-h-[24px] sm:max-h-[28px] max-w-[125px]",
+  },
+  {
+    name: "Honda",
+    alt: "Honda logo",
+    src: "/logos/partners/honda.png",
+    width: 215,
+    height: 140,
+    category: "Mobility & Eng.",
+    customClass: "max-h-[34px] sm:max-h-[38px] max-w-[85px]",
+  },
+];
+
+const featuredPartnerLogos = [
+  allPartners[10], // Lenovo
+  allPartners[18], // Claude
+  allPartners[9],  // Fortinet
+  allPartners[17], // Sophos
+  allPartners[19], // Tata AIG
+  allPartners[21], // Honda
 ];
 
 export default function EcosystemHowWorksSection() {
@@ -145,6 +332,8 @@ export default function EcosystemHowWorksSection() {
             ".ehw-right-header",
             ".ehw-win-card",
             ".ehw-logo-card",
+            ".ehw-full-roster",
+            ".ehw-roster-card",
           ],
           { opacity: 1, y: 0, scale: 1, clearProps: "all" },
         );
@@ -188,6 +377,8 @@ export default function EcosystemHowWorksSection() {
               ".ehw-right-header",
               ".ehw-win-card",
               ".ehw-logo-card",
+              ".ehw-full-roster",
+              ".ehw-roster-card",
             ],
             { clearProps: "opacity,transform" },
           );
@@ -449,19 +640,20 @@ export default function EcosystemHowWorksSection() {
                 ref={logoGridRef}
                 className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3"
               >
-                {partnerLogos.map((partner) => (
+                {featuredPartnerLogos.map((partner) => (
                   <article
                     key={partner.name}
                     tabIndex={0}
                     className="ehw-logo-card group relative flex flex-col justify-between rounded-[1.25rem] border border-[#D9E2EE] bg-white p-4 shadow-[0_8px_20px_rgba(16,42,67,0.03)] cursor-default select-none transition-all duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[5px] hover:scale-[1.015] hover:border-[#BFD8F5] hover:shadow-[0_16px_36px_rgba(22,131,232,0.12)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1683E8]"
                   >
-                    {/* Logo Image with Micro-Motion (Scale 1.04, No Rotation, No Filter) */}
-                    <div className="relative h-10 w-full transition-transform duration-350 ease-out group-hover:scale-[1.04]">
+                    {/* Logo Image with Micro-Motion */}
+                    <div className="relative flex items-center justify-center h-10 w-full transition-transform duration-350 ease-out group-hover:scale-[1.04]">
                       <Image
                         src={partner.src}
                         alt={partner.alt}
-                        fill
-                        className="object-contain"
+                        width={partner.width}
+                        height={partner.height}
+                        className={`w-auto h-auto object-contain ${partner.customClass}`}
                       />
                     </div>
 
@@ -470,7 +662,7 @@ export default function EcosystemHowWorksSection() {
                       {partner.name}
                     </p>
 
-                    {/* Logo Hover Detail: Centered Subtle FORGE-Blue Accent Line (Width 0 -> 32px) */}
+                    {/* Logo Hover Detail: Centered Subtle FORGE-Blue Accent Line */}
                     <div className="mt-2 flex justify-center">
                       <span
                         aria-hidden="true"
@@ -480,7 +672,79 @@ export default function EcosystemHowWorksSection() {
                   </article>
                 ))}
               </div>
+
+              {/* Roster indicator */}
+              <div className="mt-4 flex items-center justify-between pt-3 border-t border-[#D9E2EE]/70">
+                <span className="font-jakarta text-[11px] font-semibold text-[#667085]">
+                  22 Industry Partners
+                </span>
+                <a
+                  href="#partner-network"
+                  className="inline-flex items-center gap-1.5 font-jakarta text-[11px] font-bold text-[#1683E8] transition-colors hover:text-[#102A43]"
+                >
+                  <span>View All 22 Below</span>
+                  <ArrowRight className="h-3 w-3" />
+                </a>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* ━━━━━━━━ FULL-WIDTH PARTNER ECOSYSTEM ROSTER (22 PARTNERS) ━━━━━━━━ */}
+        <div id="partner-network" className="ehw-full-roster border-t border-[#D9E2EE] bg-[#FAFBFD] p-6 sm:p-8 lg:p-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#1683E8]" />
+                <span className="font-jakarta text-xs font-bold uppercase tracking-[0.2em] text-[#1683E8]">
+                  PARTIAL LIST OF OUR PARTNER COMPANIES
+                </span>
+              </div>
+              <h3 className="mt-1 font-clash text-2xl sm:text-3xl font-bold text-[#111111]">
+                22 Industry &amp; Technology Partners Powering the Ecosystem
+              </h3>
+            </div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#D9E2EE] bg-white px-3.5 py-1.5 font-jakarta text-xs font-semibold text-[#667085] shadow-[0_2px_8px_rgba(16,42,67,0.03)]">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              Verified Industry Network
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3.5">
+            {allPartners.map((partner) => (
+              <div
+                key={partner.name}
+                tabIndex={0}
+                className="ehw-roster-card group relative flex flex-col items-center justify-between rounded-[18px] border border-[#E2E8F0] bg-white p-3.5 sm:p-4 shadow-[0_4px_12px_rgba(16,42,67,0.02)] transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#BFD8F5] hover:shadow-[0_12px_24px_rgba(22,131,232,0.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1683E8]"
+              >
+                {/* Logo Artwork */}
+                <div className="relative flex items-center justify-center w-full h-[52px] sm:h-[58px] transition-transform duration-300 group-hover:scale-[1.04]">
+                  <Image
+                    src={partner.src}
+                    alt={partner.alt}
+                    width={partner.width}
+                    height={partner.height}
+                    className={`w-auto h-auto object-contain transition-all duration-300 opacity-90 saturate-[0.92] group-hover:opacity-100 group-hover:saturate-100 ${partner.customClass}`}
+                  />
+                </div>
+
+                {/* Company Label & Category */}
+                <div className="mt-2 text-center w-full">
+                  <p className="font-jakarta text-[11px] font-bold text-[#111827] group-hover:text-[#1683E8] transition-colors truncate">
+                    {partner.name}
+                  </p>
+                  <p className="font-jakarta text-[10px] text-[#64748B] tracking-tight truncate">
+                    {partner.category}
+                  </p>
+                </div>
+
+                {/* Micro underline indicator */}
+                <span
+                  aria-hidden="true"
+                  className="mx-auto mt-1.5 h-[2px] w-0 rounded-full bg-[#1683E8] opacity-0 transition-all duration-300 ease-out group-hover:w-6 group-hover:opacity-100"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

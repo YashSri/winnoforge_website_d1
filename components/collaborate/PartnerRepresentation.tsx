@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 interface Partner {
   name: string;
@@ -9,57 +10,208 @@ interface Partner {
   src: string;
   width: number;
   height: number;
+  category: string;
   customClass?: string;
 }
 
 const partners: Partner[] = [
   {
-    name: "Airtel",
-    alt: "Bharti Airtel logo",
-    src: "/logos/airtel-transparent.png",
+    name: "SOTI",
+    alt: "SOTI logo",
+    src: "/logos/partners/soti.png",
+    width: 424,
+    height: 98,
+    category: "Enterprise Mobility",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[125px]",
+  },
+  {
+    name: "we360.ai",
+    alt: "we360.ai logo",
+    src: "/logos/partners/we360-ai.png",
+    width: 720,
+    height: 378,
+    category: "Workforce Analytics",
+    customClass: "max-h-[32px] sm:max-h-[36px] max-w-[130px]",
+  },
+  {
+    name: "Rediff",
+    alt: "Rediff logo",
+    src: "/logos/partners/rediff.png",
+    width: 298,
+    height: 84,
+    category: "Enterprise Media",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[115px]",
+  },
+  {
+    name: "Aarcon",
+    alt: "Aarcon logo",
+    src: "/logos/partners/aarcon.png",
+    width: 287,
+    height: 68,
+    category: "Enterprise Tech",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[120px]",
+  },
+  {
+    name: "Netwrix",
+    alt: "Netwrix logo",
+    src: "/logos/partners/netwrix.png",
+    width: 374,
+    height: 82,
+    category: "Data Security",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[125px]",
+  },
+  {
+    name: "Cybercube",
+    alt: "Cybercube logo",
+    src: "/logos/partners/cybercube.png",
     width: 518,
-    height: 170,
-    customClass: "max-h-[52px] sm:max-h-[58px] md:max-h-[62px] lg:max-h-[66px]",
+    height: 154,
+    category: "Cyber Risk Analytics",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[130px]",
   },
   {
-    name: "Perfetti van Melle",
-    alt: "Perfetti Van Melle logo",
-    src: "/logos/perfetti-transparent.png",
-    width: 670,
-    height: 294,
-    customClass: "max-h-[54px] sm:max-h-[60px] md:max-h-[64px] lg:max-h-[70px]",
+    name: "Heizen",
+    alt: "Heizen logo",
+    src: "/logos/partners/heizen.png",
+    width: 300,
+    height: 82,
+    category: "Systems Automation",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[115px]",
   },
   {
-    name: "Dabur",
-    alt: "Dabur Group logo",
-    src: "/logos/dabur-transparent.png",
-    width: 420,
-    height: 180,
-    customClass: "max-h-[56px] sm:max-h-[62px] md:max-h-[66px] lg:max-h-[72px]",
+    name: "Data Resolve",
+    alt: "Data Resolve logo",
+    src: "/logos/partners/data-resolve.png",
+    width: 876,
+    height: 178,
+    category: "Data Security",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[135px]",
   },
   {
-    name: "Lightstorm",
-    alt: "Lightstorm logo",
-    src: "/logos/lightstorm-transparent.png",
-    width: 928,
-    height: 218,
-    customClass: "max-h-[46px] sm:max-h-[52px] md:max-h-[56px] lg:max-h-[60px]",
+    name: "Utkarsh Bank",
+    alt: "Utkarsh Small Finance Bank logo",
+    src: "/logos/partners/utkarsh.png",
+    width: 220,
+    height: 144,
+    category: "Banking & Finance",
+    customClass: "max-h-[38px] sm:max-h-[44px] max-w-[105px]",
   },
   {
-    name: "Infynix",
-    alt: "Infynix Communications Ltd. logo",
-    src: "/logos/infynix-transparent.png",
-    width: 1000,
-    height: 335,
-    customClass: "max-h-[52px] sm:max-h-[58px] md:max-h-[62px] lg:max-h-[66px]",
+    name: "Fortinet",
+    alt: "Fortinet logo",
+    src: "/logos/partners/fortinet.png",
+    width: 351,
+    height: 41,
+    category: "Network Security",
+    customClass: "max-h-[22px] sm:max-h-[26px] max-w-[135px]",
   },
   {
-    name: "Marico",
-    alt: "Marico logo",
-    src: "/logos/marico-transparent.png",
-    width: 270,
-    height: 201,
-    customClass: "max-h-[60px] sm:max-h-[66px] md:max-h-[72px] lg:max-h-[76px]",
+    name: "Lenovo",
+    alt: "Lenovo logo",
+    src: "/logos/partners/lenovo.png",
+    width: 1334,
+    height: 445,
+    category: "Global Computing",
+    customClass: "max-h-[30px] sm:max-h-[34px] max-w-[125px]",
+  },
+  {
+    name: "Acer",
+    alt: "Acer logo",
+    src: "/logos/partners/acer.png",
+    width: 330,
+    height: 84,
+    category: "Hardware & Tech",
+    customClass: "max-h-[26px] sm:max-h-[30px] max-w-[115px]",
+  },
+  {
+    name: "InstaSafe",
+    alt: "InstaSafe logo",
+    src: "/logos/partners/instasafe.png",
+    width: 509,
+    height: 154,
+    category: "Zero Trust Security",
+    customClass: "max-h-[30px] sm:max-h-[34px] max-w-[130px]",
+  },
+  {
+    name: "Zebra",
+    alt: "Zebra Technologies logo",
+    src: "/logos/partners/zebra.png",
+    width: 459,
+    height: 151,
+    category: "Edge Solutions",
+    customClass: "max-h-[30px] sm:max-h-[34px] max-w-[130px]",
+  },
+  {
+    name: "Motadata",
+    alt: "Motadata logo",
+    src: "/logos/partners/motadata.png",
+    width: 1312,
+    height: 381,
+    category: "AI IT Operations",
+    customClass: "max-h-[30px] sm:max-h-[34px] max-w-[135px]",
+  },
+  {
+    name: "Quantum Networks",
+    alt: "Quantum Networks logo",
+    src: "/logos/partners/quantum-networks.png",
+    width: 421,
+    height: 120,
+    category: "Enterprise Wi-Fi",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[135px]",
+  },
+  {
+    name: "Userful",
+    alt: "Userful logo",
+    src: "/logos/partners/userful.png",
+    width: 288,
+    height: 158,
+    category: "Visual Networking",
+    customClass: "max-h-[32px] sm:max-h-[38px] max-w-[120px]",
+  },
+  {
+    name: "Sophos",
+    alt: "Sophos logo",
+    src: "/logos/partners/sophos.png",
+    width: 274,
+    height: 191,
+    category: "Next-Gen Cyber",
+    customClass: "max-h-[38px] sm:max-h-[44px] max-w-[100px]",
+  },
+  {
+    name: "Claude",
+    alt: "Claude Anthropic logo",
+    src: "/logos/partners/claude.png",
+    width: 496,
+    height: 108,
+    category: "Frontier AI",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[135px]",
+  },
+  {
+    name: "Tata AIG",
+    alt: "Tata AIG Insurance logo",
+    src: "/logos/partners/tata-aig.png",
+    width: 461,
+    height: 461,
+    category: "Insurance & Risk",
+    customClass: "max-h-[42px] sm:max-h-[48px] max-w-[65px]",
+  },
+  {
+    name: "Hexnode",
+    alt: "Hexnode logo",
+    src: "/logos/partners/hexnode.png",
+    width: 786,
+    height: 195,
+    category: "Endpoint Security",
+    customClass: "max-h-[28px] sm:max-h-[32px] max-w-[135px]",
+  },
+  {
+    name: "Honda",
+    alt: "Honda logo",
+    src: "/logos/partners/honda.png",
+    width: 215,
+    height: 140,
+    category: "Mobility & Eng.",
+    customClass: "max-h-[38px] sm:max-h-[44px] max-w-[95px]",
   },
 ];
 
@@ -85,7 +237,7 @@ export default function PartnerRepresentation() {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -110,7 +262,7 @@ export default function PartnerRepresentation() {
       opacity: isVisible ? 1 : 0,
       transform: isVisible ? "translate3d(0, 0, 0)" : `translate3d(0, ${translateY}px, 0)`,
       transition:
-        "opacity 750ms cubic-bezier(0.22, 1, 0.36, 1), transform 750ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
       transitionDelay: `${delayMs}ms`,
     };
   };
@@ -119,7 +271,7 @@ export default function PartnerRepresentation() {
     <section
       ref={sectionRef}
       id="partners"
-      className="relative w-full overflow-hidden bg-white py-24 sm:py-28 md:py-32 lg:py-36"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#FBFDFF] via-white to-[#F8FAFC] py-20 sm:py-24 md:py-28 lg:py-32"
       aria-label="Partner and Contributor Representation"
     >
       {/* Decorative Editorial Background System: Subtle blue arcs & precise dots */}
@@ -157,7 +309,6 @@ export default function PartnerRepresentation() {
             strokeWidth="1"
             strokeOpacity="0.09"
           />
-          {/* Subtle constellation dots */}
           <circle cx="150" cy="74" r="3.5" fill="#1683E8" fillOpacity="0.85" />
           <circle cx="310" cy="180" r="2.5" fill="#1683E8" fillOpacity="0.55" />
           <circle cx="35" cy="270" r="2.5" fill="#1683E8" fillOpacity="0.45" />
@@ -182,7 +333,6 @@ export default function PartnerRepresentation() {
             strokeWidth="1"
             strokeOpacity="0.08"
           />
-          {/* Subtle constellation dots */}
           <circle cx="1290" cy="115" r="4" fill="#1683E8" fillOpacity="0.85" />
           <circle cx="1120" cy="220" r="2.5" fill="#1683E8" fillOpacity="0.55" />
           <circle cx="1325" cy="360" r="3" fill="#1683E8" fillOpacity="0.65" />
@@ -229,7 +379,7 @@ export default function PartnerRepresentation() {
         }
       `}</style>
 
-      <div className="relative mx-auto w-full max-w-[1500px] px-6 sm:px-8 md:px-12">
+      <div className="relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 lg:px-12">
         {/* Editorial Micro-Copy on Outer Margins (Desktop XL+) */}
         <div
           style={entranceStyle(150, 10)}
@@ -252,22 +402,23 @@ export default function PartnerRepresentation() {
 
         {/* Section Header */}
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-          {/* Small Eyebrow with Subtle Flanking Lines */}
+          {/* Eyebrow with subtle flanking lines */}
           <div
             style={entranceStyle(0, 12)}
-            className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-9"
+            className="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
           >
             <span className="h-[1px] w-8 sm:w-14 bg-[#1683E8]/35" aria-hidden="true" />
-            <span className="font-jakarta text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-[#1683E8]">
-              Partner &amp; Contributor Representation
+            <span className="inline-flex items-center gap-2 font-jakarta text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#1683E8]">
+              <Sparkles className="h-3.5 w-3.5 text-[#1683E8]" />
+              PARTNER &amp; CONTRIBUTOR REPRESENTATION
             </span>
             <span className="h-[1px] w-8 sm:w-14 bg-[#1683E8]/35" aria-hidden="true" />
           </div>
 
-          {/* Main Heading: Apple-inspired editorial hierarchy */}
+          {/* Main Heading */}
           <h2
-            style={entranceStyle(120, 20)}
-            className="font-clash text-center font-bold tracking-[-0.045em] text-[#0D1117] leading-[0.98] text-[40px] sm:text-[52px] md:text-[62px] lg:text-[76px]"
+            style={entranceStyle(100, 18)}
+            className="font-clash text-center font-bold tracking-[-0.04em] text-[#0D1117] leading-[1.02] text-[36px] sm:text-[48px] md:text-[58px] lg:text-[70px]"
           >
             Built With People
             <br />
@@ -276,69 +427,88 @@ export default function PartnerRepresentation() {
 
           {/* Supporting Statement */}
           <p
-            style={entranceStyle(240, 15)}
-            className="mt-6 mx-auto max-w-[680px] text-center font-jakarta text-[16px] sm:text-[18px] md:text-[19px] leading-relaxed text-[#14233C]/65"
+            style={entranceStyle(200, 14)}
+            className="mt-5 mx-auto max-w-[680px] text-center font-jakarta text-[15px] sm:text-[17px] md:text-[18px] leading-relaxed text-[#14233C]/70"
           >
-            Learning becomes more powerful when people, institutions, and
-            industry build it together.
+            Learning becomes transformative when institutions, industry leaders, and builders create together.
+            Here is a partial list of our partner companies collaborating across FORGE programs.
           </p>
+
+          {/* Counter pill */}
+          <div
+            style={entranceStyle(280, 10)}
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#D9E2EE] bg-white px-4 py-1.5 shadow-[0_4px_12px_rgba(16,42,67,0.04)]"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-jakarta text-xs font-semibold text-[#14233C]/80">
+              22 Industry &amp; Technology Partners Represented
+            </span>
+          </div>
         </div>
 
-        {/* Partner Logos: ONE SINGLE HORIZONTAL ROW on Desktop/Tablet */}
+        {/* 22 Partner Logos Grid: Clean Responsive Editorial Mosaic */}
         <div
-          style={entranceStyle(360, 20)}
-          className="mt-14 sm:mt-16 md:mt-[70px] w-full"
+          style={entranceStyle(340, 20)}
+          className="mt-12 sm:mt-16 w-full"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 items-center w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-4.5">
             {partners.map((partner, index) => (
               <div
                 key={partner.name}
-                style={entranceStyle(420 + index * 60, 10)}
-                className="group relative flex flex-col items-center justify-center py-6 px-3 sm:px-5 md:px-4 lg:px-6 transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={entranceStyle(380 + Math.min(index * 30, 400), 12)}
+                className="group relative flex flex-col items-center justify-between rounded-[20px] border border-[#E2E8F0] bg-white/95 p-4 sm:p-5 shadow-[0_4px_14px_rgba(16,42,67,0.03)] backdrop-blur-sm transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-[#BFD8F5] hover:bg-white hover:shadow-[0_16px_32px_rgba(22,131,232,0.11)]"
               >
                 {/* Logo Artwork with Subtle Hover Float */}
-                <div className="relative flex items-center justify-center w-full h-[72px] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1">
+                <div className="relative flex items-center justify-center w-full h-[62px] sm:h-[68px] transition-transform duration-350 ease-out group-hover:scale-[1.04]">
                   <Image
                     src={partner.src}
                     alt={partner.alt}
                     width={partner.width}
                     height={partner.height}
-                    className={`w-auto h-auto object-contain transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] opacity-85 saturate-[0.88] group-hover:opacity-100 group-hover:saturate-100 ${partner.customClass}`}
-                    priority={index < 3}
+                    className={`w-auto h-auto object-contain transition-all duration-350 ease-out opacity-90 saturate-[0.92] group-hover:opacity-100 group-hover:saturate-100 ${partner.customClass}`}
+                    priority={index < 6}
                   />
+                </div>
+
+                {/* Company Name & Category Pill */}
+                <div className="mt-2 flex flex-col items-center text-center w-full">
+                  <span className="font-jakarta text-[11px] sm:text-xs font-bold text-[#111827] group-hover:text-[#1683E8] transition-colors truncate max-w-full">
+                    {partner.name}
+                  </span>
+                  <span className="mt-0.5 font-jakarta text-[10px] font-medium text-[#64748B] tracking-tight truncate max-w-full">
+                    {partner.category}
+                  </span>
                 </div>
 
                 {/* Subtle FORGE blue underline indicator (0 → 28px) */}
                 <span
                   aria-hidden="true"
-                  className="mt-3 h-[2px] w-0 rounded-full bg-[#1683E8] transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-7"
+                  className="mt-2 h-[2px] w-0 rounded-full bg-[#1683E8] opacity-0 transition-all duration-300 ease-out group-hover:w-7 group-hover:opacity-100"
                 />
-
-                {/* Thin Vertical Separator (Desktop/Tablet: 1px x 75px, hidden after 6th) */}
-                {index < partners.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[75px] w-[1px] bg-[rgba(20,40,70,0.10)] hidden md:block"
-                  />
-                )}
-
-                {/* Mobile vertical divider for odd items (col 1 -> col 2) */}
-                {index % 2 === 0 && index < partners.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-[55px] w-[1px] bg-[rgba(20,40,70,0.10)] sm:hidden"
-                  />
-                )}
-
-                {/* Mobile horizontal divider between rows */}
-                {index < partners.length - 2 && (
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] h-[1px] bg-[rgba(20,40,70,0.06)] sm:hidden"
-                  />
-                )}
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Bottom Collaboration Callout Box */}
+        <div
+          style={entranceStyle(500, 16)}
+          className="mt-12 sm:mt-16 mx-auto max-w-3xl rounded-[24px] border border-[#D9E2EE] bg-white p-6 sm:p-8 text-center shadow-[0_12px_36px_rgba(16,42,67,0.05)]"
+        >
+          <h3 className="font-clash text-xl sm:text-2xl font-bold text-[#0D1117]">
+            Build the Next Generation of Builders With Us
+          </h3>
+          <p className="mt-2.5 font-jakarta text-sm sm:text-base leading-relaxed text-[#14233C]/70">
+            From co-creating industry-backed problem statements to mentorship, capstones, and hiring pipelines, discover how your organisation can partner with FORGE.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="#collaborate-form"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-[#1683E8] px-6 font-jakarta text-sm font-bold text-white shadow-[0_8px_20px_rgba(22,131,232,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#102A43]"
+            >
+              <span>Explore Partnership</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </div>

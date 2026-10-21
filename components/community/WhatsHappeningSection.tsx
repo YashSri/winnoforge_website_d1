@@ -127,7 +127,7 @@ function EventThumbnail({
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export interface CommunityItem {
   id: string;
-  category: "Events" | "Workshops" | "Projects" | "Stories" | "Announcements";
+  category: "Events" | "Workshops";
   status: "upcoming" | "past";
   title: string;
   description: string;
@@ -153,8 +153,8 @@ export interface UpcomingEventItem {
 
 const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
   {
-    id: "cm-event-1",
-    category: "Events",
+    id: "commudle-2261",
+    category: "Workshops",
     status: "past",
     title: "DECODE THE MACHINE — NLP × Transformers",
     description: "Hands-on AI workshop taking builders behind the scenes of NLP, tokenizer pipelines, and Transformer architecture.",
@@ -164,8 +164,8 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
     link: "https://www.commudle.com/communities/codeconsortium/events/decode-the-machine",
   },
   {
-    id: "cm-event-2",
-    category: "Events",
+    id: "commudle-2249",
+    category: "Workshops",
     status: "past",
     title: "From Foundations To Frontiers AI",
     description: "Structured learning journey from AI fundamentals and neural networks to generative AI and agentic frontiers.",
@@ -175,49 +175,7 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
     link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
   },
   {
-    id: "e1",
-    category: "Events",
-    status: "upcoming",
-    title: "FORGE Demo Day — Winter Cohort",
-    description: "Builders present shipped prototypes to mentors and industry guests.",
-    date: "Dec 2026",
-    image: "/community-events/demo-day-winter.png",
-    attendeesCount: "+120 registered",
-  },
-  {
-    id: "e2",
-    category: "Events",
-    status: "past",
-    title: "FORGE Demo Day — Summer Cohort",
-    description: "Six teams presented working products after an 8-week sprint.",
-    date: "Jun 2026",
-    image: "/community-events/demo-day-summer.png",
-    attendeesCount: "+89 attended",
-  },
-  {
-    id: "cm-ws-1",
-    category: "Workshops",
-    status: "past",
-    title: "DECODE THE MACHINE: NLP & Transformers",
-    description: "Hands-on session with Trinity Institute of Innovations on how machines process language and reasoning.",
-    date: "26 Sep 2026",
-    image: "/commudle-events/decode-the-machine.png",
-    attendeesCount: "+88 attended",
-    link: "https://www.commudle.com/communities/codeconsortium/events/decode-the-machine",
-  },
-  {
-    id: "cm-ws-2",
-    category: "Workshops",
-    status: "past",
-    title: "From Foundations To Frontiers AI",
-    description: "Interactive demonstrations on Neural Networks, Prompting, and Agentic AI workflows at Trinity Institute.",
-    date: "19 Sep 2026",
-    image: "/commudle-events/foundations-to-frontiers.png",
-    attendeesCount: "+80 attended",
-    link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
-  },
-  {
-    id: "cm-ws-3",
+    id: "commudle-1975",
     category: "Workshops",
     status: "past",
     title: "FORGING THE AI ERA — Hands-on Workshop",
@@ -226,86 +184,6 @@ const ALL_COMMUNITY_ITEMS: CommunityItem[] = [
     image: "/commudle-events/forging-the-ai-era.png",
     attendeesCount: "+62 attended",
     link: "https://www.commudle.com/communities/codeconsortium/events/forging-the-ai-era",
-  },
-  {
-    id: "w1",
-    category: "Workshops",
-    status: "upcoming",
-    title: "Intro to Systems Thinking",
-    description: "A hands-on workshop on breaking down real-world problems.",
-    date: "Nov 2026",
-    image: "/webp/5.webp",
-    attendeesCount: "+64 registered",
-  },
-  {
-    id: "w2",
-    category: "Workshops",
-    status: "past",
-    title: "Prompt Engineering for Builders",
-    description: "A practical session on getting more out of AI tools.",
-    date: "Aug 2026",
-    image: "/webp/6.webp",
-    attendeesCount: "+110 attended",
-  },
-  {
-    id: "p1",
-    category: "Projects",
-    status: "past",
-    title: "Campus Waste Sorting Bot",
-    description: "A student team's Citadel-built prototype now piloting on campus.",
-    date: "Jul 2026",
-    image: "/webp/8.webp",
-    attendeesCount: "Team project",
-  },
-  {
-    id: "p2",
-    category: "Projects",
-    status: "upcoming",
-    title: "Peer Mentorship Matching Tool",
-    description: "A builder team's in-progress internal tool for the mentor network.",
-    date: "In progress",
-    image: "/webp/4.webp",
-    attendeesCount: "In sprint",
-  },
-  {
-    id: "s1",
-    category: "Stories",
-    status: "past",
-    title: "From First Cohort to First Startup",
-    description: "One builder's path from a FORGE bootcamp to a funded startup.",
-    date: "May 2026",
-    image: "/webp/2.webp",
-    attendeesCount: "Founder story",
-  },
-  {
-    id: "s2",
-    category: "Stories",
-    status: "past",
-    title: "What a Semester at the Citadel Taught Me",
-    description: "A builder reflects on their first sprint cycle.",
-    date: "Mar 2026",
-    image: "/webp/activation-builders.webp",
-    attendeesCount: "Builder reflect",
-  },
-  {
-    id: "a1",
-    category: "Announcements",
-    status: "upcoming",
-    title: "New Certification Track: AI Productivity",
-    description: "Enrollment opens for the newest FORGE certification track.",
-    date: "Oct 2026",
-    image: "/webp/3.webp",
-    attendeesCount: "Curriculum",
-  },
-  {
-    id: "a2",
-    category: "Announcements",
-    status: "past",
-    title: "FORGE Citadel Opens Its Doors",
-    description: "The Citadel's first cohort officially began sprint cycles.",
-    date: "Feb 2026",
-    image: "/citadel-architecture.jpg",
-    attendeesCount: "Milestone",
   },
 ];
 
@@ -335,19 +213,20 @@ const UPCOMING_CARDS_DATA: UpcomingEventItem[] = [
     link: "https://www.commudle.com/communities/codeconsortium/events/from-foundations-to-frontiers",
   },
   {
-    title: "FORGE Demo Day — Winter Cohort",
-    type: "Event",
-    date: "Dec 2026",
-    time: "To Be Announced",
-    location: "FORGE Citadel",
-    host: "FORGE Team",
-    audience: "Open to all",
-    description: "Builders present shipped prototypes to mentors and industry guests.",
-    status: "Coming Soon",
+    title: "FORGING THE AI ERA",
+    type: "Workshop",
+    date: "22 Feb 2026",
+    time: "10:30 AM – 4:30 PM",
+    location: "Winnovation, I-Thum Galleria, Greater Noida",
+    host: "TEAM FORGE & Commudle",
+    audience: "Developers, students & founders",
+    description: "Build AI foundations from scratch. Machine learning, prompt engineering, and live vibe-coding demonstration.",
+    status: "Completed",
+    link: "https://www.commudle.com/communities/codeconsortium/events/forging-the-ai-era",
   },
 ];
 
-const CATEGORIES = ["All", "Events", "Workshops", "Projects", "Stories", "Announcements"] as const;
+const CATEGORIES = ["All", "Events", "Workshops"] as const;
 const STATUS_FILTERS = [
   { key: "all", label: "All" },
   { key: "upcoming", label: "Upcoming" },
@@ -378,7 +257,7 @@ export default function WhatsHappeningSection() {
       .then((data) => {
         if (!active || !data?.success) return;
 
-        // Auto-update Upcoming in Community cards
+        // Auto-update Upcoming in Community cards (strictly Commudle)
         if (Array.isArray(data.upcoming) && data.upcoming.length > 0) {
           const liveUpcoming: UpcomingEventItem[] = data.upcoming.map((ev: any) => ({
             title: ev.title,
@@ -393,18 +272,47 @@ export default function WhatsHappeningSection() {
             link: ev.link,
           }));
 
-          setUpcomingCards((prev) => {
-            const liveSlugs = new Set(liveUpcoming.map((u) => u.title.toLowerCase()));
-            const nonDuplicatePrev = prev.filter((p) => !liveSlugs.has(p.title.toLowerCase()));
-            return [...liveUpcoming, ...nonDuplicatePrev].slice(0, 3);
-          });
+          if (liveUpcoming.length < 3 && Array.isArray(data.events)) {
+            const upcomingTitles = new Set(liveUpcoming.map((u) => u.title.toLowerCase()));
+            const remaining = data.events
+              .filter((ev: any) => !upcomingTitles.has(ev.title.toLowerCase()))
+              .map((ev: any) => ({
+                title: ev.title,
+                type: ev.type,
+                date: ev.date,
+                time: ev.time,
+                location: ev.location,
+                host: ev.host,
+                audience: ev.audience,
+                description: ev.description,
+                status: ev.displayStatus,
+                link: ev.link,
+              }));
+            setUpcomingCards([...liveUpcoming, ...remaining].slice(0, 3));
+          } else {
+            setUpcomingCards(liveUpcoming.slice(0, 3));
+          }
+        } else if (Array.isArray(data.events) && data.events.length > 0) {
+          const commudleCards: UpcomingEventItem[] = data.events.map((ev: any) => ({
+            title: ev.title,
+            type: ev.type,
+            date: ev.date,
+            time: ev.time,
+            location: ev.location,
+            host: ev.host,
+            audience: ev.audience,
+            description: ev.description,
+            status: ev.displayStatus,
+            link: ev.link,
+          }));
+          setUpcomingCards(commudleCards.slice(0, 3));
         }
 
-        // Auto-update Featured items
+        // Auto-update Featured items (strictly Commudle events, no dummy items)
         if (Array.isArray(data.events) && data.events.length > 0) {
           const liveItems: CommunityItem[] = data.events.map((ev: any) => ({
             id: ev.id,
-            category: ev.category,
+            category: ev.category === "Events" ? "Events" : "Workshops",
             status: ev.status,
             title: ev.title,
             description: ev.description,
@@ -414,13 +322,7 @@ export default function WhatsHappeningSection() {
             link: ev.link,
           }));
 
-          setCommunityItems((prev) => {
-            const liveIds = new Set(liveItems.map((item) => item.id));
-            const retainedInternal = prev.filter(
-              (item) => !liveIds.has(item.id) && !item.id.startsWith("cm-")
-            );
-            return [...liveItems, ...retainedInternal];
-          });
+          setCommunityItems(liveItems);
         }
       })
       .catch(() => {});
@@ -436,7 +338,12 @@ export default function WhatsHappeningSection() {
 
     // 1. Filter by category
     if (selectedCategory !== "All") {
-      list = list.filter((item) => item.category === selectedCategory);
+      if (selectedCategory === "Events") {
+        // All Commudle items are community events
+        list = list.filter((item) => item.category === "Events" || item.category === "Workshops");
+      } else {
+        list = list.filter((item) => item.category === selectedCategory);
+      }
     } else {
       // Deduplicate items with similar titles across categories when "All" is active
       const seen = new Set<string>();
@@ -696,7 +603,10 @@ export default function WhatsHappeningSection() {
               {STATUS_FILTERS.map((f) => {
                 const isActive = selectedStatus === f.key;
                 const count = communityItems.filter((it) => {
-                  const catMatch = selectedCategory === "All" || it.category === selectedCategory;
+                  const catMatch =
+                    selectedCategory === "All" ||
+                    it.category === selectedCategory ||
+                    (selectedCategory === "Events" && (it.category === "Events" || it.category === "Workshops"));
                   const statusMatch = f.key === "all" || it.status === f.key;
                   return catMatch && statusMatch;
                 }).length;
@@ -762,7 +672,7 @@ export default function WhatsHappeningSection() {
               <div className="wh-desc opacity-0 mt-6 flex items-start gap-3.5">
                 <span className="h-10 w-[2px] bg-[#0066FF] shrink-0 mt-1 rounded-full" />
                 <p className="font-jakarta text-sm sm:text-[15px] leading-relaxed text-[#5F6672]">
-                  Events, workshops, projects and stories from across the FORGE ecosystem.
+                  Events and workshops from across the FORGE ecosystem.
                 </p>
               </div>
             </div>
@@ -997,7 +907,7 @@ export default function WhatsHappeningSection() {
               <div className="wh-upcoming-desc opacity-0 mt-6 flex items-start gap-3.5">
                 <span className="h-10 w-[2px] bg-[#0066FF] shrink-0 mt-1 rounded-full" />
                 <p className="font-jakarta text-sm sm:text-[15px] leading-relaxed text-[#5F6672]">
-                  Join upcoming events, workshops, and announcements across the FORGE network.
+                  Join upcoming events and workshops across the FORGE network.
                 </p>
               </div>
             </div>
