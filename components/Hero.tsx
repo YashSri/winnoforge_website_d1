@@ -22,48 +22,48 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const founderLogos = [
+const partnerCompanyLogos = [
   {
-    src: "/supporters/founder-remote-clean.svg",
-    alt: "Founder company mark",
-    width: 36,
-    height: 36,
-    className: "h-6 sm:h-7 w-auto object-contain",
+    src: "/logos/partners/lenovo.png",
+    alt: "Lenovo",
+    width: 1024,
+    height: 238,
+    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[70px] sm:max-w-[80px]",
   },
   {
-    src: "/supporters/xonier-clean.png",
-    alt: "Xonier Technologies",
-    width: 600,
-    height: 187,
-    className: "h-5 sm:h-5.5 w-auto object-contain max-w-[85px] sm:max-w-[95px]",
+    src: "/logos/partners/claude.png",
+    alt: "Claude Anthropic",
+    width: 722,
+    height: 180,
+    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[75px] sm:max-w-[85px]",
   },
   {
-    src: "/supporters/founder-cube-clean.png",
-    alt: "Founder technology mark",
-    width: 410,
-    height: 384,
-    className: "h-6 sm:h-7 w-auto object-contain",
+    src: "/logos/partners/fortinet.png",
+    alt: "Fortinet",
+    width: 1050,
+    height: 150,
+    className: "h-3 sm:h-3.5 w-auto object-contain max-w-[80px] sm:max-w-[90px]",
   },
   {
-    src: "/supporters/we360ai-clean.png",
+    src: "/logos/partners/we360-ai.png",
     alt: "we360.ai",
-    width: 320,
-    height: 71,
-    className: "h-4.5 sm:h-5 w-auto object-contain max-w-[80px] sm:max-w-[90px]",
+    width: 992,
+    height: 231,
+    className: "h-4 sm:h-4.5 w-auto object-contain max-w-[70px] sm:max-w-[80px]",
   },
   {
-    src: "/supporters/hrjee-clean.png",
-    alt: "HRJee",
-    width: 240,
-    height: 240,
-    className: "h-6 sm:h-7 w-auto object-contain",
+    src: "/logos/partners/sophos.png",
+    alt: "Sophos",
+    width: 854,
+    height: 605,
+    className: "h-4.5 sm:h-5.5 w-auto object-contain max-w-[65px] sm:max-w-[75px]",
   },
   {
-    src: "/supporters/faceoff-clean.png",
-    alt: "Faceoff",
-    width: 372,
-    height: 160,
-    className: "h-5 sm:h-5.5 w-auto object-contain max-w-[75px] sm:max-w-[85px]",
+    src: "/logos/partners/honda.png",
+    alt: "Honda",
+    width: 677,
+    height: 440,
+    className: "h-5 sm:h-6 w-auto object-contain max-w-[60px] sm:max-w-[70px]",
   },
 ];
 
@@ -526,10 +526,10 @@ export default function Hero() {
               {/* Supported by Founders From */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <span className="font-jakarta text-[11px] font-bold tracking-wider text-[#5F6672] uppercase whitespace-nowrap">
-                  SUPPORTED BY FOUNDERS FROM
+                  PARTNERS &amp; FOUNDERS FROM
                 </span>
                 <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
-                  {founderLogos.map((logo) => (
+                  {partnerCompanyLogos.map((logo) => (
                     <div
                       key={logo.src}
                       className="h-11 sm:h-12 px-3 sm:px-3.5 py-1.5 bg-white border border-[#D9DEE7] hover:border-[#1683E8]/50 rounded-xl flex items-center justify-center shadow-[0_1px_4px_rgba(16,42,67,0.03)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"

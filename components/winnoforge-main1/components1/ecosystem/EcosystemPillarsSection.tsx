@@ -24,28 +24,28 @@ const showcaseCards: ShowcaseCard[] = [
       "from-primary/18 via-primary/10 to-transparent ring-primary/15 shadow-[0_24px_60px_rgba(77,150,255,0.14)]",
     logos: [
       {
-        src: "/logos/Samarth Care.webp",
-        alt: "Samarth Care logo",
+        src: "/logos/partners/soti.png",
+        alt: "SOTI logo",
       },
       {
-        src: "/logos/Kratikal Tech Private Limited.webp",
-        alt: "Kratikal Tech Private Limited logo",
+        src: "/logos/partners/we360-ai.png",
+        alt: "we360.ai logo",
       },
       {
-        src: "/logos/lightstorm logo.jpg",
-        alt: "Lightstorm logo",
+        src: "/logos/partners/netwrix.png",
+        alt: "Netwrix logo",
       },
       {
-        src: "/logos/Infynix Communications Ltd..png",
-        alt: "Infynix Communications Ltd. logo",
+        src: "/logos/partners/cybercube.png",
+        alt: "Cybercube logo",
       },
       {
-        src: "/logos/Wahal Infosol logo.jpg",
-        alt: "Wahal Infosol logo",
+        src: "/logos/partners/data-resolve.png",
+        alt: "Data Resolve logo",
       },
       {
-        src: "/logos/satcomlogo.png",
-        alt: "Satcom logo",
+        src: "/logos/partners/instasafe.png",
+        alt: "InstaSafe logo",
       },
     ],
   },
@@ -58,28 +58,28 @@ const showcaseCards: ShowcaseCard[] = [
       "from-[#f7f3ff] via-white to-[#edf5ff] ring-black/8 shadow-[0_24px_60px_rgba(24,42,72,0.09)]",
     logos: [
       {
-        src: "/airtel.png",
-        alt: "Bharti Airtel logo",
+        src: "/logos/partners/lenovo.png",
+        alt: "Lenovo logo",
       },
       {
-        src: "/logos/Perfetti Van Melle.png",
-        alt: "Perfetti Van Melle logo",
+        src: "/logos/partners/claude.png",
+        alt: "Claude logo",
       },
       {
-        src: "/logos/CJ Darcl Logistics Ltd.jpg",
-        alt: "CJ Darcl Logistics Ltd. logo",
+        src: "/logos/partners/fortinet.png",
+        alt: "Fortinet logo",
       },
       {
-        src: "/logos/Movers International Pvt. Ltd..jpg",
-        alt: "Movers International Pvt. Ltd. logo",
+        src: "/logos/partners/acer.png",
+        alt: "Acer logo",
       },
       {
-        src: "/logos/lightstorm logo.jpg",
-        alt: "Lightstorm logo",
+        src: "/logos/partners/sophos.png",
+        alt: "Sophos logo",
       },
       {
-        src: "/logos/mankind.png",
-        alt: "Mankind logo",
+        src: "/logos/partners/honda.png",
+        alt: "Honda logo",
       },
     ],
   },
