@@ -351,6 +351,19 @@ const titles: Record<Exclude<NonNullable<ModalType>, "download">, { heading: str
   "invite-expert": { heading: "Invite an Expert", sub: "Tell us about your session and we'll help find the right fit." },
 };
 
+const PROGRAM_BROCHURE_PATH_MAP: Record<string, string> = {
+  "data-science": "/courses/6-months/Winnovation_Data_Science_6_Months_Brochure.pdf",
+  "data-analytics": "/courses/6-months/Winnovation_Data_Analytics_6_Months_Brochure.pdf",
+  "business-analyst": "/courses/6-months/Winnovation_Data_Analytics_6_Months_Brochure.pdf",
+  "full-stack": "/courses/6-months/Winnovation_Full_Stack_Web_Development_6_Months_Brochure.pdf",
+  "ai-productivity": "/courses/6-months/Winnovation_Generative_AI_6_Months_Brochure.pdf",
+  "generative-ai": "/courses/6-months/Winnovation_Generative_AI_6_Months_Brochure.pdf",
+  "cloud-computing": "/courses/6-months/Winnovation_Cloud_Computing_6_Months_Brochure.pdf",
+  "dsa": "/courses/6-months/Winnovation_DSA_6_Months_Brochure.pdf",
+  "iot": "/courses/6-months/Winnovation_IoT_6_Months_Brochure.pdf",
+  "digital-marketing": "/courses/6-months/Winnovation_Digital_Marketing_6_Months_Brochure.pdf",
+};
+
 export default function FormModal() {
   const { modalType, close, downloadPayload } = useModal();
   const [success, setSuccess] = useState(false);
@@ -386,6 +399,14 @@ export default function FormModal() {
         }
       : titles[modalType];
 
+  const resolvedDownloadUrl =
+    modalType === "download" && downloadPayload
+      ? PROGRAM_BROCHURE_PATH_MAP[downloadPayload.programSlug] ||
+        `/courses/1-year/1_Year_Full_Stack_Web_Development_Brochure.pdf`
+      : modalType === "catalogue" && catalogueUrl
+        ? catalogueUrl
+        : undefined;
+
   return (
     <div
       ref={overlayRef}
@@ -417,13 +438,7 @@ export default function FormModal() {
           {success ? (
             <SuccessScreen
               onClose={close}
-              downloadUrl={
-                modalType === "download" && downloadPayload
-                  ? `/brochures/${downloadPayload.programSlug}.pdf`
-                  : modalType === "catalogue" && catalogueUrl
-                    ? catalogueUrl
-                    : undefined
-              }
+              downloadUrl={resolvedDownloadUrl}
               downloadLabel={modalType === "catalogue" ? "Download Catalogue" : "Download Brochure"}
             />
           ) : modalType === "join" ? (

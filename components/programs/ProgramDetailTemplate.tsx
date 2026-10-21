@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Clock, Laptop } from "lucide-react";
+import { CheckCircle2, Clock, Download, ExternalLink, Laptop } from "lucide-react";
 import type { Program } from "@/lib/programs-data";
 import { useModal } from "@/components/modal/ModalContext";
 import FaqAccordion from "@/components/shared/FaqAccordion";
@@ -66,6 +66,55 @@ export default function ProgramDetailTemplate({ program }: { program: Program })
           </button>
         </div>
       </section>
+
+      {/* Available Course Durations & PDF Brochures */}
+      {program.brochures && program.brochures.length > 0 && (
+        <section className="py-10 border-t border-black/10">
+          <SectionHeading>Official Brochures by Duration</SectionHeading>
+          <p className="mt-2 text-sm text-foreground/70 font-jakarta">
+            Download the official syllabus and curriculum designed for your specific timeline commitment:
+          </p>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {program.brochures.map((b) => (
+              <div
+                key={b.duration}
+                className="flex flex-col justify-between p-5 rounded-2xl border border-black/10 bg-white shadow-xs hover:border-primary hover:shadow-md transition-all group"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-clash text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                      {b.duration} Track
+                    </span>
+                    <Clock className="h-4 w-4 text-primary" />
+                  </div>
+                  <p className="mt-1.5 font-jakarta text-xs text-foreground/60 leading-relaxed">
+                    Complete curriculum, module breakdown, capstone projects, and mentorship schedule.
+                  </p>
+                </div>
+                <div className="mt-5 flex items-center gap-2 pt-3 border-t border-black/5">
+                  <a
+                    href={b.path}
+                    download={b.fileName}
+                    className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-primary text-white text-xs font-semibold py-2.5 px-3 hover:bg-primary/90 transition shadow-xs"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    Download PDF
+                  </a>
+                  <a
+                    href={b.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center p-2.5 rounded-xl border border-black/10 text-foreground/70 hover:text-primary hover:border-primary transition"
+                    title="Preview PDF"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Overview */}
       <section className="py-10">

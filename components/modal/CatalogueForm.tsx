@@ -65,7 +65,7 @@ export default function CatalogueForm({ onSuccess }: { onSuccess: (downloadUrl: 
       });
       if (!res.ok) throw new Error();
       setSubmittedOnce(true);
-      onSuccess("/catalogue/forge-course-catalog.pdf");
+      onSuccess("/courses/1-year/1_Year_Full_Stack_Web_Development_Brochure.pdf");
     } catch {
       setError("We could not submit your details right now. Please check your information and try again.");
     } finally {

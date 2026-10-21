@@ -2268,6 +2268,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_ANIMATION_CATALOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt (+6 more)
 
+--------------------------------------------------------------------------------
+RECORD #145 | COMMIT: d7fe88f | TIMESTAMP: 2026-10-21 16:37:11 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  fix(landing): remove unnecessary buttons and fix layout glitches
+
+SITE CHANGES IMPLEMENTED:
+  fix(landing): remove unnecessary buttons and fix layout glitches
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt, components/Hero.tsx (+7 more)
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================

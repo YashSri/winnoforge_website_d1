@@ -522,11 +522,15 @@ export default function FeaturedPrograms() {
 
         {/* BOTTOM EDITORIAL DETAILS & BORDER LINE */}
         <div className="prog-footer mt-16 sm:mt-24 pt-8 border-t border-[#D9DEE7] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="font-jakarta text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#718096]">
-            05 INDUSTRY-ALIGNED PROGRAMS
-          </span>
+          <Link
+            href="/courses"
+            className="group/link flex items-center gap-2 font-jakarta text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#1683E8] hover:text-[#1272cb] transition-colors"
+          >
+            <span>Browse All 26 Courses &amp; Brochures (1 Year, 6 Mos, 3 Mos, 45 Days)</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+          </Link>
 
-          <div className="hidden md:flex items-center gap-3 flex-1 max-w-md mx-8">
+          <div className="hidden md:flex items-center gap-3 flex-1 max-w-sm mx-8">
             <div className="h-[1px] bg-[#D9DEE7] flex-1" />
             <div className="w-2 h-2 rounded-full bg-[#1683E8]" />
             <div className="h-[1px] bg-[#D9DEE7] flex-1" />

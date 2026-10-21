@@ -14,6 +14,7 @@ const footerNavItems = [
   { key: "home", label: "Home", href: "/" },
   { key: "ecosystem", label: "Ecosystem", href: "/ecosystem" },
   { key: "programs", label: "Programs", href: "/programs" },
+  { key: "courses", label: "Courses", href: "/courses" },
   { key: "citadel", label: "FORGE Citadel", href: "/citadel1" },
   { key: "community", label: "Community", href: "/community" },
   { key: "collaborate", label: "Collaborate", href: "/collaborate" },

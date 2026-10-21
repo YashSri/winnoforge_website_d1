@@ -36,9 +36,9 @@ const PATHWAYS = [
     icon: GraduationCap,
     title: "College Students",
     description:
-      "For learners seeking practical exposure beyond classroom instruction.",
-    cta: "Explore College Programs",
-    href: "#categories",
+      "For learners seeking practical exposure beyond classroom instruction with certified curricula.",
+    cta: "Explore Courses & Syllabi",
+    href: "#courses",
   },
   {
     num: "03",

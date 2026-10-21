@@ -7,13 +7,14 @@ import ProgramCategories from "@/components/programs/ProgramCategories";
 import LearningFormats from "@/components/programs/LearningFormats";
 import FaqAccordion from "@/components/shared/FaqAccordion";
 
+import CourseCatalogSection from "@/components/programs/CourseCatalogSection";
+
 export const metadata = pageMetadata({
   title: "FORGE Programs | Learning, Innovation, and Capability-Building Pathways",
   description:
     "Explore FORGE programs for learners, institutions, founders, educators, and industry partners — connecting structured learning with practical projects, mentorship, innovation, and progression.",
   path: "/programs",
 });
-
 
 export default function ProgramsPage() {
   return (
@@ -24,6 +25,8 @@ export default function ProgramsPage() {
 
         <ProgramDiscovery />
 
+        <CourseCatalogSection />
+
         <ProgramCategories />
 
         <LearningFormats />
@@ -31,9 +34,6 @@ export default function ProgramsPage() {
         <InstitutionalPrograms />
 
         <FaqAccordion />
-
-
-
       </main>
       <Footer />
     </div>
