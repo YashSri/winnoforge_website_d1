@@ -2358,6 +2358,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
 
+--------------------------------------------------------------------------------
+RECORD #151 | COMMIT: aa969c1 | TIMESTAMP: 2026-10-22 12:23:54 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  feat(courses): gate brochure downloads and PDF previews with student details form and interactive mobile OTP verification
+
+SITE CHANGES IMPLEMENTED:
+  feat(courses): gate brochure downloads and PDF previews with student details form and interactive mobile OTP verification
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt, components/modal/DownloadForm.tsx (+3 more)
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
