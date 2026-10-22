@@ -23,6 +23,7 @@ import {
 import {
   COURSE_CATALOG,
   CourseItem,
+  getCourseImage,
   getCourseIllustration,
 } from "@/lib/courses-data";
 import { useModal } from "@/components/modal/ModalContext";
@@ -263,18 +264,33 @@ export default function CourseCatalogSection() {
             </p>
           </div>
 
-          {/* Right Hero Illustration Column */}
+          {/* Right Hero Photographic Visual Column */}
           <div className="shrink-0 flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-auto">
+            <div className="relative w-full max-w-[340px] sm:max-w-[400px] aspect-[4/3] rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-[0_12px_36px_rgba(16,42,67,0.08)] group bg-[#F1F5F9]">
               <Image
-                src="/course-illustrations/hero-illustration.svg"
-                alt="From Curiosity to Capability - FORGE Learning Paths"
-                width={380}
-                height={260}
+                src="/course-images/hero-campus.jpg"
+                alt="FORGE Innovation Campus & Active Builders"
+                fill
                 priority
-                unoptimized
-                className="w-full h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(16,42,67,0.06)]"
+                sizes="(max-width: 640px) 340px, 400px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#102A43]/75 via-[#102A43]/15 to-transparent pointer-events-none" />
+
+              {/* Floating Editorial Badge Overlay */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/60 shadow-md">
+                <div>
+                  <p className="font-jakarta text-[10px] font-bold uppercase tracking-wider text-[#1683E8]">
+                    Hands-On Engineering
+                  </p>
+                  <p className="font-clash text-xs sm:text-[13px] font-bold text-[#102A43]">
+                    From Curiosity to Capability
+                  </p>
+                </div>
+                <span className="text-[10px] font-bold font-jakarta bg-[#1683E8] text-white px-2.5 py-1 rounded-full shadow-xs">
+                  26 Curricula
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -459,7 +475,7 @@ export default function CourseCatalogSection() {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 items-stretch">
             {visibleCourses.map((course: CourseItem) => {
               const durationBadgeClass = getDurationBadgeColor(course.duration);
-              const illustrationSrc = getCourseIllustration(course);
+              const courseImageSrc = getCourseImage(course);
 
               return (
                 <div
@@ -482,22 +498,22 @@ export default function CourseCatalogSection() {
                       </span>
                     </div>
 
-                    {/* Title & 2D Vector Illustration Row */}
+                    {/* Title & Real Photo Visual Row */}
                     <div className="mt-4 flex items-start justify-between gap-3">
                       <h3 className="font-clash text-lg sm:text-[21px] font-bold text-[#102A43] leading-snug group-hover:text-[#1683E8] transition-colors flex-1">
                         {course.title}
                       </h3>
 
-                      {/* Course 2D Vector Illustration */}
-                      <div className="shrink-0 w-24 h-20 sm:w-28 sm:h-22 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]/80 p-1 flex items-center justify-center overflow-hidden">
+                      {/* Course Real Photographic Visual */}
+                      <div className="shrink-0 relative w-24 h-20 sm:w-28 sm:h-22 rounded-xl overflow-hidden shadow-xs border border-[#E2E8F0] bg-[#F1F5F9]">
                         <Image
-                          src={illustrationSrc}
-                          alt={`${course.title} Illustration`}
-                          width={110}
-                          height={85}
-                          unoptimized
-                          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                          src={courseImageSrc}
+                          alt={`${course.title} real visual`}
+                          fill
+                          sizes="(max-width: 640px) 96px, 112px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
                       </div>
                     </div>
 

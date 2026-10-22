@@ -19,6 +19,7 @@ export interface CourseItem {
   pdfPath: string;
   fileName: string;
   illustrationPath?: string;
+  imagePath?: string;
   featured?: boolean;
   highlights: string[];
 }
@@ -616,13 +617,25 @@ export function getCoursesByDuration(duration: string): CourseItem[] {
   return COURSE_CATALOG.filter((c) => c.durationCategory === duration);
 }
 
-export function getCourseIllustration(course: CourseItem): string {
-  return course.illustrationPath || `/course-illustrations/${course.id}.svg`;
+export function getCourseImage(course: CourseItem): string {
+  if (course.imagePath) return course.imagePath;
+  if (course.id.includes("genai")) return "/course-images/genai.jpg";
+  if (course.id.includes("fullstack") || course.id.includes("webdev")) return "/course-images/fullstack.jpg";
+  if (course.id.includes("datascience")) return "/course-images/datascience.jpg";
+  if (course.id.includes("analytics")) return "/course-images/dataanalytics.jpg";
+  if (course.id.includes("cloud")) return "/course-images/cloud.jpg";
+  if (course.id.includes("dsa")) return "/course-images/dsa.jpg";
+  if (course.id.includes("iot")) return "/course-images/iot.jpg";
+  if (course.id.includes("marketing")) return "/course-images/marketing.jpg";
+  return "/course-images/genai.jpg";
 }
 
-// Ensure illustrationPath is set on every item
+export function getCourseIllustration(course: CourseItem): string {
+  return getCourseImage(course);
+}
+
+// Ensure imagePath and illustrationPath are set on every item
 COURSE_CATALOG.forEach((item) => {
-  if (!item.illustrationPath) {
-    item.illustrationPath = `/course-illustrations/${item.id}.svg`;
-  }
+  item.imagePath = getCourseImage(item);
+  item.illustrationPath = item.imagePath;
 });
