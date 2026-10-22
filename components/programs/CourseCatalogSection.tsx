@@ -202,6 +202,43 @@ export default function CourseCatalogSection() {
     }
   };
 
+  // OTP-gated download handler
+  const handleDownload = (course: CourseItem) => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("forge_student_verified")) {
+      const link = document.createElement("a");
+      link.href = course.pdfPath;
+      link.download = course.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+
+    open("download", {
+      programSlug: course.slug,
+      programName: `${course.title} (${course.duration})`,
+      pdfPath: course.pdfPath,
+      fileName: course.fileName,
+      actionType: "download",
+    });
+  };
+
+  // OTP-gated preview handler
+  const handlePreview = (course: CourseItem) => {
+    if (typeof window !== "undefined" && sessionStorage.getItem("forge_student_verified")) {
+      window.open(course.pdfPath, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    open("download", {
+      programSlug: course.slug,
+      programName: `${course.title} (${course.duration})`,
+      pdfPath: course.pdfPath,
+      fileName: course.fileName,
+      actionType: "preview",
+    });
+  };
+
   const getDurationBadgeColor = (duration: string) => {
     switch (duration) {
       case "1 Year":
@@ -541,13 +578,13 @@ export default function CourseCatalogSection() {
                     </div>
                   </div>
 
-                  {/* Action Area: Download Brochure + Preview / Request Info */}
+                  {/* Action Area: OTP-Gated Download Brochure + Preview / Request Info */}
                   <div className="mt-6 pt-4 border-t border-[#F1F5F9] flex flex-col gap-2.5">
-                    {/* Primary Download Button */}
-                    <a
-                      href={course.pdfPath}
-                      download={course.fileName}
-                      className="w-full flex items-center justify-between rounded-xl bg-[#1683E8] hover:bg-[#1272cb] text-white py-2.5 px-4 font-jakarta text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all active:scale-[0.98] group/btn"
+                    {/* Primary OTP-Gated Download Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleDownload(course)}
+                      className="w-full flex items-center justify-between rounded-xl bg-[#1683E8] hover:bg-[#1272cb] text-white py-2.5 px-4 font-jakarta text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all active:scale-[0.98] group/btn cursor-pointer"
                       aria-label={`Download ${course.title} (${course.duration}) Brochure`}
                     >
                       <span className="flex items-center gap-2">
@@ -555,20 +592,19 @@ export default function CourseCatalogSection() {
                         <span>Download Brochure ({course.duration})</span>
                       </span>
                       <ChevronRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-                    </a>
+                    </button>
 
                     {/* Secondary Actions Row */}
                     <div className="flex items-center justify-between pt-1">
-                      <a
-                        href={course.pdfPath}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 font-jakarta text-xs font-semibold text-[#64748B] hover:text-[#1683E8] transition-colors py-1"
+                      <button
+                        type="button"
+                        onClick={() => handlePreview(course)}
+                        className="inline-flex items-center gap-1.5 font-jakarta text-xs font-semibold text-[#64748B] hover:text-[#1683E8] transition-colors py-1 cursor-pointer"
                       >
                         <FileText className="h-3.5 w-3.5 text-[#1683E8]" />
                         <span>Preview PDF</span>
                         <ExternalLink className="h-3 w-3 text-[#94A3B8]" />
-                      </a>
+                      </button>
 
                       <button
                         type="button"
@@ -576,6 +612,9 @@ export default function CourseCatalogSection() {
                           open("download", {
                             programSlug: course.slug,
                             programName: `${course.title} (${course.duration})`,
+                            pdfPath: course.pdfPath,
+                            fileName: course.fileName,
+                            actionType: "download",
                           })
                         }
                         className="inline-flex items-center gap-1 font-jakarta text-xs font-semibold text-[#1683E8] hover:underline cursor-pointer py-1"

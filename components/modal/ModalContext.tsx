@@ -7,6 +7,9 @@ export type ModalType = "join" | "partner" | "download" | "mentor" | "catalogue"
 export interface DownloadPayload {
   programSlug: string;
   programName: string;
+  pdfPath?: string;
+  fileName?: string;
+  actionType?: "download" | "preview";
 }
 
 interface ModalCtx {

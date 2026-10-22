@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { X, ArrowRight, CheckCircle2, Download, Loader2 } from "lucide-react";
+import { X, ArrowRight, CheckCircle2, Download, FileText, Loader2 } from "lucide-react";
 import { useModal, type ModalType } from "./ModalContext";
 import DownloadForm from "./DownloadForm";
 import MentorForm from "./MentorForm";
@@ -305,38 +305,59 @@ function SuccessScreen({
   onClose,
   downloadUrl,
   downloadLabel = "Download Brochure",
+  actionType = "download",
 }: {
   onClose: () => void;
   downloadUrl?: string;
   downloadLabel?: string;
+  actionType?: "download" | "preview";
 }) {
   return (
-    <div className="flex flex-col items-center justify-center py-10 text-center">
-      <CheckCircle2 className="h-14 w-14 text-primary mb-5" />
-      <h3 className="font-varela text-2xl font-bold text-foreground mb-3">
-        {downloadUrl ? "Your download is ready!" : "You're in!"}
+    <div className="flex flex-col items-center justify-center py-8 text-center">
+      <div className="relative mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#EAF3FF] text-[#1683E8] border border-[#D1E6FF] shadow-xs">
+        <CheckCircle2 className="h-9 w-9 text-[#1683E8]" />
+      </div>
+
+      <span className="font-jakarta text-[11px] font-bold uppercase tracking-wider text-[#1683E8] bg-[#EAF3FF] px-3 py-1 rounded-full mb-3 border border-[#D1E6FF]">
+        OTP Verified Successfully
+      </span>
+
+      <h3 className="font-clash text-2xl font-bold text-[#102A43] mb-2">
+        {actionType === "preview" ? "Your Preview is Ready!" : "Your Download Has Started!"}
       </h3>
-      <p className="font-jakarta text-base text-foreground/65 max-w-xs">
-        {downloadUrl
-          ? "Click below to download. We've also sent a copy of your request to our team."
-          : "We've received your submission. Our sales team will get back to you shortly."}
+
+      <p className="font-jakarta text-sm text-[#5F6672] max-w-sm leading-relaxed">
+        {actionType === "preview"
+          ? "We've verified your contact number. Click below to view the official PDF curriculum."
+          : "Your official course curriculum is downloading now. If it didn't start automatically, click below."}
       </p>
+
       {downloadUrl && (
         <a
           href={downloadUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex items-center gap-2 rounded-full bg-primary px-8 py-2.5 font-jakarta text-sm font-semibold text-white transition hover:opacity-90"
+          className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#1683E8] hover:bg-[#1272cb] px-7 py-3 font-jakarta text-sm font-bold text-white shadow-md hover:shadow-lg transition-all"
         >
-          <Download className="h-4 w-4" />
-          {downloadLabel}
+          {actionType === "preview" ? (
+            <>
+              <FileText className="h-4 w-4" />
+              <span>{downloadLabel}</span>
+            </>
+          ) : (
+            <>
+              <Download className="h-4 w-4" />
+              <span>{downloadLabel}</span>
+            </>
+          )}
         </a>
       )}
+
       <button
         onClick={onClose}
-        className="mt-4 rounded-full border border-black/10 px-8 py-2.5 font-jakarta text-sm font-semibold text-foreground transition hover:bg-black/5"
+        className="mt-4 rounded-xl border border-black/10 px-8 py-2.5 font-jakarta text-xs font-semibold text-[#5F6672] hover:bg-black/5 transition cursor-pointer"
       >
-        Close
+        Close Window
       </button>
     </div>
   );
@@ -393,15 +414,18 @@ export default function FormModal() {
     modalType === "download"
       ? {
           heading: downloadPayload?.programName
-            ? `Download the ${downloadPayload.programName} Brochure`
-            : "Download Brochure",
-          sub: "Enter your details and we'll unlock the download.",
+            ? downloadPayload.actionType === "preview"
+              ? `Preview ${downloadPayload.programName}`
+              : `Download ${downloadPayload.programName}`
+            : "Download Course Brochure",
+          sub: "Enter your student details and verify via mobile OTP to unlock the verified PDF.",
         }
       : titles[modalType];
 
   const resolvedDownloadUrl =
     modalType === "download" && downloadPayload
-      ? PROGRAM_BROCHURE_PATH_MAP[downloadPayload.programSlug] ||
+      ? downloadPayload.pdfPath ||
+        PROGRAM_BROCHURE_PATH_MAP[downloadPayload.programSlug] ||
         `/courses/1-year/1_Year_Full_Stack_Web_Development_Brochure.pdf`
       : modalType === "catalogue" && catalogueUrl
         ? catalogueUrl
@@ -439,7 +463,14 @@ export default function FormModal() {
             <SuccessScreen
               onClose={close}
               downloadUrl={resolvedDownloadUrl}
-              downloadLabel={modalType === "catalogue" ? "Download Catalogue" : "Download Brochure"}
+              actionType={downloadPayload?.actionType || "download"}
+              downloadLabel={
+                downloadPayload?.actionType === "preview"
+                  ? "Open PDF Preview"
+                  : modalType === "catalogue"
+                  ? "Download Catalogue"
+                  : "Download Brochure (PDF)"
+              }
             />
           ) : modalType === "join" ? (
             <JoinForm onSuccess={() => setSuccess(true)} />
