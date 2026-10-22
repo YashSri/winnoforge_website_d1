@@ -2388,6 +2388,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
 
+--------------------------------------------------------------------------------
+RECORD #153 | COMMIT: b08838f | TIMESTAMP: 2026-10-22 12:32:55 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  refactor(courses): remove OTP verification and restore direct download and preview links
+
+SITE CHANGES IMPLEMENTED:
+  refactor(courses): remove OTP verification and restore direct download and preview links
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt, components/modal/DownloadForm.tsx (+2 more)
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
