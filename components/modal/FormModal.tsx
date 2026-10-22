@@ -318,17 +318,13 @@ function SuccessScreen({
         <CheckCircle2 className="h-9 w-9 text-[#1683E8]" />
       </div>
 
-      <span className="font-jakarta text-[11px] font-bold uppercase tracking-wider text-[#1683E8] bg-[#EAF3FF] px-3 py-1 rounded-full mb-3 border border-[#D1E6FF]">
-        OTP Verified Successfully
-      </span>
-
       <h3 className="font-clash text-2xl font-bold text-[#102A43] mb-2">
         {actionType === "preview" ? "Your Preview is Ready!" : "Your Download Has Started!"}
       </h3>
 
       <p className="font-jakarta text-sm text-[#5F6672] max-w-sm leading-relaxed">
         {actionType === "preview"
-          ? "We've verified your contact number. Click below to view the official PDF curriculum."
+          ? "Click below to view the verified PDF curriculum."
           : "Your official course curriculum is downloading now. If it didn't start automatically, click below."}
       </p>
 
@@ -418,7 +414,7 @@ export default function FormModal() {
               ? `Preview ${downloadPayload.programName}`
               : `Download ${downloadPayload.programName}`
             : "Download Course Brochure",
-          sub: "Enter your student details and verify via mobile OTP to unlock the verified PDF.",
+          sub: "Enter your student details to unlock the verified syllabus and brochure.",
         }
       : titles[modalType];
 

@@ -2373,6 +2373,21 @@ SITE CHANGES IMPLEMENTED:
 KEY FILES AFFECTED:
   CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt, components/modal/DownloadForm.tsx (+3 more)
 
+--------------------------------------------------------------------------------
+RECORD #152 | COMMIT: 56e7980 | TIMESTAMP: 2026-10-22 12:24:04 +0530
+--------------------------------------------------------------------------------
+AUTHOR / COMMITTED BY:
+  Winnovation
+
+USER INSTRUCTION / REQUEST:
+  docs(changelog): update reports for OTP brochure flow
+
+SITE CHANGES IMPLEMENTED:
+  docs(changelog): update reports for OTP brochure flow
+
+KEY FILES AFFECTED:
+  CHANGES_LOG.txt, FORGE_Website_Project_Change_Report.csv, FORGE_Website_Project_Change_Report.xlsx, changes.txt
+
 ================================================================================
 4. CURRENT PRODUCTION STATUS & VERIFICATION SUMMARY
 ================================================================================
