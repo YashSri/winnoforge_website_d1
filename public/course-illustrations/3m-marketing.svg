@@ -1,0 +1,16 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Social Media & Audience Growth Chart -->
+  <rect x="48" y="26" width="96" height="66" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Upward Trend Line -->
+  <path d="M 58 74 Q 82 66 100 48 Q 118 36 134 32" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <circle cx="134" cy="32" r="4" fill="#10B981" />
+  <!-- Growth Bars -->
+  <rect x="62" y="62" width="8" height="20" rx="2" fill="#EAF3FF" />
+  <rect x="76" y="52" width="8" height="30" rx="2" fill="#38BDF8" />
+  <rect x="90" y="44" width="8" height="38" rx="2" fill="#1683E8" />
+  
+  <!-- Heart / Like badge on left -->
+  <circle cx="26" cy="56" r="14" fill="#FF6B4A" />
+  <path d="M 26 59 L 21 54 C 19 52 19 49 22 47 C 24 45 26 47 26 47 C 26 47 28 45 30 47 C 33 49 33 52 31 54 Z" fill="#FFFFFF" />
+</svg>

@@ -18,6 +18,7 @@ export interface CourseItem {
   description: string;
   pdfPath: string;
   fileName: string;
+  illustrationPath?: string;
   featured?: boolean;
   highlights: string[];
 }
@@ -614,3 +615,14 @@ export function getCoursesByDuration(duration: string): CourseItem[] {
   if (duration === "all") return COURSE_CATALOG;
   return COURSE_CATALOG.filter((c) => c.durationCategory === duration);
 }
+
+export function getCourseIllustration(course: CourseItem): string {
+  return course.illustrationPath || `/course-illustrations/${course.id}.svg`;
+}
+
+// Ensure illustrationPath is set on every item
+COURSE_CATALOG.forEach((item) => {
+  if (!item.illustrationPath) {
+    item.illustrationPath = `/course-illustrations/${item.id}.svg`;
+  }
+});

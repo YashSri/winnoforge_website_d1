@@ -1,0 +1,21 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Chatbot dialogue prompts -->
+  <rect x="76" y="24" width="68" height="26" rx="6" fill="#EAF3FF" stroke="#1683E8" stroke-width="1.5" />
+  <line x1="84" y1="32" x2="128" y2="32" stroke="#1683E8" stroke-width="2" stroke-linecap="round" />
+  <line x1="84" y1="40" x2="114" y2="40" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" />
+  
+  <!-- Response Bubble with Lightbulb -->
+  <rect x="76" y="56" width="68" height="32" rx="6" fill="#102A43" stroke="#102A43" stroke-width="1.5" />
+  <circle cx="92" cy="72" r="8" fill="#F59E0B" />
+  <path d="M 90 70 L 94 70 L 92 75 Z" fill="#FFFFFF" />
+  <line x1="106" y1="68" x2="134" y2="68" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+  <line x1="106" y1="76" x2="124" y2="76" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round" />
+
+  <!-- Builder Character communicating with AI -->
+  <ellipse cx="36" cy="54" rx="9" ry="11" fill="#FCD34D" stroke="#102A43" stroke-width="1.8" />
+  <path d="M 28 52 C 27 42 37 39 45 42 C 48 45 47 52 45 54 C 40 52 34 52 28 56 Z" fill="#102A43" />
+  <path d="M 24 82 C 22 70 26 66 38 66 C 48 66 52 70 50 82 Z" fill="#1683E8" stroke="#102A43" stroke-width="1.8" />
+  <!-- Speech line -->
+  <path d="M 48 60 Q 62 48 76 38" stroke="#1683E8" stroke-width="1.5" stroke-dasharray="2 2" fill="none" />
+</svg>

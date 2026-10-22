@@ -1,0 +1,30 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Binary Tree Node Network -->
+  <!-- Root Node -->
+  <circle cx="88" cy="30" r="10" fill="#1683E8" stroke="#102A43" stroke-width="1.8" />
+  <text x="85" y="34" font-family="monospace" font-size="10" font-weight="700" fill="#FFFFFF">7</text>
+  <!-- Level 1 Left -->
+  <line x1="82" y1="37" x2="62" y2="55" stroke="#102A43" stroke-width="1.8" />
+  <circle cx="58" cy="60" r="9" fill="#38BDF8" stroke="#102A43" stroke-width="1.8" />
+  <text x="55" y="64" font-family="monospace" font-size="9" font-weight="700" fill="#102A43">3</text>
+  <!-- Level 1 Right -->
+  <line x1="94" y1="37" x2="114" y2="55" stroke="#102A43" stroke-width="1.8" />
+  <circle cx="118" cy="60" r="9" fill="#FF6B4A" stroke="#102A43" stroke-width="1.8" />
+  <text x="115" y="64" font-family="monospace" font-size="9" font-weight="700" fill="#FFFFFF">9</text>
+  <!-- Level 2 Leaves -->
+  <line x1="53" y1="67" x2="42" y2="82" stroke="#102A43" stroke-width="1.6" />
+  <circle cx="38" cy="88" r="8" fill="#EAF3FF" stroke="#102A43" stroke-width="1.6" />
+  <text x="35" y="91" font-family="monospace" font-size="8" font-weight="700" fill="#1683E8">1</text>
+  <line x1="63" y1="67" x2="74" y2="82" stroke="#102A43" stroke-width="1.6" />
+  <circle cx="78" cy="88" r="8" fill="#EAF3FF" stroke="#102A43" stroke-width="1.6" />
+  <text x="75" y="91" font-family="monospace" font-size="8" font-weight="700" fill="#1683E8">5</text>
+  <!-- Level 2 Right leaf -->
+  <line x1="123" y1="67" x2="134" y2="82" stroke="#102A43" stroke-width="1.6" />
+  <circle cx="138" cy="88" r="8" fill="#102A43" stroke="#102A43" stroke-width="1.6" />
+  <text x="135" y="91" font-family="monospace" font-size="8" font-weight="700" fill="#FFFFFF">12</text>
+
+  <!-- Big O Complexity Badge -->
+  <rect x="18" y="24" width="36" height="18" rx="4" fill="#102A43" />
+  <text x="23" y="36" font-family="sans-serif" font-size="9" font-weight="700" fill="#FCD34D">O(log N)</text>
+</svg>

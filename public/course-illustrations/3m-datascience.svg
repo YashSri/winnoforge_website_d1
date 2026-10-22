@@ -1,0 +1,17 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Data Chart Board -->
+  <rect x="48" y="26" width="96" height="66" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Scatter Plot with Trend -->
+  <circle cx="62" cy="72" r="3.5" fill="#1683E8" />
+  <circle cx="76" cy="62" r="3.5" fill="#1683E8" />
+  <circle cx="92" cy="56" r="3.5" fill="#38BDF8" />
+  <circle cx="106" cy="46" r="3.5" fill="#1683E8" />
+  <circle cx="124" cy="38" r="3.5" fill="#FF6B4A" />
+  <line x1="56" y1="78" x2="132" y2="34" stroke="#102A43" stroke-width="1.8" stroke-linecap="round" />
+  
+  <!-- Python Logo Symbol on left -->
+  <circle cx="26" cy="58" r="14" fill="#102A43" />
+  <path d="M 21 54 C 21 51 25 51 27 51 L 29 51 L 29 55 L 23 55 Z" fill="#38BDF8" />
+  <path d="M 31 62 C 31 65 27 65 25 65 L 23 65 L 23 61 L 29 61 Z" fill="#FCD34D" />
+</svg>

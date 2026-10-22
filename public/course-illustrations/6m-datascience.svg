@@ -1,0 +1,23 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Data Table & Correlation Matrix -->
+  <rect x="52" y="26" width="94" height="68" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Table Header -->
+  <rect x="52" y="26" width="94" height="14" rx="8" fill="#EAF3FF" />
+  <text x="58" y="36" font-family="monospace" font-size="7" font-weight="700" fill="#1683E8">X1</text>
+  <text x="82" y="36" font-family="monospace" font-size="7" font-weight="700" fill="#1683E8">X2</text>
+  <text x="106" y="36" font-family="monospace" font-size="7" font-weight="700" fill="#1683E8">Y_PRED</text>
+  <!-- Scatter clusters -->
+  <circle cx="68" cy="52" r="3" fill="#1683E8" />
+  <circle cx="78" cy="62" r="3" fill="#1683E8" />
+  <circle cx="86" cy="56" r="3" fill="#1683E8" />
+  <circle cx="114" cy="68" r="3" fill="#FF6B4A" />
+  <circle cx="126" cy="62" r="3" fill="#FF6B4A" />
+  <circle cx="132" cy="74" r="3" fill="#FF6B4A" />
+  <!-- Decision Boundary -->
+  <line x1="60" y1="78" x2="136" y2="44" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Python Flask / Formula badge -->
+  <rect x="16" y="44" width="32" height="32" rx="6" fill="#102A43" />
+  <text x="21" y="64" font-family="monospace" font-size="14" font-weight="800" fill="#FCD34D">f(x)</text>
+</svg>

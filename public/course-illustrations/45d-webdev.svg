@@ -1,0 +1,17 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#FEF3F2" />
+  <!-- Fast-Track Code Browser -->
+  <rect x="46" y="24" width="98" height="68" rx="8" fill="#FFFFFF" stroke="#D92D20" stroke-width="1.8" />
+  <rect x="46" y="24" width="98" height="15" rx="8" fill="#FEE4E2" />
+  <text x="54" y="35" font-family="monospace" font-size="8" font-weight="800" fill="#D92D20">&lt;FAST_TRACK /&gt;</text>
+  <!-- Live Project Browser Mockup -->
+  <rect x="56" y="46" width="38" height="36" rx="3" fill="#EAF3FF" stroke="#1683E8" stroke-width="1" />
+  <rect x="60" y="52" width="22" height="5" rx="1.5" fill="#1683E8" />
+  <rect x="60" y="60" width="30" height="3" rx="1" fill="#94A3B8" />
+  <rect x="100" y="46" width="36" height="36" rx="3" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+  <circle cx="118" cy="62" r="6" fill="#10B981" />
+  
+  <!-- Lightning Bolt icon on left -->
+  <circle cx="26" cy="58" r="15" fill="#D92D20" />
+  <path d="M 28 47 L 21 59 L 26 59 L 24 69 L 32 56 L 27 56 Z" fill="#FFFFFF" />
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- AWS Cloud Shield -->
+  <path d="M 88 22 L 126 34 L 126 58 C 126 76 108 90 88 96 C 68 90 50 76 50 58 L 50 34 Z" fill="#EAF3FF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Inner Cloud on Shield -->
+  <path d="M 74 54 C 74 48 79 44 85 44 C 90 44 94 47 96 51 C 98 50 100 50 102 51 C 105 53 107 56 106 60 C 109 61 110 64 110 67 C 109 70 106 72 102 72 L 74 72 C 69 72 65 68 65 63 C 65 58 69 54 74 54 Z" fill="#1683E8" />
+  <!-- AWS Server Stack on right -->
+  <rect x="118" y="64" width="28" height="12" rx="3" fill="#102A43" />
+  <circle cx="123" cy="70" r="1.5" fill="#10B981" />
+  <rect x="118" y="78" width="28" height="12" rx="3" fill="#102A43" />
+  <circle cx="123" cy="84" r="1.5" fill="#F59E0B" />
+  <!-- Terminal Prompt badge on left -->
+  <rect x="16" y="34" width="28" height="24" rx="4" fill="#102A43" />
+  <text x="21" y="49" font-family="monospace" font-size="10" font-weight="700" fill="#38BDF8">&gt;_</text>
+</svg>

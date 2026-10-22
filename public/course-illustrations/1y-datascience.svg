@@ -1,0 +1,21 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Data Chart Board -->
+  <rect x="58" y="24" width="88" height="70" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Rising Bar Chart -->
+  <rect x="68" y="58" width="10" height="26" rx="2" fill="#EAF3FF" stroke="#1683E8" stroke-width="1.2" />
+  <rect x="82" y="46" width="10" height="38" rx="2" fill="#38BDF8" stroke="#1683E8" stroke-width="1.2" />
+  <rect x="96" y="36" width="10" height="48" rx="2" fill="#1683E8" />
+  <!-- Line chart overlay -->
+  <path d="M 68 54 Q 85 44 115 32 Q 130 28 138 26" stroke="#FF6B4A" stroke-width="2" stroke-linecap="round" fill="none" />
+  <circle cx="115" cy="32" r="3" fill="#FF6B4A" />
+  <circle cx="138" cy="26" r="3" fill="#10B981" />
+
+  <!-- Data Scientist Inspecting -->
+  <ellipse cx="32" cy="52" rx="9" ry="11" fill="#FCD34D" stroke="#102A43" stroke-width="1.8" />
+  <path d="M 24 50 C 23 40 33 37 41 40 C 44 43 43 50 42 52 C 37 50 31 50 24 54 Z" fill="#102A43" />
+  <path d="M 22 78 C 20 66 24 63 35 63 C 45 63 48 66 46 78 Z" fill="#1683E8" stroke="#102A43" stroke-width="1.8" />
+  <!-- Arm holding stylus -->
+  <path d="M 42 68 L 62 58" stroke="#102A43" stroke-width="2" stroke-linecap="round" />
+  <circle cx="63" cy="57" r="2.5" fill="#FCD34D" />
+</svg>

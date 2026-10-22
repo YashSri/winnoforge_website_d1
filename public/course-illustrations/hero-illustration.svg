@@ -1,0 +1,64 @@
+<svg viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stepped Geometric Pedestals -->
+  <rect x="250" y="145" width="85" height="100" rx="8" fill="#102A43" />
+  <rect x="235" y="175" width="45" height="70" rx="6" fill="#1683E8" />
+  <rect x="315" y="195" width="40" height="50" rx="6" fill="#EAF3FF" stroke="#1683E8" stroke-width="1.5" />
+  
+  <!-- "From Curiosity to Capability" Script -->
+  <path d="M 170 120 Q 210 100 240 108" stroke="#1683E8" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+  <polygon points="243,109 235,104 237,112" fill="#1683E8" />
+  <text x="145" y="98" font-family="sans-serif" font-style="italic" font-size="11" font-weight="600" fill="#102A43">From</text>
+  <text x="140" y="112" font-family="sans-serif" font-style="italic" font-size="11" font-weight="600" fill="#1683E8">Curiosity</text>
+  <text x="155" y="125" font-family="sans-serif" font-style="italic" font-size="10" font-weight="500" fill="#5F6672">to</text>
+  <text x="145" y="138" font-family="sans-serif" font-style="italic" font-size="11" font-weight="700" fill="#102A43">Capability</text>
+
+  <!-- Editorial Corner Typography: LEARN BUILD EXPERIENCE GROW -->
+  <text x="350" y="28" font-family="sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.16em" fill="#8898AA">LEARN</text>
+  <text x="350" y="42" font-family="sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.16em" fill="#8898AA">BUILD</text>
+  <text x="350" y="56" font-family="sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.16em" fill="#1683E8">EXPERIENCE</text>
+  <text x="350" y="70" font-family="sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.16em" fill="#8898AA">GROW</text>
+
+  <!-- Vertical Pillar Badge on the block: IDEAS PEOPLE OPPORTUNITIES IMPACT -->
+  <g transform="translate(292, 160)">
+    <rect width="66" height="52" rx="6" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="6" y="14" font-family="sans-serif" font-size="7" font-weight="700" letter-spacing="0.14em" fill="#64748B">IDEAS</text>
+    <text x="6" y="24" font-family="sans-serif" font-size="7" font-weight="700" letter-spacing="0.14em" fill="#64748B">PEOPLE</text>
+    <text x="6" y="34" font-family="sans-serif" font-size="7" font-weight="700" letter-spacing="0.14em" fill="#1683E8">OPPORTUNITIES</text>
+    <text x="6" y="44" font-family="sans-serif" font-size="7" font-weight="700" letter-spacing="0.14em" fill="#102A43">IMPACT</text>
+    <circle cx="56" cy="12" r="5" fill="#1683E8" />
+    <path d="M54 14 L58 10 M55 10 L58 10 L58 13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+  <!-- Builder Character sitting on pedestal -->
+  <!-- Legs -->
+  <path d="M 270 145 L 265 178 L 245 180" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M 276 145 L 273 182 L 288 185" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <!-- Pants fill -->
+  <path d="M 268 143 Q 262 165 264 178 L 274 178 Q 278 160 279 143 Z" fill="#102A43" />
+  
+  <!-- Torso & Blue Hoodie -->
+  <path d="M 266 98 C 260 108 258 126 268 145 L 285 145 C 290 125 288 106 280 98 Z" fill="#1683E8" />
+  <path d="M 268 98 C 263 106 260 126 268 145 L 285 145 C 289 126 287 106 280 98" stroke="#111111" stroke-width="2" stroke-linecap="round" fill="none" />
+  
+  <!-- Arms & Hands on Laptop -->
+  <path d="M 275 108 L 252 124 L 235 125" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="233" cy="125" r="2.5" fill="#FCD34D" stroke="#111111" stroke-width="1" />
+  
+  <!-- Laptop on Lap -->
+  <path d="M 224 126 L 246 126 L 242 130 L 220 130 Z" fill="#64748B" stroke="#111111" stroke-width="1.2" />
+  <path d="M 226 125 L 218 106 L 236 106 L 244 125 Z" fill="#102A43" stroke="#111111" stroke-width="1.5" />
+  <rect x="221" y="109" width="12" height="13" rx="1" fill="#38BDF8" opacity="0.8" />
+
+  <!-- Head & Hair -->
+  <ellipse cx="282" cy="74" rx="7" ry="9" fill="#FCD34D" stroke="#111111" stroke-width="1.8" />
+  <!-- Hair: Clean modern silhouette -->
+  <path d="M 276 72 C 275 64 282 60 289 62 C 293 64 294 70 292 73 C 288 71 283 71 278 75 Z" fill="#111111" />
+  <!-- Face features minimal -->
+  <circle cx="279" cy="74" r="1" fill="#111111" />
+  <path d="M 277 78 Q 280 80 283 79" stroke="#111111" stroke-width="1" stroke-linecap="round" fill="none" />
+  
+  <!-- Floating decorative sparks / accents -->
+  <path d="M 205 75 L 211 75 M 208 72 L 208 78" stroke="#1683E8" stroke-width="1.5" stroke-linecap="round" />
+  <circle cx="310" cy="100" r="2.5" fill="#1683E8" />
+  <circle cx="190" cy="165" r="3" fill="#38BDF8" opacity="0.6" />
+</svg>

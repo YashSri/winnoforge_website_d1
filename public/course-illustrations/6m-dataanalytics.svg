@@ -1,0 +1,20 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Executive Dashboard Screen -->
+  <rect x="44" y="22" width="102" height="72" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <!-- Top KPI Cards -->
+  <rect x="52" y="30" width="26" height="18" rx="4" fill="#EAF3FF" />
+  <text x="56" y="42" font-family="sans-serif" font-size="8" font-weight="800" fill="#1683E8">94.8%</text>
+  <rect x="82" y="30" width="26" height="18" rx="4" fill="#FEF3F2" />
+  <text x="86" y="42" font-family="sans-serif" font-size="8" font-weight="800" fill="#FF6B4A">$1.2M</text>
+  <rect x="112" y="30" width="26" height="18" rx="4" fill="#ECFDF5" />
+  <text x="116" y="42" font-family="sans-serif" font-size="8" font-weight="800" fill="#10B981">+32%</text>
+  
+  <!-- Trend Chart with Area Fill -->
+  <path d="M 52 76 Q 72 68 92 60 Q 112 70 138 52 L 138 82 L 52 82 Z" fill="#EAF3FF" />
+  <path d="M 52 76 Q 72 68 92 60 Q 112 70 138 52" stroke="#1683E8" stroke-width="2" stroke-linecap="round" fill="none" />
+  
+  <!-- Bar chart icon on left -->
+  <rect x="16" y="42" width="8" height="36" rx="2" fill="#102A43" />
+  <rect x="28" y="54" width="8" height="24" rx="2" fill="#38BDF8" />
+</svg>

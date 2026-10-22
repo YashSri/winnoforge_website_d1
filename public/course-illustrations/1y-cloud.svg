@@ -1,0 +1,29 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- Prominent Cloud SVG shape -->
+  <path d="M 80 44 C 80 34 88 26 98 26 C 106 26 113 31 115 38 C 118 36 122 36 125 38 C 131 40 134 46 133 52 C 137 54 139 58 138 63 C 137 68 132 72 126 72 L 78 72 C 70 72 64 66 64 58 C 64 51 69 45 76 44 C 77 44 79 44 80 44 Z" fill="#38BDF8" stroke="#102A43" stroke-width="1.8" />
+  <path d="M 86 48 C 86 40 92 34 100 34 C 106 34 111 38 113 44 C 115 42 118 42 121 44 C 125 46 127 50 126 55 L 84 55 Z" fill="#FFFFFF" opacity="0.6" />
+
+  <!-- Stacked Server Racks below Cloud -->
+  <g transform="translate(94, 68)">
+    <rect x="0" y="0" width="42" height="13" rx="3" fill="#102A43" stroke="#102A43" stroke-width="1.2" />
+    <circle cx="8" cy="6.5" r="1.8" fill="#10B981" />
+    <line x1="16" y1="6.5" x2="36" y2="6.5" stroke="#64748B" stroke-width="1.2" />
+
+    <rect x="0" y="16" width="42" height="13" rx="3" fill="#102A43" stroke="#102A43" stroke-width="1.2" />
+    <circle cx="8" cy="22.5" r="1.8" fill="#38BDF8" />
+    <line x1="16" y1="22.5" x2="36" y2="22.5" stroke="#64748B" stroke-width="1.2" />
+  </g>
+
+  <!-- Kubernetes/Docker Helm Emblem on left -->
+  <circle cx="44" cy="58" r="18" fill="#EAF3FF" stroke="#1683E8" stroke-width="1.8" />
+  <circle cx="44" cy="58" r="6" fill="#1683E8" />
+  <!-- Gear spokes -->
+  <line x1="44" y1="36" x2="44" y2="42" stroke="#1683E8" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="44" y1="74" x2="44" y2="80" stroke="#1683E8" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="22" y1="58" x2="28" y2="58" stroke="#1683E8" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="60" y1="58" x2="66" y2="58" stroke="#1683E8" stroke-width="2.5" stroke-linecap="round" />
+  
+  <!-- Pipeline connection line -->
+  <path d="M 62 58 L 78 58 L 94 74" stroke="#1683E8" stroke-width="1.8" stroke-dasharray="3 3" fill="none" />
+</svg>

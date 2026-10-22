@@ -1,0 +1,16 @@
+<svg viewBox="0 0 160 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="144" height="96" rx="12" fill="#F8FAFC" />
+  <!-- SQL Query Editor -->
+  <rect x="46" y="24" width="98" height="68" rx="8" fill="#FFFFFF" stroke="#102A43" stroke-width="1.8" />
+  <rect x="46" y="24" width="98" height="16" rx="8" fill="#102A43" />
+  <text x="54" y="35" font-family="monospace" font-size="8" font-weight="700" fill="#FCD34D">SELECT * FROM DATA</text>
+  <!-- Mini Bar Chart Inside -->
+  <rect x="58" y="58" width="10" height="24" rx="2" fill="#EAF3FF" stroke="#1683E8" stroke-width="1.2" />
+  <rect x="74" y="48" width="10" height="34" rx="2" fill="#38BDF8" />
+  <rect x="90" y="42" width="10" height="40" rx="2" fill="#1683E8" />
+  <rect x="106" y="52" width="10" height="30" rx="2" fill="#10B981" />
+  
+  <!-- Database Cylinder on left -->
+  <ellipse cx="26" cy="46" rx="12" ry="5" fill="#38BDF8" stroke="#102A43" stroke-width="1.5" />
+  <path d="M 14 46 L 14 66 C 14 69 19 71 26 71 C 33 71 38 69 38 66 L 38 46" fill="#1683E8" stroke="#102A43" stroke-width="1.5" />
+</svg>
